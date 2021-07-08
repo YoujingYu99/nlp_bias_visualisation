@@ -88,3 +88,4 @@ def text_summarizer(raw_docx):
 
 def summarize(raw_text):
     return gensim.summarization.summarize(raw_text)
+

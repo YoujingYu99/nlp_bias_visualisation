@@ -20,9 +20,17 @@ class UserParser:
     def __init__(self):
         self.input = None
         self.state = False  # True for success, False otherwise
+        self.flag = 0
+        """
+        0: SQL
+        1: noSQL
+        """
 
     def ln2sql(self):
-        pass
+        """to be finished later"""
+        return # or should generate a json file for the downstream
+
+
 
 
 
