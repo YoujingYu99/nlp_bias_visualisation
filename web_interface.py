@@ -4,13 +4,14 @@ from flask import Flask,render_template,url_for,request
 from utils import * 
 import time
 import spacy
-nlp = spacy.load('en')
+nlp = spacy.load('en_core_web_sm')
 app = Flask(__name__)
 
 # Web Scraping Pkg
 from bs4 import BeautifulSoup
+import urllib
 # from urllib.request import urlopen
-from urllib import urlopen
+#from urllib3 import urlopen
 
 # Sumy Pkg
 from sumy.parsers.plaintext import PlaintextParser
@@ -35,7 +36,7 @@ def readingTime(mytext):
 
 # Fetch Text From Url
 def get_text(url):
-	page = urlopen(url)
+	page = urllib.request.urlopen(url)
 	soup = BeautifulSoup(page)
 	fetched_text = ' '.join(map(lambda p:p.text,soup.find_all('p')))
 	return fetched_text
