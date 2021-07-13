@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<body lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Summaryzer</title>
-    <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-</head>
-</body>
-    <div class="navbar-fixed">
-     <nav class="grey darken-4" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Summaryzer</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{{url_for('index')}}">Home</a></li>
-           <li><a href="{{url_for('compare_summary')}}">Compare Summarizers</a></li>
-           <li><a href="{{ url_for('about') }}">About</a></li>
-        </ul>
-
-
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      </div>
-      </nav>
-    </div>
+{% extends "layout.html" %}
+{% block content %}
     <!--Slider -->
     <section class="slider">
       <div id="index-banner" class="parallax-container">
@@ -58,13 +32,6 @@
       </div>
     </section>
     <div class="caption left-align">
-        <h2 class="center brown-text">We are two Engineering students from the University of Cambridge. This is our summer project on visualising data bias. The aim is to create a dynamic data statement, with which users of the data can visualise the potential biases in a sample text or copora with interactively.</h2>
+        <h2 class="center brown-text">We are two Engineering students from the University of Cambridge. This is our summer project on visualising data bias. The aim is to create a dynamic data statement, with which users of the data can visualise the potential biases in a sample text or corpora with interactively.</h2>
     </div>
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="static/js/materialize.js"></script>
-  <script src="static/js/init.js"></script>
-<!-- Jesse JCharis -->
-  </body>
-</html>
+{% endblock content %}
