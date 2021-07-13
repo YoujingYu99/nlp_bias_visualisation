@@ -82,9 +82,9 @@ def analyze_url():
                            final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
 
 
-@app.route('/compare_summary')
-def compare_summary():
-    return render_template('compare_summary.html')
+@app.route('/visualisation')
+def visualisation():
+    return render_template('visualisation.html')
 
 
 @app.route('/comparer', methods=['GET', 'POST'])
@@ -107,7 +107,7 @@ def comparer():
 
         end = time.time()
         final_time = end - start
-    return render_template('compare_summary.html', ctext=rawtext, final_summary_spacy=final_summary_spacy,
+    return render_template('visualisation.html', ctext=rawtext, final_summary_spacy=final_summary_spacy,
                            final_summary_gensim=final_summary_gensim, final_summary_nltk=final_summary_nltk,
                            final_time=final_time, final_reading_time=final_reading_time,
                            summary_reading_time=summary_reading_time,

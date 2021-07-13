@@ -7,7 +7,7 @@
           <li>
             <img src="backgroundblue.png" alt="Unsplashed background img 1" alt="">
             <div class="caption center-align">
-              <h2>Summarization Simplified</h2>
+              <h1>Dynamic Data Statements</h1>
               <h5 class="light grey-text text-lighten-3 hide-on-small-only">
                Using SpaCy,Gensim,NLTK and Sumy
               </h5>
@@ -20,7 +20,7 @@
           <li>
            <img src="backgroundpurple.png" alt="Unsplashed background img 1">
             <div class="caption left-align">
-              <h2>Text Summarizer with SpaCy</h2>
+              <h1>Bias Visualisation with NLTK</h1>
               <h5 class="light grey-text text-lighten-3 hide-on-small-only">
                NLP based App
               </h5>
@@ -32,31 +32,9 @@
       </div>
   </section>
 
-<!-- Start -->
-  <div class="container">
-    <div class="section">
-       
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="input-field col s12 m10">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">compare</i></h2>
-           <form method="POST" action="/comparer">
-         <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
-          
-         <br/>
-         <button class="btn btn-small waves-effect waves-light  light-blue lighten-1" type="reset">Clear</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
-        </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End -->
 
   <!-- Results -->
-  <section class="section section-solutions-about grey lighten-3 ">
+  <section class="section section-solutions-about grey lighten-3">
       <div class="container">
           <div class="row">
             <div class="col s12 m8">
@@ -96,23 +74,20 @@
             </div>
             <div id="tab1" class="col s12">
               <h5>Graphs</h5>
-              <div class="" ><p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }} min  </span></p></div>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p></div>
           
                 
             </div>
             <div id="tab2" class="col s12">
               <h5>Charts</h5>
-              
-                <div class=""><p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time_gensim }}  min </span></p>
-                </div>              <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_gensim }}</p></div>
-         
+            </div>
+            <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_gensim }}</p></div>
             </div>
             <div id="tab3" class="col s12">
               <h5>Maps</h5>
-                 <div class=""><p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time_nltk }} min  </span></p>
-              </div>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p></div>
+<!--                <div class=""><p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time_nltk }} min  </span></p>-->
+<!--                </div>-->
+<!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p></div>-->
           
             
             </div>

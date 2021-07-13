@@ -15,6 +15,13 @@ p {
   line-height: 2rem;
 }
 
+#intro{
+  white-space: pre-line;
+  padding: 10px 10px;
+  margin: 20px 20px;
+  font-family: "Arial Nova Cond Light";
+}
+
 .sidenav-trigger {
   color: #26a69a;
 }
