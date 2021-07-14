@@ -8273,7 +8273,7 @@ input[type=range]::-ms-thumb {
 }
 
 .slider.fullscreen {
-  height: 100%;
+  height: 80%;
   width: 100%;
   position: absolute;
   top: 0;
