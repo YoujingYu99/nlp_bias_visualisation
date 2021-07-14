@@ -15,7 +15,8 @@
         transition: 500,
         interval: 6000
         // how long the slide stays for
-      });
+      })
+      ;
 
 
   }); // end of document ready

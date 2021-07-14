@@ -13,7 +13,7 @@
               </h5>
 
                <div class="row center">
-              <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect dark-blue lighten-1">Refresh</a>
+              <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect #4db6ac teal lighten-2">Refresh</a>
             </div>
             </div>
           </li>
@@ -24,7 +24,7 @@
               <h5 class="light grey-text text-lighten-3 hide-on-small-only">
                NLP based App
               </h5>
-              <a href="about.html" class="btn-large waves-effect dark-blue lighten-1">Learn More</a>
+              <a href="about.html" class="btn-large waves-effect #4db6ac teal lighten-2">Learn More</a>
             </div>
           </li>
 
@@ -75,8 +75,6 @@
             <div id="tab1" class="col s12">
               <h5>Graphs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p></div>
-          
-                
             </div>
             <div id="tab2" class="col s12">
               <h5>Charts</h5>
@@ -85,8 +83,8 @@
             </div>
             <div id="tab3" class="col s12">
               <h5>Maps</h5>
-                <div class=""><p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time_nltk }} min  </span></p>
-                </div>
+{#                <div class=""><p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time_nltk }} min  </span></p>#}
+            </div>
 <!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p></div>-->
             </div>
           </div>
