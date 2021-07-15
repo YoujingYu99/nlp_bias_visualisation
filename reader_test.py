@@ -1,6 +1,6 @@
 from readers import *
 
-p = 'amalgum/amalgum/tsv'
+p = 'amalgum/amalgum_balanced/tsv'
 f = 'amalgum_academic_doc000'
 f_read = tsv_reader(p, f)
 for row in f_read:
