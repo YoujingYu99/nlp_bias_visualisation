@@ -4,7 +4,7 @@ Helper script to pre-generate all word biases as a big JSON, so the server doesn
 
 import json
 from os import path
-from PcaBiasCalculator import PcaBiasCalculator
+from bias_statements.PcaBiasCalculator import PcaBiasCalculator
 
 
 def preprocess_biases():
