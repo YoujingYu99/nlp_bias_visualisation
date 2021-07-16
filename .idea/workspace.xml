@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/bias_statements/precalculate_biases.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/precalculate_biases.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amalgum" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/bias_statements/main.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
   </component>
   <component name="PyDebuggerOptionsProvider">
@@ -111,14 +111,9 @@
     </configuration>
     <list>
       <item itemvalue="Flask server.visualising_data_bias" />
-      <item itemvalue="Flask server.Flask (webapp.py)" />
+      <item itemvalue="Flask server.Flask" />
       <item itemvalue="Python.precalculate_biases" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Flask server.Flask (webapp.py)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -136,6 +131,7 @@
       <workItem from="1626339605544" duration="369000" />
       <workItem from="1626343104636" duration="1050000" />
       <workItem from="1626433603989" duration="8271000" />
+      <workItem from="1626452923638" duration="792000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
