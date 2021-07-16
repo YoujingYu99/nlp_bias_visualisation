@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block content %}
+<!--Slider -->
+  <section class="slider">
+      <div id="index-banner" class="parallax-container">
+         <ul class="slides" style="background-color:#6e9190">
+          <li>
+            <img src="backgroundblue.png" alt="Unsplashed background img 1" alt="">
+            <div class="caption center-align">
+              <h1 style="font-size: 500%">Dynamic Data Statements</h1>
+              <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+               Using SpaCy,Gensim,NLTK and Sumy
+              </h5>
+
+               <div class="row center">
+              <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect #4db6ac teal lighten-2">Refresh</a>
+            </div>
+            </div>
+          </li>
+          <li>
+           <img src="backgroundpurple.png" alt="Unsplashed background img 1">
+            <div class="caption left-align">
+              <h1 style="font-size: 500%">Bias Visualisation with NLTK</h1>
+              <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+               NLP based App
+              </h5>
+              <a href="about.html" class="btn-large waves-effect #4db6ac teal lighten-2">Learn More</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+  </section>
+
+
+  <!-- Results -->
+  <section class="section section-solutions-about grey lighten-3">
+      <div class="container">
+          <div class="row">
+            <div class="col s12 m8">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+                <h5 class="center">Your Text</h5>
+
+                <p class="light">{{ctext}}</p>
+                <div class="alert alert-info" role="alert"><p>Time Elapsed: <span style="color:#0091EA;">{{ final_time }} </span></p><br/>
+                <p>Reading Time: <span style="color:#0091EA;">{{ final_reading_time }} </span></p>
+            </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- SECTION: RESULTS FOR DIFFERENT VISUAL REPRESENTATIONS -->
+  <section class="section section-solutions-about grey lighten-3 ">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12 offset-m1">
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3">
+                  <a href="#tab1" style="color:#3e5756">Graphs</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab2" style="color:#3e5756">Charts</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab3" style="color:#3e5756">Maps</a>
+                </li>
+              </ul>
+            </div>
+            <div id="tab1" class="col s12">
+              <h5>Graphs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p></div>
+            </div>
+            <div id="tab2" class="col s12">
+              <h5>Charts</h5>
+            </div>
+            <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_gensim }}</p></div>
+            <div id="tab3" class="col s12">
+              <h5>Maps</h5>
+            </div>
+          <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_gensim }}</p></div>
+<!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p></div>-->
+          </div>
+         </div>
+      </div>
+   </div>
+  </section>
+{% endblock content %}

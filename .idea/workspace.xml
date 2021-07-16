@@ -2,8 +2,76 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/imagesforapp/BlueBackground.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/Screenshot from 2019-01-02 16-46-54.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/summaryzer_compare.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/summaryzer_compare2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/summaryzer_home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/summaryzer_home2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/summaryzer_home3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforapp/summaryzer_pics.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reader_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/materialize.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/materialize.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/init.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/materialize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/materialize.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/visualisation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webfunc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publish.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amalgum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bias_statements/PcaBiasCalculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/PcaBiasCalculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bias_statements/PrecalculatedBiasCalculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/PrecalculatedBiasCalculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bias_statements/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bias_statements/parse_sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/parse_sentence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bias_statements/precalculate_biases.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/precalculate_biases.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bias_statements/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/bias_statements/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/requirements-dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server/requirements-dev.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/test_parse_sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/tests/test_parse_sentence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/website/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/website/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/website/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/website/public/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/Faq.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/Faq.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/Faq.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/Faq.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/Intro.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/Intro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/Intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/Intro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/Query.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/Query.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/Query.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/Query.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/Loading.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/Loading.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/Loading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/Loading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/OctocatCorner.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/OctocatCorner.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/OctocatCorner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/OctocatCorner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/lightenDarkenColor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/lightenDarkenColor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/react-app-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/reportWebVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/website/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,9 +178,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flask server.visualising_data_bias" />
-      <item itemvalue="Flask server.Flask" />
       <item itemvalue="Python.precalculate_biases" />
+      <item itemvalue="Flask server.Flask" />
+      <item itemvalue="Flask server.visualising_data_bias" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -130,8 +198,7 @@
       <workItem from="1626336820687" duration="2272000" />
       <workItem from="1626339605544" duration="369000" />
       <workItem from="1626343104636" duration="1050000" />
-      <workItem from="1626433603989" duration="8271000" />
-      <workItem from="1626452923638" duration="792000" />
+      <workItem from="1626433603989" duration="8560000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
@@ -224,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626452320047</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Cleaned up some initial errors. Next step is to integrate into another branch.">
+      <created>1626452959021</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1626452959021</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +331,8 @@
     <MESSAGE value="Improved the Visualisation page" />
     <MESSAGE value="Changed path for Amalgun dataset." />
     <MESSAGE value="Initial setup is done. The home page only returns a phrase &quot;OK&quot; though. Need to work further on that" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial setup is done. The home page only returns a phrase &quot;OK&quot; though. Need to work further on that" />
+    <MESSAGE value="Cleaned up some initial errors. Next step is to integrate into another branch." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up some initial errors. Next step is to integrate into another branch." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="precalculate_biases Coverage Results" MODIFIED="1626452768446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
