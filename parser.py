@@ -8,7 +8,7 @@ nl_query = "Are most nurses women ?"  # pre-set, should be attained from the web
 database = "amalgum"  # should be attained from the webpage input
 
 """need to be redefined in later stages"""
-path = "amalgum/amalgum/"
+path = "data/amalgum/amalgum/"
 
 """to understand the user input"""
 """consider using the in2sql package"""
@@ -17,6 +17,7 @@ path = "amalgum/amalgum/"
 
 
 class UserParser:
+
     def __init__(self):
         self.input = None
         self.state = False  # True for success, False otherwise
@@ -28,10 +29,5 @@ class UserParser:
 
     def ln2sql(self):
         """to be finished later"""
-        return # or should generate a json file for the downstream
-
-
-
-
-
+        return  # or should generate a json file for the downstream
 
