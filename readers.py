@@ -11,7 +11,8 @@ def tsv_reader(path, file):
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: a list of rows (lists containing words in sentences)
     """
-    file += '.tsv'
+    if not file.endswith('.tsv'):
+        file += '.tsv'
     if os.path.exists(os.path.join(path, file)):
         tsv_file = open(os.path.join(path, file))
         read_tsv = csv.reader(tsv_file, delimiter="\t")
@@ -55,3 +56,23 @@ def etree_reader(path, file):
         pass
 
 
+def get_txt(file, path, save_path):
+    """
+    :param file: the file in the tsv folder
+    :param path: the path of the file's parent directory
+    :param save_path: the path to save the newly generated file
+    :return: the plain text version of the file using the same name
+    """
+    f_read = tsv_reader(path, file)
+    f_read = [x for x in f_read if x != []]
+    f_out = []
+    for row in f_read:
+        line = row[0]
+        if line.startswith('#Text='):
+            f_out.append(line[6:])
+    with open(os.path.join(save_path, file + '.txt'), 'w+') as f:
+        for line in f_out:
+            f.write(line + '\n')
+    f.close()
+    if os.path.exists(os.path.join(save_path, file + '.txt')):
+        print("writing completed: " + file)

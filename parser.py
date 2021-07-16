@@ -17,6 +17,7 @@ path = "amalgum/amalgum/"
 
 
 class UserParser:
+
     def __init__(self):
         self.input = None
         self.state = False  # True for success, False otherwise
@@ -28,10 +29,5 @@ class UserParser:
 
     def ln2sql(self):
         """to be finished later"""
-        return # or should generate a json file for the downstream
-
-
-
-
-
+        return  # or should generate a json file for the downstream
 
