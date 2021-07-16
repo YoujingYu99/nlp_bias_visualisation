@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/publish.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/PcaBiasCalculator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/PrecalculatedBiasCalculator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/parse_sentence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/precalculate_biases.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bias_statements/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/requirements-dev.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/tests/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/tests/test_parse_sentence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/App.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/Faq.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/Faq.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/Intro.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/Intro.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/Query.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/Query.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/components/Loading.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/components/Loading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/components/OctocatCorner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/components/OctocatCorner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/lightenDarkenColor.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/react-app-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/reportWebVitals.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/src/setupTests.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/visualising_data_bias.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/BlueBackground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/Screenshot from 2019-01-02 16-46-54.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/summaryzer_compare.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/summaryzer_compare2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/summaryzer_home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/summaryzer_home2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/summaryzer_home3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforapp/summaryzer_pics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reader_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/materialize.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/materialize.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/materialize.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/materialize.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/visualisation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfunc.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1vDoZNIHwrlA8lGak3S0qvBiXeE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="MATLAB_INTERPRETER" value="C:\Program Files\MATLAB\R2019b\bin\matlab.exe" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flask_web_tutorial" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
+  </component>
+  <component name="PyDebuggerOptionsProvider">
+    <option name="mySupportQtDebugging" value="false" />
+  </component>
+  <component name="RunManager" selected="Flask server.visualising_data_bias">
+    <configuration name="Flask" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+      <option name="target" value="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\webapp.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="$PROJECT_DIR$/../../../.." value="c:\&quot;" />
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Youjing Yu\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="visualising_data_bias" type="Python.FlaskServer">
+      <module name="visualising_data_bias" />
+      <option name="target" value="$PROJECT_DIR$/server/bias_statements/main.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\Youjing Yu\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Flask server.visualising_data_bias" />
+      <item itemvalue="Flask server.Flask (webapp.py)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flask server.Flask (webapp.py)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="" />
+      <created>1626106080382</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626106080382</updated>
+      <workItem from="1626106085767" duration="3016000" />
+      <workItem from="1626163781539" duration="2905000" />
+      <workItem from="1626250998415" duration="5581000" />
+      <workItem from="1626269000622" duration="1355000" />
+      <workItem from="1626336820687" duration="2272000" />
+      <workItem from="1626339605544" duration="369000" />
+      <workItem from="1626343104636" duration="1050000" />
+      <workItem from="1626433603989" duration="7742000" />
+    </task>
+    <task id="LOCAL-00001" summary="re-load the whole project">
+      <created>1626106225621</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1626106225621</updated>
+    </task>
+    <task id="LOCAL-00002" summary="deleted icons, cleaned up some frames, renamed sections">
+      <created>1626167290000</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626167290000</updated>
+    </task>
+    <task id="LOCAL-00003" summary="cleaned up html using layout">
+      <created>1626167828351</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626167828351</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adding Bootstrap, cleaning the page. Still workin g on About logos">
+      <created>1626172261433</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626172261433</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed about logos. Changed layout and icon.">
+      <created>1626186584960</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1626186584960</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added and fixed footer. Changed Color and Layout. The front end is mostly done.">
+      <created>1626189720016</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1626189720016</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed minor color issues. Ready to go!">
+      <created>1626190222136</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1626190222136</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Cleaned up about page. Changed introduction content, font size and color.">
+      <created>1626252676449</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1626252676449</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Used Materialise to reset colors of navbars and sidebands">
+      <created>1626255529062</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1626255529062</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Visual Improvement">
+      <created>1626270345824</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1626270345825</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Improved the Visualisation page">
+      <created>1626338956824</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1626338956825</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changed path for Amalgun dataset.">
+      <created>1626339783097</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1626339783097</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="re-load the whole project" />
+    <MESSAGE value="deleted icons, cleaned up some frames, renamed sections" />
+    <MESSAGE value="cleaned up html using layout" />
+    <MESSAGE value="Adding Bootstrap, cleaning the page. Still workin g on About logos" />
+    <MESSAGE value="Fixed about logos. Changed layout and icon." />
+    <MESSAGE value="Added and fixed footer. Changed Color and Layout. The front end is mostly done." />
+    <MESSAGE value="Fixed minor color issues. Ready to go!" />
+    <MESSAGE value="Cleaned up about page. Changed introduction content, font size and color." />
+    <MESSAGE value="Used Materialise to reset colors of navbars and sidebands" />
+    <MESSAGE value="Visual Improvement" />
+    <MESSAGE value="Improved the Visualisation page" />
+    <MESSAGE value="Changed path for Amalgun dataset." />
+    <MESSAGE value="Initial setup is done. The home page only returns a phrase &quot;OK&quot; though. Need to work further on that" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial setup is done. The home page only returns a phrase &quot;OK&quot; though. Need to work further on that" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1626451843574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
