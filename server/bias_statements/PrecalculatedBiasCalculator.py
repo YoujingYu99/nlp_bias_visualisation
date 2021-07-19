@@ -10,7 +10,7 @@ class PrecalculatedBiasCalculator:
     """
 
     def __init__(
-        self, bias_json=path.join(path.dirname(__file__), "../../data/biases.json")
+        self, bias_json=path.join(path.dirname(__file__), "../../data/amalgum_biases.json")
     ):
         # fix uint=8 issse
         with open(bias_json, "rb") as json_file:

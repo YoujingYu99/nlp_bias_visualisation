@@ -1,49 +1,52 @@
 import re
-from gensim.models import KeyedVectors
+from gensim.models import KeyedVectors, Word2Vec
 from os import path
 import numpy as np
 from sklearn.decomposition import PCA
 
 gender_biased_word_pairs = [
-    ("she", "he"),
-    ("her", "his"),
     ("woman", "man"),
-    ("Mary", "John"),
-    ("herself", "himself"),
     ("daughter", "son"),
     ("mother", "father"),
     ("gal", "guy"),
     ("girl", "boy"),
     ("vagina", "penis"),
     ("feminine", "masculine"),
+    ("ladies", "gentlemen"),
+    ("wife", "husband"),
+    ("female", "male"),
+    ("girlfriend", "boyfriend"),
+    ("queen", "king"),
+    ("spokeswoman", "spokesman"),
 ]
 
 gender_neutral_words = [
-    "is",
-    "who",
-    "what",
-    "where",
-    "the",
-    "it",
+    #"who",
+    #"what",
+    #"where",
+    #"the",
+    #"it",
+    "human"
 ]
 
 
 class PcaBiasCalculator:
     def __init__(
-        self,
-        model_path=path.join(
-            path.dirname(__file__), "..\..\data\GoogleNews-vectors-negative300.bin"
-        ),
-        biased_word_pairs=gender_biased_word_pairs,
-        neutral_words=gender_neutral_words,
+            self,
+            model_path=path.join(
+                path.dirname(__file__), "../../data/gum_word2vec.model"
+            ),
+            biased_word_pairs=gender_biased_word_pairs,
+            neutral_words=gender_neutral_words,
     ):
-        self.model = KeyedVectors.load_word2vec_format(model_path, binary=True)
+        self.model = Word2Vec.load(model_path)
         self.biased_word_pairs = biased_word_pairs
         self.neutral_words = neutral_words
 
         biased_pairs = [
-            (self.model[pair[0]], self.model[pair[1]]) for pair in biased_word_pairs
+            (self.model.wv[pair[0]], self.model.wv[pair[1]]) for pair in biased_word_pairs
         ]
+
         # female-male distance as biases. male-female as reversed_biases.
         biases = [pair[0] - pair[1] for pair in biased_pairs]
         reversed_biases = [pair[1] - pair[0] for pair in biased_pairs]
@@ -59,7 +62,7 @@ class PcaBiasCalculator:
             self.pca.transform(np.array([pair[1] for pair in biased_pairs]))
         )
         self.neutral_mean = np.mean(
-            self.pca.transform(np.array([self.model[word] for word in neutral_words]))
+            self.pca.transform(np.array([self.model.wv[word] for word in neutral_words]))
         )
 
         self.positive_mean = max(right_mean, left_mean)
@@ -67,7 +70,7 @@ class PcaBiasCalculator:
         self.sign = 1 if right_mean > left_mean else -1
 
     def keys(self):
-        return self.model.vocab.keys()
+        return self.model.wv.vocab.keys()
 
     def detect_bias(self, raw_word):
         """
@@ -75,9 +78,9 @@ class PcaBiasCalculator:
         """
         # eliminate white spaces using underscore
         word = re.sub(r"\s+", "_", raw_word)
-        if word not in self.model:
+        if word not in self.model.wv:
             return None
-        word_val = self.pca.transform(np.array([self.model[word]]))[0][0]
+        word_val = self.pca.transform(np.array([self.model.wv[word]]))[0][0]
         # rescaling word value so that the left/right average maps to 1 and -1, and neutral_mean maps to 0
         if word_val > self.neutral_mean:
             return self.sign * float(
@@ -90,7 +93,3 @@ class PcaBiasCalculator:
                 / (self.negative_mean - self.neutral_mean)
             )
 
-"""
-Currenly using Google_News Model.
-a pre-trained word2vec model by google for sentiment analysis.
-"""
