@@ -14,7 +14,7 @@ def tsv_reader(path, file):
     if not file.endswith('.tsv'):
         file += '.tsv'
     if os.path.exists(os.path.join(path, file)):
-        tsv_file = open(os.path.join(path, file))
+        tsv_file = open(os.path.join(path, file), encoding='utf-8')
         read_tsv = csv.reader(tsv_file, delimiter="\t")
         return read_tsv
     else:
@@ -70,7 +70,7 @@ def get_txt(file, path, save_path):
         line = row[0]
         if line.startswith('#Text='):
             f_out.append(line[6:])
-    with open(os.path.join(save_path, file + '.txt'), 'w+') as f:
+    with open(os.path.join(save_path, file + '.txt'), 'w+', encoding='utf-8') as f:
         for line in f_out:
             f.write(line + '\n')
     f.close()
