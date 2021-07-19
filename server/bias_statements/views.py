@@ -1,10 +1,10 @@
 from os import environ
-from PcaBiasCalculator import PcaBiasCalculator
-from PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
+from bias_statements.parse_sentence import parse_sentence
+from bias_statements.PcaBiasCalculator import PcaBiasCalculator
+from bias_statements.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_statements import app
 from flask import request, jsonify
 import werkzeug
-from parse_sentence import parse_sentence
 
 # if environ.get("USE_PRECALCULATED_BIASES", "").upper() == "TRUE":
 #     print("using precalculated biases")
