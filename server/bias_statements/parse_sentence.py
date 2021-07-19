@@ -7,6 +7,12 @@ nlp.tokenizer.rules = {}
 
 
 def combine_compound_words(sentence):
+    """
+    :param sentence: 
+    :return: 
+    Combined words into compound words with underscore.
+    """
+    
     doc = nlp(sentence)
     reformulated_sentence_parts = []
     compound_parts = []
@@ -26,6 +32,7 @@ def combine_compound_words(sentence):
 
 
 def parse_sentence(sentence):
+    '''Parses a sentence and return a dictionary of the form {'tokens': [interface], 'text': 'interface'}.'''
     doc = nlp(sentence)
     results = []
     reverse_entities_map = {}

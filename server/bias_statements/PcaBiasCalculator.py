@@ -44,9 +44,11 @@ class PcaBiasCalculator:
         biased_pairs = [
             (self.model[pair[0]], self.model[pair[1]]) for pair in biased_word_pairs
         ]
+        # female-male distance as biases. male-female as reversed_biases.
         biases = [pair[0] - pair[1] for pair in biased_pairs]
         reversed_biases = [pair[1] - pair[0] for pair in biased_pairs]
 
+        # only keep 1 component
         self.pca = PCA(n_components=1)
         self.pca.fit(np.array(biases + reversed_biases))
 
@@ -71,6 +73,7 @@ class PcaBiasCalculator:
         """
         Use PCA to find the gender bias vector, and determine bias based on position along the gender vector
         """
+        # eliminate white spaces using underscore
         word = re.sub(r"\s+", "_", raw_word)
         if word not in self.model:
             return None
@@ -86,3 +89,8 @@ class PcaBiasCalculator:
                 (self.neutral_mean - word_val)
                 / (self.negative_mean - self.neutral_mean)
             )
+
+"""
+Currenly using Google_News Model.
+a pre-trained word2vec model by google for sentiment analysis.
+"""
