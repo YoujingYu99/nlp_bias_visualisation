@@ -19,3 +19,11 @@ def tsv_txt(tsv_dir, txt_dir):
     for file in tsv_files:
         file = file[:-4]
         get_txt(file, tsv_dir, txt_dir)
+
+
+# from dataset_prep import *
+#
+# p = 'data/amalgum/amalgum_balanced/tsv'
+# p1 = 'data/amalgum/amalgum_balanced/txt'
+#
+# tsv_txt(p, p1)

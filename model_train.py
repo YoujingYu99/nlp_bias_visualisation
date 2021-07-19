@@ -29,13 +29,10 @@ def txt_list(path):
                 rem_tok_punc = RegexpTokenizer(r'\w+')
 
                 tokens = rem_tok_punc.tokenize(line)
-
                 # convert the words to lower case
                 words = [w.lower() for w in tokens]
-
                 # Invoke all the english stopwords
                 stop_word_list = set(stopwords.words('english'))
-
                 # Remove stop words
                 words = [w for w in words if not w in stop_word_list]
 
