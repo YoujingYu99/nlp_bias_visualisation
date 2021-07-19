@@ -32,7 +32,7 @@ class PcaBiasCalculator:
     def __init__(
         self,
         model_path=path.join(
-            path.dirname(__file__), ".\data\GoogleNews-vectors-negative300.bin"
+            path.dirname(__file__), "..\..\data\GoogleNews-vectors-negative300.bin"
         ),
         biased_word_pairs=gender_biased_word_pairs,
         neutral_words=gender_neutral_words,

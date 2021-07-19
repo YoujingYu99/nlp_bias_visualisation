@@ -59,3 +59,5 @@ def detect():
         }
         results.append(token_result)
     return jsonify({"results": results})
+
+'''The server is written in Python using flask. It exposes a REST API with a single GET endpoint, /detect which requires passing a sentence query param. For example: /detect?sentence=She is a nurse. This endpoint will tokenize the sentence and return biases for each token, like below:'''
