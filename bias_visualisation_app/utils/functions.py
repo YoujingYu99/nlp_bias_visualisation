@@ -217,7 +217,6 @@ def cloud_image(token_list, value_list):
     data = dict(zip(token_list, value_list))
     data = {k: v or 0 for (k, v) in data.items()}
 
-    print(data)
     # separate into male and female dictionaries
     male_data = {k: v for (k, v) in data.items() if v > 0}
     female_data = {k: v for (k, v) in data.items() if v < 0}
@@ -264,7 +263,7 @@ def cloud_image(token_list, value_list):
     except:
         #https: // www.wattpad.com / 729617965 - there % 27s - nothing - here - 3
         print("Not enough words for female cloud!")
-        plot_male_cloud = url_for('static', filename="nothing_here.jpg")
+        plot_female_cloud = url_for('static', filename="nothing_here.jpg")
 
     try:
         male_wordcloud.generate_from_frequencies(male_data)
