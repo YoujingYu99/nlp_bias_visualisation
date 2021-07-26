@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="New branch created to work on all three aspects: web, bias and visualisation">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/images/female_symbol.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/images/male_symbol.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/setup.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/images/female_symbol.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/nothing_here.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/PcaBiasCalculator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/PrecalculatedBiasCalculator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/model_train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/parse_sentence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/precalculate_biases.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wordcloud-1.8.1-cp37-cp37m-win_amd64.whl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/images/male_symbol.png" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/images/male_symbol.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +49,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1vDoZNIHwrlA8lGak3S0qvBiXeE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -48,8 +72,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
-    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyDebuggerOptionsProvider">
     <option name="mySupportQtDebugging" value="false" />
@@ -83,7 +107,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Flask" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+    <configuration name="Flask" type="Python.FlaskServer" nameIsGenerated="true">
       <option name="target" value="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\webapp.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,8 +142,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flask server.visualising_data_bias" />
       <item itemvalue="Flask server.Flask" />
+      <item itemvalue="Flask server.visualising_data_bias" />
       <item itemvalue="Python.test_parse_sentence" />
     </list>
   </component>
@@ -141,7 +165,8 @@
       <workItem from="1626433603989" duration="8560000" />
       <workItem from="1626683916283" duration="14641000" />
       <workItem from="1627247209641" duration="422000" />
-      <workItem from="1627291872931" duration="4067000" />
+      <workItem from="1627291872931" duration="6068000" />
+      <workItem from="1627303093945" duration="2656000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
@@ -332,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627292492876</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Adding word cloud for female and male words">
+      <created>1627297459729</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1627297459729</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +384,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="re-load the whole project" />
     <MESSAGE value="deleted icons, cleaned up some frames, renamed sections" />
     <MESSAGE value="cleaned up html using layout" />
     <MESSAGE value="Adding Bootstrap, cleaning the page. Still workin g on About logos" />
@@ -377,12 +408,13 @@
     <MESSAGE value="Thank god this worked!!" />
     <MESSAGE value="Recommitting from local backup" />
     <MESSAGE value="New branch created to work on all three aspects: web, bias and visualisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="New branch created to work on all three aspects: web, bias and visualisation" />
+    <MESSAGE value="Adding word cloud for female and male words" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding word cloud for female and male words" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627247436545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627305638732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
   </component>
 </project>
