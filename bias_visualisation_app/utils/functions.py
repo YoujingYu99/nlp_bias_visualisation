@@ -21,6 +21,16 @@ from matplotlib.cm import ScalarMappable
 from wordcloud import WordCloud, ImageColorGenerator, STOPWORDS
 from PIL import Image
 import re
+import cython
+from gensim.models import phrases
+from gensim import corpora, models, similarities
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy import spatial
+from statistics import mean
+from gensim.models import Word2Vec, KeyedVectors
+from string import ascii_letters, digits
+from sklearn.manifold import TSNE
+from gensim.test.utils import datapath
 
 
 def tsv_reader(path, file):
@@ -199,6 +209,7 @@ def bar_graph(token_list, value_list):
     ax.set_xlabel('Word')
     ax.set_ylabel('Bias Value')
     plt.tight_layout()
+    plt.close()
 
     # save file to static
     bar_name = token_list[0]
@@ -280,6 +291,67 @@ def cloud_image(token_list, value_list):
         plot_male_cloud = url_for('static', filename="nothing_here.jpg")
 
     return plot_female_cloud, plot_male_cloud
+
+
+# define tsne plot
+def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors for Amalgum"):
+    "Creates and TSNE model and plots it"
+
+    # define word2vec model
+    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    print(model_path)
+    w2vmodel = Word2Vec.load(model_path)
+
+    # manually define which words we want to explore
+    my_word_list = []
+    my_word_vectors = []
+    label = []
+
+    words_to_explore = token_list
+
+    for i in words_to_explore:
+        try:
+            if my_word_list not in my_word_list:
+                my_word_vectors.append(w2vmodel.wv[i])
+                my_word_list.append(i)
+        except KeyError:
+            continue
+
+
+
+    tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
+                      random_state=seed)
+    new_values = tsne_model.fit_transform(my_word_vectors)
+
+    x = []
+    y = []
+    for value in new_values:
+        x.append(value[0])
+        y.append(value[1])
+
+    plt.figure(figsize=(10, 10))
+    for i in range(len(x)):
+        plt.scatter(x[i], y[i])
+        plt.annotate(my_word_list[i],
+                     xy=(x[i], y[i]),
+                     xytext=(5, 2),
+                     textcoords='offset points',
+                     ha='right',
+                     va='bottom')
+    plt.ylabel("Latent Dimension 1")
+    plt.xlabel("Latent Dimension 2")
+    plt.title(title)
+    plt.close()
+
+    # save file to static
+    tsne_name = token_list[0]
+    tsne_name_ex = tsne_name + '.png'
+    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    tsne_path = save_img_path + '.png'
+    plt.savefig(tsne_path)
+    plot_tsne = url_for('static', filename=tsne_name_ex)
+
+    return plot_tsne
 
 
 
