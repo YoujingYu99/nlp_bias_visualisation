@@ -191,7 +191,7 @@ def bar_graph(token_list, value_list):
     df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
 
     plt.style.use('ggplot')
-    fig, ax = plt.subplots()
+    fig, ax = plt.plots()
 
     # set up the colors
     cmap = mpl.colors.LinearSegmentedColormap.from_list('blue_to_red', ['darkblue', 'darkred'])
@@ -254,7 +254,7 @@ def cloud_image(token_list, value_list):
                                  height=100, background_color=cloud_bg_color, max_words=10000, contour_width=0,
                                  colormap=cloud_color)
 
-    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None,                                            relative_scaling=cloud_scale,
+    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale,
                                prefer_horizontal=cloud_horizontal, width=50,
                                height=100, background_color=cloud_bg_color, max_words=10000, contour_width=0,
                                colormap=cloud_color)
@@ -263,7 +263,7 @@ def cloud_image(token_list, value_list):
         female_wordcloud.generate_from_frequencies(female_data)
 
         # save file to static
-        female_cloud_name = str(next(iter(female_data)))
+        female_cloud_name = str(next(iter(female_data))) + 'femalecloud'
         female_cloud_name_ex = female_cloud_name + '.png'
         save_img_path = path.join(path.dirname(__file__), "..\\static\\", female_cloud_name)
         img_path = save_img_path + '.png'
@@ -272,12 +272,12 @@ def cloud_image(token_list, value_list):
         plot_female_cloud = url_for('static', filename=female_cloud_name_ex)
 
     except:
-        #https: // www.wattpad.com / 729617965 - there % 27s - nothing - here - 3
+        # https: // www.wattpad.com / 729617965 - there % 27s - nothing - here - 3
         print("Not enough words for female cloud!")
         plot_female_cloud = url_for('static', filename="nothing_here.jpg")
 
     try:
-        male_wordcloud.generate_from_frequencies(male_data)
+        male_wordcloud.generate_from_frequencies(male_data) + 'malecloud'
         male_cloud_name = str(next(iter(male_data)))
         male_cloud_name_ex = male_cloud_name + '.png'
         save_img_path = path.join(path.dirname(__file__), "..\\static\\", male_cloud_name)
@@ -293,19 +293,16 @@ def cloud_image(token_list, value_list):
     return plot_female_cloud, plot_male_cloud
 
 
-# define tsne plot
 def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors for Amalgum"):
-    "Creates and TSNE model and plots it"
+    """Creates and TSNE model and plots it"""
 
     # define word2vec model
     model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
-    print(model_path)
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
     my_word_list = []
     my_word_vectors = []
-    label = []
 
     words_to_explore = token_list
 
@@ -316,8 +313,8 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
                 my_word_list.append(i)
         except KeyError:
             continue
-
-
+    print(my_word_list)
+    print(my_word_vectors)
 
     tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
                       random_state=seed)
@@ -344,7 +341,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     plt.close()
 
     # save file to static
-    tsne_name = token_list[0]
+    tsne_name = token_list[-3] + 'tsne'
     tsne_name_ex = tsne_name + '.png'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
     tsne_path = save_img_path + '.png'
@@ -352,10 +349,6 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     plot_tsne = url_for('static', filename=tsne_name_ex)
 
     return plot_tsne
-
-
-
-
 
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
 # p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'
