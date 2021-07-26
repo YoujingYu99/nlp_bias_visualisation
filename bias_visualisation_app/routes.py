@@ -236,8 +236,15 @@ def detect_url():
                 else:
                     continue
                 view_results.append(item)
-            plot_image = bar_graph(view_results)
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_image)
+            token_list, value_list = token_value_lists(view_results)
+
+            # plot the graphs
+            plot_bar = bar_graph(token_list, value_list)
+            plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+
+        return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
+                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud)
+
 
 
 @app.route("/detect_corpora", methods=['GET', 'POST'])
@@ -285,9 +292,14 @@ def detect_corpora():
                 else:
                     continue
                 view_results.append(item)
-            plot_image = bar_graph(view_results)
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_image)
+            token_list, value_list = token_value_lists(view_results)
 
+            # plot the graphs
+            plot_bar = bar_graph(token_list, value_list)
+            plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+
+        return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
+                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud)
 
 # . It works by looking at differences between male and female word pairs
 #       like "he" and "she", or "boy" and "girl", and then comparing the
