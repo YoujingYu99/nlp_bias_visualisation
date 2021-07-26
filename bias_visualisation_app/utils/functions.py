@@ -295,7 +295,7 @@ def cloud_image(token_list, value_list):
 
 
 def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors for Amalgum"):
-    """Creates and TSNE model and plots it"""
+    """Creates a TSNE model and plots it"""
 
     # define word2vec model
     model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
@@ -314,8 +314,6 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
                 my_word_list.append(i)
         except KeyError:
             continue
-    print(my_word_list)
-    print(my_word_vectors)
 
     tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
                       random_state=seed)
@@ -326,6 +324,12 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     for value in new_values:
         x.append(value[0])
         y.append(value[1])
+
+    # save file to static
+    tsne_name = token_list[-3] + 'tsne'
+    tsne_name_ex = tsne_name + '.jpg'
+    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    tsne_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
     for i in range(len(x)):
@@ -339,13 +343,6 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     plt.ylabel("Latent Dimension 1")
     plt.xlabel("Latent Dimension 2")
     plt.title(title)
-    plt.close()
-
-    # save file to static
-    tsne_name = token_list[-3] + 'tsne'
-    tsne_name_ex = tsne_name + '.png'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
-    tsne_path = save_img_path + '.png'
     plt.savefig(tsne_path)
     plot_tsne = url_for('static', filename=tsne_name_ex)
 

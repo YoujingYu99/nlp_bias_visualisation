@@ -150,9 +150,9 @@ def detect_text():
         # sentence = request.args.get("sentence")
         if not input_data:
             raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
-        if len(input_data) > 5000:
+        if len(input_data) > 50000:
             raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 50000 characters long"
+                "Input Paragraph must be at most 500000 characters long"
             )
         objs = parse_sentence(input_data)
         results = []
@@ -246,9 +246,15 @@ def detect_url():
             # plot the graphs
             plot_bar = bar_graph(token_list, value_list)
             plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+            # only perform tsne plot if more than 100 tokens
+            if len(token_list) > 100:
+                plot_tsne = tsne_graph(token_list)
+            else:
+                plot_tsne = url_for('static', filename="nothing_here.jpg")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
-                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud)
+                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
+                               tsne_graph=plot_tsne)
 
 
 
@@ -302,9 +308,15 @@ def detect_corpora():
             # plot the graphs
             plot_bar = bar_graph(token_list, value_list)
             plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+            # only perform tsne plot if more than 100 tokens
+            if len(token_list) > 100:
+                plot_tsne = tsne_graph(token_list)
+            else:
+                plot_tsne = url_for('static', filename="nothing_here.jpg")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
-                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud)
+                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
+                               tsne_graph=plot_tsne)
 
 # . It works by looking at differences between male and female word pairs
 #       like "he" and "she", or "boy" and "girl", and then comparing the
