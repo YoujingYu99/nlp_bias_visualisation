@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="Recommitting from local backup" />
+    <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="New branch created to work on all three aspects: web, bias and visualisation">
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/images/female_symbol.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/images/male_symbol.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +141,7 @@
       <workItem from="1626433603989" duration="8560000" />
       <workItem from="1626683916283" duration="14641000" />
       <workItem from="1627247209641" duration="422000" />
-      <workItem from="1627291872931" duration="340000" />
+      <workItem from="1627291872931" duration="4067000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
@@ -321,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627292086758</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="New branch created to work on all three aspects: web, bias and visualisation">
+      <created>1627292492876</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1627292492876</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,7 +376,8 @@
     <MESSAGE value="Edited the male, female and gender neutral words to fine tune the model" />
     <MESSAGE value="Thank god this worked!!" />
     <MESSAGE value="Recommitting from local backup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Recommitting from local backup" />
+    <MESSAGE value="New branch created to work on all three aspects: web, bias and visualisation" />
+    <option name="LAST_COMMIT_MESSAGE" value="New branch created to work on all three aspects: web, bias and visualisation" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
