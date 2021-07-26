@@ -191,6 +191,8 @@ def bar_graph(token_list, value_list):
     df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
 
     plt.style.use('ggplot')
+    plt.rcParams['font.family'] = ['sans-serif']
+    plt.rcParams['font.sans-serif'] = ['SimHei']
     fig, ax = plt.subplots()
 
     # set up the colors
@@ -209,7 +211,6 @@ def bar_graph(token_list, value_list):
     ax.set_xlabel('Word')
     ax.set_ylabel('Bias Value')
     plt.tight_layout()
-    plt.close()
 
     # save file to static
     bar_name = token_list[0]
