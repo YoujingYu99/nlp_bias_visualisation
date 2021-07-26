@@ -191,7 +191,7 @@ def bar_graph(token_list, value_list):
     df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
 
     plt.style.use('ggplot')
-    fig, ax = plt.plots()
+    fig, ax = plt.subplots()
 
     # set up the colors
     cmap = mpl.colors.LinearSegmentedColormap.from_list('blue_to_red', ['darkblue', 'darkred'])
