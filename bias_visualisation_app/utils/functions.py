@@ -210,7 +210,11 @@ def list_to_dataframe(view_results, range=(-1, 1)):
 
     return df
 
+def generate_list(dataframe):
+    token_list = dataframe['token'].to_list()
+    value_list = dataframe['bias'].to_list()
 
+    return token_list, value_list
 
 
 
@@ -228,7 +232,7 @@ def autolable(rects):
             plt.axhline(y=0, color='black')
 
 
-def bar_graph(dataframe):
+def bar_graph(dataframe, token_list, value_list):
     # set minus sign
     mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)

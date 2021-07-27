@@ -12,7 +12,7 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, token_value_lists, bar_graph, cloud_image, tsne_graph
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, bar_graph, cloud_image, tsne_graph
 import werkzeug
 import spacy
 import time
@@ -185,10 +185,11 @@ def detect_text():
                 continue
             view_results.append(item)
         view_df = list_to_dataframe(view_results)
+        token_list, value_list = generate_list(view_df)
 
 
         #plot the graphs
-        plot_bar = bar_graph(view_df)
+        plot_bar = bar_graph(view_df, token_list, value_list)
         plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
         #only perform tsne plot if more than 100 tokens
         if len(token_list) > 100:
