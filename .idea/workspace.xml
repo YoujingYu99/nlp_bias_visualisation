@@ -163,7 +163,7 @@
       <workItem from="1627314869006" duration="1125000" />
       <workItem from="1627316021614" duration="953000" />
       <workItem from="1627378227232" duration="2915000" />
-      <workItem from="1627381204730" duration="8696000" />
+      <workItem from="1627381204730" duration="8979000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
@@ -473,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627390577796</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="changed routes for url and txt as well">
+      <created>1627393287858</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1627393287858</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +512,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="finished basic debugging. The current analysis is based on the Google model. Next step is train our own amalgum dataset for wordtovec model." />
     <MESSAGE value="Fixed minor import and utf 8 encoding bugs in the tsv reader code." />
     <MESSAGE value="Finished writing and building the WordtoVec model using Amalgum files." />
     <MESSAGE value="Model is trained successfully. However, the exisitng gender pairs are too small. Need to generate bigger gender specific word pairings. Added a script to test the model." />
@@ -530,7 +536,8 @@
     <MESSAGE value="Normalise values to -1 an 1." />
     <MESSAGE value="Remove None,scale to -a and 1 and put in a dataframe" />
     <MESSAGE value="Fixed gender classification" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed gender classification" />
+    <MESSAGE value="changed routes for url and txt as well" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed routes for url and txt as well" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

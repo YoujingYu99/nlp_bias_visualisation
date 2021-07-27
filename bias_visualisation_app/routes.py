@@ -197,7 +197,7 @@ def detect_text():
         else:
             plot_tsne = url_for('static', filename="nothing_here.jpg")
 
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_df, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne)
+    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne)
  #he is a nurse
 
 
@@ -254,7 +254,7 @@ def detect_url():
             else:
                 plot_tsne = url_for('static', filename="nothing_here.jpg")
 
-        return render_template('visualisation.html', ctext=input_data, bias_description=view_df, bar_graph=plot_bar,
+        return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
                                female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
                                tsne_graph=plot_tsne)
 
@@ -317,7 +317,7 @@ def detect_corpora():
             else:
                 plot_tsne = url_for('static', filename="nothing_here.jpg")
 
-        return render_template('visualisation.html', ctext=input_data, bias_description=view_df, bar_graph=plot_bar,
+        return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
                                female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
                                tsne_graph=plot_tsne)
 
