@@ -13,6 +13,7 @@ import spacy
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from flask import url_for
+from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -176,22 +177,45 @@ def get_text_file(corpora_file):
     return line
 
 
-def token_value_lists(view_results, lower=-1, upper=1):
-    # put dictionary into lists
-    token_list = []
-    value_list = []
+# def token_value_lists(view_results, lower=-1, upper=1):
+#     print(view_results)
+#     view_results = {key: val for key, val in view_results.items() if val != None}
+#     # put dictionary into lists
+#     token_list = []
+#     value_list = []
+#
+#     for i in view_results:
+#         token_list.append(i['token'])
+#         value_list.append(i['bias'])
+#     # Replace None with 0
+#     #value_list = [v if v is not None else 0 for v in value_list]
+#
+#     # Normalise to -1 an 1
+#     max_val, min_val = max(value_list), min(value_list)
+#     print(max_val, min_val)
+#     print(upper, lower)
+#     norm_value_list = [lower + (upper - lower) * ((x - min_val) / (max_val - min_val)) for x in value_list]
+#     print(norm_value_list)
+#     return token_list, norm_value_list
 
-    for i in view_results:
-        token_list.append(i['token'])
-        value_list.append(i['bias'])
-    # Replace None with 0
-    value_list = [v if v is not None else 0 for v in value_list]
-
+def list_to_dataframe(view_results, range=(-1, 1)):
+    #put into a dataframe
+    df = pd.DataFrame(view_results)
+    #remove None
+    df = df.dropna()
     # Normalise to -1 an 1
-    max_val, min_val = max(value_list), min(value_list)
-    norm_value_list = [lower + (upper - lower) * ((x - min_val) / (max_val - min_val)) for x in value_list]
-    print(norm_value_list)
-    return token_list, norm_value_list
+    scaler = MinMaxScaler(feature_range=range)
+    df['bias'] = scaler.fit_transform(df[['bias']])
+    print(df)
+
+    return df
+
+
+
+
+
+
+
 
 
 def autolable(rects):
@@ -204,12 +228,11 @@ def autolable(rects):
             plt.axhline(y=0, color='black')
 
 
-def bar_graph(token_list, value_list):
+def bar_graph(dataframe):
     # set minus sign
     mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)
-    df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
-    print(df)
+    df = dataframe
 
     plt.style.use('ggplot')
     plt.rcParams['font.family'] = ['sans-serif']
