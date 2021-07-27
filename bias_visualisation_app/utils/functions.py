@@ -18,6 +18,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import plotly.express as px
+from matplotlib import cm
 from matplotlib.cm import ScalarMappable
 from wordcloud import WordCloud, ImageColorGenerator, STOPWORDS
 from PIL import Image
@@ -186,6 +187,14 @@ def token_value_lists(view_results):
     value_list = [v if v is not None else 0 for v in value_list]
     return token_list, value_list
 
+def autolable(rects):
+    for rect in rects:
+        height = rect.get_height()
+        if height >= 0:
+            plt.text(rect.get_x() + rect.get_width() / 2.0 - 0.3, height + 0.02, '%.3f' % height)
+        else:
+            plt.text(rect.get_x() + rect.get_width() / 2.0 - 0.3, height - 0.06, '%.3f' % height)
+            plt.axhline(y=0, color='black')
 
 def bar_graph(token_list, value_list):
     np.random.seed(12345)
@@ -225,15 +234,43 @@ def bar_graph(token_list, value_list):
     return plot_bar
 
 
+# def bar_graph(token_list, value_list):
+#     plt.rcParams['axes.unicode_minus'] = False
+#
+#
+#     def autolable(rects):
+#         for rect in rects:
+#             height = rect.get_height()
+#             if height >= 0:
+#                 plt.text(rect.get_x() + rect.get_width() / 2.0 - 0.3, height + 0.02, '%.3f' % height)
+#             else:
+#                 plt.text(rect.get_x() + rect.get_width() / 2.0 - 0.3, height - 0.06, '%.3f' % height)
+#                 plt.axhline(y=0, color='black')
+#
+#     # normalise
+#     norm = plt.Normalize(-1, 1)
+#     norm_values = norm(value_list)
+#     map_vir = cm.get_cmap(name='viridis')
+#     colors = map_vir(norm_values)
+#     fig = plt.figure()
+#     plt.subplot(111)
+#     ax = plt.bar(token_list, value_list, width=0.5, color=colors, edgecolor='black')
+#
+#     sm = cm.ScalarMappable(cmap=map_vir, norm=norm)
+#     sm.set_array([])
+#     plt.colorbar(sm)
+#     autolable(ax)
+#
+#     # save file to static
+#     bar_name = token_list[0]
+#     bar_name_ex = bar_name + '.png'
+#     save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+#     bar_path = save_img_path + '.png'
+#     plt.savefig(bar_path)
+#     plot_bar = url_for('static', filename=bar_name_ex)
+#
+#     return plot_bar
 
-
-def bar_cont(token_list, value_list):
-    df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
-
-    fig = px.scatter(df, x="words", y="bias_values", color="bias_values",
-                     color_continuous_scale=["red", "green", "blue"])
-
-    fig.show()
 
 def transform_format(val):
     if val.any() == 0:
