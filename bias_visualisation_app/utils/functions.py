@@ -197,6 +197,8 @@ def autolable(rects):
             plt.axhline(y=0, color='black')
 
 def bar_graph(token_list, value_list):
+    #set minus sign
+    mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)
     df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
     print(df)
