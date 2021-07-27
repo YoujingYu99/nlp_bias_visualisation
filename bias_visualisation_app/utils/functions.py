@@ -355,8 +355,7 @@ def cloud_image(token_list, value_list):
                                  contour_width=0,
                                  colormap=cloud_color)
 
-    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale,
-                               prefer_horizontal=cloud_horizontal, width=male_cloud_mask.shape[1],
+    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale, width=male_cloud_mask.shape[1],
                                height=male_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000,
                                contour_width=0,
                                colormap=cloud_color)
@@ -379,8 +378,10 @@ def cloud_image(token_list, value_list):
         plot_female_cloud = url_for('static', filename="nothing_here.jpg")
 
     try:
-        male_wordcloud.generate_from_frequencies(male_data) + 'malecloud'
-        male_cloud_name = str(next(iter(male_data)))
+        male_wordcloud.generate_from_frequencies(male_data)
+
+        # save file to static
+        male_cloud_name = str(next(iter(male_data))) + 'malecloud'
         male_cloud_name_ex = male_cloud_name + '.png'
         save_img_path = path.join(path.dirname(__file__), "..\\static\\", male_cloud_name)
         img_path = save_img_path + '.png'

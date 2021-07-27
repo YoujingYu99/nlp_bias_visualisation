@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="Remove None,scale to -a and 1 and put in a dataframe">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ femalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/suretsne.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/I.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/that.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/the.png" beforeDir="false" />
@@ -161,7 +163,7 @@
       <workItem from="1627316021614" duration="953000" />
       <workItem from="1627378227232" duration="2915000" />
       <workItem from="1627381204730" duration="9630000" />
-      <workItem from="1627402620179" duration="1206000" />
+      <workItem from="1627402620179" duration="1416000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
@@ -485,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627393565464</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Fixed bar labelling issue">
+      <created>1627403971290</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1627403971290</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +526,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished writing and building the WordtoVec model using Amalgum files." />
     <MESSAGE value="Model is trained successfully. However, the exisitng gender pairs are too small. Need to generate bigger gender specific word pairings. Added a script to test the model." />
     <MESSAGE value="Edited the male, female and gender neutral words to fine tune the model" />
     <MESSAGE value="Thank god this worked!!" />
@@ -542,12 +550,13 @@
     <MESSAGE value="Fixed gender classification" />
     <MESSAGE value="changed routes for url and txt as well" />
     <MESSAGE value="Clean up viewing of the token bias pair" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up viewing of the token bias pair" />
+    <MESSAGE value="Fixed bar labelling issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bar labelling issue" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627403686011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627403871925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627383113792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
   </component>
