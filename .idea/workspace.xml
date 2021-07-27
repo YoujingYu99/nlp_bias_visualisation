@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/I.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/that.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/the.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,8 +63,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_functions.py" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
   </component>
   <component name="PyDebuggerOptionsProvider">
     <option name="mySupportQtDebugging" value="false" />
@@ -72,21 +75,21 @@
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.visualising_data_bias">
-    <configuration name="test_parse_sentence" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="visualising_data_bias" />
+  <component name="RunManager" selected="Python.test_functions">
+    <configuration name="test_functions" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Youjing Yu\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server/bias_statements" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bias_visualisation_app/utils" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server/bias_statements/test_parse_sentence.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_functions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,7 +135,7 @@
     <list>
       <item itemvalue="Flask server.Flask" />
       <item itemvalue="Flask server.visualising_data_bias" />
-      <item itemvalue="Python.test_parse_sentence" />
+      <item itemvalue="Python.test_functions" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -157,7 +160,7 @@
       <workItem from="1627303093945" duration="9988000" />
       <workItem from="1627314869006" duration="1125000" />
       <workItem from="1627316021614" duration="953000" />
-      <workItem from="1627378227232" duration="1650000" />
+      <workItem from="1627378227232" duration="2778000" />
     </task>
     <task id="LOCAL-00001" summary="re-load the whole project">
       <created>1626106225621</created>
@@ -418,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627316956981</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Changed cloud masks">
+      <created>1627380169879</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1627380169879</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +460,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Improved the Visualisation page" />
     <MESSAGE value="Changed path for Amalgun dataset." />
     <MESSAGE value="Initial setup is done. The home page only returns a phrase &quot;OK&quot; though. Need to work further on that" />
     <MESSAGE value="Cleaned up some initial errors. Next step is to integrate into another branch." />
@@ -475,12 +484,14 @@
     <MESSAGE value="Why would the bar graph fail?" />
     <MESSAGE value="Bar graph fixed; only generate tsne plot if more than 100 tokens." />
     <MESSAGE value="TSNE graph successfully showing. Good!" />
-    <option name="LAST_COMMIT_MESSAGE" value="TSNE graph successfully showing. Good!" />
+    <MESSAGE value="Changed cloud masks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed cloud masks" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627379621679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627380777675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
   </component>
 </project>

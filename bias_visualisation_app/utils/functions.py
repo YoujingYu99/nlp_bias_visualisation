@@ -17,6 +17,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import plotly.express as px
 from matplotlib.cm import ScalarMappable
 from wordcloud import WordCloud, ImageColorGenerator, STOPWORDS
 from PIL import Image
@@ -222,6 +223,17 @@ def bar_graph(token_list, value_list):
     plot_bar = url_for('static', filename=bar_name_ex)
 
     return plot_bar
+
+
+
+
+def bar_cont(token_list, value_list):
+    df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
+
+    fig = px.scatter(df, x="words", y="bias_values", color="bias_values",
+                     color_continuous_scale=["red", "green", "blue"])
+
+    fig.show()
 
 def transform_format(val):
     if val.any() == 0:
