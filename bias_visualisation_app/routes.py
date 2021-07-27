@@ -184,8 +184,8 @@ def detect_text():
             else:
                 continue
             view_results.append(item)
-        print(view_results)
         token_list, value_list = token_value_lists(view_results)
+
 
         #plot the graphs
         plot_bar = bar_graph(token_list, value_list)

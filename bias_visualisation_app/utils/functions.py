@@ -176,7 +176,7 @@ def get_text_file(corpora_file):
     return line
 
 
-def token_value_lists(view_results):
+def token_value_lists(view_results, lower=-1, upper=1):
     # put dictionary into lists
     token_list = []
     value_list = []
@@ -184,8 +184,15 @@ def token_value_lists(view_results):
     for i in view_results:
         token_list.append(i['token'])
         value_list.append(i['bias'])
+    # Replace None with 0
     value_list = [v if v is not None else 0 for v in value_list]
-    return token_list, value_list
+
+    # Normalise to -1 an 1
+    max_val, min_val = max(value_list), min(value_list)
+    norm_value_list = [lower + (upper - lower) * ((x - min_val) / (max_val - min_val)) for x in value_list]
+    print(norm_value_list)
+    return token_list, norm_value_list
+
 
 def autolable(rects):
     for rect in rects:
@@ -196,8 +203,9 @@ def autolable(rects):
             plt.text(rect.get_x() + rect.get_width() / 2.0 - 0.3, height - 0.06, '%.3f' % height)
             plt.axhline(y=0, color='black')
 
+
 def bar_graph(token_list, value_list):
-    #set minus sign
+    # set minus sign
     mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)
     df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
@@ -280,6 +288,7 @@ def transform_format(val):
     else:
         return val
 
+
 def cloud_image(token_list, value_list):
     # data
     # to convert lists to dictionary
@@ -302,7 +311,6 @@ def cloud_image(token_list, value_list):
     female_cloud_mask = np.array(Image.open(female_mask_path))
     male_cloud_mask = np.array(Image.open(male_mask_path))
 
-
     cloud_scale = 0.1
     cloud_horizontal = 1
     bigrams = True
@@ -310,12 +318,14 @@ def cloud_image(token_list, value_list):
     # Setting up wordcloud from previously set variables.
     female_wordcloud = WordCloud(collocations=bigrams, mask=female_cloud_mask, regexp=None,
                                  relative_scaling=cloud_scale, width=female_cloud_mask.shape[1],
-                                 height=female_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000, contour_width=0,
+                                 height=female_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000,
+                                 contour_width=0,
                                  colormap=cloud_color)
 
     male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale,
                                prefer_horizontal=cloud_horizontal, width=male_cloud_mask.shape[1],
-                                 height=male_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000, contour_width=0,
+                               height=male_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000,
+                               contour_width=0,
                                colormap=cloud_color)
 
     try:
