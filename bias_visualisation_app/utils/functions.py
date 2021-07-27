@@ -237,6 +237,10 @@ def bar_graph(dataframe, token_list, value_list):
     mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)
     df = dataframe
+    if len(token_list) > 15:
+        set_x_tick = False
+    else:
+        set_x_tick = True
 
     plt.style.use('ggplot')
     plt.rcParams['font.family'] = ['sans-serif']
@@ -249,7 +253,8 @@ def bar_graph(dataframe, token_list, value_list):
     norm = plt.Normalize(df_mean.min(), df_mean.max())
     colors = cmap(norm(df_mean))
 
-    ax.bar(token_list,
+    ax.bar(
+          token_list,
            value_list,
            yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
            color=colors)
@@ -257,6 +262,7 @@ def bar_graph(dataframe, token_list, value_list):
 
     ax.set_title('Word Bias Visualisation', fontsize=12)
     ax.set_xlabel('Word')
+    ax.xaxis.set_visible(set_x_tick)
     ax.set_ylabel('Bias Value')
     plt.tight_layout()
 
