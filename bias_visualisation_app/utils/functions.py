@@ -189,6 +189,7 @@ def token_value_lists(view_results):
 def bar_graph(token_list, value_list):
     np.random.seed(12345)
     df = pd.DataFrame([(token_list, value_list) for token_list, value_list in zip(token_list, value_list)])
+    print(df)
 
     plt.style.use('ggplot')
     plt.rcParams['font.family'] = ['sans-serif']
@@ -222,6 +223,11 @@ def bar_graph(token_list, value_list):
 
     return plot_bar
 
+def transform_format(val):
+    if val.any() == 0:
+        return 255
+    else:
+        return val
 
 def cloud_image(token_list, value_list):
     # data
@@ -238,12 +244,13 @@ def cloud_image(token_list, value_list):
     cloud_bg_color = "white"
     cloud_custom_font = False
 
-    # If True: will mask cloud on image set below
+    # transform mask
     female_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "female_symbol.png")
     male_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "male_symbol.png")
-    cloud_masked = True  # If True: will mask cloud on image set below
+
     female_cloud_mask = np.array(Image.open(female_mask_path))
     male_cloud_mask = np.array(Image.open(male_mask_path))
+
 
     cloud_scale = 0.1
     cloud_horizontal = 1
@@ -251,13 +258,13 @@ def cloud_image(token_list, value_list):
 
     # Setting up wordcloud from previously set variables.
     female_wordcloud = WordCloud(collocations=bigrams, mask=female_cloud_mask, regexp=None,
-                                 relative_scaling=cloud_scale, prefer_horizontal=cloud_horizontal, width=50,
-                                 height=100, background_color=cloud_bg_color, max_words=10000, contour_width=0,
+                                 relative_scaling=cloud_scale, width=female_cloud_mask.shape[1],
+                                 height=female_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000, contour_width=0,
                                  colormap=cloud_color)
 
     male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale,
-                               prefer_horizontal=cloud_horizontal, width=50,
-                               height=100, background_color=cloud_bg_color, max_words=10000, contour_width=0,
+                               prefer_horizontal=cloud_horizontal, width=male_cloud_mask.shape[1],
+                                 height=male_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000, contour_width=0,
                                colormap=cloud_color)
 
     try:
