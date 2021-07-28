@@ -112,22 +112,30 @@
             <div id="tab3" class="col s12">
               <h5>TSNE Graphs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_tsne_graph }}</p></div>
-              <h3 style="text-align: center">Female Male</h3>
+              <h3 style="text-align: center">Female</h3>
               <img src="{{ female_tsne_graph }}" alt="Female Tsne graph">
               <h3 style="text-align: center">Male</h3>
               <img src="{{ male_tsne_graph }}" alt="Male Tsne graph">
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ tsne_graph }}</p></div>
+              <h3 style="text-align: center">Overall</h3>
               <img src="{{ tsne_graph }}" alt="Tsne graph">
+            </div>
 
             <div id="tab4" class="col s12">
               <h5>PCA Graphs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_pca_graph }}</p></div>
+              <h3 style="text-align: center">Female</h3>
+              <img src="{{ female_pca_graph }}" alt="Female PCA graph">
+              <h3 style="text-align: center">Male</h3>
+              <img src="{{ male_pca_graph }}" alt="Male PCA graph">
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ pca_graph }}</p></div>
+              <h3 style="text-align: center">Overall</h3>
               <img src="{{ pca_graph }}" alt="PCA graph">
             </div>
+
           </div>
         </div>
       </div>
      </div>
-    </div>
   </section>
 {% endblock content %}

@@ -12,7 +12,7 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female
 import werkzeug
 import spacy
 import time
@@ -197,13 +197,17 @@ def detect_text():
             plot_tsne_male = tsne_graph_male(token_list, value_list)
             plot_tsne_female = tsne_graph_female(token_list, value_list)
             plot_pca = pca_graph(token_list)
+            plot_pca_male = pca_graph_male(token_list, value_list)
+            plot_pca_female = pca_graph_female(token_list, value_list)
         else:
             plot_tsne = url_for('static', filename="nothing_here.jpg")
             plot_tsne_male = url_for('static', filename="nothing_here.jpg")
             plot_tsne_female = url_for('static', filename="nothing_here.jpg")
             plot_pca = url_for('static', filename="nothing_here.jpg")
+            plot_pca_male = url_for('static', filename="nothing_here.jpg")
+            plot_pca_female = url_for('static', filename="nothing_here.jpg")
 
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca)
+    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
  #he is a nurse
 
 
