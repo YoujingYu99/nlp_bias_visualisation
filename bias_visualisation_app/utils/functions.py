@@ -246,7 +246,7 @@ def bar_graph(dataframe, token_list, value_list):
     plt.tight_layout()
 
     # save file to static
-    bar_name = token_list[0]
+    bar_name = token_list[0] + token_list[-2]
     bar_name_ex = bar_name + '.png'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
     bar_path = save_img_path + '.png'
@@ -408,7 +408,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
         y.append(value[1])
 
     # save file to static
-    tsne_name = token_list[-3] + 'tsne'
+    tsne_name = token_list[0] + token_list[-2] + 'tsne'
     tsne_name_ex = tsne_name + '.jpg'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
     tsne_path = save_img_path + '.jpg'
@@ -463,7 +463,7 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
         y.append(value[1])
 
     # save file to static
-    tsne_name = token_list[-3] + 'tsne_male'
+    tsne_name = token_list[0] + token_list[-2] + 'tsne_male'
     tsne_name_ex = tsne_name + '.jpg'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
     tsne_path = save_img_path + '.jpg'
@@ -518,7 +518,7 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
         y.append(value[1])
 
     # save file to static
-    tsne_name = token_list[-3] + 'tsne_female'
+    tsne_name = token_list[0] + token_list[-2] + 'tsne_female'
     tsne_name_ex = tsne_name + '.jpg'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
     tsne_path = save_img_path + '.jpg'
@@ -572,7 +572,7 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
         y.append(value[1])
 
     # save file to static
-    pca_name = token_list[-3] + 'pca'
+    pca_name = token_list[0] + token_list[-2] + 'pca'
     pca_name_ex = pca_name + '.jpg'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", pca_name)
     pca_path = save_img_path + '.jpg'
@@ -626,7 +626,7 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
         y.append(value[1])
 
     # save file to static
-    pca_name = token_list[-3] + 'pca_male'
+    pca_name = token_list[0] + token_list[-2] + 'pca_male'
     pca_name_ex = pca_name + '.jpg'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", pca_name)
     pca_path = save_img_path + '.jpg'
@@ -680,7 +680,7 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
         y.append(value[1])
 
     # save file to static
-    pca_name = token_list[-3] + 'pca_female'
+    pca_name = token_list[0] + token_list[-2] + 'pca_female'
     pca_name_ex = pca_name + '.jpg'
     save_img_path = path.join(path.dirname(__file__), "..\\static\\", pca_name)
     pca_path = save_img_path + '.jpg'
