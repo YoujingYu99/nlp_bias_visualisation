@@ -203,7 +203,7 @@ def detect_text():
             plot_tsne_female = url_for('static', filename="nothing_here.jpg")
             plot_pca = url_for('static', filename="nothing_here.jpg")
 
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, male_tsne=plot_tsne_male, female_tsne=plot_tsne_female, pca_graph=plot_pca)
+    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca)
  #he is a nurse
 
 

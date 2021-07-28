@@ -100,6 +100,7 @@
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ bar_graph }}</p></div>
               <img src="{{ bar_graph }}" alt="Bar graph">
             </div>
+
             <div id="tab2" class="col s12">
               <h5>Word Clouds</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_word_cloud }}</p></div>
@@ -107,17 +108,17 @@
                 <img src="{{ female_word_cloud}}" alt="Female word cloud" style="width: 40%; height:500px; display: inline-block">
                 <img src="{{ male_word_cloud}}" alt="Male word cloud" style="width: 40%; height:500px; display: inline-block">
             </div>
+
             <div id="tab3" class="col s12">
               <h5>TSNE Graphs</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_word_cloud }}</p></div>
-              <h3 style="word-spacing: 110px">Female Male</h3>
-                <img src="{{ female_tsne }}" alt="Female TSNE" style="width: 40%; height:500px; display: inline-block">
-                <img src="{{ male_tsne }}" alt="Male TSNE" style="width: 40%; height:500px; display: inline-block">
-            </div>
-              <h5>TSNE Graph</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_tsne_graph }}</p></div>
+              <h3 style="text-align: center">Female Male</h3>
+              <img src="{{ female_tsne_graph }}" alt="Female Tsne graph">
+              <h3 style="text-align: center">Male</h3>
+              <img src="{{ male_tsne_graph }}" alt="Male Tsne graph">
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ tsne_graph }}</p></div>
               <img src="{{ tsne_graph }}" alt="Tsne graph">
-            </div>
+
             <div id="tab4" class="col s12">
               <h5>PCA Graphs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ pca_graph }}</p></div>
@@ -126,6 +127,7 @@
           </div>
         </div>
       </div>
-   </div>
+     </div>
+    </div>
   </section>
 {% endblock content %}
