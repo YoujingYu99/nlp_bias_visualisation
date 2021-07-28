@@ -186,7 +186,6 @@ def list_to_dataframe(view_results, range=(-1, 1)):
     # Normalise to -1 an 1
     scaler = MinMaxScaler(feature_range=range)
     df['bias'] = scaler.fit_transform(df[['bias']])
-    print(df)
 
     return df
 
@@ -227,7 +226,7 @@ def bar_graph(dataframe, token_list, value_list):
     fig, ax = plt.subplots()
 
     # set up the colors
-    cmap = mpl.colors.LinearSegmentedColormap.from_list('blue_to_red', ['darkblue', 'darkred'])
+    cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
     df_mean = df.mean(axis=1)
     norm = plt.Normalize(df_mean.min(), df_mean.max())
     colors = cmap(norm(df_mean))
@@ -314,29 +313,29 @@ def cloud_image(token_list, value_list):
     # cloud
     cloud_color = "magma"
     cloud_bg_color = "white"
-    cloud_custom_font = False
+    #cloud_custom_font = False
 
     # transform mask
-    female_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "female_symbol.png")
-    male_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "male_symbol.png")
-
-    female_cloud_mask = np.array(Image.open(female_mask_path))
-    male_cloud_mask = np.array(Image.open(male_mask_path))
+    # female_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "female_symbol.png")
+    # male_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "male_symbol.png")
+    #
+    # female_cloud_mask = np.array(Image.open(female_mask_path))
+    # male_cloud_mask = np.array(Image.open(male_mask_path))
 
     cloud_scale = 0.1
     cloud_horizontal = 1
     bigrams = True
 
     # Setting up wordcloud from previously set variables.
-    female_wordcloud = WordCloud(collocations=bigrams, mask=female_cloud_mask, regexp=None,
-                                 relative_scaling=cloud_scale, width=female_cloud_mask.shape[1],
-                                 height=female_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000,
+    female_wordcloud = WordCloud(collocations=bigrams, regexp=None,
+                                 relative_scaling=cloud_scale, width=1000,
+                                 height=500, background_color=cloud_bg_color, max_words=10000,
                                  contour_width=0,
                                  colormap=cloud_color)
 
-    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale,
-                               width=male_cloud_mask.shape[1],
-                               height=male_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000,
+    male_wordcloud = WordCloud(collocations=bigrams, regexp=None, relative_scaling=cloud_scale,
+                               width=1000,
+                               height=500, background_color=cloud_bg_color, max_words=10000,
                                contour_width=0,
                                colormap=cloud_color)
 
@@ -354,6 +353,7 @@ def cloud_image(token_list, value_list):
 
     except:
         # https: // www.wattpad.com / 729617965 - there % 27s - nothing - here - 3
+        #https://images-na.ssl-images-amazon.com/images/I/41wjfr0wSsL.png
         print("Not enough words for female cloud!")
         plot_female_cloud = url_for('static', filename="nothing_here.jpg")
 

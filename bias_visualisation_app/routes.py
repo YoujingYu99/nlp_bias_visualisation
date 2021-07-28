@@ -188,7 +188,7 @@ def detect_text():
         token_list, value_list = generate_list(view_df)
 
 
-        #plot the graphs
+        #plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
         plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
         #only perform tsne plot if more than 100 tokens
@@ -255,22 +255,29 @@ def detect_url():
             view_df = list_to_dataframe(view_results)
             token_list, value_list = generate_list(view_df)
 
-            # plot the graphs
+            # plot the bar graphs and word clouds
             plot_bar = bar_graph(view_df, token_list, value_list)
             plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
             # only perform tsne plot if more than 100 tokens
             if len(token_list) > 100:
                 plot_tsne = tsne_graph(token_list)
+                plot_tsne_male = tsne_graph_male(token_list, value_list)
+                plot_tsne_female = tsne_graph_female(token_list, value_list)
                 plot_pca = pca_graph(token_list)
+                plot_pca_male = pca_graph_male(token_list, value_list)
+                plot_pca_female = pca_graph_female(token_list, value_list)
             else:
                 plot_tsne = url_for('static', filename="nothing_here.jpg")
+                plot_tsne_male = url_for('static', filename="nothing_here.jpg")
+                plot_tsne_female = url_for('static', filename="nothing_here.jpg")
                 plot_pca = url_for('static', filename="nothing_here.jpg")
+                plot_pca_male = url_for('static', filename="nothing_here.jpg")
+                plot_pca_female = url_for('static', filename="nothing_here.jpg")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
-                               bar_graph=plot_bar,
-                               female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne, pca_graph=plot_pca)
-
+                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
+                               tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
+                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 @app.route("/detect_corpora", methods=['GET', 'POST'])
@@ -321,20 +328,29 @@ def detect_corpora():
             view_df = list_to_dataframe(view_results)
             token_list, value_list = generate_list(view_df)
 
-            # plot the graphs
+            # plot the bar graphs and word clouds
             plot_bar = bar_graph(view_df, token_list, value_list)
             plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
             # only perform tsne plot if more than 100 tokens
             if len(token_list) > 100:
                 plot_tsne = tsne_graph(token_list)
+                plot_tsne_male = tsne_graph_male(token_list, value_list)
+                plot_tsne_female = tsne_graph_female(token_list, value_list)
                 plot_pca = pca_graph(token_list)
+                plot_pca_male = pca_graph_male(token_list, value_list)
+                plot_pca_female = pca_graph_female(token_list, value_list)
             else:
                 plot_tsne = url_for('static', filename="nothing_here.jpg")
+                plot_tsne_male = url_for('static', filename="nothing_here.jpg")
+                plot_tsne_female = url_for('static', filename="nothing_here.jpg")
                 plot_pca = url_for('static', filename="nothing_here.jpg")
+                plot_pca_male = url_for('static', filename="nothing_here.jpg")
+                plot_pca_female = url_for('static', filename="nothing_here.jpg")
 
-        return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
-                               female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne, pca_graph=plot_pca)
+        return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
+                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
+                               tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
+                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 # . It works by looking at differences between male and female word pairs
 #       like "he" and "she", or "boy" and "girl", and then comparing the

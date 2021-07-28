@@ -82,7 +82,7 @@
             <div class="col s12">
               <ul class="tabs">
                 <li class="tab col s3">
-                  <a href="#tab1" style="color:#3e5756">Graphs</a>
+                  <a href="#tab1" style="color:#3e5756">Bar Graphs</a>
                 </li>
                 <li class="tab col s3">
                   <a href="#tab2" style="color:#3e5756">Word Clouds</a>
@@ -91,22 +91,25 @@
                   <a href="#tab3" style="color:#3e5756">TSNE Graph</a>
                 </li>
                 <li class="tab col s3">
-                  <a href="#tab4" style="color:#3e5756">#PCA Graph</a>
+                  <a href="#tab4" style="color:#3e5756">PCA Graph</a>
                 </li>
               </ul>
             </div>
             <div id="tab1" class="col s12">
-              <h5>Graphs</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ bar_graph }}</p></div>
-              <img src="{{ bar_graph }}" alt="Bar graph">
+              <h5>Bar Graphs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ bar_graph }}</p></div>
+              <img src="{{ bar_graph }}" alt="Bar graph" style="margin-left:auto;margin-right:auto; width:1000px">
             </div>
 
             <div id="tab2" class="col s12">
               <h5>Word Clouds</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_word_cloud }}</p></div>
-              <h3 style="word-spacing: 110px">Female Male</h3>
-                <img src="{{ female_word_cloud}}" alt="Female word cloud" style="width: 40%; height:500px; display: inline-block">
-                <img src="{{ male_word_cloud}}" alt="Male word cloud" style="width: 40%; height:500px; display: inline-block">
+              <h3 style="text-align: center">Female </h3>
+              <img src="{{ female_word_cloud }}" alt="Female word cloud" style="width:1000px">
+              </br>
+              </br>
+              <h3 style="text-align: center">Male</h3>
+              <img src="{{ male_word_cloud }}" alt="Male word cloud" style="width:1000px">
             </div>
 
             <div id="tab3" class="col s12">
@@ -114,6 +117,8 @@
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_tsne_graph }}</p></div>
               <h3 style="text-align: center">Female</h3>
               <img src="{{ female_tsne_graph }}" alt="Female Tsne graph">
+              </br>
+              </br>
               <h3 style="text-align: center">Male</h3>
               <img src="{{ male_tsne_graph }}" alt="Male Tsne graph">
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ tsne_graph }}</p></div>
@@ -126,6 +131,8 @@
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_pca_graph }}</p></div>
               <h3 style="text-align: center">Female</h3>
               <img src="{{ female_pca_graph }}" alt="Female PCA graph">
+              </br>
+              </br>
               <h3 style="text-align: center">Male</h3>
               <img src="{{ male_pca_graph }}" alt="Male PCA graph">
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ pca_graph }}</p></div>
