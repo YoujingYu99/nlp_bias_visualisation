@@ -179,9 +179,9 @@ def get_text_file(corpora_file):
 
 
 def list_to_dataframe(view_results, range=(-1, 1)):
-    #put into a dataframe
+    # put into a dataframe
     df = pd.DataFrame(view_results)
-    #remove None
+    # remove None
     df = df.dropna()
     # Normalise to -1 an 1
     scaler = MinMaxScaler(feature_range=range)
@@ -189,6 +189,7 @@ def list_to_dataframe(view_results, range=(-1, 1)):
     print(df)
 
     return df
+
 
 def generate_list(dataframe):
     token_list = dataframe['token'].to_list()
@@ -208,12 +209,6 @@ def token_by_gender(token_list, value_list):
     female_token = [k for (k, v) in data.items() if v < 0]
 
     return male_token, female_token
-
-
-
-
-
-
 
 
 def bar_graph(dataframe, token_list, value_list):
@@ -238,10 +233,10 @@ def bar_graph(dataframe, token_list, value_list):
     colors = cmap(norm(df_mean))
 
     ax.bar(
-          token_list,
-           value_list,
-           yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-           color=colors)
+        token_list,
+        value_list,
+        yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+        color=colors)
     fig.colorbar(ScalarMappable(cmap=cmap))
 
     ax.set_title('Word Bias Visualisation', fontsize=12)
@@ -339,7 +334,8 @@ def cloud_image(token_list, value_list):
                                  contour_width=0,
                                  colormap=cloud_color)
 
-    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale, width=male_cloud_mask.shape[1],
+    male_wordcloud = WordCloud(collocations=bigrams, mask=male_cloud_mask, regexp=None, relative_scaling=cloud_scale,
+                               width=male_cloud_mask.shape[1],
                                height=male_cloud_mask.shape[0], background_color=cloud_bg_color, max_words=10000,
                                contour_width=0,
                                colormap=cloud_color)
@@ -435,6 +431,114 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     return plot_tsne
 
 
+def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation(Male)"):
+    """Creates a TSNE model and plots it"""
+
+    # define word2vec model
+    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    w2vmodel = Word2Vec.load(model_path)
+
+    # manually define which words we want to explore
+    my_word_list = []
+    my_word_vectors = []
+
+    words_to_explore = token_by_gender(token_list, value_list)[0]
+
+    for i in words_to_explore:
+        try:
+            if my_word_list not in my_word_list:
+                my_word_vectors.append(w2vmodel.wv[i])
+                my_word_list.append(i)
+        except KeyError:
+            continue
+
+    tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
+                      random_state=seed)
+    new_values = tsne_model.fit_transform(my_word_vectors)
+
+    x = []
+    y = []
+    for value in new_values:
+        x.append(value[0])
+        y.append(value[1])
+
+    # save file to static
+    tsne_name = token_list[-3] + 'tsne_male'
+    tsne_name_ex = tsne_name + '.jpg'
+    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    tsne_path = save_img_path + '.jpg'
+
+    plt.figure(figsize=(10, 10))
+    for i in range(len(x)):
+        plt.scatter(x[i], y[i])
+        plt.annotate(my_word_list[i],
+                     xy=(x[i], y[i]),
+                     xytext=(5, 2),
+                     textcoords='offset points',
+                     ha='right',
+                     va='bottom')
+    plt.ylabel("TSNE Latent Dimension 1")
+    plt.xlabel("TSNE Latent Dimension 2")
+    plt.title(title)
+    plt.savefig(tsne_path)
+    plot_tsne_male = url_for('static', filename=tsne_name_ex)
+
+    return plot_tsne_male
+
+def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation (Female)"):
+    """Creates a TSNE model and plots it"""
+
+    # define word2vec model
+    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    w2vmodel = Word2Vec.load(model_path)
+
+    # manually define which words we want to explore
+    my_word_list = []
+    my_word_vectors = []
+
+    words_to_explore = token_by_gender(token_list, value_list)[1]
+
+    for i in words_to_explore:
+        try:
+            if my_word_list not in my_word_list:
+                my_word_vectors.append(w2vmodel.wv[i])
+                my_word_list.append(i)
+        except KeyError:
+            continue
+
+    tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
+                      random_state=seed)
+    new_values = tsne_model.fit_transform(my_word_vectors)
+
+    x = []
+    y = []
+    for value in new_values:
+        x.append(value[0])
+        y.append(value[1])
+
+    # save file to static
+    tsne_name = token_list[-3] + 'tsne_female'
+    tsne_name_ex = tsne_name + '.jpg'
+    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    tsne_path = save_img_path + '.jpg'
+
+    plt.figure(figsize=(10, 10))
+    for i in range(len(x)):
+        plt.scatter(x[i], y[i])
+        plt.annotate(my_word_list[i],
+                     xy=(x[i], y[i]),
+                     xytext=(5, 2),
+                     textcoords='offset points',
+                     ha='right',
+                     va='bottom')
+    plt.ylabel("TSNE Latent Dimension 1")
+    plt.xlabel("TSNE Latent Dimension 2")
+    plt.title(title)
+    plt.savefig(tsne_path)
+    plot_tsne_female = url_for('static', filename=tsne_name_ex)
+
+    return plot_tsne_female
+
 def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum"):
     """Creates a PCA model and plots it"""
 
@@ -487,7 +591,6 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
     plot_pca = url_for('static', filename=pca_name_ex)
 
     return plot_pca
-
 
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
 # p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'

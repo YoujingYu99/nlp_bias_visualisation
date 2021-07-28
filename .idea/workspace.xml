@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,14 +162,7 @@
       <workItem from="1627381204730" duration="9630000" />
       <workItem from="1627402620179" duration="2901000" />
       <workItem from="1627469044197" duration="2740000" />
-      <workItem from="1627478332492" duration="3087000" />
-    </task>
-    <task id="LOCAL-00004" summary="Adding Bootstrap, cleaning the page. Still workin g on About logos">
-      <created>1626172261433</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1626172261433</updated>
+      <workItem from="1627478332492" duration="3927000" />
     </task>
     <task id="LOCAL-00005" summary="Fixed about logos. Changed layout and icon.">
       <created>1626186584960</created>
@@ -506,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627485238136</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Wrote functions for separate male and female TSNE&amp;PCA graphs">
+      <created>1627485646432</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1627485646432</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +539,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adding word cloud for female and male words" />
     <MESSAGE value="Finished word cloud generation" />
     <MESSAGE value="Rescaled the size of the word clouds; in future may switch to drop-down bar" />
     <MESSAGE value="Adding word cloud for url and txt file as well" />
@@ -563,12 +563,14 @@
     <MESSAGE value="Sorting out the css alignment issue for both female and male word clouds" />
     <MESSAGE value="Cleaning up the visualisation.html for word clouds display" />
     <MESSAGE value="Adding PCA graphs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding PCA graphs" />
+    <MESSAGE value="Wrote functions for separate male and female TSNE&amp;PCA graphs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrote functions for separate male and female TSNE&amp;PCA graphs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627485083812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627486420468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1627485597427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627383113792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
   </component>
