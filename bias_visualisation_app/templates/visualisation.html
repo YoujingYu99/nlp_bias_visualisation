@@ -90,6 +90,9 @@
                 <li class="tab col s3">
                   <a href="#tab3" style="color:#3e5756">TSNE Graph</a>
                 </li>
+                <li class="tab col s3">
+                  <a href="#tab4" style="color:#3e5756">#PCA Graph</a>
+                </li>
               </ul>
             </div>
             <div id="tab1" class="col s12">
@@ -108,6 +111,11 @@
               <h5>TSNE Graphs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ tsne_graph }}</p></div>
               <img src="{{ tsne_graph }}" alt="Tsne graph">
+            </div>
+            <div id="tab4" class="col s12">
+              <h5>PCA Graphs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ pca_graph }}</p></div>
+              <img src="{{ pca_graph }}" alt="PCA graph">
             </div>
           </div>
         </div>

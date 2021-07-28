@@ -12,7 +12,7 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, bar_graph, cloud_image, tsne_graph
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, bar_graph, cloud_image, tsne_graph, pca_graph
 import werkzeug
 import spacy
 import time
@@ -194,10 +194,12 @@ def detect_text():
         #only perform tsne plot if more than 100 tokens
         if len(token_list) > 100:
             plot_tsne = tsne_graph(token_list)
+            plot_pca = pca_graph(token_list)
         else:
             plot_tsne = url_for('static', filename="nothing_here.jpg")
+            plot_pca = url_for('static', filename="nothing_here.jpg")
 
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne)
+    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, pca_graph=plot_pca)
  #he is a nurse
 
 
@@ -251,12 +253,15 @@ def detect_url():
             # only perform tsne plot if more than 100 tokens
             if len(token_list) > 100:
                 plot_tsne = tsne_graph(token_list)
+                plot_pca = pca_graph(token_list)
             else:
                 plot_tsne = url_for('static', filename="nothing_here.jpg")
+                plot_pca = url_for('static', filename="nothing_here.jpg")
 
-        return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
+        return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
+                               bar_graph=plot_bar,
                                female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne)
+                               tsne_graph=plot_tsne, pca_graph=plot_pca)
 
 
 
@@ -314,12 +319,14 @@ def detect_corpora():
             # only perform tsne plot if more than 100 tokens
             if len(token_list) > 100:
                 plot_tsne = tsne_graph(token_list)
+                plot_pca = pca_graph(token_list)
             else:
                 plot_tsne = url_for('static', filename="nothing_here.jpg")
+                plot_pca = url_for('static', filename="nothing_here.jpg")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
                                female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne)
+                               tsne_graph=plot_tsne, pca_graph=plot_pca)
 
 # . It works by looking at differences between male and female word pairs
 #       like "he" and "she", or "boy" and "girl", and then comparing the
