@@ -200,12 +200,12 @@ def detect_text():
             plot_pca_male = pca_graph_male(token_list, value_list)
             plot_pca_female = pca_graph_female(token_list, value_list)
         else:
-            plot_tsne = url_for('static', filename="nothing_here.jpg")
-            plot_tsne_male = url_for('static', filename="nothing_here.jpg")
-            plot_tsne_female = url_for('static', filename="nothing_here.jpg")
-            plot_pca = url_for('static', filename="nothing_here.jpg")
-            plot_pca_male = url_for('static', filename="nothing_here.jpg")
-            plot_pca_female = url_for('static', filename="nothing_here.jpg")
+            plot_tsne = url_for('static', filename="nothing_here.png")
+            plot_tsne_male = url_for('static', filename="nothing_here.png")
+            plot_tsne_female = url_for('static', filename="nothing_here.png")
+            plot_pca = url_for('static', filename="nothing_here.png")
+            plot_pca_male = url_for('static', filename="nothing_here.png")
+            plot_pca_female = url_for('static', filename="nothing_here.png")
 
     return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
  #he is a nurse
@@ -267,12 +267,12 @@ def detect_url():
                 plot_pca_male = pca_graph_male(token_list, value_list)
                 plot_pca_female = pca_graph_female(token_list, value_list)
             else:
-                plot_tsne = url_for('static', filename="nothing_here.jpg")
-                plot_tsne_male = url_for('static', filename="nothing_here.jpg")
-                plot_tsne_female = url_for('static', filename="nothing_here.jpg")
-                plot_pca = url_for('static', filename="nothing_here.jpg")
-                plot_pca_male = url_for('static', filename="nothing_here.jpg")
-                plot_pca_female = url_for('static', filename="nothing_here.jpg")
+                plot_tsne = url_for('static', filename="nothing_here.png")
+                plot_tsne_male = url_for('static', filename="nothing_here.png")
+                plot_tsne_female = url_for('static', filename="nothing_here.png")
+                plot_pca = url_for('static', filename="nothing_here.png")
+                plot_pca_male = url_for('static', filename="nothing_here.png")
+                plot_pca_female = url_for('static', filename="nothing_here.png")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
@@ -291,9 +291,9 @@ def detect_corpora():
         input_data = get_text_file(corpora_file)
         if not input_data:
             raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
-        if len(input_data) > 5000:
+        if len(input_data) > 50000:
             raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 5000 characters long"
+                "Input Paragraph must be at most 500000 characters long"
             )
         objs = parse_sentence(input_data)
         results = []
@@ -304,7 +304,7 @@ def detect_corpora():
                 "bias": calculator.detect_bias(obj["text"]),
                 "parts": [
                     {
-                        "whitespace": token.whitespace_,
+                        #"whitespace": token.whitespace_,
                         "pos": token.pos_,
                         "dep": token.dep_,
                         "ent": token.ent_type_,
@@ -317,35 +317,35 @@ def detect_corpora():
                 ],
             }
             results.append(token_result)
-            # copy results and only keep the word and the bias value
-            token_result2 = results.copy()
-            for item in token_result2:
-                if "parts" in item.keys():
-                    del item['parts']
-                else:
-                    continue
-                view_results.append(item)
-            view_df = list_to_dataframe(view_results)
-            token_list, value_list = generate_list(view_df)
-
-            # plot the bar graphs and word clouds
-            plot_bar = bar_graph(view_df, token_list, value_list)
-            plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-            # only perform tsne plot if more than 100 tokens
-            if len(token_list) > 100:
-                plot_tsne = tsne_graph(token_list)
-                plot_tsne_male = tsne_graph_male(token_list, value_list)
-                plot_tsne_female = tsne_graph_female(token_list, value_list)
-                plot_pca = pca_graph(token_list)
-                plot_pca_male = pca_graph_male(token_list, value_list)
-                plot_pca_female = pca_graph_female(token_list, value_list)
+        #copy results and only keep the word and the bias value
+        token_result2 = results.copy()
+        for item in token_result2:
+            if "parts" in item.keys():
+                del item['parts']
             else:
-                plot_tsne = url_for('static', filename="nothing_here.jpg")
-                plot_tsne_male = url_for('static', filename="nothing_here.jpg")
-                plot_tsne_female = url_for('static', filename="nothing_here.jpg")
-                plot_pca = url_for('static', filename="nothing_here.jpg")
-                plot_pca_male = url_for('static', filename="nothing_here.jpg")
-                plot_pca_female = url_for('static', filename="nothing_here.jpg")
+                continue
+            view_results.append(item)
+        view_df = list_to_dataframe(view_results)
+        token_list, value_list = generate_list(view_df)
+
+        # plot the bar graphs and word clouds
+        plot_bar = bar_graph(view_df, token_list, value_list)
+        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+        # only perform tsne plot if more than 100 tokens
+        if len(token_list) > 100:
+            plot_tsne = tsne_graph(token_list)
+            plot_tsne_male = tsne_graph_male(token_list, value_list)
+            plot_tsne_female = tsne_graph_female(token_list, value_list)
+            plot_pca = pca_graph(token_list)
+            plot_pca_male = pca_graph_male(token_list, value_list)
+            plot_pca_female = pca_graph_female(token_list, value_list)
+        else:
+            plot_tsne = url_for('static', filename="nothing_here.png")
+            plot_tsne_male = url_for('static', filename="nothing_here.png")
+            plot_tsne_female = url_for('static', filename="nothing_here.png")
+            plot_pca = url_for('static', filename="nothing_here.png")
+            plot_pca_male = url_for('static', filename="nothing_here.png")
+            plot_pca_female = url_for('static', filename="nothing_here.png")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,

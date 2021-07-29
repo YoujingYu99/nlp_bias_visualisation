@@ -215,6 +215,7 @@ def bar_graph(dataframe, token_list, value_list):
     mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)
     df = dataframe
+    print(df)
     if len(token_list) > 15:
         set_x_tick = False
     else:
