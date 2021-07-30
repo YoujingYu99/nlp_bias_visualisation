@@ -12,7 +12,7 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female, gender_dataframe_from_tuple
 import werkzeug
 import spacy
 import time
@@ -256,12 +256,14 @@ def detect_corpora():
 
 @app.route('/query')
 def query():
-    return render_template('query.html')
+    female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_tuple()
+    return render_template('query.html', data_fm=female_dataframe_tot, data_m=male_dataframe_tot)
 
 @app.route('/analyse_adj', methods=['GET', 'POST'])
 def analyse_adj():
     if request.method == 'POST':
         rawtext = request.form['rawtext']
+        female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
         if "adjectives" in rawtext:
             if "female" in rawtext:
                 female_adjs = female_adjs()
@@ -270,9 +272,7 @@ def analyse_adj():
             else:
                 print("Please enter a valid question")
 
-    return render_template('query.html', ctext=rawtext, name=filename, data=x.to_html())
-    return render_template('query.html', ctext=rawtext, final_summary=final_summary, final_time=final_time,
-                           final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
+    return render_template('query.html', ctext=rawtext, data_fm=female_dataframe_tot, data_m=male_dataframe_tot)
 
 
 

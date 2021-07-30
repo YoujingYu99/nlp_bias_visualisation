@@ -298,17 +298,29 @@ def generate_bias_values(input_data):
     token_list, value_list = generate_list(view_df)
     male_dict, female_dict = dict_by_gender(token_list, value_list)
 
-    save_obj(male_dict, m_dic)
-    save_obj(female_dict, fm_dic)
+    save_obj(male_dict, name='m_dic')
+    save_obj(female_dict, name='fm_dic')
 
     return view_results, view_df, (token_list, value_list)
 
 
-def display_dataframe(m_dic, fm_dic):
-    male_dictionary = load_obj(m_dic)
-    male_dataframe = pd.DataFrame(male_dictionary.items(), columns=['Token', 'Bias Value'])
-    female_dictionary = load_obj(fm_dic)
-    female_dataframe = pd.DataFrame(female_dictionary.items(), columns=['Token', 'Bias Value'])
+def gender_dataframe_from_tuple():
+    male_tuple = load_obj(name='m_dic')
+    male_dataframe = pd.DataFrame(male_tuple, columns=['Token', 'Bias Value'])
+    male_dataframe = male_dataframe.sort_values(by='Bias Value', ascending=False)
+
+    female_tuple = load_obj(name='fm_dic')
+    female_dataframe = pd.DataFrame(female_tuple, columns=['Token', 'Bias Value'])
+    female_dataframe = female_dataframe.sort_values(by='Bias Value', ascending=False)
+
+    return male_dataframe, female_dataframe
+
+def parse_pos_dataframe(male_name='m_dic', female_name='fm_dic'):
+
+    male_dataframe, female_dataframe = gender_dataframe_to_dict(male_name, female_name)
+
+
+
 
 
 
