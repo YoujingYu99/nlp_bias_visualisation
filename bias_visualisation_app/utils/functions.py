@@ -1,6 +1,7 @@
 import os
 from os import path
 from io import open
+import pickle
 from conllu import parse, parse_incr
 import csv
 import xml.etree.ElementTree as ET
@@ -40,8 +41,6 @@ from .parse_sentence import parse_sentence, textify_tokens
 from .PcaBiasCalculator import PcaBiasCalculator
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
-
-
 # NLP bias detection
 # if environ.get("USE_PRECALCULATED_BIASES", "").upper() == "TRUE":
 #     print("using precalculated biases")
@@ -60,17 +59,6 @@ neutral_words = [
     "the",
     "it",
 ]
-
-
-
-
-
-
-
-
-
-
-
 
 
 def tsv_reader(path, file):
@@ -260,6 +248,20 @@ def dict_by_gender(token_list, value_list):
 
     return male_dict, female_dict
 
+
+def save_obj(obj, name):
+    save_dict_path = path.join(path.dirname(__file__), "..\\static\\", name)
+    dict_path = save_dict_path + '.pkl'
+    with open(dict_path, 'wb') as f:
+        pickle.dump(obj, f)
+
+
+def load_obj(name):
+    save_dict_path = path.join(path.dirname(__file__), "..\\static\\")
+    with open(save_dict_path + name + '.pkl', 'rb') as f:
+        return pickle.load(f)
+
+
 def generate_bias_values(input_data):
     objs = parse_sentence(input_data)
     results = []
@@ -294,7 +296,19 @@ def generate_bias_values(input_data):
 
     view_df = list_to_dataframe(view_results)
     token_list, value_list = generate_list(view_df)
+    male_dict, female_dict = dict_by_gender(token_list, value_list)
+
+    save_obj(male_dict, m_dic)
+    save_obj(female_dict, fm_dic)
+
     return view_results, view_df, (token_list, value_list)
+
+
+def display_dataframe(m_dic, fm_dic):
+    male_dictionary = load_obj(m_dic)
+    male_dataframe = pd.DataFrame(male_dictionary.items(), columns=['Token', 'Bias Value'])
+    female_dictionary = load_obj(fm_dic)
+    female_dataframe = pd.DataFrame(female_dictionary.items(), columns=['Token', 'Bias Value'])
 
 
 
@@ -406,7 +420,7 @@ def cloud_image(token_list, value_list):
     # cloud
     cloud_color = "magma"
     cloud_bg_color = "white"
-    #cloud_custom_font = False
+    # cloud_custom_font = False
 
     # transform mask
     # female_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "female_symbol.png")
@@ -446,7 +460,7 @@ def cloud_image(token_list, value_list):
 
     except:
         # https: // www.wattpad.com / 729617965 - there % 27s - nothing - here - 3
-        #https://images-na.ssl-images-amazon.com/images/I/41wjfr0wSsL.png
+        # https://images-na.ssl-images-amazon.com/images/I/41wjfr0wSsL.png
         print("Not enough words for female cloud!")
         plot_female_cloud = url_for('static', filename="nothing_here.jpg")
 
