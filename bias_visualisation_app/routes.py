@@ -174,28 +174,28 @@ def detect_url():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 5000 characters long"
             )
-            view_results = generate_bias_values(input_data)[0]
-            view_df = generate_bias_values(input_data)[1]
-            token_list, value_list = generate_bias_values(input_data)[2]
+        view_results = generate_bias_values(input_data)[0]
+        view_df = generate_bias_values(input_data)[1]
+        token_list, value_list = generate_bias_values(input_data)[2]
 
-            # plot the bar graphs and word clouds
-            plot_bar = bar_graph(view_df, token_list, value_list)
-            plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-            # only perform tsne plot if more than 100 tokens
-            if len(token_list) > 100:
-                plot_tsne = tsne_graph(token_list)
-                plot_tsne_male = tsne_graph_male(token_list, value_list)
-                plot_tsne_female = tsne_graph_female(token_list, value_list)
-                plot_pca = pca_graph(token_list)
-                plot_pca_male = pca_graph_male(token_list, value_list)
-                plot_pca_female = pca_graph_female(token_list, value_list)
-            else:
-                plot_tsne = url_for('static', filename="nothing_here.png")
-                plot_tsne_male = url_for('static', filename="nothing_here.png")
-                plot_tsne_female = url_for('static', filename="nothing_here.png")
-                plot_pca = url_for('static', filename="nothing_here.png")
-                plot_pca_male = url_for('static', filename="nothing_here.png")
-                plot_pca_female = url_for('static', filename="nothing_here.png")
+        # plot the bar graphs and word clouds
+        plot_bar = bar_graph(view_df, token_list, value_list)
+        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+        # only perform tsne plot if more than 100 tokens
+        if len(token_list) > 100:
+            plot_tsne = tsne_graph(token_list)
+            plot_tsne_male = tsne_graph_male(token_list, value_list)
+            plot_tsne_female = tsne_graph_female(token_list, value_list)
+            plot_pca = pca_graph(token_list)
+            plot_pca_male = pca_graph_male(token_list, value_list)
+            plot_pca_female = pca_graph_female(token_list, value_list)
+        else:
+            plot_tsne = url_for('static', filename="nothing_here.png")
+            plot_tsne_male = url_for('static', filename="nothing_here.png")
+            plot_tsne_female = url_for('static', filename="nothing_here.png")
+            plot_pca = url_for('static', filename="nothing_here.png")
+            plot_pca_male = url_for('static', filename="nothing_here.png")
+            plot_pca_female = url_for('static', filename="nothing_here.png")
 
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,

@@ -217,8 +217,9 @@ def list_to_dataframe(view_results, range=(-1, 1)):
 def generate_list(dataframe):
     token_list = dataframe['token'].to_list()
     value_list = dataframe['bias'].to_list()
+    pos_list = dataframe['pos'].to_list()
 
-    return token_list, value_list
+    return token_list, value_list, pos_list
 
 
 def token_by_gender(token_list, value_list):
@@ -232,6 +233,16 @@ def token_by_gender(token_list, value_list):
     female_token = [k for (k, v) in data.items() if v < 0]
 
     return male_token, female_token
+
+def dataframe_by_gender(view_df):
+    # selecting rows based on condition
+    female_dataframe = view_df[view_df['bias'] < 0]
+    male_dataframe = view_df[view_df['bias'] > 0]
+    
+    return male_dataframe, female_dataframe
+
+
+
 
 
 def dict_by_gender(token_list, value_list):
@@ -250,15 +261,15 @@ def dict_by_gender(token_list, value_list):
 
 
 def save_obj(obj, name):
-    save_dict_path = path.join(path.dirname(__file__), "..\\static\\", name)
-    dict_path = save_dict_path + '.pkl'
-    with open(dict_path, 'wb') as f:
+    save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+    df_path = save_df_path + '.pkl'
+    with open(df_path, 'wb') as f:
         pickle.dump(obj, f)
 
 
 def load_obj(name):
-    save_dict_path = path.join(path.dirname(__file__), "..\\static\\")
-    with open(save_dict_path + name + '.pkl', 'rb') as f:
+    save_df_path = path.join(path.dirname(__file__), "..\\static\\")
+    with open(save_df_path + name + '.pkl', 'rb') as f:
         return pickle.load(f)
 
 
@@ -270,10 +281,10 @@ def generate_bias_values(input_data):
         token_result = {
             "token": obj["text"],
             "bias": calculator.detect_bias(obj["text"]),
-            "pos": token.pos_,
             "parts": [
                 {
-                    # "whitespace": token.whitespace_,
+                    "whitespace": token.whitespace_,
+                    "pos": token.pos_,
                     "dep": token.dep_,
                     "ent": token.ent_type_,
                     "skip": token.pos_
@@ -288,7 +299,8 @@ def generate_bias_values(input_data):
     # copy results and only keep the word and the bias value
     token_result2 = results.copy()
     for item in token_result2:
-        if "parts" in item.keys():
+        if 'parts' in item.keys():
+            item['pos'] = item['parts'][0]['pos']
             del item['parts']
         else:
             continue
@@ -296,21 +308,23 @@ def generate_bias_values(input_data):
 
     view_df = list_to_dataframe(view_results)
     token_list, value_list, pos_list = generate_list(view_df)
-    male_dict, female_dict = dict_by_gender(token_list, value_list)
+    male_dataframe, female_dataframe = dataframe_by_gender(view_df)
+    #male_dict, female_dict = dict_by_gender(token_list, value_list)
 
-    save_obj(male_dict, name='m_dic')
-    save_obj(female_dict, name='fm_dic')
+    save_obj(male_dataframe, name='m_dic')
+    save_obj(female_dataframe, name='fm_dic')
 
     return view_results, view_df, (token_list, value_list)
 
 
 def gender_dataframe_from_tuple():
     male_tuple = load_obj(name='m_dic')
-    male_dataframe = pd.DataFrame(male_tuple, columns=['Token', 'Bias Value'])
+    print(male_tuple)
+    male_dataframe = pd.DataFrame(male_tuple, columns=['Token', 'Bias Value', 'POS'])
     male_dataframe = male_dataframe.sort_values(by='Bias Value', ascending=False)
 
     female_tuple = load_obj(name='fm_dic')
-    female_dataframe = pd.DataFrame(female_tuple, columns=['Token', 'Bias Value'])
+    female_dataframe = pd.DataFrame(female_tuple, columns=['Token', 'Bias Value', 'POS'])
     female_dataframe = female_dataframe.sort_values(by='Bias Value', ascending=True)
 
     return male_dataframe, female_dataframe
