@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="Fixing corpora uploading issue">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/boltedfemalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardmalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplanspca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplanspca_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplanspca_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplanstsne.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplanstsne_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/heardplanstsne_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" afterDir="false" />
+    <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +67,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\bias_visualisation_app\templates" />
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\server\bias_statements" />
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\data" />
     </key>
@@ -172,14 +163,7 @@
       <workItem from="1627469044197" duration="2740000" />
       <workItem from="1627478332492" duration="8706000" />
       <workItem from="1627550298456" duration="3730000" />
-      <workItem from="1627638445386" duration="904000" />
-    </task>
-    <task id="LOCAL-00011" summary="Improved the Visualisation page">
-      <created>1626338956824</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1626338956825</updated>
+      <workItem from="1627638445386" duration="1269000" />
     </task>
     <task id="LOCAL-00012" summary="Changed path for Amalgun dataset.">
       <created>1626339783097</created>
@@ -517,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627552698022</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Adding another webpage for query based on the visualisation page">
+      <created>1627639496217</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1627639496218</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +540,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Why would the bar graph fail?" />
     <MESSAGE value="Bar graph fixed; only generate tsne plot if more than 100 tokens." />
     <MESSAGE value="TSNE graph successfully showing. Good!" />
     <MESSAGE value="Changed cloud masks" />
@@ -574,7 +564,8 @@
     <MESSAGE value="Renaming the graphs" />
     <MESSAGE value="Significantly improving the visuals of the graphs" />
     <MESSAGE value="Fixing corpora uploading issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing corpora uploading issue" />
+    <MESSAGE value="Adding another webpage for query based on the visualisation page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding another webpage for query based on the visualisation page" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

@@ -361,6 +361,40 @@ def detect_corpora():
 # <0: is female biased
 
 
+# @app.route('/analyze', methods=['GET', 'POST'])
+# def analyze():
+#     if request.method == 'POST':
+#         rawtext = request.form['rawtext']
+#         if "adjectives" in rawtext:
+#             if "female" in rawtext:
+#                 female_adjs = female_adjs()
+#             elif "male" in rawtext:
+#                 male_adjs = male_adjs()
+#             else:
+#                 print("Please enter a valid question")
+#
+#
+#     return render_template('query.html', ctext=rawtext, final_summary=final_summary, final_time=final_time,
+#                            final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
