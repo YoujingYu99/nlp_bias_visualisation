@@ -291,16 +291,10 @@ def generate_bias_values(input_data):
         else:
             continue
         view_results.append(item)
-    return view_results
 
-
-
-
-
-
-
-
-
+    view_df = list_to_dataframe(view_results)
+    token_list, value_list = generate_list(view_df)
+    return view_results, view_df, (token_list, value_list)
 
 
 

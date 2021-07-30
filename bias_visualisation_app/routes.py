@@ -135,9 +135,9 @@ def detect_text():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 500000 characters long"
             )
-        view_results = generate_bias_values(input_data)
-        view_df = list_to_dataframe(view_results)
-        token_list, value_list = generate_list(view_df)
+        view_results = generate_bias_values(input_data)[0]
+        view_df = generate_bias_values(input_data)[1]
+        token_list, value_list = generate_bias_values(input_data)[2]
 
 
         #plot the bar graphs and word clouds
@@ -174,9 +174,9 @@ def detect_url():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 5000 characters long"
             )
-            view_results = generate_bias_values(input_data)
-            view_df = list_to_dataframe(view_results)
-            token_list, value_list = generate_list(view_df)
+            view_results = generate_bias_values(input_data)[0]
+            view_df = generate_bias_values(input_data)[1]
+            token_list, value_list = generate_bias_values(input_data)[2]
 
             # plot the bar graphs and word clouds
             plot_bar = bar_graph(view_df, token_list, value_list)
@@ -218,9 +218,9 @@ def detect_corpora():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 500000 characters long"
             )
-        view_results = generate_bias_values(input_data)
-        view_df = list_to_dataframe(view_results)
-        token_list, value_list = generate_list(view_df)
+        view_results = generate_bias_values(input_data)[0]
+        view_df = generate_bias_values(input_data)[1]
+        token_list, value_list = generate_bias_values(input_data)[2]
 
         # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
