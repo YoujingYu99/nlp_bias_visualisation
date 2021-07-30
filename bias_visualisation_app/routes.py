@@ -12,7 +12,7 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female
 import werkzeug
 import spacy
 import time
@@ -123,25 +123,6 @@ def visualisation():
 #                            summary_reading_time_nltk=summary_reading_time_nltk)
 
 
-# NLP bias detection
-# if environ.get("USE_PRECALCULATED_BIASES", "").upper() == "TRUE":
-#     print("using precalculated biases")
-#     calculator = PrecalculatedBiasCalculator()
-# else:
-#     calculator = PcaBiasCalculator()
-
-calculator = PrecalculatedBiasCalculator()
-
-neutral_words = [
-    "is",
-    "was",
-    "who",
-    "what",
-    "where",
-    "the",
-    "it",
-]
-
 
 @app.route("/detect_text", methods=['GET', 'POST'])
 def detect_text():
@@ -154,36 +135,7 @@ def detect_text():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 500000 characters long"
             )
-        objs = parse_sentence(input_data)
-        results = []
-        view_results = []
-        for obj in objs:
-            token_result = {
-                "token": obj["text"],
-                "bias": calculator.detect_bias(obj["text"]),
-                "parts": [
-                    {
-                        #"whitespace": token.whitespace_,
-                        "pos": token.pos_,
-                        "dep": token.dep_,
-                        "ent": token.ent_type_,
-                        "skip": token.pos_
-                                in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART", "CCONJ"]
-                                or len(token) < 2
-                                or token.text.lower() in neutral_words,
-                    }
-                    for token in obj["tokens"]
-                ],
-            }
-            results.append(token_result)
-        #copy results and only keep the word and the bias value
-        token_result2 = results.copy()
-        for item in token_result2:
-            if "parts" in item.keys():
-                del item['parts']
-            else:
-                continue
-            view_results.append(item)
+        view_results = generate_bias_values(input_data)
         view_df = list_to_dataframe(view_results)
         token_list, value_list = generate_list(view_df)
 
@@ -222,36 +174,7 @@ def detect_url():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 5000 characters long"
             )
-        objs = parse_sentence(input_data)
-        results = []
-        view_results = []
-        for obj in objs:
-            token_result = {
-                "token": obj["text"],
-                "bias": calculator.detect_bias(obj["text"]),
-                "parts": [
-                    {
-                        "whitespace": token.whitespace_,
-                        "pos": token.pos_,
-                        "dep": token.dep_,
-                        "ent": token.ent_type_,
-                        "skip": token.pos_
-                                in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART", "CCONJ"]
-                                or len(token) < 2
-                                or token.text.lower() in neutral_words,
-                    }
-                    for token in obj["tokens"]
-                ],
-            }
-            results.append(token_result)
-            # copy results and only keep the word and the bias value
-            token_result2 = results.copy()
-            for item in token_result2:
-                if "parts" in item.keys():
-                    del item['parts']
-                else:
-                    continue
-                view_results.append(item)
+            view_results = generate_bias_values(input_data)
             view_df = list_to_dataframe(view_results)
             token_list, value_list = generate_list(view_df)
 
@@ -295,36 +218,7 @@ def detect_corpora():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 500000 characters long"
             )
-        objs = parse_sentence(input_data)
-        results = []
-        view_results = []
-        for obj in objs:
-            token_result = {
-                "token": obj["text"],
-                "bias": calculator.detect_bias(obj["text"]),
-                "parts": [
-                    {
-                        #"whitespace": token.whitespace_,
-                        "pos": token.pos_,
-                        "dep": token.dep_,
-                        "ent": token.ent_type_,
-                        "skip": token.pos_
-                                in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART", "CCONJ"]
-                                or len(token) < 2
-                                or token.text.lower() in neutral_words,
-                    }
-                    for token in obj["tokens"]
-                ],
-            }
-            results.append(token_result)
-        #copy results and only keep the word and the bias value
-        token_result2 = results.copy()
-        for item in token_result2:
-            if "parts" in item.keys():
-                del item['parts']
-            else:
-                continue
-            view_results.append(item)
+        view_results = generate_bias_values(input_data)
         view_df = list_to_dataframe(view_results)
         token_list, value_list = generate_list(view_df)
 
@@ -360,6 +254,9 @@ def detect_corpora():
 # >0: is male biased
 # <0: is female biased
 
+@app.route('/query')
+def query():
+    return render_template('query.html')
 
 # @app.route('/analyze', methods=['GET', 'POST'])
 # def analyze():

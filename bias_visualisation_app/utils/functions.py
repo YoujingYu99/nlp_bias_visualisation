@@ -36,6 +36,42 @@ from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
 from gensim.test.utils import datapath
 
+from .parse_sentence import parse_sentence, textify_tokens
+from .PcaBiasCalculator import PcaBiasCalculator
+from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
+
+
+
+# NLP bias detection
+# if environ.get("USE_PRECALCULATED_BIASES", "").upper() == "TRUE":
+#     print("using precalculated biases")
+#     calculator = PrecalculatedBiasCalculator()
+# else:
+#     calculator = PcaBiasCalculator()
+
+calculator = PrecalculatedBiasCalculator()
+
+neutral_words = [
+    "is",
+    "was",
+    "who",
+    "what",
+    "where",
+    "the",
+    "it",
+]
+
+
+
+
+
+
+
+
+
+
+
+
 
 def tsv_reader(path, file):
     """
@@ -208,6 +244,68 @@ def token_by_gender(token_list, value_list):
     female_token = [k for (k, v) in data.items() if v < 0]
 
     return male_token, female_token
+
+
+def dict_by_gender(token_list, value_list):
+    # convert lists to dictionary
+    data = dict(zip(token_list, value_list))
+    data = {k: v or 0 for (k, v) in data.items()}
+
+    # separate into male and female dictionaries
+    # sort from largest to smallest in each case
+    male_dict = {k: v for (k, v) in data.items() if v > 0}
+    male_dict = sorted(male_dict.items(), key=lambda x: x[1], reverse=True)
+    female_dict = {k: v for (k, v) in data.items() if v < 0}
+    female_dict = sorted(female_dict.items(), key=lambda x: x[1], reverse=True)
+
+    return male_dict, female_dict
+
+def generate_bias_values(input_data):
+    objs = parse_sentence(input_data)
+    results = []
+    view_results = []
+    for obj in objs:
+        token_result = {
+            "token": obj["text"],
+            "bias": calculator.detect_bias(obj["text"]),
+            "parts": [
+                {
+                    # "whitespace": token.whitespace_,
+                    "pos": token.pos_,
+                    "dep": token.dep_,
+                    "ent": token.ent_type_,
+                    "skip": token.pos_
+                            in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART", "CCONJ"]
+                            or len(token) < 2
+                            or token.text.lower() in neutral_words,
+                }
+                for token in obj["tokens"]
+            ],
+        }
+        results.append(token_result)
+    # copy results and only keep the word and the bias value
+    token_result2 = results.copy()
+    for item in token_result2:
+        if "parts" in item.keys():
+            del item['parts']
+        else:
+            continue
+        view_results.append(item)
+    return view_results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def bar_graph(dataframe, token_list, value_list):
