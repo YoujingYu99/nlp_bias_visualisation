@@ -258,21 +258,21 @@ def detect_corpora():
 def query():
     return render_template('query.html')
 
-# @app.route('/analyze', methods=['GET', 'POST'])
-# def analyze():
-#     if request.method == 'POST':
-#         rawtext = request.form['rawtext']
-#         if "adjectives" in rawtext:
-#             if "female" in rawtext:
-#                 female_adjs = female_adjs()
-#             elif "male" in rawtext:
-#                 male_adjs = male_adjs()
-#             else:
-#                 print("Please enter a valid question")
-#
-#
-#     return render_template('query.html', ctext=rawtext, final_summary=final_summary, final_time=final_time,
-#                            final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
+@app.route('/analyse_adj', methods=['GET', 'POST'])
+def analyse_adj():
+    if request.method == 'POST':
+        rawtext = request.form['rawtext']
+        if "adjectives" in rawtext:
+            if "female" in rawtext:
+                female_adjs = female_adjs()
+            elif "male" in rawtext:
+                male_adjs = male_adjs()
+            else:
+                print("Please enter a valid question")
+
+    return render_template('query.html', ctext=rawtext, name=filename, data=x.to_html())
+    return render_template('query.html', ctext=rawtext, final_summary=final_summary, final_time=final_time,
+                           final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
 
 
 
