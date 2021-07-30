@@ -5,19 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ femalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ rule.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ rulepca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ rulepca_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ rulepca_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ ruletsne.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ ruletsne_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/ ruletsne_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/fm_dic.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/m_dic.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/sincemalecloud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
@@ -176,14 +163,7 @@
       <workItem from="1627469044197" duration="2740000" />
       <workItem from="1627478332492" duration="8706000" />
       <workItem from="1627550298456" duration="3730000" />
-      <workItem from="1627638445386" duration="7044000" />
-    </task>
-    <task id="LOCAL-00017" summary="Fixed some path and import issues. More problems need fixing.">
-      <created>1626692775190</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1626692775190</updated>
+      <workItem from="1627638445386" duration="7279000" />
     </task>
     <task id="LOCAL-00018" summary="finished basic debugging. The current analysis is based on the Google model. Next step is train our own amalgum dataset for wordtovec model.">
       <created>1626696814010</created>
@@ -521,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627647323684</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Displaying the complete dataframes on the query webpage.">
+      <created>1627649267643</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1627649267645</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +540,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Set the minus sign for displaying on webpage" />
     <MESSAGE value="Normalise values to -1 an 1." />
     <MESSAGE value="Remove None,scale to -a and 1 and put in a dataframe" />
     <MESSAGE value="Fixed gender classification" />
@@ -578,12 +564,13 @@
     <MESSAGE value="Grouping dataframe, list and dictionary" />
     <MESSAGE value="Convert gender different dictionaries into dataframe" />
     <MESSAGE value="Rewritting the results for the query webpage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rewritting the results for the query webpage" />
+    <MESSAGE value="Displaying the complete dataframes on the query webpage." />
+    <option name="LAST_COMMIT_MESSAGE" value="Displaying the complete dataframes on the query webpage." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627649034922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627649093886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1627485597427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627383113792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />

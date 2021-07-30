@@ -311,7 +311,7 @@ def gender_dataframe_from_tuple():
 
     female_tuple = load_obj(name='fm_dic')
     female_dataframe = pd.DataFrame(female_tuple, columns=['Token', 'Bias Value'])
-    female_dataframe = female_dataframe.sort_values(by='Bias Value', ascending=False)
+    female_dataframe = female_dataframe.sort_values(by='Bias Value', ascending=True)
 
     return male_dataframe, female_dataframe
 
