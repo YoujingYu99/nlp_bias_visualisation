@@ -5,18 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/accumulatingfemalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/everears.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/evermalecloud.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/fm_dic.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/insideears.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/insidemalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/interestedears.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/interestedmalecloud.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/m_dic.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentmalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentperson.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentpersonpca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentpersonpca_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentpersonpca_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentpersontsne.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentpersontsne_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/spentpersontsne_male.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/painstakinglyfemalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/problemears.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/problemmalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/yearears.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/yearmalecloud.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,14 +178,7 @@
       <workItem from="1627469044197" duration="2740000" />
       <workItem from="1627478332492" duration="8706000" />
       <workItem from="1627550298456" duration="3730000" />
-      <workItem from="1627638445386" duration="12316000" />
-    </task>
-    <task id="LOCAL-00022" summary="Model is trained successfully. However, the exisitng gender pairs are too small. Need to generate bigger gender specific word pairings. Added a script to test the model.">
-      <created>1626703625856</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1626703625856</updated>
+      <workItem from="1627638445386" duration="17913000" />
     </task>
     <task id="LOCAL-00023" summary="Edited the male, female and gender neutral words to fine tune the model">
       <created>1626704868339</created>
@@ -519,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627656062435</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Removed duplicates in dataframes">
+      <created>1627656499439</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1627656499439</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +555,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Clean up viewing of the token bias pair" />
     <MESSAGE value="Fixed bar labelling issue" />
     <MESSAGE value="Fixed male cloud issue" />
     <MESSAGE value="Need to align the word cloud better" />
@@ -576,12 +579,13 @@
     <MESSAGE value="Moving pos tagging into view_results" />
     <MESSAGE value="Adding pos to results" />
     <MESSAGE value="Finished POS tagging for all words." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished POS tagging for all words." />
+    <MESSAGE value="Removed duplicates in dataframes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed duplicates in dataframes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627656164394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1627662519082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1627485597427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627383113792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />

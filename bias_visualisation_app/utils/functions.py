@@ -60,6 +60,10 @@ neutral_words = [
     "it",
 ]
 
+# POS tagging for different word types
+adj_list = ['ADJ', 'ADV', 'ADP', 'JJ', 'JJR', 'JJS']
+noun_list = ['NOUN', 'PRON' 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
+verb_list = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VERB']
 
 def tsv_reader(path, file):
     """
@@ -232,16 +236,15 @@ def token_by_gender(token_list, value_list):
     male_token = [k for (k, v) in data.items() if v > 0]
     female_token = [k for (k, v) in data.items() if v < 0]
 
-    return male_token, female_token
+    return female_token, male_token
 
 
 def dataframe_by_gender(view_df):
     # selecting rows based on condition
     female_dataframe = view_df[view_df['bias'] < 0]
-    print(female_dataframe)
     male_dataframe = view_df[view_df['bias'] > 0]
 
-    return male_dataframe, female_dataframe
+    return female_dataframe, male_dataframe
 
 
 # def dict_by_gender(token_list, value_list):
@@ -299,7 +302,8 @@ def generate_bias_values(input_data):
     token_result2 = results.copy()
     for item in token_result2:
         if 'parts' in item.keys():
-            item['pos'] = item['parts'][0]['pos']
+            if item['parts'][0]['pos'] in adj_list or item['parts'][0]['pos'] in noun_list or item['parts'][0]['pos'] in verb_list:
+                item['pos'] = item['parts'][0]['pos']
             del item['parts']
         else:
             continue
@@ -307,11 +311,11 @@ def generate_bias_values(input_data):
 
     view_df = list_to_dataframe(view_results)
     token_list, value_list, pos_list = generate_list(view_df)
-    male_dataframe, female_dataframe = dataframe_by_gender(view_df)
+    female_dataframe, male_dataframe = dataframe_by_gender(view_df)
     # male_dict, female_dict = dict_by_gender(token_list, value_list)
 
-    save_obj(male_dataframe, name='m_dic')
     save_obj(female_dataframe, name='fm_dic')
+    save_obj(male_dataframe, name='m_dic')
 
     return view_results, view_df, (token_list, value_list)
 
@@ -325,11 +329,24 @@ def gender_dataframe_from_tuple():
     female_dataframe = female_dataframe.sort_values(by='bias', ascending=True)
     female_dataframe = female_dataframe.drop_duplicates(subset=['token'])
 
-    return male_dataframe, female_dataframe
+    return female_dataframe, male_dataframe
 
 
-def parse_pos_dataframe(male_name='m_dic', female_name='fm_dic'):
-    male_dataframe, female_dataframe = gender_dataframe_to_dict(male_name, female_name)
+
+def parse_pos_dataframe():
+    female_dataframe, male_dataframe = gender_dataframe_from_tuple()
+
+    female_noun_df = female_dataframe[female_dataframe['pos'].isin(noun_list)]
+    female_adj_df = female_dataframe[female_dataframe['pos'].isin(adj_list)]
+    female_verb_df = female_dataframe[female_dataframe['pos'].isin(verb_list)]
+
+    male_noun_df = male_dataframe[male_dataframe['pos'].isin(noun_list)]
+    male_adj_df = male_dataframe[male_dataframe['pos'].isin(adj_list)]
+    male_verb_df = male_dataframe.loc[male_dataframe['pos'].isin(verb_list)]
+
+    return female_noun_df, female_adj_df, female_verb_df, male_noun_df, male_adj_df, male_verb_df
+
+
 
 
 def bar_graph(dataframe, token_list, value_list):
@@ -337,7 +354,6 @@ def bar_graph(dataframe, token_list, value_list):
     mpl.rcParams['axes.unicode_minus'] = False
     np.random.seed(12345)
     df = dataframe
-    print(df)
     if len(token_list) > 15:
         set_x_tick = False
     else:
@@ -565,7 +581,7 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     my_word_list = []
     my_word_vectors = []
 
-    words_to_explore = token_by_gender(token_list, value_list)[0]
+    words_to_explore = token_by_gender(token_list, value_list)[1]
 
     for i in words_to_explore:
         try:
@@ -729,7 +745,7 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
     my_word_list = []
     my_word_vectors = []
 
-    words_to_explore = token_by_gender(token_list, value_list)[0]
+    words_to_explore = token_by_gender(token_list, value_list)[1]
 
     for i in words_to_explore:
         try:
