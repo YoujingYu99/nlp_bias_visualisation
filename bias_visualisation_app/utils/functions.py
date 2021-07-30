@@ -319,9 +319,11 @@ def generate_bias_values(input_data):
 def gender_dataframe_from_tuple():
     male_dataframe = load_obj(name='m_dic')
     male_dataframe = male_dataframe.sort_values(by='bias', ascending=False)
+    male_dataframe = male_dataframe.drop_duplicates(subset=['token'])
 
     female_dataframe = load_obj(name='fm_dic')
     female_dataframe = female_dataframe.sort_values(by='bias', ascending=True)
+    female_dataframe = female_dataframe.drop_duplicates(subset=['token'])
 
     return male_dataframe, female_dataframe
 
