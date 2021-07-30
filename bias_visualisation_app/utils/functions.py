@@ -270,10 +270,10 @@ def generate_bias_values(input_data):
         token_result = {
             "token": obj["text"],
             "bias": calculator.detect_bias(obj["text"]),
+            "pos": token.pos_,
             "parts": [
                 {
                     # "whitespace": token.whitespace_,
-                    "pos": token.pos_,
                     "dep": token.dep_,
                     "ent": token.ent_type_,
                     "skip": token.pos_
@@ -295,7 +295,7 @@ def generate_bias_values(input_data):
         view_results.append(item)
 
     view_df = list_to_dataframe(view_results)
-    token_list, value_list = generate_list(view_df)
+    token_list, value_list, pos_list = generate_list(view_df)
     male_dict, female_dict = dict_by_gender(token_list, value_list)
 
     save_obj(male_dict, name='m_dic')
@@ -314,6 +314,9 @@ def gender_dataframe_from_tuple():
     female_dataframe = female_dataframe.sort_values(by='Bias Value', ascending=True)
 
     return male_dataframe, female_dataframe
+
+
+
 
 def parse_pos_dataframe(male_name='m_dic', female_name='fm_dic'):
 

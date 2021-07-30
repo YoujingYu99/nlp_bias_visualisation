@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33319e7-fbf2-43b7-bf96-c71203df1c85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,14 +163,7 @@
       <workItem from="1627469044197" duration="2740000" />
       <workItem from="1627478332492" duration="8706000" />
       <workItem from="1627550298456" duration="3730000" />
-      <workItem from="1627638445386" duration="7279000" />
-    </task>
-    <task id="LOCAL-00018" summary="finished basic debugging. The current analysis is based on the Google model. Next step is train our own amalgum dataset for wordtovec model.">
-      <created>1626696814010</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1626696814010</updated>
+      <workItem from="1627638445386" duration="8229000" />
     </task>
     <task id="LOCAL-00019" summary="Fixed minor import and utf 8 encoding bugs in the tsv reader code.">
       <created>1626697515870</created>
@@ -508,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627649267645</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Rearranging the html page.">
+      <created>1627649353874</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1627649353875</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +540,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Normalise values to -1 an 1." />
     <MESSAGE value="Remove None,scale to -a and 1 and put in a dataframe" />
     <MESSAGE value="Fixed gender classification" />
     <MESSAGE value="changed routes for url and txt as well" />
@@ -565,7 +564,8 @@
     <MESSAGE value="Convert gender different dictionaries into dataframe" />
     <MESSAGE value="Rewritting the results for the query webpage" />
     <MESSAGE value="Displaying the complete dataframes on the query webpage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Displaying the complete dataframes on the query webpage." />
+    <MESSAGE value="Rearranging the html page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rearranging the html page." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
