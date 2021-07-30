@@ -234,30 +234,29 @@ def token_by_gender(token_list, value_list):
 
     return male_token, female_token
 
+
 def dataframe_by_gender(view_df):
     # selecting rows based on condition
     female_dataframe = view_df[view_df['bias'] < 0]
+    print(female_dataframe)
     male_dataframe = view_df[view_df['bias'] > 0]
-    
+
     return male_dataframe, female_dataframe
 
 
-
-
-
-def dict_by_gender(token_list, value_list):
-    # convert lists to dictionary
-    data = dict(zip(token_list, value_list))
-    data = {k: v or 0 for (k, v) in data.items()}
-
-    # separate into male and female dictionaries
-    # sort from largest to smallest in each case
-    male_dict = {k: v for (k, v) in data.items() if v > 0}
-    male_dict = sorted(male_dict.items(), key=lambda x: x[1], reverse=True)
-    female_dict = {k: v for (k, v) in data.items() if v < 0}
-    female_dict = sorted(female_dict.items(), key=lambda x: x[1], reverse=True)
-
-    return male_dict, female_dict
+# def dict_by_gender(token_list, value_list):
+#     # convert lists to dictionary
+#     data = dict(zip(token_list, value_list))
+#     data = {k: v or 0 for (k, v) in data.items()}
+#
+#     # separate into male and female dictionaries
+#     # sort from largest to smallest in each case
+#     male_dict = {k: v for (k, v) in data.items() if v > 0}
+#     male_dict = sorted(male_dict.items(), key=lambda x: x[1], reverse=True)
+#     female_dict = {k: v for (k, v) in data.items() if v < 0}
+#     female_dict = sorted(female_dict.items(), key=lambda x: x[1], reverse=True)
+#
+#     return male_dict, female_dict
 
 
 def save_obj(obj, name):
@@ -309,7 +308,7 @@ def generate_bias_values(input_data):
     view_df = list_to_dataframe(view_results)
     token_list, value_list, pos_list = generate_list(view_df)
     male_dataframe, female_dataframe = dataframe_by_gender(view_df)
-    #male_dict, female_dict = dict_by_gender(token_list, value_list)
+    # male_dict, female_dict = dict_by_gender(token_list, value_list)
 
     save_obj(male_dataframe, name='m_dic')
     save_obj(female_dataframe, name='fm_dic')
@@ -318,31 +317,17 @@ def generate_bias_values(input_data):
 
 
 def gender_dataframe_from_tuple():
-    male_tuple = load_obj(name='m_dic')
-    print(male_tuple)
-    male_dataframe = pd.DataFrame(male_tuple, columns=['Token', 'Bias Value', 'POS'])
-    male_dataframe = male_dataframe.sort_values(by='Bias Value', ascending=False)
+    male_dataframe = load_obj(name='m_dic')
+    male_dataframe = male_dataframe.sort_values(by='bias', ascending=False)
 
-    female_tuple = load_obj(name='fm_dic')
-    female_dataframe = pd.DataFrame(female_tuple, columns=['Token', 'Bias Value', 'POS'])
-    female_dataframe = female_dataframe.sort_values(by='Bias Value', ascending=True)
+    female_dataframe = load_obj(name='fm_dic')
+    female_dataframe = female_dataframe.sort_values(by='bias', ascending=True)
 
     return male_dataframe, female_dataframe
 
 
-
-
 def parse_pos_dataframe(male_name='m_dic', female_name='fm_dic'):
-
     male_dataframe, female_dataframe = gender_dataframe_to_dict(male_name, female_name)
-
-
-
-
-
-
-
-
 
 
 def bar_graph(dataframe, token_list, value_list):
