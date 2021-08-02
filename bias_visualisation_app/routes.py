@@ -12,7 +12,7 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe,  df_based_on_question
 import werkzeug
 import spacy
 import time
@@ -260,7 +260,7 @@ def query():
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
     return render_template('query.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
-                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df, data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df)
+                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df, data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, wordtype_data=[{'type':'nouns'}, {'type':'adjectives'}, {'type':'verbs'}], gender_data=[{'type':'female'}, {'type':'male'}])
 
 @app.route('/analyse_adj', methods=['GET', 'POST'])
 def analyse_adj():
@@ -274,6 +274,15 @@ def analyse_adj():
         #         male_adjs = male_adjs()
         #     else:
         #         print("Please enter a valid question")
+
+    return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
+
+@app.route('/analyse_question', methods=['GET', 'POST'])
+def analyse_question():
+        select_wordtype = request.form.get('type_select')
+        select_gender = request.form.get('gender_select')
+        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
+
 
     return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
 

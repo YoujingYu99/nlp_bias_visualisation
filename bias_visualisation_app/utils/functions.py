@@ -841,6 +841,36 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
 
     return plot_pca_female
 
+
+
+
+def df_based_on_question(select_wordtype, select_gender):
+    female_tot_df, male_tot_df = gender_dataframe_from_tuple()
+    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
+    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
+    if select_gender == 'female':
+        if select_wordtype == 'nouns':
+            return female_noun_df
+        if select_wordtype == 'adjectives':
+            return female_adj_df
+        if select_wordtype == 'verbs':
+            return female_verb_df
+        else:
+            raise werkzeug.exceptions.BadRequest(
+                'Please recheck your question'
+            )
+    if select_gender == 'male':
+        if select_wordtype == 'nouns':
+            return male_noun_df
+        if select_wordtype == 'adjectives':
+            return male_adj_df
+        if select_wordtype == 'verbs':
+            return male_verb_df
+        else:
+            raise werkzeug.exceptions.BadRequest(
+                'Please recheck your question'
+            )
+
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
 # p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'
 #
