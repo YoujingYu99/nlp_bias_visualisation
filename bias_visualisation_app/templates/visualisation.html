@@ -33,11 +33,13 @@
   </section>
 
   <section>
-    <form class="form-inline" method="POST" action="{{ url_for('query') }}">
+    <form class="form-inline" method="POST" action="/query">
       <div class="form-group">
         <div class="input-group">
         <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What XX do you associated with what gender?</h2>
-        <span class="input-group-addon">Please select</span>
+        </br>
+        </br>
+        <div class="input-group-addon">Please select</div>
             <select name="type_select" class="selectpicker form-control">
               {% for i in wordtype_data %}
               <option value="{{ i.type }}">{{ i.type }}</option>
@@ -49,7 +51,7 @@
               {% endfor %}
             </select>
         </div>
-        <button type="submit" class="btn btn-default">Go</button>
+        <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
       </div>
     </form>
   </section>

@@ -262,17 +262,16 @@ def detect_corpora():
 # >0: is male biased
 # <0: is female biased
 
-@app.route('/query')
+@app.route('/query', methods=['GET', 'POST'])
 def query():
-    female_tot_df, male_tot_df = gender_dataframe_from_tuple()
-    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
-    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
+    if request.method == 'POST':
+        female_tot_df, male_tot_df = gender_dataframe_from_tuple()
+        female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
+        male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
 
-    select_wordtype = request.form.get('type_select')
-    select_gender = request.form.get('gender_select')
-    dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
-
-    print(dataframe_to_display)
+        select_wordtype = request.form.get('type_select')
+        select_gender = request.form.get('gender_select')
+        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
 
     return render_template('query.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
