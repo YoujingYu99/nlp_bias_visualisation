@@ -74,7 +74,7 @@
               <h5>Answer</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ answer_to_question }}</p></div>
               <h3 style="text-align: center">{{ gender_in_question}} {{ type_in_question}}</h3>
-                {{ data_question.to_html(classes="table table-striped") | safe}}
+                {{ data_question.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 
             <div id="tab2" class="col s12">

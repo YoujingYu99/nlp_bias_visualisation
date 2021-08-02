@@ -40,7 +40,7 @@
 <!--           <div class="icon-block">-->
 <!--            <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>-->
 <!--            <form method="POST" action="/analyze">-->
-<!--                 <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here"></textarea>-->
+<!--                 <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true"" placeholder="Enter Your Question Here"></textarea>-->
 <!--                 <br/>-->
 <!--                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>-->
 <!--                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>-->
@@ -108,49 +108,49 @@
             <div id="tab1" class="col s12">
               <h5>Total</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_tot }}</p></div>
-              <h3 style="text-align: center">Female </h3>
-                {{ data_fm_tot.to_html(classes="table table-striped") | safe}}
+              <h3 style="text-align: center">Female</h3>
+                {{ data_fm_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_tot }}</p></div>
               <h3 style="text-align: center">Male </h3>
-                {{ data_m_tot.to_html(classes="table table-striped") | safe}}
+                {{ data_m_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 
             <div id="tab2" class="col s12">
               <h5>Nouns</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_nouns }}</p></div>
               <h3 style="text-align: center">Female </h3>
-                {{ data_fm_noun.to_html(classes="table table-striped") | safe}}
+                {{ data_fm_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Male</h3>
-                {{ data_m_noun.to_html(classes="table table-striped") | safe}}
+                {{ data_m_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 
             <div id="tab3" class="col s12">
               <h5>Adjectives</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_adjs }}</p></div>
               <h3 style="text-align: center">Female </h3>
-                {{ data_fm_adj.to_html(classes="table table-striped") | safe}}
+                {{ data_fm_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_adjs }}</p></div>
               <h3 style="text-align: center">Male </h3>
-                {{ data_m_adj.to_html(classes="table table-striped") | safe}}
+                {{ data_m_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 
             <div id="tab4" class="col s12">
               <h5>Verbs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_verbs }}</p></div>
               <h3 style="text-align: center">Female </h3>
-                {{ data_fm_verb.to_html(classes="table table-striped") | safe}}
+                {{ data_fm_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_verbs }}</p></div>
               <h3 style="text-align: center">Male </h3>
-                {{ data_m_verb.to_html(classes="table table-striped") | safe}}
+                {{ data_m_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 
           </div>
