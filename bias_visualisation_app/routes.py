@@ -262,6 +262,17 @@ def detect_corpora():
 # >0: is male biased
 # <0: is female biased
 
+@app.route('/analysis', methods=['GET', 'POST'])
+def analysis():
+    female_tot_df, male_tot_df = gender_dataframe_from_tuple()
+    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
+    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
+
+    return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
+                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
+                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df)
+
+
 @app.route('/query', methods=['GET', 'POST'])
 def query():
     if request.method == 'POST':
