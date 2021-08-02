@@ -393,6 +393,48 @@ def bar_graph(dataframe, token_list, value_list):
 
     return plot_bar
 
+def specific_bar_graph(df_name='specific_df'):
+    # set minus sign
+    mpl.rcParams['axes.unicode_minus'] = False
+    np.random.seed(12345)
+    df = load_obj(name=df_name)
+    set_x_tick = True
+
+    plt.style.use('ggplot')
+    plt.rcParams['font.family'] = ['sans-serif']
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    fig, ax = plt.subplots()
+
+    # set up the colors
+    cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+    df_mean = df.mean(axis=1)
+    norm = plt.Normalize(df_mean.min(), df_mean.max())
+    colors = cmap(norm(df_mean))
+
+    ax.bar(
+        df['token'],
+        df['bias'],
+        yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+        color=colors)
+    fig.colorbar(ScalarMappable(cmap=cmap))
+
+    ax.set_title('Specific Word Bias', fontsize=12)
+    ax.set_xlabel('Word')
+    ax.xaxis.set_visible(set_x_tick)
+    ax.set_ylabel('Bias Value')
+    plt.tight_layout()
+
+    # save file to static
+    bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
+    bar_name_ex = bar_name + '.png'
+    save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+    bar_path = save_img_path + '.png'
+    plt.savefig(bar_path)
+    plot_bar = url_for('static', filename=bar_name_ex)
+
+    return plot_bar
+
+
 
 # def bar_graph(token_list, value_list):
 #     plt.rcParams['axes.unicode_minus'] = False

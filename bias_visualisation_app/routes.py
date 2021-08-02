@@ -13,7 +13,7 @@ from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
-    generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, \
+    generate_bias_values, save_obj, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
 import werkzeug
 import spacy
@@ -277,8 +277,10 @@ def query():
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
+        save_obj(dataframe_to_display, name='specific_df')
+        plot_bar = specific_bar_graph(df_name='specific_df')
 
-    return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender), type_in_question=str(select_wordtype))
+    return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender), type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
 
 
 # @app.route('/analyse_adj', methods=['GET', 'POST'])
