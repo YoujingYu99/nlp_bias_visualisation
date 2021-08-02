@@ -265,15 +265,15 @@ def query():
 @app.route('/analyse_adj', methods=['GET', 'POST'])
 def analyse_adj():
     if request.method == 'POST':
-        rawtext = request.form['rawtext']
-        female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
-        if "adjectives" in rawtext:
-            if "female" in rawtext:
-                female_adjs = female_adjs()
-            elif "male" in rawtext:
-                male_adjs = male_adjs()
-            else:
-                print("Please enter a valid question")
+        # rawtext = request.form['rawtext']
+        # female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
+        # if "adjectives" in rawtext:
+        #     if "female" in rawtext:
+        #         female_adjs = female_adjs()
+        #     elif "male" in rawtext:
+        #         male_adjs = male_adjs()
+        #     else:
+        #         print("Please enter a valid question")
 
     return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
 
