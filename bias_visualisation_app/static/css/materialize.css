@@ -5021,8 +5021,10 @@ small {
 }
 
 .tabs {
-  position: relative;
-  overflow-x: auto;
+  /*position: relative;*/
+  /*overflow-x: auto;*/
+  position: absolute;
+  overflow-x: scroll;
   overflow-y: hidden;
   height: 48px;
   width: 100%;
@@ -5081,8 +5083,8 @@ small {
   height: 100%;
   padding: 0 24px;
   font-size: 14px;
+  /*text-overflow: ellipsis;*/
   text-overflow: ellipsis;
-  overflow: hidden;
   -webkit-transition: color .28s ease, background-color .28s ease;
   transition: color .28s ease, background-color .28s ease;
 }
