@@ -32,46 +32,46 @@
       </div>
   </section>
 
-<!--Query -->
-  <section>
-    <div class="container">
-      <div class="row">s
-        <div class="input-field col s12 m10">
-           <div class="icon-block">
-            <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>
-            <form method="POST" action="/analyze">
-                 <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here"></textarea>
-                 <br/>
-                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
-                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
-            </form>
-           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!--&lt;!&ndash;Query &ndash;&gt;-->
+<!--  <section>-->
+<!--    <div class="container">-->
+<!--      <div class="row">s-->
+<!--        <div class="input-field col s12 m10">-->
+<!--           <div class="icon-block">-->
+<!--            <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>-->
+<!--            <form method="POST" action="/analyze">-->
+<!--                 <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here"></textarea>-->
+<!--                 <br/>-->
+<!--                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>-->
+<!--                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>-->
+<!--            </form>-->
+<!--           </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
 
-  <section>
-    <form class="form-inline" method="POST" action="{{ url_for('analyse_question') }}">
-      <div class="form-group">
-        <div class="input-group">
-        <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What XX do you associated with what gender?</h2>
-        <span class="input-group-addon">Please select</span>
-            <select name="type_select" class="selectpicker form-control">
-              {% for i in data %}
-              <option value="{{ i.type }}">{{ i.type }}</option>
-              {% endfor %}
-            </select>
-            <select name="gender_select" class="selectpicker form-control">
-              {% for i in data %}
-              <option value="{{ i.type }}">{{ i.type }}</option>
-              {% endfor %}
-            </select>
-        </div>
-        <button type="submit" class="btn btn-default">Go</button>
-      </div>
-    </form>
-  </section>
+<!--  <section>-->
+<!--    <form class="form-inline" method="POST" action="{{ url_for('query') }}">-->
+<!--      <div class="form-group">-->
+<!--        <div class="input-group">-->
+<!--        <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What XX do you associated with what gender?</h2>-->
+<!--        <span class="input-group-addon">Please select</span>-->
+<!--            <select name="type_select" class="selectpicker form-control">-->
+<!--              {% for i in data %}-->
+<!--              <option value="{{ i.type }}">{{ i.type }}</option>-->
+<!--              {% endfor %}-->
+<!--            </select>-->
+<!--            <select name="gender_select" class="selectpicker form-control">-->
+<!--              {% for i in data %}-->
+<!--              <option value="{{ i.type }}">{{ i.type }}</option>-->
+<!--              {% endfor %}-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-default">Go</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </section>-->
 
 
 

@@ -12,7 +12,9 @@ import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe,  df_based_on_question
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
+    generate_bias_values, bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, \
+    pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
 import werkzeug
 import spacy
 import time
@@ -22,7 +24,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib.cm import ScalarMappable
-
 
 # from urllib.request import urlopen
 # from urllib3 import urlopen
@@ -123,7 +124,6 @@ def visualisation():
 #                            summary_reading_time_nltk=summary_reading_time_nltk)
 
 
-
 @app.route("/detect_text", methods=['GET', 'POST'])
 def detect_text():
     if request.method == "POST":
@@ -139,11 +139,10 @@ def detect_text():
         view_df = generate_bias_values(input_data)[1]
         token_list, value_list = generate_bias_values(input_data)[2]
 
-
-        #plot the bar graphs and word clouds
+        # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
         plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-        #only perform tsne plot if more than 100 tokens
+        # only perform tsne plot if more than 100 tokens
         if len(token_list) > 100:
             plot_tsne = tsne_graph(token_list)
             plot_tsne_male = tsne_graph_male(token_list, value_list)
@@ -159,8 +158,14 @@ def detect_text():
             plot_pca_male = url_for('static', filename="nothing_here.png")
             plot_pca_female = url_for('static', filename="nothing_here.png")
 
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
- #he is a nurse
+    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
+                           female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
+                           male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
+                           male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female,                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
+                           gender_data=[{'type': 'female'}, {'type': 'male'}])
+
+
+# he is a nurse
 
 
 @app.route("/detect_url", methods=['GET', 'POST'])
@@ -200,7 +205,8 @@ def detect_url():
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
                                tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
-                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female,                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
+                           gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
 @app.route("/detect_corpora", methods=['GET', 'POST'])
@@ -244,7 +250,9 @@ def detect_corpora():
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
                                tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
-                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female,                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
+                           gender_data=[{'type': 'female'}, {'type': 'male'}])
+
 
 # . It works by looking at differences between male and female word pairs
 #       like "he" and "she", or "boy" and "girl", and then comparing the
@@ -260,51 +268,42 @@ def query():
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
 
+    select_wordtype = request.form.get('type_select')
+    select_gender = request.form.get('gender_select')
+    dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
+
+    print(dataframe_to_display)
 
     return render_template('query.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
-                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df, data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, wordtype_data=[{'type':'nouns'}, {'type':'adjectives'}, {'type':'verbs'}], gender_data=[{'type':'female'}, {'type':'male'}])
-
-@app.route('/analyse_adj', methods=['GET', 'POST'])
-def analyse_adj():
-    if request.method == 'POST':
-        # rawtext = request.form['rawtext']
-        # female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
-        # if "adjectives" in rawtext:
-        #     if "female" in rawtext:
-        #         female_adjs = female_adjs()
-        #     elif "male" in rawtext:
-        #         male_adjs = male_adjs()
-        #     else:
-        #         print("Please enter a valid question")
-
-    return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
-
-@app.route('/analyse_question', methods=['GET', 'POST'])
-def analyse_question():
-    if request.method == 'POST':
-        select_wordtype = request.form.get('type_select')
-        select_gender = request.form.get('gender_select')
-        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
+                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
+                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, data_question=dataframe_to_display)
 
 
-    return render_template('query.html', data_question=dataframe_to_display)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# @app.route('/analyse_adj', methods=['GET', 'POST'])
+# def analyse_adj():
+#     if request.method == 'POST':
+#         # rawtext = request.form['rawtext']
+#         # female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
+#         # if "adjectives" in rawtext:
+#         #     if "female" in rawtext:
+#         #         female_adjs = female_adjs()
+#         #     elif "male" in rawtext:
+#         #         male_adjs = male_adjs()
+#         #     else:
+#         #         print("Please enter a valid question")
+#
+#     return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
+#
+# @app.route('/analyse_question', methods=['GET', 'POST'])
+# def analyse_question():
+#     if request.method == 'POST':
+#         select_wordtype = request.form.get('type_select')
+#         select_gender = request.form.get('gender_select')
+#         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
+#
+#         print(dataframe_to_display)
+#
+#     return render_template('query.html', data_question=dataframe_to_display)
 
 
 @app.route('/about')
