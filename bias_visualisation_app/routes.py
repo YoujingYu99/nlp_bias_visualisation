@@ -275,7 +275,7 @@ def query():
 
     return render_template('query.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
-                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, data_question=dataframe_to_display)
+                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, data_question=dataframe_to_display, gender_in_question=str(select_gender), type_in_question=str(select_wordtype))
 
 
 # @app.route('/analyse_adj', methods=['GET', 'POST'])
