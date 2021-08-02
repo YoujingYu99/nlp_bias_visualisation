@@ -116,6 +116,9 @@
               <h3 style="text-align: center">Male </h3>
                 {{ data_m_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
+            <div class="container" align="left">
+		        <a href="{{ url_for('download',filename=") }}" target="blank"><button class='btn btn-default'>Download!</button></a>
+            </div>
 
             <div id="tab2" class="col s12">
               <h5>Nouns</h5>

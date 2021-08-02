@@ -5,7 +5,7 @@ The interactive web interface for data bias visualisation
 from __future__ import unicode_literals
 
 import sys
-from flask import Flask, render_template, url_for, request, jsonify
+from flask import Flask, render_template, url_for, request, jsonify, send_file
 from bias_visualisation_app import app
 from os import environ
 import os
@@ -13,7 +13,8 @@ from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
-    generate_bias_values, save_obj, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, tsne_graph_female, pca_graph, \
+    generate_bias_values, save_obj, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
+    tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
 import werkzeug
 import spacy
@@ -267,7 +268,8 @@ def analysis():
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
-                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
+                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
+                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
@@ -280,7 +282,8 @@ def query():
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
-    return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender), type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
+    return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender),
+                           type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
 
 
 # @app.route('/analyse_adj', methods=['GET', 'POST'])
@@ -309,6 +312,10 @@ def query():
 #
 #     return render_template('query.html', data_question=dataframe_to_display)
 
+@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+def download(filename):
+    uploads = os.path.join(current_app.root_path, app.config['UPLOAD_FOLDER'])
+    return send_from_directory(directory=uploads, filename=filename)
 
 @app.route('/about')
 def about():
