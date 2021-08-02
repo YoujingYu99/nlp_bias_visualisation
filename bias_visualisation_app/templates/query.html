@@ -61,77 +61,26 @@
           <div class="column">
             <div class="col s12">
               <ul class="tabs">
-<!--                <li class="tab col s3">-->
-<!--                  <a href="#tab1" style="color:#3e5756">Total</a>-->
-<!--                </li>-->
                 <li class="tab col s3">
-                  <a href="#tab2" style="color:#3e5756">Nouns</a>
+                  <a href="#tab1" style="color:#3e5756">Dataframe</a>
                 </li>
                 <li class="tab col s3">
-                  <a href="#tab3" style="color:#3e5756">Adjectives</a>
-                </li>
-                <li class="tab col s3">
-                  <a href="#tab4" style="color:#3e5756">Verbs</a>
-                </li>
-                <li class="tab col s3">
-                  <a href="#tab5" style="color:#3e5756">Answer to Your Question</a>
+                  <a href="#tab2" style="color:#3e5756">Bar Graph</a>
                 </li>
               </ul>
             </div>
 
-<!--            <div id="tab1" class="col s12">-->
-<!--              <h5>Total</h5>-->
-<!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_tot }}</p></div>-->
-<!--              <h3 style="text-align: center">Female </h3>-->
-<!--                {{ data_fm_tot.to_html(classes="table table-striped") | safe}}-->
-<!--              </br>-->
-<!--              </br>-->
-<!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_tot }}</p></div>-->
-<!--              <h3 style="text-align: center">Male </h3>-->
-<!--                {{ data_m_tot.to_html(classes="table table-striped") | safe}}-->
-<!--            </div>-->
-
-            <div id="tab2" class="col s12">
-              <h5>Nouns</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_nouns }}</p></div>
-              <h3 style="text-align: center">Female </h3>
-                {{ data_fm_noun.to_html(classes="table table-striped") | safe}}
-              </br>
-              </br>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
-              <h3 style="text-align: center">Male</h3>
-                {{ data_m_noun.to_html(classes="table table-striped") | safe}}
-            </div>
-
-            <div id="tab3" class="col s12">
-              <h5>Adjectives</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_adjs }}</p></div>
-              <h3 style="text-align: center">Female </h3>
-                {{ data_fm_adj.to_html(classes="table table-striped") | safe}}
-              </br>
-              </br>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_adjs }}</p></div>
-              <h3 style="text-align: center">Male </h3>
-                {{ data_m_adj.to_html(classes="table table-striped") | safe}}
-            </div>
-
-            <div id="tab4" class="col s12">
-              <h5>Verbs</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_verbs }}</p></div>
-              <h3 style="text-align: center">Female </h3>
-                {{ data_fm_verb.to_html(classes="table table-striped") | safe}}
-              </br>
-              </br>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_verbs }}</p></div>
-              <h3 style="text-align: center">Male </h3>
-                {{ data_m_verb.to_html(classes="table table-striped") | safe}}
-            </div>
-
-            <div id="tab5" class="col s12">
+            <div id="tab1" class="col s12">
               <h5>Answer</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ answer_to_question }}</p></div>
               <h3 style="text-align: center">{{ gender_in_question}} {{ type_in_question}}</h3>
                 {{ data_question.to_html(classes="table table-striped") | safe}}
+            </div>
+
+            <div id="tab2" class="col s12">
+              <h5>Bar Graph</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ bar_graph }}</p></div>
+              <img src="{{ bar_graph }}" alt="Bar graph" style="margin-left:auto;margin-right:auto; width:1000px">
             </div>
 
           </div>

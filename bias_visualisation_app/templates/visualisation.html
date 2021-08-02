@@ -33,36 +33,36 @@
   </section>
 
 
-<!--Query -->
-  <section>
-    <form class="col s12" method="POST" action="/query">
-        <div class="container">
-          <div class="row">
-            <div class="input-field col s12 m10">
-               <div class="icon-block">
-                <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> Which types of words do you associate with which gender?</h2>
-                </br>
-                <label>Enter Your Options Here</label>
-                <select name="type_select" class="browser-default">
-                <option value="" disabled selected>Choose your option</option>
-                    {% for i in wordtype_data %}
-                    <option value="{{ i.type }}">{{ i.type }}</option>
-                    {% endfor %}
-                </select>
-                <select name="gender_select" class="browser-default">
-                <option value="" disabled selected>Choose your option</option>
-                    {% for i in gender_data %}
-                    <option value="{{ i.type }}">{{ i.type }}</option>
-                    {% endfor %}
-                </select>
-                </br>
-                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
-               </div>
-            </div>
-          </div>
-        </div>
-    </form>
-  </section>
+<!--&lt;!&ndash;Query &ndash;&gt;-->
+<!--  <section>-->
+<!--    <form class="col s12" method="POST" action="/query">-->
+<!--        <div class="container">-->
+<!--          <div class="row">-->
+<!--            <div class="input-field col s12 m10">-->
+<!--               <div class="icon-block">-->
+<!--                <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> Which types of words do you associate with which gender?</h2>-->
+<!--                </br>-->
+<!--                <label>Enter Your Options Here</label>-->
+<!--                <select name="type_select" class="browser-default">-->
+<!--                <option value="" disabled selected>Choose your option</option>-->
+<!--                    {% for i in wordtype_data %}-->
+<!--                    <option value="{{ i.type }}">{{ i.type }}</option>-->
+<!--                    {% endfor %}-->
+<!--                </select>-->
+<!--                <select name="gender_select" class="browser-default">-->
+<!--                <option value="" disabled selected>Choose your option</option>-->
+<!--                    {% for i in gender_data %}-->
+<!--                    <option value="{{ i.type }}">{{ i.type }}</option>-->
+<!--                    {% endfor %}-->
+<!--                </select>-->
+<!--                </br>-->
+<!--                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>-->
+<!--               </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--  </section>-->
 
 <!--  <section>-->
 <!--    <form class="col s12" method="POST" action="/query">-->

@@ -161,8 +161,7 @@ def detect_text():
     return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
                            female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
                            male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
-                           male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female,                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
-                           gender_data=[{'type': 'female'}, {'type': 'male'}])
+                           male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 # he is a nurse
@@ -205,8 +204,7 @@ def detect_url():
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
                                tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
-                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female,                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
-                           gender_data=[{'type': 'female'}, {'type': 'male'}])
+                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 @app.route("/detect_corpora", methods=['GET', 'POST'])
@@ -250,8 +248,7 @@ def detect_corpora():
         return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
                                bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
                                tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
-                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female,                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
-                           gender_data=[{'type': 'female'}, {'type': 'male'}])
+                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 # . It works by looking at differences between male and female word pairs
@@ -270,23 +267,18 @@ def analysis():
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
-                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df)
+                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
+                           gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
     if request.method == 'POST':
-        female_tot_df, male_tot_df = gender_dataframe_from_tuple()
-        female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
-        male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
-
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
 
-    return render_template('query.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
-                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
-                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, data_question=dataframe_to_display, gender_in_question=str(select_gender), type_in_question=str(select_wordtype))
+    return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender), type_in_question=str(select_wordtype))
 
 
 # @app.route('/analyse_adj', methods=['GET', 'POST'])
