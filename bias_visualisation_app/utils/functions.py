@@ -310,17 +310,34 @@ def generate_bias_values(input_data):
         view_results.append(item)
 
     view_df = list_to_dataframe(view_results)
+    save_obj(view_df, name='total_dataframe')
+
+    # token_list, value_list, pos_list = generate_list(view_df)
+    # female_dataframe, male_dataframe = dataframe_by_gender(view_df)
+    # # male_dict, female_dict = dict_by_gender(token_list, value_list)
+    # 
+    # save_obj(female_dataframe, name='fm_dic')
+    # save_obj(male_dataframe, name='m_dic')
+    # 
+    # return view_results, view_df, (token_list, value_list)
+
+
+def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
-    female_dataframe, male_dataframe = dataframe_by_gender(view_df)
-    # male_dict, female_dict = dict_by_gender(token_list, value_list)
-
-    save_obj(female_dataframe, name='fm_dic')
-    save_obj(male_dataframe, name='m_dic')
-
-    return view_results, view_df, (token_list, value_list)
+    # female_dataframe, male_dataframe = dataframe_by_gender(view_df)
 
 
-def gender_dataframe_from_tuple():
+    return view_df, (token_list, value_list)
+
+
+
+
+
+
+
+
+def gender_dataframe_from_tuple(view_df):
+    dataframe_by_gender(view_df)
     male_dataframe = load_obj(name='m_dic')
     male_dataframe = male_dataframe.sort_values(by='bias', ascending=False)
     male_dataframe = male_dataframe.drop_duplicates(subset=['token'])

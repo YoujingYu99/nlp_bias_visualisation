@@ -5,15 +5,15 @@ The interactive web interface for data bias visualisation
 from __future__ import unicode_literals
 
 import sys
-from flask import Flask, render_template, url_for, request, jsonify, send_file
+from flask import Flask, render_template, url_for, request, jsonify, send_file, send_from_directory
 from bias_visualisation_app import app
-from os import environ
+from os import environ, path
 import os
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
-    generate_bias_values, save_obj, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
+    generate_bias_values, save_obj, load_obj, frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
 import werkzeug
@@ -136,9 +136,51 @@ def detect_text():
             raise werkzeug.exceptions.BadRequest(
                 "Input Paragraph must be at most 500000 characters long"
             )
-        view_results = generate_bias_values(input_data)[0]
-        view_df = generate_bias_values(input_data)[1]
-        token_list, value_list = generate_bias_values(input_data)[2]
+        generate_bias_values(input_data)
+        
+    return render_template('index.html')        
+        # view_results = generate_bias_values(input_data)[0]
+        # view_df = generate_bias_values(input_data)[1]
+        # token_list, value_list = generate_bias_values(input_data)[2]
+        # 
+        # # plot the bar graphs and word clouds
+        # plot_bar = bar_graph(view_df, token_list, value_list)
+        # plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+        # # only perform tsne plot if more than 100 tokens
+        # if len(token_list) > 100:
+        #     plot_tsne = tsne_graph(token_list)
+        #     plot_tsne_male = tsne_graph_male(token_list, value_list)
+        #     plot_tsne_female = tsne_graph_female(token_list, value_list)
+        #     plot_pca = pca_graph(token_list)
+        #     plot_pca_male = pca_graph_male(token_list, value_list)
+        #     plot_pca_female = pca_graph_female(token_list, value_list)
+        # else:
+        #     plot_tsne = url_for('static', filename="nothing_here.png")
+        #     plot_tsne_male = url_for('static', filename="nothing_here.png")
+        #     plot_tsne_female = url_for('static', filename="nothing_here.png")
+        #     plot_pca = url_for('static', filename="nothing_here.png")
+        #     plot_pca_male = url_for('static', filename="nothing_here.png")
+        #     plot_pca_female = url_for('static', filename="nothing_here.png")
+
+    # return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
+    #                        female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
+    #                        male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
+    #                        male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+
+
+# he is a nurse
+
+@app.route("/detect_dataframe", methods=['GET', 'POST'])
+def detect_dataframe():
+    if request.method == "POST":
+        try:
+            dataframe = request.files['raw_file']
+        except:
+            print("error with this line!")
+            print(sys.exc_info()[0])
+        input_dataframe = load_obj(dataframe, name='total_dataframe')
+        view_df = frame_from_file(input_dataframe)[0]
+        token_list, value_list = frame_from_file(input_dataframe)[1]
 
         # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
@@ -159,14 +201,12 @@ def detect_text():
             plot_pca_male = url_for('static', filename="nothing_here.png")
             plot_pca_female = url_for('static', filename="nothing_here.png")
 
-    return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
-                           female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
-                           male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
-                           male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+        return render_template('visualisation.html', bar_graph=plot_bar,
+                               female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
+                               male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
+                               male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
-
-# he is a nurse
-
+    return render_template('index.html')
 
 @app.route("/detect_url", methods=['GET', 'POST'])
 def detect_url():
@@ -262,7 +302,9 @@ def detect_corpora():
 
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
-    female_tot_df, male_tot_df = gender_dataframe_from_tuple()
+    input_dataframe = load_obj(dataframe, name='total_dataframe')
+    view_df = frame_from_file(input_dataframe)[0]
+    female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
 
@@ -313,9 +355,11 @@ def query():
 #     return render_template('query.html', data_question=dataframe_to_display)
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download(filename):
-    uploads = os.path.join(current_app.root_path, app.config['UPLOAD_FOLDER'])
-    return send_from_directory(directory=uploads, filename=filename)
+def download(filename='total_dataframe.pkl'):
+    uploads = path.join(path.dirname(__file__), "..\\static\\", filename)
+    print(uploads)
+    #return send_from_directory(directory=uploads, filename=filename)
+    return send_file(uploads, as_attachment=True)
 
 @app.route('/about')
 def about():
