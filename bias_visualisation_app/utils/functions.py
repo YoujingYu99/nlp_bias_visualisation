@@ -334,25 +334,12 @@ def generate_bias_values(input_data):
     view_df = list_to_dataframe(view_results)
     save_obj_text(view_df, name='total_dataframe')
 
-    # token_list, value_list, pos_list = generate_list(view_df)
-    # female_dataframe, male_dataframe = dataframe_by_gender(view_df)
-    # # male_dict, female_dict = dict_by_gender(token_list, value_list)
-    #
-    # save_obj(female_dataframe, name='fm_dic')
-    # save_obj(male_dataframe, name='m_dic')
-    #
-    # return view_results, view_df, (token_list, value_list)
+
 
 
 def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
-    # female_dataframe, male_dataframe = dataframe_by_gender(view_df)
-
-
     return view_df, (token_list, value_list)
-
-
-
 
 
 

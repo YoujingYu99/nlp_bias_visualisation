@@ -144,37 +144,42 @@ def detect_text():
             )
         generate_bias_values(input_data)
         
-    return render_template('index.html')        
-        # view_results = generate_bias_values(input_data)[0]
-        # view_df = generate_bias_values(input_data)[1]
-        # token_list, value_list = generate_bias_values(input_data)[2]
-        # 
-        # # plot the bar graphs and word clouds
-        # plot_bar = bar_graph(view_df, token_list, value_list)
-        # plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-        # # only perform tsne plot if more than 100 tokens
-        # if len(token_list) > 100:
-        #     plot_tsne = tsne_graph(token_list)
-        #     plot_tsne_male = tsne_graph_male(token_list, value_list)
-        #     plot_tsne_female = tsne_graph_female(token_list, value_list)
-        #     plot_pca = pca_graph(token_list)
-        #     plot_pca_male = pca_graph_male(token_list, value_list)
-        #     plot_pca_female = pca_graph_female(token_list, value_list)
-        # else:
-        #     plot_tsne = url_for('static', filename="nothing_here.png")
-        #     plot_tsne_male = url_for('static', filename="nothing_here.png")
-        #     plot_tsne_female = url_for('static', filename="nothing_here.png")
-        #     plot_pca = url_for('static', filename="nothing_here.png")
-        #     plot_pca_male = url_for('static', filename="nothing_here.png")
-        #     plot_pca_female = url_for('static', filename="nothing_here.png")
+    return render_template('index.html')
 
-    # return render_template('visualisation.html', ctext=input_data, bias_description=view_results, bar_graph=plot_bar,
-    #                        female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
-    #                        male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
-    #                        male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+@app.route("/detect_url", methods=['GET', 'POST'])
+def detect_url():
+    if request.method == "POST":
+        raw_url = request.form['raw_url']
+        input_data = get_text_url(raw_url)
+        if not input_data:
+            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
+        if len(input_data) > 50000:
+            raise werkzeug.exceptions.BadRequest(
+                "Input Paragraph must be at most 500000 characters long"
+            )
+        generate_bias_values(input_data)
+
+    return render_template('index.html')
 
 
-# he is a nurse
+@app.route("/detect_corpora", methods=['GET', 'POST'])
+def detect_corpora():
+    if request.method == "POST":
+        try:
+            corpora_file = request.files['raw_file']
+        except:
+            print("error with this line!")
+            print(sys.exc_info()[0])
+        input_data = get_text_file(corpora_file)
+        if not input_data:
+            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
+        if len(input_data) > 50000:
+            raise werkzeug.exceptions.BadRequest(
+                "Input Paragraph must be at most 500000 characters long"
+            )
+        generate_bias_values(input_data)
+
+    return render_template('index.html')
 
 @app.route("/detect_dataframe", methods=['GET', 'POST'])
 def detect_dataframe():
@@ -214,89 +219,6 @@ def detect_dataframe():
                                male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
     return render_template('index.html')
-
-@app.route("/detect_url", methods=['GET', 'POST'])
-def detect_url():
-    if request.method == "POST":
-        raw_url = request.form['raw_url']
-        input_data = get_text_url(raw_url)
-        if not input_data:
-            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
-        if len(input_data) > 5000:
-            raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 5000 characters long"
-            )
-        view_results = generate_bias_values(input_data)[0]
-        view_df = generate_bias_values(input_data)[1]
-        token_list, value_list = generate_bias_values(input_data)[2]
-
-        # plot the bar graphs and word clouds
-        plot_bar = bar_graph(view_df, token_list, value_list)
-        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-        # only perform tsne plot if more than 100 tokens
-        if len(token_list) > 100:
-            plot_tsne = tsne_graph(token_list)
-            plot_tsne_male = tsne_graph_male(token_list, value_list)
-            plot_tsne_female = tsne_graph_female(token_list, value_list)
-            plot_pca = pca_graph(token_list)
-            plot_pca_male = pca_graph_male(token_list, value_list)
-            plot_pca_female = pca_graph_female(token_list, value_list)
-        else:
-            plot_tsne = url_for('static', filename="nothing_here.png")
-            plot_tsne_male = url_for('static', filename="nothing_here.png")
-            plot_tsne_female = url_for('static', filename="nothing_here.png")
-            plot_pca = url_for('static', filename="nothing_here.png")
-            plot_pca_male = url_for('static', filename="nothing_here.png")
-            plot_pca_female = url_for('static', filename="nothing_here.png")
-
-        return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
-                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
-                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
-
-
-@app.route("/detect_corpora", methods=['GET', 'POST'])
-def detect_corpora():
-    if request.method == "POST":
-        try:
-            corpora_file = request.files['raw_file']
-        except:
-            print("error with this line!")
-            print(sys.exc_info()[0])
-        input_data = get_text_file(corpora_file)
-        if not input_data:
-            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
-        if len(input_data) > 50000:
-            raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 500000 characters long"
-            )
-        view_results = generate_bias_values(input_data)[0]
-        view_df = generate_bias_values(input_data)[1]
-        token_list, value_list = generate_bias_values(input_data)[2]
-
-        # plot the bar graphs and word clouds
-        plot_bar = bar_graph(view_df, token_list, value_list)
-        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-        # only perform tsne plot if more than 100 tokens
-        if len(token_list) > 100:
-            plot_tsne = tsne_graph(token_list)
-            plot_tsne_male = tsne_graph_male(token_list, value_list)
-            plot_tsne_female = tsne_graph_female(token_list, value_list)
-            plot_pca = pca_graph(token_list)
-            plot_pca_male = pca_graph_male(token_list, value_list)
-            plot_pca_female = pca_graph_female(token_list, value_list)
-        else:
-            plot_tsne = url_for('static', filename="nothing_here.png")
-            plot_tsne_male = url_for('static', filename="nothing_here.png")
-            plot_tsne_female = url_for('static', filename="nothing_here.png")
-            plot_pca = url_for('static', filename="nothing_here.png")
-            plot_pca_male = url_for('static', filename="nothing_here.png")
-            plot_pca_female = url_for('static', filename="nothing_here.png")
-
-        return render_template('visualisation.html', ctext=input_data, bias_description=view_results,
-                               bar_graph=plot_bar, female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne, male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female,
-                               pca_graph=plot_pca, male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 # . It works by looking at differences between male and female word pairs
