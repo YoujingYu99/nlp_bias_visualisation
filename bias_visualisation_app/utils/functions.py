@@ -1,4 +1,5 @@
 import os
+import sys
 from os import path
 from io import open
 import pickle
@@ -47,6 +48,12 @@ from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 #     calculator = PrecalculatedBiasCalculator()
 # else:
 #     calculator = PcaBiasCalculator()
+
+# set recursion limit
+sys.setrecursionlimit(10000)
+
+
+
 
 calculator = PrecalculatedBiasCalculator()
 
@@ -261,21 +268,34 @@ def dataframe_by_gender(view_df):
 #
 #     return male_dict, female_dict
 
-
 def save_obj(obj, name):
     save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
     df_path = save_df_path + '.pkl'
     with open(df_path, 'wb') as f:
         pickle.dump(obj, f)
 
+def save_obj_text(obj, name):
+    save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+    df_path = save_df_path + '.pkl'
+    with open(df_path, 'wb') as f:
+        pickle.dump(obj, f)
 
-# def load_obj(name):
-#     save_df_path = path.join(path.dirname(__file__), "..\\static\\")
-#     with open(save_df_path + name + '.pkl', 'rb') as f:
-#         return pickle.load(f)
+def save_obj_user_uploads(obj, name):
+    save_df_path = path.join(path.dirname(__file__), "..\\static\\user_uploads\\", name)
+    df_path = save_df_path + '.pkl'
+    with open(df_path, 'wb') as f:
+        pickle.dump(obj, f)
 
 def load_obj(name):
-    return pickle.load(name)
+    save_df_path = path.join(path.dirname(__file__), "..\\static\\")
+    with open(save_df_path + name + '.pkl', 'rb') as f:
+        return pickle.load(f)
+
+def load_obj_user_uploads(name):
+    upload_df_path = path.join(path.dirname(__file__), "..\\static\\user_uploads\\")
+    with open(upload_df_path + name + '.pkl', 'rb') as f:
+        return pickle.load(f)
+
 
 def generate_bias_values(input_data):
     objs = parse_sentence(input_data)
@@ -312,7 +332,7 @@ def generate_bias_values(input_data):
         view_results.append(item)
 
     view_df = list_to_dataframe(view_results)
-    save_obj(view_df, name='total_dataframe')
+    save_obj_text(view_df, name='total_dataframe')
 
     # token_list, value_list, pos_list = generate_list(view_df)
     # female_dataframe, male_dataframe = dataframe_by_gender(view_df)
@@ -339,7 +359,10 @@ def frame_from_file(view_df):
 
 
 def gender_dataframe_from_tuple(view_df):
-    dataframe_by_gender(view_df)
+    female_dataframe, male_dataframe = dataframe_by_gender(view_df)
+
+    save_obj(female_dataframe, name='fm_dic')
+    save_obj(male_dataframe, name='m_dic')
     male_dataframe = load_obj(name='m_dic')
     male_dataframe = male_dataframe.sort_values(by='bias', ascending=False)
     male_dataframe = male_dataframe.drop_duplicates(subset=['token'])
@@ -352,8 +375,8 @@ def gender_dataframe_from_tuple(view_df):
 
 
 
-def parse_pos_dataframe():
-    female_dataframe, male_dataframe = gender_dataframe_from_tuple()
+def parse_pos_dataframe(view_df):
+    female_dataframe, male_dataframe = gender_dataframe_from_tuple(view_df)
 
     female_noun_df = female_dataframe[female_dataframe['pos'].isin(noun_list)]
     female_adj_df = female_dataframe[female_dataframe['pos'].isin(adj_list)]
@@ -905,10 +928,10 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
 
 
 
-def df_based_on_question(select_wordtype, select_gender):
-    female_tot_df, male_tot_df = gender_dataframe_from_tuple()
-    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
-    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
+def df_based_on_question(select_wordtype, select_gender, view_df):
+    female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
+    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
+    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     if select_gender == 'female':
         if select_wordtype == 'nouns':
             return female_noun_df

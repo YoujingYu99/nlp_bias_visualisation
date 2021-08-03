@@ -9,11 +9,12 @@ from flask import Flask, render_template, url_for, request, jsonify, send_file, 
 from bias_visualisation_app import app
 from os import environ, path
 import os
+import pickle
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
-    generate_bias_values, save_obj, load_obj, frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
+    generate_bias_values, save_obj, save_obj_text, save_obj_user_uploads, load_obj, load_obj_user_uploads, frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
 import werkzeug
@@ -25,6 +26,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib.cm import ScalarMappable
+
+import sys
+sys.setrecursionlimit(10000)
+
+
 
 # from urllib.request import urlopen
 # from urllib3 import urlopen
@@ -178,7 +184,8 @@ def detect_dataframe():
         except:
             print("error with this line!")
             print(sys.exc_info()[0])
-        input_dataframe = load_obj(dataframe)
+        input_dataframe = pickle.load(dataframe)
+        save_obj_user_uploads(input_dataframe, name="total_dataframe_user_uploads")
         view_df = frame_from_file(input_dataframe)[0]
         token_list, value_list = frame_from_file(input_dataframe)[1]
 
@@ -302,11 +309,13 @@ def detect_corpora():
 
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
-    input_dataframe = load_obj(dataframe)
-    view_df = frame_from_file(input_dataframe)[0]
+    # open dataframe file
+    input_dataframe = load_obj_user_uploads(name="total_dataframe_user_uploads")
+    view_df = input_dataframe
+    #view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
-    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
-    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe()[-3:]
+    female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
+    male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
@@ -318,9 +327,12 @@ def analysis():
 @app.route('/query', methods=['GET', 'POST'])
 def query():
     if request.method == 'POST':
+        # open dataframe file
+        input_dataframe = load_obj_user_uploads(name="total_dataframe_user_uploads")
+        view_df = input_dataframe
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
-        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
+        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 

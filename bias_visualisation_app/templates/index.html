@@ -89,9 +89,14 @@
         </div>
       </div>
 
+     </br>
+     </br>
+
 
      <h5>Download the Dataframe Here</h5>
      <a href="{{ url_for('download', filename='total_dataframe.pkl') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download</a>
+     </br>
+     </br>
 
      <!--Upload Dataframe-->
       <div class="row">
@@ -99,6 +104,7 @@
           <div class="icon-block">
             <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
             <form enctype="multipart/form-data" method="POST" action="/detect_dataframe">
+                <h5>Upload Your Dataframe Here</h5>
                 <input type="file" name="raw_file" placeholder="Upload Datarame Here" required="true">
                 </br>
                 </br>
