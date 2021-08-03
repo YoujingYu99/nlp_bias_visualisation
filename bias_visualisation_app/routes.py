@@ -178,7 +178,7 @@ def detect_dataframe():
         except:
             print("error with this line!")
             print(sys.exc_info()[0])
-        input_dataframe = load_obj(dataframe, name='total_dataframe')
+        input_dataframe = load_obj(dataframe)
         view_df = frame_from_file(input_dataframe)[0]
         token_list, value_list = frame_from_file(input_dataframe)[1]
 
@@ -302,7 +302,7 @@ def detect_corpora():
 
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
-    input_dataframe = load_obj(dataframe, name='total_dataframe')
+    input_dataframe = load_obj(dataframe)
     view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe()[:3]
@@ -356,7 +356,7 @@ def query():
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 def download(filename='total_dataframe.pkl'):
-    uploads = path.join(path.dirname(__file__), "..\\static\\", filename)
+    uploads = path.join(path.dirname(__file__), "static\\", filename)
     print(uploads)
     #return send_from_directory(directory=uploads, filename=filename)
     return send_file(uploads, as_attachment=True)

@@ -269,11 +269,13 @@ def save_obj(obj, name):
         pickle.dump(obj, f)
 
 
-def load_obj(name):
-    save_df_path = path.join(path.dirname(__file__), "..\\static\\")
-    with open(save_df_path + name + '.pkl', 'rb') as f:
-        return pickle.load(f)
+# def load_obj(name):
+#     save_df_path = path.join(path.dirname(__file__), "..\\static\\")
+#     with open(save_df_path + name + '.pkl', 'rb') as f:
+#         return pickle.load(f)
 
+def load_obj(name):
+    return pickle.load(name)
 
 def generate_bias_values(input_data):
     objs = parse_sentence(input_data)
@@ -315,10 +317,10 @@ def generate_bias_values(input_data):
     # token_list, value_list, pos_list = generate_list(view_df)
     # female_dataframe, male_dataframe = dataframe_by_gender(view_df)
     # # male_dict, female_dict = dict_by_gender(token_list, value_list)
-    # 
+    #
     # save_obj(female_dataframe, name='fm_dic')
     # save_obj(male_dataframe, name='m_dic')
-    # 
+    #
     # return view_results, view_df, (token_list, value_list)
 
 
