@@ -440,7 +440,7 @@ def specific_bar_graph(df_name='specific_df'):
     norm = plt.Normalize(df_mean.min(), df_mean.max())
     colors = cmap(norm(df_mean))
 
-    ax.bar(
+    ax.barh(
         df['token'],
         df['bias'],
         yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
@@ -450,6 +450,7 @@ def specific_bar_graph(df_name='specific_df'):
     ax.set_title('Specific Word Bias', fontsize=12)
     ax.set_xlabel('Word')
     ax.xaxis.set_visible(set_x_tick)
+
     ax.set_ylabel('Bias Value')
     plt.tight_layout()
 
