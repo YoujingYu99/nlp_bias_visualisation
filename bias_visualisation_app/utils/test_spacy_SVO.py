@@ -1,6 +1,11 @@
 from nltk.stem.wordnet import WordNetLemmatizer
-from chicksexer import predict_gender
+import random
+import numpy as np
+import nltk.corpus as nc
+import nltk.classify as cf
+import nltk
 import spacy
+import pandas as pd
 
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl"]
 OBJECTS = ["dobj", "dative", "attr", "oprd"]
@@ -217,16 +222,55 @@ def generate_left_right_adjectives(obj):
     return obj_desc_tokens
 
 
+best_index = np.array(acs).argmax()
+best_letters = best_index + 1
 
-parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+gender_model = models[best_index]
+best_ac = acs[best_index]
 
-sentence = '''Something had damaged the vine overnight halfway up the tree leaving a gap in the once pristine ant highway.'''
+def determine_gender_SVO(input_data):
+    parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
 
-parse = parser(sentence)
-print(findSVAOs(parse))
+    sent_text = nltk.sent_tokenize(input_data)
+    sub_list = []
+    sub_gender_list = []
+    verb_list = []
+    obj_list = []
+    obj_gender_list = []
+    # now loop over each sentence and tokenize it separately
+    for sentence in sent_text:
+        parse = parser(sentence)
+        SVO_list = findSVAOs(parse)
+        sub, verb, obj = SVO_list[0][0], SVO_list[0][1], SVO_list[0][2]
 
-predict_gender('Oliver Butterfield', return_proba=False)
+        sub_feature = {'feature': sub[-best_letters:]}
+        sub_gender = gender_model.classify(sub_feature)
+        obj_feature = {'feature': obj[-best_letters:]}
+        obj_gender = gender_model.classify(obj_feature)
 
-def SVO_gender(input_data):
+        sub_list.append(sub)
+        sub_gender_list.append(sub_gender)
+        verb_list.append(verb)
+        obj_list.append(obj)
+        obj_gender_list.append(obj_gender)
 
 
+    SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)), columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
+
+    return SVO_df
+
+
+input_data = '''Hilary really likes Ben.'''
+
+print(determine_gender_SVO(input_data))
+
+
+# names = ['Leonardo', 'Amy', 'Sam', 'Tom', 'Katherine', 'Taylor', 'Susanne', 'Watermelon', 'Alpaca', 'Paris', 'Python',
+#          'Java']
+# #print(names)
+# genders = []
+# for name in names:
+#     feature = {'feature': name[-best_letters:]}
+#     gender = gender_model.classify(feature)
+#     genders.append(gender)
+# print(genders)

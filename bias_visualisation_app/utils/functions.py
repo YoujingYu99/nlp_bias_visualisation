@@ -365,6 +365,7 @@ def generate_bias_values(input_data):
 
 
 
+
 def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
     return view_df, (token_list, value_list)
