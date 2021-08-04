@@ -1191,12 +1191,7 @@ def generate_left_right_adjectives(obj):
 
     return obj_desc_tokens
 
-parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
 
-sentence = u'''Donald Trump is the worst president of USA'''
-
-parse = parser(sentence)
-print(findSVAOs(parse))
 
 
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'

@@ -1,5 +1,5 @@
 from nltk.stem.wordnet import WordNetLemmatizer
-from spacy.lang.en import English
+from chicksexer import predict_gender
 import spacy
 
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl"]
@@ -225,5 +225,8 @@ sentence = '''Something had damaged the vine overnight halfway up the tree leavi
 parse = parser(sentence)
 print(findSVAOs(parse))
 
+predict_gender('Oliver Butterfield', return_proba=False)
+
+def SVO_gender(input_data):
 
 

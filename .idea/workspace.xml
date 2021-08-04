@@ -14443,32 +14443,10 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc610.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc611.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/biases.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedmalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticedpca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticedpca_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticedpca_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticedtsne.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticedtsne_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookednoticedtsne_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putmalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquitepca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquitepca_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquitepca_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquitetsne.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquitetsne_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/putquitetsne_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/slidingfemalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/total_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/total_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wonderingfemalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_gender_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14513,7 +14491,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Flask server.visualising_data_bias">
+  <component name="RunManager" selected="Python.test_spacy_SVO">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -14521,6 +14499,28 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="PARAMETERS" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="test_spacy_SVO" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -14617,7 +14617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628089997161</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Switching to downloading as csv instead of pickle to give user better understanding and to make it safer.">
+      <created>1628092293243</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1628092293243</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -14635,14 +14642,15 @@
     <MESSAGE value="testing spacy but returning null" />
     <MESSAGE value="Successfully building SVO pairs using spacy" />
     <MESSAGE value="Successfully building SVO tagger using spacy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Successfully building SVO tagger using spacy" />
+    <MESSAGE value="Switching to downloading as csv instead of pickle to give user better understanding and to make it safer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Switching to downloading as csv instead of pickle to give user better understanding and to make it safer." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_spacy_SVO.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628090888676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_spacy_SVO.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628092257097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_stanford.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628087076517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628092018594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628092034228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1627999985863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627383113792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
