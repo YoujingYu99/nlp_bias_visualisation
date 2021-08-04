@@ -220,7 +220,7 @@ def generate_left_right_adjectives(obj):
 
 parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
 
-sentence = ''' Donald Trump is the worst president of USA, but Hillary is better than him'''
+sentence = '''Something had damaged the vine overnight halfway up the tree leaving a gap in the once pristine ant highway.'''
 
 parse = parser(sentence)
 print(findSVAOs(parse))

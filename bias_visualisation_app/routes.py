@@ -189,7 +189,8 @@ def detect_dataframe():
         except:
             print("error with this line!")
             print(sys.exc_info()[0])
-        input_dataframe = pickle.load(dataframe)
+        input_dataframe = pd.read_csv(dataframe)
+        print(input_dataframe)
         save_obj_user_uploads(input_dataframe, name="total_dataframe_user_uploads")
         view_df = frame_from_file(input_dataframe)[0]
         token_list, value_list = frame_from_file(input_dataframe)[1]
@@ -289,7 +290,7 @@ def query():
 #     return render_template('query.html', data_question=dataframe_to_display)
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download(filename='total_dataframe.pkl'):
+def download(filename='total_dataframe.csv'):
     uploads = path.join(path.dirname(__file__), "static\\", filename)
     print(uploads)
     #return send_from_directory(directory=uploads, filename=filename)
