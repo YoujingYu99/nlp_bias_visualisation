@@ -290,7 +290,14 @@ def query():
 #     return render_template('query.html', data_question=dataframe_to_display)
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download(filename='total_dataframe.csv'):
+def download_total(filename='total_dataframe.csv'):
+    uploads = path.join(path.dirname(__file__), "static\\", filename)
+    print(uploads)
+    #return send_from_directory(directory=uploads, filename=filename)
+    return send_file(uploads, as_attachment=True)
+
+@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+def download_SVO(filename='SVO_dataframe.csv'):
     uploads = path.join(path.dirname(__file__), "static\\", filename)
     print(uploads)
     #return send_from_directory(directory=uploads, filename=filename)

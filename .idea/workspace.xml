@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="257f20de-bda0-4f78-9373-9ce184f194a3" name="Default Changelist" comment="testing spacy but returning null">
+    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
+    </list>
+    <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="">
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_academic_doc004.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_academic_doc008.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_academic_doc009.conllu" afterDir="false" />
@@ -14443,47 +14449,59 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc610.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc611.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/biases.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_gender_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/visualising_data_bias.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_gender_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_gender_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/SVO_functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
-    <envs>
-      <env key="FLASK_APP" value="app" />
-    </envs>
-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
-    <option name="myEnvs">
-      <map>
-        <entry key="FLASK_APP" value="app" />
-      </map>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1wGRmsTi4oXaixgUiPTE5T3BuHF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="3" end1="4" start2="3" end2="10" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14445" end1="14446" start2="14451" end2="14454" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14447" end1="14449" start2="14455" end2="14457" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14454" end1="14472" start2="14462" end2="14462" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14476" end1="14479" start2="14466" end2="14497" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14480" end1="14480" start2="14498" end2="14499" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14485" end1="14486" start2="14504" end2="14504" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14493" end1="14494" start2="14511" end2="14512" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14503" end1="14527" start2="14521" end2="14522" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14537" end1="14537" start2="14532" end2="14533" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14538" end1="14539" start2="14534" end2="14535" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14548" end1="14549" start2="14544" end2="14545" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14553" end1="14554" start2="14549" end2="14550" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14564" end1="14565" start2="14560" end2="14561" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14570" end1="14572" start2="14566" end2="14569" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14574" end1="14576" start2="14571" end2="14573" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14577" end1="14579" start2="14574" end2="14576" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
+        <range start1="14582" end1="14583" start2="14579" end2="14580" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
+        <range start1="14584" end1="14586" start2="14581" end2="14583" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
+        <range start1="14589" end1="14590" start2="14586" end2="14587" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
+        <range start1="14591" end1="14593" start2="14588" end2="14590" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14596" end1="14625" start2="14593" end2="14594" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14626" end1="14627" start2="14595" end2="14596" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14633" end1="14634" start2="14602" end2="14611" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14636" end1="14646" start2="14613" end2="14616" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
+        <range start1="14648" end1="14656" start2="14618" end2="14620" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
+      </ranges>
+    </file>
   </component>
+  <component name="ProjectId" id="1wGoJVSWIhkMnDGntIR2Q4yyZDF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="MATLAB_INTERPRETER" value="C:\Program Files\MATLAB\R2019b\bin\matlab.exe" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -14491,7 +14509,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test_spacy_SVO">
+  <component name="RunManager" selected="Python.SVO_functions">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -14501,30 +14519,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_spacy_SVO" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="visualising_data_bias" />
+    <configuration name="SVO_functions" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -14535,8 +14530,9 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\bias_visualisation_app\utils\SVO_functions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -14546,12 +14542,12 @@
       <method v="2" />
     </configuration>
     <configuration name="visualising_data_bias" type="Python.FlaskServer">
-      <option name="target" value="$PROJECT_DIR$/bias_visualisation_app/__init__.py" />
+      <option name="target" value="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\main.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="C:\Users\Youjing Yu\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -14562,18 +14558,19 @@
     </configuration>
     <list>
       <item itemvalue="Flask server.visualising_data_bias" />
-      <item itemvalue="Python.test_spacy_SVO" />
+      <item itemvalue="Python.SVO_functions" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="257f20de-bda0-4f78-9373-9ce184f194a3" name="Default Changelist" comment="" />
-      <created>1628083107286</created>
+      <changelist id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="" />
+      <changelist id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
+      <created>1628094219451</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1628083107286</updated>
-      <workItem from="1628083109478" duration="4156000" />
+      <updated>1628094219451</updated>
+      <workItem from="1628094222465" duration="2728000" />
     </task>
     <task id="LOCAL-00001" summary="Testing stanford parser. With very little success.">
       <created>1628084043741</created>
@@ -14589,61 +14586,34 @@
       <option name="project" value="LOCAL" />
       <updated>1628084874626</updated>
     </task>
-    <task id="LOCAL-00003" summary="Switching to spacy pipeline module">
-      <created>1628085425108</created>
+    <task id="LOCAL-00003" summary="Writing dataframe for subject and object gender identification">
+      <created>1628096632831</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1628085425108</updated>
+      <updated>1628096632831</updated>
     </task>
-    <task id="LOCAL-00004" summary="Add spacy_SVO">
-      <created>1628085892033</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1628085892033</updated>
-    </task>
-    <task id="LOCAL-00005" summary="testing spacy but returning null">
-      <created>1628087101479</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1628087101479</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Successfully building SVO tagger using spacy">
-      <created>1628089997161</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1628089997161</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Switching to downloading as csv instead of pickle to give user better understanding and to make it safer.">
-      <created>1628092293243</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1628092293243</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Testing stanford parser. With very little success." />
-    <MESSAGE value="Deciding to switch to spacy" />
-    <MESSAGE value="Switching to spacy pipeline module" />
-    <MESSAGE value="Add spacy_SVO" />
-    <MESSAGE value="testing spacy but returning null" />
-    <MESSAGE value="Successfully building SVO pairs using spacy" />
-    <MESSAGE value="Successfully building SVO tagger using spacy" />
-    <MESSAGE value="Switching to downloading as csv instead of pickle to give user better understanding and to make it safer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Switching to downloading as csv instead of pickle to give user better understanding and to make it safer." />
+    <MESSAGE value="Successfully writing dataframe for subject and object gender identification" />
+    <MESSAGE value="Writing dataframe for subject and object gender identification" />
+    <option name="LAST_COMMIT_MESSAGE" value="Writing dataframe for subject and object gender identification" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
