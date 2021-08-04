@@ -496,6 +496,7 @@ def determine_gender_SVO(input_data):
         parse = parser(sentence)
         SVO_list = findSVAOs(parse)
         sub, verb, obj = SVO_list[0][0], SVO_list[0][1], SVO_list[0][2]
+        print(sub)
 
         sub_feature = {'feature': sub[-best_letters:]}
         sub_gender = gender_model.classify(sub_feature)
@@ -666,8 +667,8 @@ def generate_bias_values(input_data):
     view_df = list_to_dataframe(view_results)
     save_obj_text(view_df, name='total_dataframe')
 
-    SVO_df = determine_gender_SVO(input_data)
-    save_obj_text(SVO_df, name='SVO_dataframe')
+    # SVO_df = determine_gender_SVO(input_data)
+    # save_obj_text(SVO_df, name='SVO_dataframe')
 
 
 def frame_from_file(view_df):

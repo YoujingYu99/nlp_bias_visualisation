@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
@@ -387,7 +386,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc357.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc358.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc359.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc362.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc363.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc364.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_fiction_doc365.conllu" afterDir="false" />
@@ -467,7 +465,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc108.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc109.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc110.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc113.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc114.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc115.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc116.conllu" afterDir="false" />
@@ -666,7 +663,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc650.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc651.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc652.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc653.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc656.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc657.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_interview_doc658.conllu" afterDir="false" />
@@ -873,7 +869,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc286.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc290.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc291.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc292.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc293.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc296.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_news_doc297.conllu" afterDir="false" />
@@ -1068,7 +1063,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc039.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc040.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc041.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc042.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc045.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc046.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_voyage_doc047.conllu" afterDir="false" />
@@ -1301,7 +1295,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc164.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc165.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc166.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc167.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc170.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc171.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc172.conllu" afterDir="false" />
@@ -1468,7 +1461,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc601.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc602.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc603.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc604.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc607.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc609.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_whow_doc610.conllu" afterDir="false" />
@@ -1558,7 +1550,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc167.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc171.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc172.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc176.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc178.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc181.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc182.rs3" afterDir="false" />
@@ -1579,7 +1570,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc235.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc237.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc240.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc241.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc246.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc247.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_academic_doc250.rs3" afterDir="false" />
@@ -1814,7 +1804,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc131.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc135.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc136.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc144.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc145.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc155.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_bio_doc157.rs3" afterDir="false" />
@@ -2261,7 +2250,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc290.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc292.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc293.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc297.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc299.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc300.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_interview_doc304.rs3" afterDir="false" />
@@ -2592,7 +2580,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc270.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc274.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc275.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc283.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc284.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc285.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc290.rs3" afterDir="false" />
@@ -2669,7 +2656,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc479.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc481.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc482.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc484.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc488.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc489.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc490.rs3" afterDir="false" />
@@ -2699,7 +2685,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc556.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc557.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc560.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc562.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc566.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc567.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc568.rs3" afterDir="false" />
@@ -2778,7 +2763,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc794.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc800.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_news_doc801.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_voyage_doc004.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_voyage_doc005.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_voyage_doc006.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_voyage_doc010.rs3" afterDir="false" />
@@ -3154,7 +3138,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc501.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc502.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc506.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc508.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc511.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc512.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/rst/amalgum_whow_doc517.rs3" afterDir="false" />
@@ -3298,7 +3281,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc265.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc274.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc275.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc280.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc284.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc285.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc294.tsv" afterDir="false" />
@@ -3321,7 +3303,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc338.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc342.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc343.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc344.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc349.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc352.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc353.tsv" afterDir="false" />
@@ -3362,7 +3343,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc441.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc443.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc447.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc448.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc450.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc451.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc456.tsv" afterDir="false" />
@@ -3386,7 +3366,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc505.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc506.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc507.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc513.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc515.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc516.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc521.tsv" afterDir="false" />
@@ -3453,7 +3432,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc708.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc712.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc713.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc714.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc719.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc722.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_academic_doc723.tsv" afterDir="false" />
@@ -3559,7 +3537,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc245.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc246.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc247.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc249.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc255.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc256.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_bio_doc261.tsv" afterDir="false" />
@@ -3747,7 +3724,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc151.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc155.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc156.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc164.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc165.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc175.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc177.tsv" afterDir="false" />
@@ -3773,7 +3749,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc233.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc234.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc239.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc242.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc243.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc249.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_fiction_doc253.tsv" afterDir="false" />
@@ -3934,7 +3909,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc171.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc177.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc178.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc181.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc182.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc183.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc187.tsv" afterDir="false" />
@@ -4103,7 +4077,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc638.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc640.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc641.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc642.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc647.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc648.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc650.tsv" afterDir="false" />
@@ -4138,7 +4111,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc736.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc741.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc745.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc746.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc754.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc755.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc765.tsv" afterDir="false" />
@@ -4156,7 +4128,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc803.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc804.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc805.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc811.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc813.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc814.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_interview_doc818.tsv" afterDir="false" />
@@ -4467,7 +4438,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc752.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc754.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc758.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc759.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc760.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc761.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_news_doc762.tsv" afterDir="false" />
@@ -4495,7 +4465,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc023.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc025.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc029.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc031.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc032.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc033.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_voyage_doc038.tsv" afterDir="false" />
@@ -4889,7 +4858,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_whow_doc624.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_whow_doc625.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_whow_doc626.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/tsv/amalgum_whow_doc628.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc000.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc002.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc003.xml" afterDir="false" />
@@ -4997,7 +4965,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc300.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc301.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc305.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc307.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc310.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc311.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc316.xml" afterDir="false" />
@@ -5153,7 +5120,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc728.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc731.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_academic_doc732.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_bio_doc001.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_bio_doc002.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_bio_doc003.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_bio_doc008.xml" afterDir="false" />
@@ -5477,7 +5443,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc302.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc303.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc309.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc311.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc312.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc313.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_fiction_doc318.xml" afterDir="false" />
@@ -5712,7 +5677,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc481.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc486.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc487.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc488.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc490.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc496.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_interview_doc497.xml" afterDir="false" />
@@ -6129,7 +6093,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc689.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc692.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc693.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc697.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc699.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc700.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc701.xml" afterDir="false" />
@@ -6164,7 +6127,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc767.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc768.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc769.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc770.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc771.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc776.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_news_doc777.xml" afterDir="false" />
@@ -6187,7 +6149,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc019.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc024.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc025.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc032.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc034.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc039.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc044.xml" afterDir="false" />
@@ -6230,7 +6191,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc149.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc153.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc154.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc155.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc157.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc158.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc159.xml" afterDir="false" />
@@ -6262,7 +6222,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc229.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc231.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc232.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc233.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc237.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc241.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_voyage_doc242.xml" afterDir="false" />
@@ -6531,7 +6490,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc482.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc486.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc487.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc488.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc491.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc492.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc497.xml" afterDir="false" />
@@ -6540,7 +6498,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc500.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc504.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc509.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc513.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc515.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc525.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/xml/amalgum_whow_doc534.xml" afterDir="false" />
@@ -6988,7 +6945,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc461.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc464.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc467.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc468.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc469.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc481.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc482.conllu" afterDir="false" />
@@ -7012,7 +6968,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc525.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc529.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc530.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc532.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc535.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc536.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_bio_doc537.conllu" afterDir="false" />
@@ -7046,7 +7001,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc020.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc021.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc022.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc023.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc024.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc027.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc028.conllu" afterDir="false" />
@@ -7070,7 +7024,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc081.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc088.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc090.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc092.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc093.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc094.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_fiction_doc095.conllu" afterDir="false" />
@@ -7265,7 +7218,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc149.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc154.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc156.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc158.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc162.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc169.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc170.conllu" afterDir="false" />
@@ -7466,7 +7418,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc687.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc691.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc694.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc698.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc699.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc700.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc701.conllu" afterDir="false" />
@@ -7494,7 +7445,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc759.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc760.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc761.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc762.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc765.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc766.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_interview_doc767.conllu" afterDir="false" />
@@ -7640,7 +7590,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc380.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc381.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc382.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc385.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc387.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc388.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc389.conllu" afterDir="false" />
@@ -7699,7 +7648,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc542.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc543.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc544.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc547.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc548.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc549.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_news_doc550.conllu" afterDir="false" />
@@ -7776,7 +7724,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc055.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc059.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc060.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc062.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc065.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc066.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc067.conllu" afterDir="false" />
@@ -7814,7 +7761,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc174.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc175.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc176.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc179.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc180.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc181.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_voyage_doc182.conllu" afterDir="false" />
@@ -8055,7 +8001,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc354.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc355.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc356.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc359.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc360.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc361.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc362.conllu" afterDir="false" />
@@ -8129,7 +8074,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc564.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc568.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc569.conllu" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc571.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc574.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc575.conllu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/dep/amalgum_whow_doc576.conllu" afterDir="false" />
@@ -8294,7 +8238,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc405.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc407.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc410.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc411.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc416.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc417.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_academic_doc420.rs3" afterDir="false" />
@@ -8455,7 +8398,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc228.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc232.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc233.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc234.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc236.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc237.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc238.rs3" afterDir="false" />
@@ -8588,7 +8530,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc590.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc595.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_bio_doc596.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_fiction_doc001.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_fiction_doc002.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_fiction_doc003.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_fiction_doc007.rs3" afterDir="false" />
@@ -8854,7 +8795,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc251.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc252.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc253.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc255.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc256.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc257.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc261.rs3" afterDir="false" />
@@ -8987,7 +8927,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc612.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc616.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc617.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc619.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc621.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc622.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_interview_doc626.rs3" afterDir="false" />
@@ -9573,7 +9512,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc269.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc272.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc273.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc277.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc279.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc282.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc283.rs3" afterDir="false" />
@@ -9606,7 +9544,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc347.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc348.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc349.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc350.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc351.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc355.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc357.rs3" afterDir="false" />
@@ -9636,7 +9573,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc414.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc415.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc416.rs3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc420.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc425.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc426.rs3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/rst/amalgum_whow_doc427.rs3" afterDir="false" />
@@ -9819,7 +9755,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc291.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc292.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc298.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc299.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc300.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc305.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc306.tsv" afterDir="false" />
@@ -9844,7 +9779,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc366.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc367.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc370.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc372.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc376.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc380.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc385.tsv" afterDir="false" />
@@ -9865,7 +9799,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc434.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc435.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc436.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc442.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc444.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc445.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_academic_doc449.tsv" afterDir="false" />
@@ -10064,7 +9997,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc331.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc332.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc338.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc339.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc341.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc342.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc347.tsv" afterDir="false" />
@@ -10092,7 +10024,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc397.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc399.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc400.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc404.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc406.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc410.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_bio_doc416.tsv" afterDir="false" />
@@ -10273,7 +10204,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc286.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc290.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc296.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc297.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc303.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc304.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_fiction_doc309.tsv" afterDir="false" />
@@ -10459,7 +10389,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc334.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc335.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc339.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc340.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc344.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc345.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_interview_doc353.tsv" afterDir="false" />
@@ -10805,7 +10734,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc493.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc494.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc498.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc500.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc501.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc505.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_news_doc507.tsv" afterDir="false" />
@@ -10913,7 +10841,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc088.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc090.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc091.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc096.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc097.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc103.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_voyage_doc104.tsv" afterDir="false" />
@@ -11228,7 +11155,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc464.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc465.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc469.tsv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc470.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc474.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc475.tsv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/tsv/amalgum_whow_doc483.tsv" afterDir="false" />
@@ -11438,7 +11364,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc451.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc455.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc456.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc457.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc460.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc461.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc466.txt" afterDir="false" />
@@ -11487,7 +11412,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc585.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc590.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc591.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc600.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc601.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc602.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_academic_doc607.txt" afterDir="false" />
@@ -11717,7 +11641,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc550.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc555.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc556.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc561.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc565.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc566.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_bio_doc568.txt" afterDir="false" />
@@ -11760,7 +11683,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc059.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc061.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc062.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc066.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc068.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc071.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_fiction_doc072.txt" afterDir="false" />
@@ -11981,7 +11903,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc221.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc226.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc227.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc230.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc232.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc236.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc237.txt" afterDir="false" />
@@ -12000,7 +11921,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc262.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc268.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc269.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc270.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc271.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc272.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc277.txt" afterDir="false" />
@@ -12073,7 +11993,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc463.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc465.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc466.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc471.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc475.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc476.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc484.txt" afterDir="false" />
@@ -12122,7 +12041,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc619.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc621.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc622.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc626.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc628.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc631.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc632.txt" afterDir="false" />
@@ -12155,7 +12073,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc698.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc699.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc700.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc704.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc706.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc707.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_interview_doc710.txt" afterDir="false" />
@@ -12269,7 +12186,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc225.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc233.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc234.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc238.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc243.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc244.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_news_doc252.txt" afterDir="false" />
@@ -12510,7 +12426,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc181.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc183.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc184.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc188.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc193.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc194.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_voyage_doc199.txt" afterDir="false" />
@@ -12626,7 +12541,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc020.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc021.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc027.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc029.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc032.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc033.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc036.txt" afterDir="false" />
@@ -12757,7 +12671,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc389.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc394.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc395.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc396.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc402.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc403.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc406.txt" afterDir="false" />
@@ -12790,7 +12703,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc468.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc472.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc473.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc474.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc479.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc481.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/txt/amalgum_whow_doc482.txt" afterDir="false" />
@@ -12909,7 +12821,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc152.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc156.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc157.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc158.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc161.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc162.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_academic_doc167.xml" afterDir="false" />
@@ -13196,7 +13107,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc241.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc245.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc246.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc254.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc255.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc260.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_bio_doc265.xml" afterDir="false" />
@@ -13367,7 +13277,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc088.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc089.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc093.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc095.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc099.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc100.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc101.xml" afterDir="false" />
@@ -13454,7 +13363,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc288.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc290.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc291.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc296.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc297.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc302.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc304.xml" afterDir="false" />
@@ -13499,7 +13407,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc431.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc433.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc434.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc438.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc443.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc444.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_fiction_doc449.xml" afterDir="false" />
@@ -13990,7 +13897,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc562.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc566.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc567.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc568.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc571.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc572.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_news_doc578.xml" afterDir="false" />
@@ -14111,7 +14017,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc162.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc170.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc171.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc175.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc177.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc180.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_voyage_doc181.xml" afterDir="false" />
@@ -14345,7 +14250,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc306.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc313.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc314.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc319.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc323.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc324.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc330.xml" afterDir="false" />
@@ -14428,7 +14332,6 @@
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc558.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc559.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc562.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc563.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc568.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc569.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum_balanced/xml/amalgum_whow_doc571.xml" afterDir="false" />
@@ -14452,7 +14355,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/visualising_data_bias.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_gender_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_gender_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/SVO_functions.py" afterDir="false" />
     </list>
@@ -14463,38 +14365,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
-      <ranges>
-        <range start1="3" end1="4" start2="3" end2="10" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14445" end1="14446" start2="14451" end2="14454" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14447" end1="14449" start2="14455" end2="14457" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14454" end1="14472" start2="14462" end2="14462" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14476" end1="14479" start2="14466" end2="14497" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14480" end1="14480" start2="14498" end2="14499" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14485" end1="14486" start2="14504" end2="14504" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14493" end1="14494" start2="14511" end2="14512" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14503" end1="14527" start2="14521" end2="14522" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14537" end1="14537" start2="14532" end2="14533" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14538" end1="14539" start2="14534" end2="14535" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14548" end1="14549" start2="14544" end2="14545" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14553" end1="14554" start2="14549" end2="14550" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14564" end1="14565" start2="14560" end2="14561" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14570" end1="14572" start2="14566" end2="14569" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14574" end1="14576" start2="14571" end2="14573" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14577" end1="14579" start2="14574" end2="14576" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
-        <range start1="14582" end1="14583" start2="14579" end2="14580" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
-        <range start1="14584" end1="14586" start2="14581" end2="14583" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
-        <range start1="14589" end1="14590" start2="14586" end2="14587" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
-        <range start1="14591" end1="14593" start2="14588" end2="14590" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14596" end1="14625" start2="14593" end2="14594" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14626" end1="14627" start2="14595" end2="14596" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14633" end1="14634" start2="14602" end2="14611" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14636" end1="14646" start2="14613" end2="14616" changelist="f0224c59-1558-47b9-851e-9de6dd2513ca" />
-        <range start1="14648" end1="14656" start2="14618" end2="14620" changelist="e142828c-8162-4f99-aa8d-36ed06a96978" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="1wGoJVSWIhkMnDGntIR2Q4yyZDF" />
   <component name="ProjectViewState">
@@ -14509,7 +14379,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_spacy_SVO.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.SVO_functions">
+  <component name="RunManager" selected="Flask server.visualising_data_bias">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -14570,21 +14440,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1628094219451</updated>
-      <workItem from="1628094222465" duration="2728000" />
+      <workItem from="1628094222465" duration="3022000" />
     </task>
-    <task id="LOCAL-00001" summary="Testing stanford parser. With very little success.">
-      <created>1628084043741</created>
+    <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
+      <created>1628096157891</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1628084043741</updated>
+      <updated>1628096157891</updated>
     </task>
-    <task id="LOCAL-00002" summary="Deciding to switch to spacy">
-      <created>1628084874626</created>
+    <task id="LOCAL-00002" summary="Successfully writing dataframe for subject and object gender identification">
+      <created>1628096350286</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1628084874626</updated>
+      <updated>1628096350286</updated>
     </task>
     <task id="LOCAL-00003" summary="Writing dataframe for subject and object gender identification">
       <created>1628096632831</created>
@@ -14613,16 +14483,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Successfully writing dataframe for subject and object gender identification" />
     <MESSAGE value="Writing dataframe for subject and object gender identification" />
-    <option name="LAST_COMMIT_MESSAGE" value="Writing dataframe for subject and object gender identification" />
+    <MESSAGE value="Adding routes for SVO dataframe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding routes for SVO dataframe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/visualising_data_bias$precalculate_biases.coverage" NAME="test_dataset_prep Coverage Results" MODIFIED="1626697405814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$Flask__webapp_py_.coverage" NAME="Flask (webapp.py) Coverage Results" MODIFIED="1626190177501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_spacy_SVO.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628092257097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_stanford.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628087076517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628092034228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1627999985863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_functions.coverage" NAME="test_functions Coverage Results" MODIFIED="1627383113792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_parse_sentence.coverage" NAME="test_parse_sentence Coverage Results" MODIFIED="1626710642919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/bias_statements" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628097193416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>
 </project>
