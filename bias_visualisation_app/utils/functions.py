@@ -514,6 +514,7 @@ def clean_SVO_dataframe(SVO_df):
     verb_base_list = []
     for verb in verb_list:
         base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+        base_word.strip()
         verb_base_list.append(base_word)
 
     SVO_df['verb'] = verb_base_list
