@@ -480,6 +480,8 @@ best_letters = best_index + 1
 gender_model = models[best_index]
 best_ac = acs[best_index]
 
+neutral_sub_list = ['I', 'me', 'my', 'i']
+
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
@@ -495,28 +497,30 @@ def determine_gender_SVO(input_data):
         parse = parser(sentence)
         try:
             SVO_list = findSVAOs(parse)
-            print("SVO_list", SVO_list)
-            sub, verb, obj = SVO_list[0][0], SVO_list[0][1], SVO_list[0][2]
-            print(sub)
+            for i in SVO_list:
+                sub, verb, obj = i[0], i[1], i[2]
+                sub_feature = {'feature': sub[-best_letters:]}
+                sub_gender = gender_model.classify(sub_feature)
+                obj_feature = {'feature': obj[-best_letters:]}
+                obj_gender = gender_model.classify(obj_feature)
 
-            sub_feature = {'feature': sub[-best_letters:]}
-            sub_gender = gender_model.classify(sub_feature)
-            obj_feature = {'feature': obj[-best_letters:]}
-            obj_gender = gender_model.classify(obj_feature)
+                sub_list.append(sub)
+                sub_gender_list.append(sub_gender)
+                verb_list.append(verb)
+                obj_list.append(obj)
+                obj_gender_list.append(obj_gender)
 
         except:
             continue
 
-
-
-    sub_list.append(sub)
-    sub_gender_list.append(sub_gender)
-    verb_list.append(verb)
-    obj_list.append(obj)
-    obj_gender_list.append(obj_gender)
-
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
+
+    # remove neutral words
+    # SVO_df['subject_gender'] = SVO_df.apply(lambda x: 'neutral' if x['subject'] in neutral_sub_list else SVO_df['subject_gender'], axis=1)
+    # SVO_df['object_gender'] = SVO_df.apply(lambda x: 'neutral' if x['object'] in neutral_sub_list else SVO_df['object_gender'], axis=1)
+
+    print(SVO_df)
 
     return SVO_df
 
@@ -684,28 +688,36 @@ def frame_from_file(view_df):
 
 def SVO_analysis(view_df):
     # columns = ['subject', 'subject_gender', 'verb', 'object', 'object_gender']
-    female_sub_df = view_df.loc[df['subject_gender'] == 'female']
-    female_obj_df = view_df.loc[df['object_gender'] == 'female']
-    male_sub_df = view_df.loc[df['subject_gender'] == 'male']
-    male_obj_df = view_df.loc[df['object_gender'] == 'male']
+    female_sub_df = view_df.loc[view_df['subject_gender'] == 'female']
+    female_obj_df = view_df.loc[view_df['object_gender'] == 'female']
+    male_sub_df = view_df.loc[view_df['subject_gender'] == 'male']
+    male_obj_df = view_df.loc[view_df['object_gender'] == 'male']
 
-    female_sub_df['Frequency'] = df.groupby('subject')['subject'].transform('count')
+    # female_sub_df['Frequency'] = female_sub_df.groupby('subject').transform('count')
+    # df['frequency'] = df['county'].map(df['county'].value_counts())
+    female_sub_df['Frequency'] = female_sub_df['verb'].map(female_sub_df['verb'].value_counts())
     female_sub_df.sort_values('Frequency', inplace=True, ascending=False)
-    female_sub_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
-    female_sub_df.drop_duplicates()
-    female_obj_df['Frequency'] = df.groupby('object')['object'].transform('count')
-    female_obj_df.sort_values('Frequency', inplace=True, ascending=False)
-    female_obj_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
-    female_obj_df.drop_duplicates()
+    female_sub_df.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    female_sub_df.drop_duplicates(subset='verb',
+                                  keep=False, inplace=True)
 
-    male_sub_df['Frequency'] = df.groupby('subject')['subject'].transform('count')
+    female_obj_df['Frequency'] = female_obj_df['verb'].map(female_obj_df['verb'].value_counts())
+    female_obj_df.sort_values('Frequency', inplace=True, ascending=False)
+    female_obj_df.drop(columns=['subject', 'object_gender', 'object', 'object_gender'], inplace=True)
+    female_obj_df.drop_duplicates(subset='verb',
+                                  keep=False, inplace=True)
+
+    male_sub_df['Frequency'] = male_sub_df['verb'].map(male_sub_df['verb'].value_counts())
     male_sub_df.sort_values('Frequency', inplace=True, ascending=False)
-    male_sub_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
-    male_sub_df.drop_duplicates()
-    male_obj_df['Frequency'] = df.groupby('subject')['subject'].transform('count')
+    male_sub_df.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    male_sub_df.drop_duplicates(subset='verb',
+                                keep=False, inplace=True)
+
+    male_obj_df['Frequency'] = male_obj_df['verb'].map(male_obj_df['verb'].value_counts())
     male_obj_df.sort_values('Frequency', inplace=True, ascending=False)
-    male_sub_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
-    male_obj_df.drop_duplicates()
+    male_obj_df.drop(columns=['subject', 'object_gender', 'object', 'object_gender'], inplace=True)
+    male_obj_df.drop_duplicates(subset='verb',
+                                keep=False, inplace=True)
 
     return female_sub_df, female_obj_df, male_sub_df, male_obj_df
 
@@ -812,10 +824,10 @@ def specific_bar_graph(df_name='specific_df'):
         fig.colorbar(ScalarMappable(cmap=cmap))
 
         ax.set_title('Specific Word Bias', fontsize=12)
-        ax.set_xlabel('Word')
+        ax.set_xlabel('Bias Value')
         ax.xaxis.set_visible(set_x_tick)
 
-        ax.set_ylabel('Bias Value')
+        ax.set_ylabel('Word')
         plt.tight_layout()
 
         # save file to static
@@ -853,10 +865,10 @@ def specific_bar_graph(df_name='specific_df'):
         fig.colorbar(ScalarMappable(cmap=cmap))
 
         ax.set_title('Specific Word Frequency', fontsize=12)
-        ax.set_xlabel('Word')
+        ax.set_xlabel('Frequency')
         ax.xaxis.set_visible(set_x_tick)
 
-        ax.set_ylabel('Frequency')
+        ax.set_ylabel('Word')
         plt.tight_layout()
 
         # save file to static

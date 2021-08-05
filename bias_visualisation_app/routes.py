@@ -178,7 +178,7 @@ def detect_corpora():
                 "Input Paragraph must be at most 500000 characters long"
             )
         generate_bias_values(input_data)
-
+    return render_template('index.html')
 
 @app.route("/detect_SVO_dataframe", methods=['GET', 'POST'])
 def detect_SVO_dataframe():
@@ -193,6 +193,43 @@ def detect_SVO_dataframe():
         save_obj_user_uploads(input_dataframe, name="SVO_dataframe_user_uploads")
 
         return render_template('index.html')
+
+@app.route("/detect_total_dataframe", methods=['GET', 'POST'])
+def detect_total_dataframe():
+    if request.method == "POST":
+        try:
+            dataframe = request.files['raw_file']
+        except:
+            print("error with this line!")
+            print(sys.exc_info()[0])
+        input_dataframe = pd.read_csv(dataframe)
+        save_obj_user_uploads(input_dataframe, name="total_dataframe_user_uploads")
+        view_df = frame_from_file(input_dataframe)[0]
+        token_list, value_list = frame_from_file(input_dataframe)[1]
+
+        # plot the bar graphs and word clouds
+        plot_bar = bar_graph(view_df, token_list, value_list)
+        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+        # only perform tsne plot if more than 100 tokens
+        if len(token_list) > 100:
+            plot_tsne = tsne_graph(token_list)
+            plot_tsne_male = tsne_graph_male(token_list, value_list)
+            plot_tsne_female = tsne_graph_female(token_list, value_list)
+            plot_pca = pca_graph(token_list)
+            plot_pca_male = pca_graph_male(token_list, value_list)
+            plot_pca_female = pca_graph_female(token_list, value_list)
+        else:
+            plot_tsne = url_for('static', filename="nothing_here.png")
+            plot_tsne_male = url_for('static', filename="nothing_here.png")
+            plot_tsne_female = url_for('static', filename="nothing_here.png")
+            plot_pca = url_for('static', filename="nothing_here.png")
+            plot_pca_male = url_for('static', filename="nothing_here.png")
+            plot_pca_female = url_for('static', filename="nothing_here.png")
+
+        return render_template('visualisation.html', bar_graph=plot_bar,
+                               female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
+                               male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
+                               male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 
@@ -233,7 +270,7 @@ def query():
 
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
-        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df)
+        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df, input_SVO_dataframe)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
