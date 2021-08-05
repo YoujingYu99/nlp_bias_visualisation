@@ -180,32 +180,24 @@ def detect_corpora():
         generate_bias_values(input_data)
     return render_template('index.html')
 
-@app.route("/detect_SVO_dataframe", methods=['GET', 'POST'])
-def detect_SVO_dataframe():
+
+@app.route("/detect_dataframe", methods=['GET', 'POST'])
+def detect_dataframe():
     if request.method == "POST":
         try:
-            dataframe = request.files['raw_file']
+            dataframe_SVO = request.files['SVO_file']
+            dataframe_total = request.files['total_file']
         except:
             print("error with this line!")
             print(sys.exc_info()[0])
-        input_dataframe = pd.read_csv(dataframe)
-        print(input_dataframe)
-        save_obj_user_uploads(input_dataframe, name="SVO_dataframe_user_uploads")
-
-        return render_template('index.html')
-
-@app.route("/detect_total_dataframe", methods=['GET', 'POST'])
-def detect_total_dataframe():
-    if request.method == "POST":
-        try:
-            dataframe = request.files['raw_file']
-        except:
-            print("error with this line!")
-            print(sys.exc_info()[0])
-        input_dataframe = pd.read_csv(dataframe)
-        save_obj_user_uploads(input_dataframe, name="total_dataframe_user_uploads")
-        view_df = frame_from_file(input_dataframe)[0]
-        token_list, value_list = frame_from_file(input_dataframe)[1]
+        input_dataframe_total = pd.read_csv(dataframe_total)
+        save_obj_user_uploads(input_dataframe_total, name="total_dataframe_user_uploads")
+        view_df = frame_from_file(input_dataframe_total)[0]
+        token_list, value_list = frame_from_file(input_dataframe_total)[1]
+        
+        input_dataframe_SVO = pd.read_csv(dataframe_SVO)
+        save_obj_user_uploads(input_dataframe_SVO, name="SVO_dataframe_user_uploads")
+        
 
         # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
