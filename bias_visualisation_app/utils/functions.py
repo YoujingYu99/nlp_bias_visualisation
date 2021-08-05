@@ -676,6 +676,31 @@ def frame_from_file(view_df):
     return view_df, (token_list, value_list)
 
 def SVO_analysis(view_df):
+    #columns = ['subject', 'subject_gender', 'verb', 'object', 'object_gender']
+    female_sub_df = view_df.loc[df['subject_gender'] == 'female']
+    female_obj_df = view_df.loc[df['object_gender'] == 'female']
+    male_sub_df = view_df.loc[df['subject_gender'] == 'male']
+    male_obj_df = view_df.loc[df['object_gender'] == 'male']
+
+    female_sub_df['Frequency'] = df.groupby('subject')['subject'].transform('count')
+    female_sub_df.sort_values('Frequency', inplace=True, ascending=False)
+    female_sub_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
+    female_sub_df.drop_duplicates()
+    female_obj_df['Frequency'] = df.groupby('object')['object'].transform('count')
+    female_obj_df.sort_values('Frequency', inplace=True, ascending=False)
+    female_obj_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
+    female_obj_df.drop_duplicates()
+
+    male_sub_df['Frequency'] = df.groupby('subject')['subject'].transform('count')
+    male_sub_df.sort_values('Frequency', inplace=True, ascending=False)
+    male_sub_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
+    male_sub_df.drop_duplicates()
+    male_obj_df['Frequency'] = df.groupby('subject')['subject'].transform('count')
+    male_obj_df.sort_values('Frequency', inplace=True, ascending=False)
+    male_sub_df.drop(['subject', 'subject_gender', 'object', 'object_gender'], axis=1)
+    male_obj_df.drop_duplicates()
+
+    return female_sub_df, female_obj_df, male_sub_df, male_obj_df
 
 
 def gender_dataframe_from_tuple(view_df):

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="More routes for SVO download and upload">
+    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="">
@@ -14442,7 +14440,7 @@
       <option name="presentableId" value="Default" />
       <updated>1628094219451</updated>
       <workItem from="1628094222465" duration="3333000" />
-      <workItem from="1628145335316" duration="1183000" />
+      <workItem from="1628145335316" duration="2266000" />
     </task>
     <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
       <created>1628096157891</created>
@@ -14472,7 +14470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628097492706</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adding routes for processing SVO">
+      <created>1628146617952</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628146617952</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -14495,7 +14500,8 @@
     <MESSAGE value="Writing dataframe for subject and object gender identification" />
     <MESSAGE value="Adding routes for SVO dataframe" />
     <MESSAGE value="More routes for SVO download and upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="More routes for SVO download and upload" />
+    <MESSAGE value="Adding routes for processing SVO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding routes for processing SVO" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628097274898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
