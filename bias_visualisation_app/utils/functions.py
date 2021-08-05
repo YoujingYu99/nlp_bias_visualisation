@@ -667,13 +667,15 @@ def generate_bias_values(input_data):
     view_df = list_to_dataframe(view_results)
     save_obj_text(view_df, name='total_dataframe')
 
-    # SVO_df = determine_gender_SVO(input_data)
-    # save_obj_text(SVO_df, name='SVO_dataframe')
+    SVO_df = determine_gender_SVO(input_data)
+    save_obj_text(SVO_df, name='SVO_dataframe')
 
 
 def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
     return view_df, (token_list, value_list)
+
+def SVO_analysis(view_df):
 
 
 def gender_dataframe_from_tuple(view_df):

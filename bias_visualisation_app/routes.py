@@ -179,10 +179,9 @@ def detect_corpora():
             )
         generate_bias_values(input_data)
 
-    return render_template('index.html')
 
-@app.route("/detect_dataframe", methods=['GET', 'POST'])
-def detect_dataframe():
+@app.route("/detect_SVO_dataframe", methods=['GET', 'POST'])
+def detect_SVO_dataframe():
     if request.method == "POST":
         try:
             dataframe = request.files['raw_file']
@@ -191,7 +190,7 @@ def detect_dataframe():
             print(sys.exc_info()[0])
         input_dataframe = pd.read_csv(dataframe)
         print(input_dataframe)
-        save_obj_user_uploads(input_dataframe, name="total_dataframe_user_uploads")
+        save_obj_user_uploads(input_dataframe, name="SVO_dataframe_user_uploads")
         view_df = frame_from_file(input_dataframe)[0]
         token_list, value_list = frame_from_file(input_dataframe)[1]
 
@@ -219,7 +218,7 @@ def detect_dataframe():
                                male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
                                male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
-    return render_template('index.html')
+
 
 
 # . It works by looking at differences between male and female word pairs
