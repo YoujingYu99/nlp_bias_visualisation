@@ -13,7 +13,7 @@ import pickle
 from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, SVO_analysis,\
     generate_bias_values, save_obj, save_obj_text, save_obj_user_uploads, load_obj, load_obj_user_uploads, frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
@@ -191,32 +191,8 @@ def detect_SVO_dataframe():
         input_dataframe = pd.read_csv(dataframe)
         print(input_dataframe)
         save_obj_user_uploads(input_dataframe, name="SVO_dataframe_user_uploads")
-        view_df = frame_from_file(input_dataframe)[0]
-        token_list, value_list = frame_from_file(input_dataframe)[1]
 
-        # plot the bar graphs and word clouds
-        plot_bar = bar_graph(view_df, token_list, value_list)
-        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-        # only perform tsne plot if more than 100 tokens
-        if len(token_list) > 100:
-            plot_tsne = tsne_graph(token_list)
-            plot_tsne_male = tsne_graph_male(token_list, value_list)
-            plot_tsne_female = tsne_graph_female(token_list, value_list)
-            plot_pca = pca_graph(token_list)
-            plot_pca_male = pca_graph_male(token_list, value_list)
-            plot_pca_female = pca_graph_female(token_list, value_list)
-        else:
-            plot_tsne = url_for('static', filename="nothing_here.png")
-            plot_tsne_male = url_for('static', filename="nothing_here.png")
-            plot_tsne_female = url_for('static', filename="nothing_here.png")
-            plot_pca = url_for('static', filename="nothing_here.png")
-            plot_pca_male = url_for('static', filename="nothing_here.png")
-            plot_pca_female = url_for('static', filename="nothing_here.png")
-
-        return render_template('visualisation.html', bar_graph=plot_bar,
-                               female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud, tsne_graph=plot_tsne,
-                               male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
-                               male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+        return render_template('index.html')
 
 
 
@@ -232,17 +208,19 @@ def detect_SVO_dataframe():
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
     # open dataframe file
-    input_dataframe = load_obj_user_uploads(name="total_dataframe_user_uploads")
-    view_df = input_dataframe
+    view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
+    input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
+
     #view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
+    female_sub_df, female_obj_df, male_sub_df, male_obj_df = SVO_analysis(input_SVO_dataframe)
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
-                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
-                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'verbs'}],
+                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df, data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df, data_m_sub_verb=male_sub_df, data_m_obj_verb=male_obj_df,
+                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'subject_verbs'}, {'type': 'object_verbs'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
@@ -250,8 +228,9 @@ def analysis():
 def query():
     if request.method == 'POST':
         # open dataframe file
-        input_dataframe = load_obj_user_uploads(name="total_dataframe_user_uploads")
-        view_df = input_dataframe
+        view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
+        input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
+
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df)

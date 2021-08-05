@@ -218,7 +218,6 @@ import nltk.classify as cf
 import nltk
 import spacy
 
-
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl"]
 OBJECTS = ["dobj", "dative", "attr", "oprd"]
 ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
@@ -494,20 +493,27 @@ def determine_gender_SVO(input_data):
     # now loop over each sentence and tokenize it separately
     for sentence in sent_text:
         parse = parser(sentence)
-        SVO_list = findSVAOs(parse)
-        sub, verb, obj = SVO_list[0][0], SVO_list[0][1], SVO_list[0][2]
-        print(sub)
+        try:
+            SVO_list = findSVAOs(parse)
+            print("SVO_list", SVO_list)
+            sub, verb, obj = SVO_list[0][0], SVO_list[0][1], SVO_list[0][2]
+            print(sub)
 
-        sub_feature = {'feature': sub[-best_letters:]}
-        sub_gender = gender_model.classify(sub_feature)
-        obj_feature = {'feature': obj[-best_letters:]}
-        obj_gender = gender_model.classify(obj_feature)
+            sub_feature = {'feature': sub[-best_letters:]}
+            sub_gender = gender_model.classify(sub_feature)
+            obj_feature = {'feature': obj[-best_letters:]}
+            obj_gender = gender_model.classify(obj_feature)
 
-        sub_list.append(sub)
-        sub_gender_list.append(sub_gender)
-        verb_list.append(verb)
-        obj_list.append(obj)
-        obj_gender_list.append(obj_gender)
+        except:
+            continue
+
+
+
+    sub_list.append(sub)
+    sub_gender_list.append(sub_gender)
+    verb_list.append(verb)
+    obj_list.append(obj)
+    obj_gender_list.append(obj_gender)
 
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
@@ -675,8 +681,9 @@ def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
     return view_df, (token_list, value_list)
 
+
 def SVO_analysis(view_df):
-    #columns = ['subject', 'subject_gender', 'verb', 'object', 'object_gender']
+    # columns = ['subject', 'subject_gender', 'verb', 'object', 'object_gender']
     female_sub_df = view_df.loc[df['subject_gender'] == 'female']
     female_obj_df = view_df.loc[df['object_gender'] == 'female']
     male_sub_df = view_df.loc[df['subject_gender'] == 'male']
@@ -780,45 +787,87 @@ def bar_graph(dataframe, token_list, value_list):
 
 def specific_bar_graph(df_name='specific_df'):
     # set minus sign
-    mpl.rcParams['axes.unicode_minus'] = False
-    np.random.seed(12345)
-    df = load_obj(name=df_name)
-    set_x_tick = True
+    try:
+        mpl.rcParams['axes.unicode_minus'] = False
+        np.random.seed(12345)
+        df = load_obj(name=df_name)
+        set_x_tick = True
 
-    plt.style.use('ggplot')
-    plt.rcParams['font.family'] = ['sans-serif']
-    plt.rcParams['font.sans-serif'] = ['SimHei']
-    fig, ax = plt.subplots()
+        plt.style.use('ggplot')
+        plt.rcParams['font.family'] = ['sans-serif']
+        plt.rcParams['font.sans-serif'] = ['SimHei']
+        fig, ax = plt.subplots()
 
-    # set up the colors
-    cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
-    df_mean = df.mean(axis=1)
-    norm = plt.Normalize(df_mean.min(), df_mean.max())
-    colors = cmap(norm(df_mean))
+        # set up the colors
+        cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+        df_mean = df.mean(axis=1)
+        norm = plt.Normalize(df_mean.min(), df_mean.max())
+        colors = cmap(norm(df_mean))
 
-    ax.barh(
-        df['token'],
-        df['bias'],
-        yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-        color=colors)
-    fig.colorbar(ScalarMappable(cmap=cmap))
+        ax.barh(
+            df['token'],
+            df['bias'],
+            yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+            color=colors)
+        fig.colorbar(ScalarMappable(cmap=cmap))
 
-    ax.set_title('Specific Word Bias', fontsize=12)
-    ax.set_xlabel('Word')
-    ax.xaxis.set_visible(set_x_tick)
+        ax.set_title('Specific Word Bias', fontsize=12)
+        ax.set_xlabel('Word')
+        ax.xaxis.set_visible(set_x_tick)
 
-    ax.set_ylabel('Bias Value')
-    plt.tight_layout()
+        ax.set_ylabel('Bias Value')
+        plt.tight_layout()
 
-    # save file to static
-    bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
-    bar_name_ex = bar_name + '.png'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
-    bar_path = save_img_path + '.png'
-    plt.savefig(bar_path)
-    plot_bar = url_for('static', filename=bar_name_ex)
+        # save file to static
+        bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
+        bar_name_ex = bar_name + '.png'
+        save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+        bar_path = save_img_path + '.png'
+        plt.savefig(bar_path)
+        plot_bar = url_for('static', filename=bar_name_ex)
 
-    return plot_bar
+        return plot_bar
+
+    except:
+        mpl.rcParams['axes.unicode_minus'] = False
+        np.random.seed(12345)
+        df = load_obj(name=df_name)
+        set_x_tick = True
+
+        plt.style.use('ggplot')
+        plt.rcParams['font.family'] = ['sans-serif']
+        plt.rcParams['font.sans-serif'] = ['SimHei']
+        fig, ax = plt.subplots()
+
+        # set up the colors
+        cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+        df_mean = df.mean(axis=1)
+        norm = plt.Normalize(df_mean.min(), df_mean.max())
+        colors = cmap(norm(df_mean))
+
+        ax.barh(
+            df['verb'],
+            df['Frequency'],
+            yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+            color=colors)
+        fig.colorbar(ScalarMappable(cmap=cmap))
+
+        ax.set_title('Specific Word Frequency', fontsize=12)
+        ax.set_xlabel('Word')
+        ax.xaxis.set_visible(set_x_tick)
+
+        ax.set_ylabel('Frequency')
+        plt.tight_layout()
+
+        # save file to static
+        bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
+        bar_name_ex = bar_name + '.png'
+        save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+        bar_path = save_img_path + '.png'
+        plt.savefig(bar_path)
+        plot_bar = url_for('static', filename=bar_name_ex)
+
+        return plot_bar
 
 
 # def bar_graph(token_list, value_list):
@@ -1269,17 +1318,20 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     return plot_pca_female
 
 
-def df_based_on_question(select_wordtype, select_gender, view_df):
+def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
+    female_sub_df, female_obj_df, male_sub_df, male_obj_df = SVO_analysis(input_SVO_dataframe)
     if select_gender == 'female':
         if select_wordtype == 'nouns':
             return female_noun_df
         if select_wordtype == 'adjectives':
             return female_adj_df
-        if select_wordtype == 'verbs':
-            return female_verb_df
+        if select_wordtype == 'subject_verbs':
+            return female_sub_df
+        if select_wordtype == 'object_verbs':
+            return female_obj_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
@@ -1289,246 +1341,14 @@ def df_based_on_question(select_wordtype, select_gender, view_df):
             return male_noun_df
         if select_wordtype == 'adjectives':
             return male_adj_df
-        if select_wordtype == 'verbs':
-            return male_verb_df
+        if select_wordtype == 'subject_verbs':
+            return female_sub_df
+        if select_wordtype == 'object_verbs':
+            return female_obj_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
             )
-
-
-# parsing verb based on SVO tagging
-SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl"]
-OBJECTS = ["dobj", "dative", "attr", "oprd"]
-ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
-              "hmod", "infmod", "xcomp", "rcmod", "poss", "possessive"]
-COMPOUNDS = ["compound"]
-PREPOSITIONS = ["prep"]
-
-
-def getSubsFromConjunctions(subs):
-    moreSubs = []
-    for sub in subs:
-        # rights is a generator
-        rights = list(sub.rights)
-        rightDeps = {tok.lower_ for tok in rights}
-        if "and" in rightDeps:
-            moreSubs.extend([tok for tok in rights if tok.dep_ in SUBJECTS or tok.pos_ == "NOUN"])
-            if len(moreSubs) > 0:
-                moreSubs.extend(getSubsFromConjunctions(moreSubs))
-    return moreSubs
-
-
-def getObjsFromConjunctions(objs):
-    moreObjs = []
-    for obj in objs:
-        # rights is a generator
-        rights = list(obj.rights)
-        rightDeps = {tok.lower_ for tok in rights}
-        if "and" in rightDeps:
-            moreObjs.extend([tok for tok in rights if tok.dep_ in OBJECTS or tok.pos_ == "NOUN"])
-            if len(moreObjs) > 0:
-                moreObjs.extend(getObjsFromConjunctions(moreObjs))
-    return moreObjs
-
-
-def getVerbsFromConjunctions(verbs):
-    moreVerbs = []
-    for verb in verbs:
-        rightDeps = {tok.lower_ for tok in verb.rights}
-        if "and" in rightDeps:
-            moreVerbs.extend([tok for tok in verb.rights if tok.pos_ == "VERB"])
-            if len(moreVerbs) > 0:
-                moreVerbs.extend(getVerbsFromConjunctions(moreVerbs))
-    return moreVerbs
-
-
-def findSubs(tok):
-    head = tok.head
-    while head.pos_ != "VERB" and head.pos_ != "NOUN" and head.head != head:
-        head = head.head
-    if head.pos_ == "VERB":
-        subs = [tok for tok in head.lefts if tok.dep_ == "SUB"]
-        if len(subs) > 0:
-            verbNegated = isNegated(head)
-            subs.extend(getSubsFromConjunctions(subs))
-            return subs, verbNegated
-        elif head.head != head:
-            return findSubs(head)
-    elif head.pos_ == "NOUN":
-        return [head], isNegated(tok)
-    return [], False
-
-
-def isNegated(tok):
-    negations = {"no", "not", "n't", "never", "none"}
-    for dep in list(tok.lefts) + list(tok.rights):
-        if dep.lower_ in negations:
-            return True
-    return False
-
-
-def findSVs(tokens):
-    svs = []
-    verbs = [tok for tok in tokens if tok.pos_ == "VERB"]
-    for v in verbs:
-        subs, verbNegated = getAllSubs(v)
-        if len(subs) > 0:
-            for sub in subs:
-                svs.append((sub.orth_, "!" + v.orth_ if verbNegated else v.orth_))
-    return svs
-
-
-def getObjsFromPrepositions(deps):
-    objs = []
-    for dep in deps:
-        if dep.pos_ == "ADP" and dep.dep_ == "prep":
-            objs.extend(
-                [tok for tok in dep.rights if tok.dep_ in OBJECTS or (tok.pos_ == "PRON" and tok.lower_ == "me")])
-    return objs
-
-
-def getAdjectives(toks):
-    toks_with_adjectives = []
-    for tok in toks:
-        adjs = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
-        adjs.append(tok)
-        adjs.extend([right for right in tok.rights if tok.dep_ in ADJECTIVES])
-        tok_with_adj = " ".join([adj.lower_ for adj in adjs])
-        toks_with_adjectives.extend(adjs)
-
-    return toks_with_adjectives
-
-
-def getObjsFromAttrs(deps):
-    for dep in deps:
-        if dep.pos_ == "NOUN" and dep.dep_ == "attr":
-            verbs = [tok for tok in dep.rights if tok.pos_ == "VERB"]
-            if len(verbs) > 0:
-                for v in verbs:
-                    rights = list(v.rights)
-                    objs = [tok for tok in rights if tok.dep_ in OBJECTS]
-                    objs.extend(getObjsFromPrepositions(rights))
-                    if len(objs) > 0:
-                        return v, objs
-    return None, None
-
-
-def getObjFromXComp(deps):
-    for dep in deps:
-        if dep.pos_ == "VERB" and dep.dep_ == "xcomp":
-            v = dep
-            rights = list(v.rights)
-            objs = [tok for tok in rights if tok.dep_ in OBJECTS]
-            objs.extend(getObjsFromPrepositions(rights))
-            if len(objs) > 0:
-                return v, objs
-    return None, None
-
-
-def getAllSubs(v):
-    verbNegated = isNegated(v)
-    subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS and tok.pos_ != "DET"]
-    if len(subs) > 0:
-        subs.extend(getSubsFromConjunctions(subs))
-    else:
-        foundSubs, verbNegated = findSubs(v)
-        subs.extend(foundSubs)
-    return subs, verbNegated
-
-
-def getAllObjs(v):
-    # rights is a generator
-    rights = list(v.rights)
-    objs = [tok for tok in rights if tok.dep_ in OBJECTS]
-    objs.extend(getObjsFromPrepositions(rights))
-
-    potentialNewVerb, potentialNewObjs = getObjFromXComp(rights)
-    if potentialNewVerb is not None and potentialNewObjs is not None and len(potentialNewObjs) > 0:
-        objs.extend(potentialNewObjs)
-        v = potentialNewVerb
-    if len(objs) > 0:
-        objs.extend(getObjsFromConjunctions(objs))
-    return v, objs
-
-
-def getAllObjsWithAdjectives(v):
-    # rights is a generator
-    rights = list(v.rights)
-    objs = [tok for tok in rights if tok.dep_ in OBJECTS]
-
-    if len(objs) == 0:
-        objs = [tok for tok in rights if tok.dep_ in ADJECTIVES]
-
-    objs.extend(getObjsFromPrepositions(rights))
-
-    potentialNewVerb, potentialNewObjs = getObjFromXComp(rights)
-    if potentialNewVerb is not None and potentialNewObjs is not None and len(potentialNewObjs) > 0:
-        objs.extend(potentialNewObjs)
-        v = potentialNewVerb
-    if len(objs) > 0:
-        objs.extend(getObjsFromConjunctions(objs))
-    return v, objs
-
-
-def findSVOs(tokens):
-    svos = []
-    verbs = [tok for tok in tokens if tok.pos_ == "AUX"]
-    for v in verbs:
-        subs, verbNegated = getAllSubs(v)
-        # hopefully there are subs, if not, don't examine this verb any longer
-        if len(subs) > 0:
-            v, objs = getAllObjs(v)
-            for sub in subs:
-                for obj in objs:
-                    objNegated = isNegated(obj)
-                    svos.append((sub.lower_, "!" + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
-    return svos
-
-
-def findSVAOs(tokens):
-    svos = []
-    verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    for v in verbs:
-        subs, verbNegated = getAllSubs(v)
-        # hopefully there are subs, if not, don't examine this verb any longer
-        if len(subs) > 0:
-            v, objs = getAllObjsWithAdjectives(v)
-            for sub in subs:
-                for obj in objs:
-                    objNegated = isNegated(obj)
-                    obj_desc_tokens = generate_left_right_adjectives(obj)
-                    sub_compound = generate_sub_compound(sub)
-                    svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                 "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                 " ".join(tok.lower_ for tok in obj_desc_tokens)))
-    return svos
-
-
-def generate_sub_compound(sub):
-    sub_compunds = []
-    for tok in sub.lefts:
-        if tok.dep_ in COMPOUNDS:
-            sub_compunds.extend(generate_sub_compound(tok))
-    sub_compunds.append(sub)
-    for tok in sub.rights:
-        if tok.dep_ in COMPOUNDS:
-            sub_compunds.extend(generate_sub_compound(tok))
-    return sub_compunds
-
-
-def generate_left_right_adjectives(obj):
-    obj_desc_tokens = []
-    for tok in obj.lefts:
-        if tok.dep_ in ADJECTIVES:
-            obj_desc_tokens.extend(generate_left_right_adjectives(tok))
-    obj_desc_tokens.append(obj)
-
-    for tok in obj.rights:
-        if tok.dep_ in ADJECTIVES:
-            obj_desc_tokens.extend(generate_left_right_adjectives(tok))
-
-    return obj_desc_tokens
 
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
 # p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'

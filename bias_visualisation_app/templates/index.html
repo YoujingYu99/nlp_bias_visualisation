@@ -103,7 +103,24 @@
      </br>
      </br>
 
-     <!--Upload Dataframe-->
+     <!--Upload SVO and Total Dataframe-->
+     <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+            <form enctype="multipart/form-data" method="POST" action="/detect_SVO_dataframe">
+                <h5>Upload SVO Dataframe Here</h5>
+                <input type="file" name="raw_file" placeholder="Upload SVO Datarame Here" required="true">
+                </br>
+                </br>
+                </br>
+                <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="reset">Clear</button>
+                <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="input-field col s12 m10">
           <div class="icon-block">
@@ -121,24 +138,6 @@
         </div>
       </div>
 
-
-
-      <div class="row">
-        <div class="input-field col s12 m10">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
-            <form enctype="multipart/form-data" method="POST" action="/detect_SVO_dataframe">
-                <h5>Upload SVO Dataframe Here</h5>
-                <input type="file" name="raw_file" placeholder="Upload SVO Datarame Here" required="true">
-                </br>
-                </br>
-                </br>
-                <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="reset">Clear</button>
-                <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
   </div>
   <!-- End -->
 
