@@ -12,6 +12,7 @@ import requests
 import werkzeug
 from werkzeug.utils import secure_filename
 import spacy
+from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from flask import url_for
@@ -480,7 +481,47 @@ best_letters = best_index + 1
 gender_model = models[best_index]
 best_ac = acs[best_index]
 
-neutral_sub_list = ['I', 'me', 'my', 'i']
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs']
+
+spec_chars = ['!',''','#','%','&',''','(',')',
+              '*','+',',','-','.','/',':',';','<',
+              '=','>','?','@','[','\\',']','^','_',
+              '`','{','|','}','~','–']
+
+def reset_gender(subject, subject_gender):
+    if subject == 'he':
+        subject_gender_new = 'male'
+    elif subject == 'she':
+        subject_gender_new = 'female'
+    elif subject in neutral_sub_list:
+        subject_gender_new = 'neutral'
+    else:
+        subject_gender_new = subject_gender
+    return subject_gender_new
+
+def clean_SVO_dataframe(SVO_df):
+    # cleaning up the SVO dataframe
+    SVO_df['subject_gender'] = SVO_df.apply(lambda x: reset_gender(x.subject, x.subject_gender), axis=1)
+    SVO_df['object_gender'] = SVO_df.apply(lambda x: reset_gender(x.object, x.object_gender), axis=1)
+
+    for char in spec_chars:
+        SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
+        SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
+        SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
+
+    # get base form of verb
+    verb_list = SVO_df['verb'].to_list()
+    verb_base_list = []
+    for verb in verb_list:
+        base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+        verb_base_list.append(base_word)
+
+    SVO_df['verb'] = verb_base_list
+
+    print(SVO_df)
+    return SVO_df
+
+
 
 
 def determine_gender_SVO(input_data):
@@ -516,11 +557,9 @@ def determine_gender_SVO(input_data):
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
 
-    # remove neutral words
-    # SVO_df['subject_gender'] = SVO_df.apply(lambda x: 'neutral' if x['subject'] in neutral_sub_list else SVO_df['subject_gender'], axis=1)
-    # SVO_df['object_gender'] = SVO_df.apply(lambda x: 'neutral' if x['object'] in neutral_sub_list else SVO_df['object_gender'], axis=1)
+    #cleaning up the SVO dataframe
+    SVO_df = clean_SVO_dataframe(SVO_df)
 
-    print(SVO_df)
 
     return SVO_df
 
@@ -703,7 +742,7 @@ def SVO_analysis(view_df):
 
     female_obj_df['Frequency'] = female_obj_df['verb'].map(female_obj_df['verb'].value_counts())
     female_obj_df.sort_values('Frequency', inplace=True, ascending=False)
-    female_obj_df.drop(columns=['subject', 'object_gender', 'object', 'object_gender'], inplace=True)
+    female_obj_df.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
     female_obj_df.drop_duplicates(subset='verb',
                                   keep=False, inplace=True)
 
@@ -715,7 +754,7 @@ def SVO_analysis(view_df):
 
     male_obj_df['Frequency'] = male_obj_df['verb'].map(male_obj_df['verb'].value_counts())
     male_obj_df.sort_values('Frequency', inplace=True, ascending=False)
-    male_obj_df.drop(columns=['subject', 'object_gender', 'object', 'object_gender'], inplace=True)
+    male_obj_df.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
     male_obj_df.drop_duplicates(subset='verb',
                                 keep=False, inplace=True)
 
