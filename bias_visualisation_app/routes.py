@@ -244,14 +244,16 @@ def analysis():
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
-    female_sub_df, female_obj_df, male_sub_df, male_obj_df = SVO_analysis(input_SVO_dataframe)
+    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
                            data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
-                           data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df, data_m_sub_verb=male_sub_df,
+                           data_fm_intran_verb=female_intran_df,
+                           data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
+                           data_m_intran_verb=male_intran_df, data_m_sub_verb=male_sub_df,
                            data_m_obj_verb=male_obj_df,
-                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'subject_verbs'},
+                           wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'intransitive_verbs'}, {'type': 'subject_verbs'},
                                           {'type': 'object_verbs'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 

@@ -483,7 +483,62 @@ sentence = 'Hilary is supported by John. Hilary is supported. Mary smiles. Mary 
 determine_gender_SVO(sentence)
 
 
+def SVO_analysis(view_df):
+    # columns = ['subject', 'subject_gender', 'verb', 'object', 'object_gender']
+    female_sub_df = view_df.loc[view_df['subject_gender'] == 'female']
+    female_obj_df = view_df.loc[view_df['object_gender'] == 'female']
+    intran_df = view_df.loc[view_df['object_gender'] == 'neutral_intransitive']
 
+    male_sub_df = view_df.loc[view_df['subject_gender'] == 'male']
+    male_obj_df = view_df.loc[view_df['object_gender'] == 'male']
+    female_intran_df = intran_df.loc[intran_df['subject_gender'] == 'female']
+    male_intran_df = intran_df.loc[intran_df['subject_gender'] == 'male']
+
+    # female_sub_df['Frequency'] = female_sub_df.groupby('subject').transform('count')
+    # df['frequency'] = df['county'].map(df['county'].value_counts())
+    female_sub_df_new = female_sub_df.copy()
+    female_sub_df_new['Frequency'] = female_sub_df_new['verb'].map(female_sub_df_new['verb'].value_counts())
+    female_sub_df_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_sub_df_new.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    female_sub_df_new.drop_duplicates(subset='verb',
+                                  keep=False, inplace=True)
+
+    female_obj_df_new = female_obj_df.copy()
+    female_obj_df_new['Frequency'] = female_obj_df_new['verb'].map(female_obj_df_new['verb'].value_counts())
+    female_obj_df_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_obj_df_new.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    female_obj_df_new.drop_duplicates(subset='verb',
+                                  keep=False, inplace=True)
+
+    male_sub_df_new = male_sub_df.copy()
+    male_sub_df_new['Frequency'] = male_sub_df_new['verb'].map(male_sub_df_new['verb'].value_counts())
+    male_sub_df_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_sub_df_new.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    male_sub_df_new.drop_duplicates(subset='verb',
+                                keep=False, inplace=True)
+
+    male_obj_df_new = male_obj_df.copy()
+    male_obj_df_new['Frequency'] = male_obj_df_new['verb'].map(male_obj_df_new['verb'].value_counts())
+    male_obj_df_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_obj_df_new.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    male_obj_df_new.drop_duplicates(subset='verb',
+                                keep=False, inplace=True)
+    
+    female_intran_df_new = female_intran_df.copy()
+    female_intran_df_new['Frequency'] = female_intran_df_new['verb'].map(female_intran_df_new['verb'].value_counts())
+    female_intran_df_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_intran_df_new.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    female_intran_df_new.drop_duplicates(subset='verb',
+                                      keep=False, inplace=True)
+    
+    male_intran_df_new = male_intran_df.copy()
+    male_intran_df_new['Frequency'] = male_intran_df_new['verb'].map(male_intran_df_new['verb'].value_counts())
+    male_intran_df_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_intran_df_new.drop(columns=['subject', 'subject_gender', 'object', 'object_gender'], inplace=True)
+    male_intran_df_new.drop_duplicates(subset='verb',
+                                      keep=False, inplace=True)
+
+    return female_sub_df_new, female_obj_df_new, female_intran_df_new, male_sub_df_new, male_obj_df_new, male_intran_df_new
 
 
 

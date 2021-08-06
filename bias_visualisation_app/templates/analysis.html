@@ -155,6 +155,11 @@
 
             <div id="tab4" class="col s12">
               <h5>Verbs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_intran_verbs }}</p></div>
+              <h3 style="text-align: center">Female Intransitive Verbs</h3>
+                {{ data_fm_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_sub_verbs }}</p></div>
               <h3 style="text-align: center">Female As Subject</h3>
                 {{ data_fm_sub_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
@@ -163,6 +168,11 @@
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_obj_verbs }}</p></div>
               <h3 style="text-align: center">Female As Object</h3>
                 {{ data_fm_obj_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_intran_verbs }}</p></div>
+              <h3 style="text-align: center">Male Intransitive Verbs</h3>
+                {{ data_m_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_sub_verbs }}</p></div>
