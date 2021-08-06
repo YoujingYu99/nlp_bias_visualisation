@@ -317,7 +317,11 @@ def findSVAOs(tokens):
                     print(new_subs)
                     new_sub = new_subs[0]
 
-            svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+                svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+
+            else:
+                svos = [" ", str(new_verb), str(new_objs[0])]
+
 
     return svos
 
@@ -349,7 +353,7 @@ def generate_left_right_adjectives(obj):
 
 
 
-sentence = 'Hilary is supported by John'
+sentence = 'Hilary is supported'
 
 
 
