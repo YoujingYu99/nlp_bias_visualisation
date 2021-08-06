@@ -136,7 +136,7 @@ def getObjFromXComp(deps):
                 return v, objs
     return None, None
 
-
+non_sub_pos = ["DET", "AUX"]
 def getAllSubs(v):
     verbNegated = isNegated(v)
     for tok in v.lefts:
@@ -146,9 +146,9 @@ def getAllSubs(v):
     #subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
     subs = []
     for tok in v.lefts:
-        if tok.dep_ in SUBJECTS and tok.pos_ != "DET":
+        if tok.dep_ in SUBJECTS and tok.pos_ not in non_sub_pos:
             subs.append(tok)
-        elif type(tok.dep_) == int or float and tok.pos_ != "DET":
+        elif type(tok.dep_) == int or float and tok.pos_ not in non_sub_pos:
             subs.append(tok)
         else:
             continue
