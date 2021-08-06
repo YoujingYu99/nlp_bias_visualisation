@@ -143,13 +143,26 @@ def getAllSubs(v):
         print(tok)
         print(tok.dep)
         print(tok.pos_)
-    subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS and tok.pos_ != "DET"]
+    #subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
+    subs = []
+    for tok in v.lefts:
+        if tok.dep_ in SUBJECTS and tok.pos_ != "DET":
+            print('working here')
+            subs.append(tok)
+        elif type(tok.dep_) == int or float and tok.pos_ != "DET":
+            print('no here')
+            subs.append(tok)
+        else:
+            print('nothing!')
     print(subs)
     if len(subs) > 0:
         subs.extend(getSubsFromConjunctions(subs))
+
     else:
         foundSubs, verbNegated = findSubs(v)
         subs.extend(foundSubs)
+    print('result from get_all_subs')
+    print(subs, verbNegated)
     return subs, verbNegated
 
 
@@ -214,18 +227,30 @@ def findSVAOs(tokens):
     for v in verbs:
         print('start getting subs')
         subs, verbNegated = getAllSubs(v)
-        print(subs)
         # hopefully there are subs, if not, don't examine this verb any longer
         if len(subs) > 0:
             v, objs = getAllObjs(v)
-            for sub in subs:
-                for obj in objs:
-                    objNegated = isNegated(obj)
-                    obj_desc_tokens = generate_left_right_adjectives(obj)
-                    sub_compound = generate_sub_compound(sub)
-                    svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                 "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                 " ".join(tok.lower_ for tok in obj_desc_tokens)))
+            print('verb, objects')
+            print(v, objs)
+            if len(objs) > 0:
+                print(objs)
+                print('obj not empty')
+                for sub in subs:
+                    for obj in objs:
+                        objNegated = isNegated(obj)
+                        obj_desc_tokens = generate_left_right_adjectives(obj)
+                        sub_compound = generate_sub_compound(sub)
+                        svos.append((" ".join(tok.lower_ for tok in sub_compound),
+                                     "!" + v.lower_ if verbNegated or objNegated else v.lower_,
+                                     " ".join(tok.lower_ for tok in obj_desc_tokens)))
+
+            if len(objs) == 0:
+                print(objs)
+                print('obj empty')
+                svos = [str(subs[0]), str(v)]
+                svos.append(" ")
+            print('SVO list')
+            print(svos)
     return svos
 
 
