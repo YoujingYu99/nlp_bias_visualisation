@@ -564,6 +564,9 @@ def determine_gender_SVO(input_data):
 
     return SVO_df
 
+def lemmatize_text(text):
+    lemmatizer = WordNetLemmatizer()
+    return [lemmatizer.lemmatize(w, 'v') for w in text]
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
     # put into a dataframe
@@ -572,6 +575,16 @@ def list_to_dataframe(view_results, scale_range=(-1, 1)):
     df = df.dropna()
     # Normalise to -1 an 1
     scaler = MinMaxScaler(feature_range=scale_range)
+    # lemmatize the tokens
+    # get base form of token
+    tok_list = df['token'].to_list()
+    tok_base_list = []
+    for tok in tok_list:
+        base_word = WordNetLemmatizer().lemmatize(tok)
+        base_word.strip()
+        tok_base_list.append(base_word)
+
+    df['token'] = tok_base_list
     df['bias'] = scaler.fit_transform(df[['bias']])
 
     return df

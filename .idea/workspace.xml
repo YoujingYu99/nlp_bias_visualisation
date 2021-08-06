@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/SVO_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/total_dataframe.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="">
@@ -8994,7 +8997,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test_function">
+  <component name="RunManager" selected="Flask server.visualising_data_bias">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -9061,7 +9064,7 @@
       <workItem from="1628160116728" duration="7534000" />
       <workItem from="1628180981852" duration="2717000" />
       <workItem from="1628242928188" duration="5268000" />
-      <workItem from="1628252971946" duration="1601000" />
+      <workItem from="1628252971946" duration="3262000" />
     </task>
     <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
       <created>1628096157891</created>
@@ -9168,7 +9171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628248391174</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Successfully tracking intransitive verbs.">
+      <created>1628254670576</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1628254670576</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -9204,11 +9214,12 @@
     <MESSAGE value="Adding strip to stemmatize verbs better" />
     <MESSAGE value="Startign on intransitive verb identification" />
     <MESSAGE value="Getting subjects for intransitive verbs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Getting subjects for intransitive verbs" />
+    <MESSAGE value="Successfully tracking intransitive verbs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully tracking intransitive verbs." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628182650929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628254508352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628256147972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628254907892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>
 </project>

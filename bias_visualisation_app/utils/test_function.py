@@ -147,14 +147,11 @@ def getAllSubs(v):
     subs = []
     for tok in v.lefts:
         if tok.dep_ in SUBJECTS and tok.pos_ != "DET":
-            print('working here')
             subs.append(tok)
         elif type(tok.dep_) == int or float and tok.pos_ != "DET":
-            print('no here')
             subs.append(tok)
         else:
-            print('nothing!')
-    print(subs)
+            continue
     if len(subs) > 0:
         subs.extend(getSubsFromConjunctions(subs))
 
@@ -222,6 +219,7 @@ def findSVOs(tokens):
 
 def findSVAOs(tokens):
     svos = []
+    # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
     print(verbs)
     for v in verbs:
@@ -281,7 +279,7 @@ def generate_left_right_adjectives(obj):
 
 
 
-sentence = 'Hilary waters'
+sentence = 'Hilary has been watering plants'
 
 
 
