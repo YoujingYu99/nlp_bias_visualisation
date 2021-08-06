@@ -140,10 +140,6 @@ non_sub_pos = ["DET", "AUX"]
 
 def getAllSubs(v):
     verbNegated = isNegated(v)
-    for tok in v.lefts:
-        print(tok)
-        print(tok.dep)
-        print(tok.pos_)
     #subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
     subs = []
     for tok in v.lefts:
@@ -159,8 +155,6 @@ def getAllSubs(v):
     else:
         foundSubs, verbNegated = findSubs(v)
         subs.extend(foundSubs)
-    print('result from get_all_subs')
-    print(subs, verbNegated)
     return subs, verbNegated
 
 
@@ -178,9 +172,6 @@ def getAllObjs(v):
         objs.extend(getObjsFromConjunctions(objs))
     else:
         (v, objs) = v, []
-
-    print('Final result')
-    print(v, objs)
     return v, objs
 
 
@@ -262,8 +253,6 @@ def findSVAOs(tokens):
         if tok.pos_ == "VERB" and tok.tag_ == "VBN":
             not_verbs.append(tok)
 
-    print(type(not_verbs))
-    print('not verbs', not_verbs)
     #if (not_verbs not in verbs or len(not_verbs) == 0):
     if len(not_verbs) == 0:
         print('safe to proceed with first identified verb!')
@@ -285,8 +274,6 @@ def findSVAOs(tokens):
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
                     svos.append('nothing')
-                print('SVO list')
-                print(svos)
 
     elif not_verbs[0] not in verbs:
         print('safe to proceed with first identified verb!')
@@ -308,11 +295,8 @@ def findSVAOs(tokens):
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
                     svos.append('nothing')
-                print('SVO list')
-                print(svos)
 
     else:
-        print('get new subjects')
         new_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"]
         tokens_new = [t for t in tokens]
         tokens_new_str = [str(t) for t in tokens]
