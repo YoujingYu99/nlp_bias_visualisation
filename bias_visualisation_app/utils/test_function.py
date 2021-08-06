@@ -255,74 +255,87 @@ def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    # for tok in tokens:
-    #     if tok.pos_ == "VERB" and tok.dep_ != "aux":
-    #         verbs.append(tok)
-    print('verbs')
-    for v in verbs:
-        print('start getting subs')
-        subs, verbNegated = getAllSubs(v)
-        # hopefully there are subs, if not, don't examine this verb any longer
-        if len(subs) > 0:
-            v, objs = getAllObjs(v)
-            print('verb, objects')
-            print(v, objs)
-            if len(objs) > 0:
-                print(objs)
-                print('obj not empty')
-                for sub in subs:
-                    for obj in objs:
-                        objNegated = isNegated(obj)
-                        obj_desc_tokens = generate_left_right_adjectives(obj)
-                        sub_compound = generate_sub_compound(sub)
-                        svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                     "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                     " ".join(tok.lower_ for tok in obj_desc_tokens)))
+    print('first identified verbs', verbs)
+    #not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
+    not_verbs = []
+    for tok in tokens:
+        if tok.pos_ == "VERB" and tok.tag_ == "VBN":
+            not_verbs.append(tok)
 
-            if len(objs) == 0:
-                print(objs)
-                print('obj empty')
-                svos = [str(subs[0]), str(v)]
-                svos.append(" ")
-            print('SVO list')
-            print(svos)
+    print(type(not_verbs))
+    print('not verbs', not_verbs)
+    #if (not_verbs not in verbs or len(not_verbs) == 0):
+    if len(not_verbs) == 0:
+        print('safe to proceed with first identified verb!')
+        for v in verbs:
+            subs, verbNegated = getAllSubs(v)
+            # hopefully there are subs, if not, don't examine this verb any longer
+            if len(subs) > 0:
+                v, objs = getAllObjs(v)
+                if len(objs) > 0:
+                    for sub in subs:
+                        for obj in objs:
+                            objNegated = isNegated(obj)
+                            obj_desc_tokens = generate_left_right_adjectives(obj)
+                            sub_compound = generate_sub_compound(sub)
+                            svos.append((" ".join(tok.lower_ for tok in sub_compound),
+                                         "!" + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         " ".join(tok.lower_ for tok in obj_desc_tokens)))
 
-    new_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"]
-    print(new_verbs)
-    tokens_new = [t for t in tokens]
-    tokens_new_str = [str(t) for t in tokens]
-    print("tokens new", tokens_new)
-    for new_verb in new_verbs:
-            new_objs, new_verbNegated = getAllSubs(new_verb)
-            print('new objs and new_verbNegated')
-            print(new_objs, new_verbNegated)
-            get_index = tokens_new_str.index(str(new_verb))
-            print('getting index!')
-            print(get_index)
-            after_tok_list = tokens_new[get_index + 1:]
-            after_tok_list_str = tokens_new_str[get_index + 1:]
-            print('after tok list')
-            print(after_tok_list)
-            if 'by' in after_tok_list_str:
-                for after_tok in after_tok_list:
-                    new_subs = []
-                    print(after_tok)
-                    print(after_tok.pos_)
-                    print(after_tok.dep_)
-                    if after_tok.dep_ in SUBJECTS and after_tok.pos_ not in non_sub_pos:
-                        new_subs.append(after_tok)
-                    elif type(after_tok.dep_) == int or float and after_tok.pos_ not in non_sub_pos:
-                        new_subs.append(after_tok)
-                    print('new subs')
-                    print(new_subs)
-                    new_sub = new_subs[0]
+                if len(objs) == 0:
+                    svos = [str(subs[0]), str(v)]
+                    svos.append('nothing')
+                print('SVO list')
+                print(svos)
 
-                svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+    elif not_verbs[0] not in verbs:
+        print('safe to proceed with first identified verb!')
+        for v in verbs:
+            subs, verbNegated = getAllSubs(v)
+            # hopefully there are subs, if not, don't examine this verb any longer
+            if len(subs) > 0:
+                v, objs = getAllObjs(v)
+                if len(objs) > 0:
+                    for sub in subs:
+                        for obj in objs:
+                            objNegated = isNegated(obj)
+                            obj_desc_tokens = generate_left_right_adjectives(obj)
+                            sub_compound = generate_sub_compound(sub)
+                            svos.append((" ".join(tok.lower_ for tok in sub_compound),
+                                         "!" + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         " ".join(tok.lower_ for tok in obj_desc_tokens)))
 
-            else:
-                svos = [" ", str(new_verb), str(new_objs[0])]
+                if len(objs) == 0:
+                    svos = [str(subs[0]), str(v)]
+                    svos.append('nothing')
+                print('SVO list')
+                print(svos)
 
+    else:
+        print('get new subjects')
+        new_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"]
+        tokens_new = [t for t in tokens]
+        tokens_new_str = [str(t) for t in tokens]
+        for new_verb in new_verbs:
+                new_objs, new_verbNegated = getAllSubs(new_verb)
+                get_index = tokens_new_str.index(str(new_verb))
+                after_tok_list = tokens_new[get_index + 1:]
+                after_tok_list_str = tokens_new_str[get_index + 1:]
+                if 'by' in after_tok_list_str:
+                    for after_tok in after_tok_list:
+                        new_subs = []
+                        if after_tok.dep_ in SUBJECTS and after_tok.pos_ not in non_sub_pos:
+                            new_subs.append(after_tok)
+                        elif type(after_tok.dep_) == int or float and after_tok.pos_ not in non_sub_pos:
+                            new_subs.append(after_tok)
+                        new_sub = new_subs[0]
 
+                    svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+
+                else:
+                    svos = ['neutral', str(new_verb), str(new_objs[0])]
+
+    print('Final SVO list', svos)
     return svos
 
 
