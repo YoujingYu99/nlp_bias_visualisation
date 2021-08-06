@@ -5,6 +5,7 @@ import nltk.classify as cf
 import nltk
 import spacy
 import numpy as np
+import pandas as pd
 
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
 OBJECTS = ["dobj", "dative", "attr", "oprd"]
@@ -274,6 +275,8 @@ def findSVAOs(tokens):
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
                     svos.append('nothing')
+                    svos = tuple(svos)
+                    svos = [svos]
 
     elif not_verbs[0] not in verbs:
         print('safe to proceed with first identified verb!')
@@ -295,6 +298,8 @@ def findSVAOs(tokens):
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
                     svos.append('nothing')
+                    svos = tuple(svos)
+                    svos = [svos]
 
     else:
         new_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"]
@@ -302,22 +307,28 @@ def findSVAOs(tokens):
         tokens_new_str = [str(t) for t in tokens]
         for new_verb in new_verbs:
                 new_objs, new_verbNegated = getAllSubs(new_verb)
+                print(new_objs)
                 get_index = tokens_new_str.index(str(new_verb))
                 after_tok_list = tokens_new[get_index + 1:]
                 after_tok_list_str = tokens_new_str[get_index + 1:]
                 if 'by' in after_tok_list_str:
+                    print('look for nouns after by')
+                    new_subs = []
                     for after_tok in after_tok_list:
-                        new_subs = []
                         if after_tok.dep_ in SUBJECTS and after_tok.pos_ not in non_sub_pos:
                             new_subs.append(after_tok)
                         elif type(after_tok.dep_) == int or float and after_tok.pos_ not in non_sub_pos:
                             new_subs.append(after_tok)
-                        new_sub = new_subs[0]
-
+                    # 'by' is at position 0
+                    new_sub = new_subs[1]
                     svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+                    svos = tuple(svos)
+                    svos = [svos]
 
                 else:
                     svos = ['neutral', str(new_verb), str(new_objs[0])]
+                    svos = tuple(svos)
+                    svos = [svos]
 
     print('Final SVO list', svos)
     return svos
@@ -348,13 +359,153 @@ def generate_left_right_adjectives(obj):
 
     return obj_desc_tokens
 
+male_names = nc.names.words('male.txt')
+male_names.extend(['he', 'him'])
+female_names = nc.names.words('female.txt')
+female_names.extend(['she', 'her'])
+models, acs = [], []
+
+for n_letters in range(1, 6):
+    data = []
+    for male_name in male_names:
+        feature = {'feature': male_name[-n_letters:].lower()}
+        data.append((feature, 'male'))
+    for female_name in female_names:
+        feature = {'feature': female_name[-n_letters:].lower()}
+        data.append((feature, 'female'))
+    random.seed(7)
+    random.shuffle(data)
+    train_data = data[:int(len(data) / 2)]
+    test_data = data[int(len(data) / 2):]
+    model = cf.NaiveBayesClassifier.train(train_data)
+    ac = cf.accuracy(model, test_data)
+    models.append(model)
+    acs.append(ac)
+
+best_index = np.array(acs).argmax()
+best_letters = best_index + 1
+
+gender_model = models[best_index]
+best_ac = acs[best_index]
+
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs']
+
+spec_chars = ['!',''','#','%','&',''','(',')',
+              '*','+',',','-','.','/',':',';','<',
+              '=','>','?','@','[','\\',']','^','_',
+              '`','{','|','}','~','–']
+
+def reset_gender(subject, subject_gender):
+    if subject == 'he':
+        subject_gender_new = 'male'
+    elif subject == 'she':
+        subject_gender_new = 'female'
+    elif subject in neutral_sub_list:
+        subject_gender_new = 'neutral'
+    else:
+        subject_gender_new = subject_gender
+    return subject_gender_new
+
+def clean_SVO_dataframe(SVO_df):
+    # cleaning up the SVO dataframe
+    SVO_df['subject_gender'] = SVO_df.apply(lambda x: reset_gender(x.subject, x.subject_gender), axis=1)
+    SVO_df['object_gender'] = SVO_df.apply(lambda x: reset_gender(x.object, x.object_gender), axis=1)
+
+    for char in spec_chars:
+        SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
+        SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
+        SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
+
+    # get base form of verb
+    verb_list = SVO_df['verb'].to_list()
+    verb_base_list = []
+    for verb in verb_list:
+        base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+        base_word.strip()
+        verb_base_list.append(base_word)
+
+    SVO_df['verb'] = verb_base_list
+
+    print(SVO_df)
+    return SVO_df
 
 
-sentence = 'Hilary is supported'
+
+
+def determine_gender_SVO(input_data):
+    parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+
+    sent_text = nltk.sent_tokenize(input_data)
+    sub_list = []
+    sub_gender_list = []
+    verb_list = []
+    obj_list = []
+    obj_gender_list = []
+    # now loop over each sentence and tokenize it separately
+    for sentence in sent_text:
+        parse = parser(sentence)
+        try:
+            SVO_list = findSVAOs(parse)
+            for i in SVO_list:
+                sub, verb, obj = i[0], i[1], i[2]
+                if sub == 'neutral':
+                    sub_gender = 'neutral'
+                else:
+                    sub_feature = {'feature': sub[-best_letters:]}
+                    sub_gender = gender_model.classify(sub_feature)
+                if obj == 'nothing':
+                    obj_gender = 'neutral_intransitive'
+                else:
+                    obj_feature = {'feature': obj[-best_letters:]}
+                    obj_gender = gender_model.classify(obj_feature)
+
+                sub_list.append(sub)
+                sub_gender_list.append(sub_gender)
+                verb_list.append(verb)
+                obj_list.append(obj)
+                obj_gender_list.append(obj_gender)
+
+        except:
+            continue
+
+    SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
+                          columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
+
+    #cleaning up the SVO dataframe
+    SVO_df = clean_SVO_dataframe(SVO_df)
+
+
+    return SVO_df
+
+
+sentence = 'Hilary is supported by John. Hilary is supported. Mary smiles. Mary has been smiling. '
+
+determine_gender_SVO(sentence)
 
 
 
-def determine_gender_SVO(sentence):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def determine_gender_SVO_test(sentence):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
 
     sent_text = nltk.sent_tokenize(sentence)
@@ -367,7 +518,7 @@ def determine_gender_SVO(sentence):
             continue
 
 
-determine_gender_SVO(sentence)
+#determine_gender_SVO_test(sentence)
 
 
 

@@ -9061,7 +9061,7 @@
       <workItem from="1628160116728" duration="7534000" />
       <workItem from="1628180981852" duration="2717000" />
       <workItem from="1628242928188" duration="5268000" />
-      <workItem from="1628252971946" duration="10358000" />
+      <workItem from="1628252971946" duration="13610000" />
     </task>
     <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
       <created>1628096157891</created>
@@ -9210,7 +9210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628263159498</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Clean up and beautify the algorithm">
+      <created>1628263486755</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1628263486755</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -9252,11 +9259,12 @@
     <MESSAGE value="Adding the algorithm for identifying 'Hilary is supported by John ' as 'John support Hilary'" />
     <MESSAGE value="Improving the algorithm for identifying 'Hilary is supported ' as '[] support Hilary'" />
     <MESSAGE value="Tested with : 'Hilary smiles', 'Hilary is smiling', 'Hilary is supported', 'Hilary is supported by John'. Returning desired results." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tested with : 'Hilary smiles', 'Hilary is smiling', 'Hilary is supported', 'Hilary is supported by John'. Returning desired results." />
+    <MESSAGE value="Clean up and beautify the algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up and beautify the algorithm" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628256147972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628263414022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628266609085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>
 </project>
