@@ -4,6 +4,9 @@ from bias_visualisation_app import app
 
 CORS(app)
 
+
+#python -m spacy download en_core_web_sm in readme
+
 if __name__ == "__main__":
     # Only for debugging while developing
     # app.run(host="0.0.0.0", debug=True, port=int(os.environ.get("PORT", 5000)))
