@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/SVO_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/bestand.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/fm_dic.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalso.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalsopca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalsopca_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalsopca_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalsotsne.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalsotsne_female.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedalsotsne_male.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/lookedmalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/m_dic.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/specific_df.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/teenfemalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/total_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/SVO_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/total_dataframe_user_uploads.csv" afterDir="false" />
+    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="Clean up current code lines">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="">
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_academic_doc009.conllu" afterDir="false" />
@@ -9012,7 +8991,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/visualising_data_bias-web_interface_bias_explorer" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Flask server.visualising_data_bias">
@@ -9048,16 +9027,16 @@
       <method v="2" />
     </configuration>
     <configuration name="visualising_data_bias" type="Python.FlaskServer">
-      <option name="target" value="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\main.py" />
+      <module name="visualising_data_bias" />
+      <option name="target" value="$PROJECT_DIR$/bias_visualisation_app/__init__.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="C:\Users\Youjing Yu\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
@@ -9082,7 +9061,10 @@
       <workItem from="1628160116728" duration="7534000" />
       <workItem from="1628180981852" duration="2717000" />
       <workItem from="1628242928188" duration="5268000" />
-      <workItem from="1628252971946" duration="15090000" />
+      <workItem from="1628252971946" duration="15304000" />
+      <workItem from="1628447856032" duration="467000" />
+      <workItem from="1628449125459" duration="44000" />
+      <workItem from="1628496153082" duration="991000" />
     </task>
     <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
       <created>1628096157891</created>
@@ -9245,7 +9227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628266939650</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Adding transitive and intransitive verbs for female and male">
+      <created>1628268365555</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1628268365555</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -9265,7 +9254,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Successfully writing dataframe for subject and object gender identification" />
     <MESSAGE value="Writing dataframe for subject and object gender identification" />
     <MESSAGE value="Adding routes for SVO dataframe" />
     <MESSAGE value="More routes for SVO download and upload" />
@@ -9289,11 +9277,13 @@
     <MESSAGE value="Tested with : 'Hilary smiles', 'Hilary is smiling', 'Hilary is supported', 'Hilary is supported by John'. Returning desired results." />
     <MESSAGE value="Clean up and beautify the algorithm" />
     <MESSAGE value="Uniform all SVO data types. Reassigning gender" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uniform all SVO data types. Reassigning gender" />
+    <MESSAGE value="Adding transitive and intransitive verbs for female and male" />
+    <MESSAGE value="Clean up current code lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up current code lines" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628268120348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628266823384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628266823384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628496423320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
