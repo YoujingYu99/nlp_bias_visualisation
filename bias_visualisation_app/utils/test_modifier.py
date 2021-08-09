@@ -17,19 +17,13 @@ female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself'])
 
 def getAdjectives(toks):
     first_modifier_list = []
-    second_modifier_list = []
     for tok in toks:
         print(tok)
         print(tok.lefts)
         adjs = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
         first_modifier_list.append(adjs[-1])
-        #adjs.extend([right for right in tok.rights if tok.dep_ in ADJECTIVES])
-        try:
-            second_modifier_list.append(adjs[-2])
-        except:
-            continue
 
-    return first_modifier_list, second_modifier_list
+    return first_modifier_list
 
 def generate_left_right_adjectives(obj):
     obj_desc_tokens = []
