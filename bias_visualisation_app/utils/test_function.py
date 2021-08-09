@@ -1,5 +1,4 @@
-from nltk.stem.wordnet import WordNetLemmatizer
-import random
+
 import nltk.corpus as nc
 import nltk.classify as cf
 import nltk
