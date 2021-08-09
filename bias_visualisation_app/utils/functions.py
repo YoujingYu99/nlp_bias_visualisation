@@ -426,7 +426,6 @@ def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    print('first identified verbs', verbs)
     # not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
     not_verbs = []
     for tok in tokens:
@@ -486,7 +485,6 @@ def findSVAOs(tokens):
         tokens_new_str = [str(t) for t in tokens]
         for new_verb in new_verbs:
             new_objs, new_verbNegated = getAllSubs(new_verb)
-            print(new_objs)
             get_index = tokens_new_str.index(str(new_verb))
             after_tok_list = tokens_new[get_index + 1:]
             after_tok_list_str = tokens_new_str[get_index + 1:]
@@ -509,7 +507,6 @@ def findSVAOs(tokens):
                 svos = tuple(svos)
                 svos = [svos]
 
-    print('Final SVO list', svos)
     return svos
 
 
@@ -540,10 +537,9 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'He', 'him', 'Him'])
+male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'She', 'her', 'Her'])
-
+female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself'])
 
 neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
                     'neutral']
@@ -569,19 +565,18 @@ def clean_SVO_dataframe(SVO_df):
         verb_base_list.append(base_word)
 
     SVO_df['verb'] = verb_base_list
+    SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
 
-    print(SVO_df)
     return SVO_df
 
 
-
 def determine_gender(token):
-
     if token == 'nothing':
         gender = 'neutral_intransitive'
     elif token in female_names or 'girl' in token or 'woman' in token or 'mrs' in token or 'Mrs' in token or 'Miss' in token or 'miss' in token:
         gender = 'female'
-    elif token in male_names or 'boy' in token or ('man' in token and 'woman' not in token) or 'Mr' in token or 'Mister' in token:
+    elif token in male_names or 'boy' in token or (
+            'man' in token and 'woman' not in token) or 'Mr' in token or 'Mister' in token:
         gender = 'male'
     elif token in neutral_sub_list:
         gender = 'neutral'
@@ -645,6 +640,8 @@ def list_to_dataframe(view_results, scale_range=(-1, 1)):
 
     df['token'] = tok_base_list
     df['bias'] = scaler.fit_transform(df[['bias']])
+    df.drop_duplicates(subset='token',
+                       keep=False, inplace=True)
 
     return df
 
@@ -1019,8 +1016,6 @@ def specific_bar_graph(df_name='specific_df'):
         except:
             print("Not enough words for Plotting a bar chart")
             plot_bar = url_for('static', filename="nothing_here.jpg")
-
-
 
 
 # def bar_graph(token_list, value_list):
@@ -1475,7 +1470,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
-    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
+    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(
+        input_SVO_dataframe)
     if select_gender == 'female':
         if select_wordtype == 'nouns':
             return female_noun_df
