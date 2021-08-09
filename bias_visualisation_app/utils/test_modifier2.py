@@ -39,7 +39,7 @@ def generate_left_right_adjectives(obj):
     return obj_desc_tokens
 
 
-sentence = 'Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women'
+sentence = 'Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup.'
 
 
 def determine_gender_modifier_test(sentence):
@@ -55,7 +55,6 @@ def determine_gender_modifier_test(sentence):
             tot_male_adj_list.extend(male_adj_list)
         except:
             continue
-    print(tot_female_adj_list)
     return tot_female_adj_list, male_adj_list
 noun_list = ['NOUN', 'PRON' 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
 

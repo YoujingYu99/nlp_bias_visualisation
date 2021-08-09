@@ -14,7 +14,7 @@ from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
-    SVO_analysis, \
+    SVO_analysis, modifier_analysis, \
     generate_bias_values, save_obj, save_obj_text, save_obj_user_uploads, load_obj, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
@@ -188,6 +188,7 @@ def detect_dataframe():
     if request.method == "POST":
         try:
             dataframe_SVO = request.files['SVO_file']
+            dataframe_modifier = request.files['modifier_file']
             dataframe_total = request.files['total_file']
         except:
             print("error with this line!")
@@ -199,6 +200,9 @@ def detect_dataframe():
 
         input_dataframe_SVO = pd.read_csv(dataframe_SVO)
         save_obj_user_uploads(input_dataframe_SVO, name="SVO_dataframe_user_uploads")
+
+        input_dataframe_modifier = pd.read_csv(dataframe_modifier)
+        save_obj_user_uploads(input_dataframe_modifier, name="modifier_dataframe_user_uploads")
 
         # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
@@ -239,12 +243,14 @@ def analysis():
     # open dataframe file
     view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
     input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
+    input_modifier_dataframe = load_obj_user_uploads(name="modifier_dataframe_user_uploads")
 
     # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
+    female_modifier_df, male_modifier_df = modifier_analysis(input_modifier_dataframe)
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
@@ -252,9 +258,9 @@ def analysis():
                            data_fm_intran_verb=female_intran_df,
                            data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
                            data_m_intran_verb=male_intran_df, data_m_sub_verb=male_sub_df,
-                           data_m_obj_verb=male_obj_df,
+                           data_m_obj_verb=male_obj_df, data_fm_modifier=female_modifier_df, data_m_modifier=male_modifier_df,
                            wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'intransitive_verbs'}, {'type': 'subject_verbs'},
-                                          {'type': 'object_verbs'}],
+                                          {'type': 'object_verbs'}, {'type': 'modifiers'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
@@ -264,11 +270,12 @@ def query():
         # open dataframe file
         view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
         input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
+        input_modifier_dataframe = load_obj_user_uploads(name="modifier_dataframe_user_uploads")
 
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-                                                    input_SVO_dataframe)
+                                                    input_SVO_dataframe, input_modifier_dataframe)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
@@ -312,6 +319,13 @@ def download_total(filename='total_dataframe.csv'):
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 def download_SVO(filename='SVO_dataframe.csv'):
+    uploads = path.join(path.dirname(__file__), "static\\", filename)
+    print(uploads)
+    # return send_from_directory(directory=uploads, filename=filename)
+    return send_file(uploads, as_attachment=True)
+
+@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+def download_modifier(filename='modifier_dataframe.csv'):
     uploads = path.join(path.dirname(__file__), "static\\", filename)
     print(uploads)
     # return send_from_directory(directory=uploads, filename=filename)

@@ -2,17 +2,17 @@ import os
 import sys
 from os import path
 from io import open
-import pickle
 from conllu import parse, parse_incr
 import csv
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
-import urllib
 import requests
 import werkzeug
 from werkzeug.utils import secure_filename
-import spacy
 from nltk.stem.wordnet import WordNetLemmatizer
+import nltk.corpus as nc
+import nltk
+import spacy
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from flask import url_for
@@ -224,7 +224,6 @@ ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp"
 COMPOUNDS = ["compound"]
 PREPOSITIONS = ["prep"]
 
-
 def getSubsFromConjunctions(subs):
     moreSubs = []
     for sub in subs:
@@ -315,11 +314,32 @@ def getAdjectives(toks):
     for tok in toks:
         adjs = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
         adjs.append(tok)
-        adjs.extend([right for right in tok.rights if tok.dep_ in ADJECTIVES])
-        tok_with_adj = " ".join([adj.lower_ for adj in adjs])
-        toks_with_adjectives.extend(adjs)
+        adjs = [str(token) for token in adjs]
+        toks_with_adjectives.append(adjs)
 
     return toks_with_adjectives
+
+def findmodifiers(tokens):
+    nouns = [tok for tok in tokens if tok.pos_ in noun_list]
+    adj_noun_pair = getAdjectives(nouns)
+    female_adj_list, male_adj_list = gender_adjs(adj_noun_pair)
+    return female_adj_list, male_adj_list
+
+def gender_adjs(adj_noun_pair):
+    female_adj_list = []
+    male_adj_list = []
+    for pair in adj_noun_pair:
+        noun = pair[-1]
+        if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'Mrs' in noun or 'Miss' in noun or 'miss' in noun:
+            adjs = pair[:-1]
+            female_adj_list.extend(adjs)
+        elif noun in male_names or 'boy' in noun or ('man' in noun and 'woman' not in noun) or 'Mr' in noun or 'Mister' in noun:
+            adjs = pair[:-1]
+            male_adj_list.extend(adjs)
+        else:
+            continue
+
+    return female_adj_list, male_adj_list
 
 
 def getObjsFromAttrs(deps):
@@ -537,10 +557,9 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself', 'man', 'Man'])
+male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Women'])
-
+female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Woman', 'women', 'Women'])
 neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
                     'neutral']
 
@@ -587,7 +606,6 @@ def determine_gender(token):
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
-
     sent_text = nltk.sent_tokenize(input_data)
     sub_list = []
     sub_gender_list = []
@@ -616,10 +634,30 @@ def determine_gender_SVO(input_data):
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
 
-    # cleaning up the SVO dataframe
-    SVO_df = clean_SVO_dataframe(SVO_df)
 
     return SVO_df
+
+def determine_gender_modifier(input_data):
+    parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    sent_text = nltk.sent_tokenize(input_data)
+    tot_female_adj_list = []
+    tot_male_adj_list = []
+    for sentence in sent_text:
+        parse = parser(sentence)
+        try:
+            female_adj_list, male_adj_list = findmodifiers(parse)
+            tot_female_adj_list.extend(female_adj_list)
+            tot_male_adj_list.extend(male_adj_list)
+        except:
+            continue
+    modifier_df = pd.DataFrame({'female_adj': tot_female_adj_list})
+    modifier_df.loc[:, 'male_adj'] = pd.Series(tot_male_adj_list)
+    #modifier_df = pd.DataFrame(list(zip(tot_female_adj_list, tot_male_adj_list)),
+    #                      columns=['female_adj', 'male_adj'])
+
+    print(modifier_df)
+
+    return modifier_df
 
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
@@ -789,6 +827,9 @@ def generate_bias_values(input_data):
     SVO_df = determine_gender_SVO(input_data)
     save_obj_text(SVO_df, name='SVO_dataframe')
 
+    ADJ_df = determine_gender_modifier(input_data)
+    save_obj_text(ADJ_df, name='modifier_dataframe')
+
 
 def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
@@ -852,6 +893,26 @@ def SVO_analysis(view_df):
 
     return female_sub_df_new, female_obj_df_new, female_intran_df_new, male_sub_df_new, male_obj_df_new, male_intran_df_new
 
+def modifier_analysis(view_df):
+    # columns = ['female_adj', 'male_adj']
+    female_adj_df = view_df.drop('male_adj', axis=1)
+    male_adj_df = view_df.drop('female_adj', axis=1)
+    female_modifier_new = female_adj_df.copy()
+    female_modifier_new['Frequency'] = female_modifier_new['female_adj'].map(female_modifier_new['female_adj'].value_counts())
+    female_modifier_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_modifier_new.drop_duplicates(subset='female_adj',
+                                      keep=False, inplace=True)
+    
+    male_modifier_new = male_adj_df.copy()
+    male_modifier_new['Frequency'] = male_modifier_new['male_adj'].map(male_modifier_new['male_adj'].value_counts())
+    male_modifier_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_modifier_new.drop_duplicates(subset='male_adj',
+                                   keep=False, inplace=True)
+
+    female_modifier_new.rename(columns={'female_adj': 'word'}, inplace=True)
+    male_modifier_new.rename(columns={'male_adj': 'word'}, inplace=True)
+
+    return female_modifier_new, male_modifier_new
 
 def gender_dataframe_from_tuple(view_df):
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
@@ -1014,8 +1075,51 @@ def specific_bar_graph(df_name='specific_df'):
             return plot_bar
 
         except:
-            print("Not enough words for Plotting a bar chart")
-            plot_bar = url_for('static', filename="nothing_here.jpg")
+            try:
+                mpl.rcParams['axes.unicode_minus'] = False
+                np.random.seed(12345)
+                df = load_obj(name=df_name)
+                set_x_tick = True
+
+                plt.style.use('ggplot')
+                plt.rcParams['font.family'] = ['sans-serif']
+                plt.rcParams['font.sans-serif'] = ['SimHei']
+                fig, ax = plt.subplots()
+
+                # set up the colors
+                cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+                df_mean = df.mean(axis=1)
+                norm = plt.Normalize(df_mean.min(), df_mean.max())
+                colors = cmap(norm(df_mean))
+
+                ax.barh(
+                    df['word'],
+                    df['Frequency'],
+                    yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+                    color=colors)
+                fig.colorbar(ScalarMappable(cmap=cmap))
+
+                ax.set_title('Specific Word Frequency', fontsize=12)
+                ax.set_xlabel('Frequency')
+                ax.xaxis.set_visible(set_x_tick)
+
+                ax.set_ylabel('Word')
+                plt.tight_layout()
+
+                # save file to static
+                bar_name = df['word'].iloc[0] + df['word'].iloc[1]
+                bar_name_ex = bar_name + '.png'
+                save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+                bar_path = save_img_path + '.png'
+                plt.savefig(bar_path)
+                plot_bar = url_for('static', filename=bar_name_ex)
+
+                return plot_bar
+
+            except:
+
+                print("Not enough words for Plotting a bar chart")
+                plot_bar = url_for('static', filename="nothing_here.jpg")
 
 
 # def bar_graph(token_list, value_list):
@@ -1466,12 +1570,13 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     return plot_pca_female
 
 
-def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe):
+def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_modifier_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(
         input_SVO_dataframe)
+    female_modifier_df, male_modifier_df = modifier_analysis(input_modifier_dataframe)
     if select_gender == 'female':
         if select_wordtype == 'nouns':
             return female_noun_df
@@ -1483,6 +1588,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return female_sub_df
         if select_wordtype == 'object_verbs':
             return female_obj_df
+        if select_wordtype == 'modifiers':
+            return female_modifier_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
@@ -1495,9 +1602,11 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
         if select_wordtype == 'intransitive_verbs':
             return male_intran_df
         if select_wordtype == 'subject_verbs':
-            return female_sub_df
+            return male_sub_df
         if select_wordtype == 'object_verbs':
-            return female_obj_df
+            return male_obj_df
+        if select_wordtype == 'modifiers':
+            return male_modifier_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
