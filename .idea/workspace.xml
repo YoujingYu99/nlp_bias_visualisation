@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="testing modifier">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_modifier2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_modifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_modifier.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="">
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_academic_doc009.conllu" afterDir="false" />
@@ -4088,7 +4092,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_modifier.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Python.test_modifier">
     <configuration default="true" type="MatlabApplication">
@@ -4365,7 +4369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628506877958</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="testing modifier">
+      <created>1628508115198</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1628508115198</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -4415,7 +4426,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628502087617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628501134752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier Coverage Results" MODIFIED="1628508031852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628508396534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier Coverage Results" MODIFIED="1628519378195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>
 </project>

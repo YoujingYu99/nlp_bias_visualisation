@@ -1,8 +1,7 @@
-from nltk.stem.wordnet import WordNetLemmatizer
+
 import nltk.corpus as nc
 import nltk
 import spacy
-import pandas as pd
 
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
 OBJECTS = ["dobj", "dative", "attr", "oprd"]
@@ -17,15 +16,20 @@ female_names = nc.names.words('female.txt')
 female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself'])
 
 def getAdjectives(toks):
-    toks_with_adjectives = []
+    first_modifier_list = []
+    second_modifier_list = []
     for tok in toks:
+        print(tok)
+        print(tok.lefts)
         adjs = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
-        adjs.append(tok)
-        adjs.extend([right for right in tok.rights if tok.dep_ in ADJECTIVES])
-        tok_with_adj = " ".join([adj.lower_ for adj in adjs])
-        toks_with_adjectives.extend(adjs)
+        first_modifier_list.append(adjs[-1])
+        #adjs.extend([right for right in tok.rights if tok.dep_ in ADJECTIVES])
+        try:
+            second_modifier_list.append(adjs[-2])
+        except:
+            continue
 
-    return toks_with_adjectives
+    return first_modifier_list, second_modifier_list
 
 def generate_left_right_adjectives(obj):
     obj_desc_tokens = []
@@ -40,45 +44,44 @@ def generate_left_right_adjectives(obj):
 
     return obj_desc_tokens
 
-def determine_gender(token):
-    if token == 'nothing':
-        gender = 'neutral_intransitive'
-    elif token in female_names or 'girl' in token or 'woman' in token or 'mrs' in token or 'Mrs' in token or 'Miss' in token or 'miss' in token:
-        gender = 'female'
-    elif token in male_names or 'boy' in token or (
-            'man' in token and 'woman' not in token) or 'Mr' in token or 'Mister' in token:
-        gender = 'male'
-    elif token in neutral_sub_list:
-        gender = 'neutral'
-    else:
-        gender = 'neutral'
-    return gender
 
-sentence = 'She takes off her coat. Hilary is supported. Mary smiles. Lucy has been smiling. Linda eats bread. '
+sentence = 'Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses.'
 
 
 def determine_gender_modifier_test(sentence):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
-
     sent_text = nltk.sent_tokenize(sentence)
+    tot_first_modifier_female = []
+    tot_second_modifier_female = []
+    tot_first_modifier_male = []
+    tot_second_modifier_male = []
     for sentence in sent_text:
         parse = parser(sentence)
-        print(parse)
         try:
-            modifier_list = findmodifiers(parse)
-            print(modifier_list)
+            first_modifier_list_female, second_modifier_list_female, first_modifier_list_male, second_modifier_list_male = findmodifiers(parse)
+            tot_first_modifier_female.extend(first_modifier_list_female)
+            tot_second_modifier_female.extend(second_modifier_list_male)
+            tot_first_modifier_male.extend(first_modifier_list_male)
+            tot_second_modifier_male.extend(second_modifier_list_male)
         except:
             continue
+    print(tot_first_modifier_female)
+    return tot_first_modifier_female, tot_second_modifier_female, tot_first_modifier_male, tot_second_modifier_male
 
-noun_list = ['NOUN', 'PRON' 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
+noun_list = ['NOUN', 'PRON', 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
 
 def findmodifiers(tokens):
-    for tok in tokens:
-        print(tok.pos_)
     nouns = [tok for tok in tokens if tok.pos_ in noun_list]
-    print(nouns)
-    adj_noun_pair = getAdjectives(nouns)
-    return adj_noun_pair
+    str_nouns = [str(noun) for noun in nouns ]
+
+    female_noun_list = [noun for noun in str_nouns if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'Mrs' in noun or 'Miss' in noun or 'miss' in noun]
+
+    male_noun_list = [noun for noun in str_nouns if noun in male_names or 'boy' in noun or ('man' in noun and 'woman' not in noun) or 'Mr' in noun or 'Mister' in noun]
+    
+    first_modifier_list_female, second_modifier_list_female = getAdjectives(female_noun_list)
+    first_modifier_list_male, second_modifier_list_male = getAdjectives(male_noun_list)
+
+    return first_modifier_list_female, second_modifier_list_female, first_modifier_list_male, second_modifier_list_male
 
 
 determine_gender_modifier_test(sentence)

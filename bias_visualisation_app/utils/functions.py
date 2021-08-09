@@ -537,9 +537,9 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
+male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself', 'man', 'Man'])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself'])
+female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Women'])
 
 neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
                     'neutral']
