@@ -652,10 +652,6 @@ def determine_gender_modifier(input_data):
             continue
     modifier_df = pd.DataFrame({'female_adj': tot_female_adj_list})
     modifier_df.loc[:, 'male_adj'] = pd.Series(tot_male_adj_list)
-    #modifier_df = pd.DataFrame(list(zip(tot_female_adj_list, tot_male_adj_list)),
-    #                      columns=['female_adj', 'male_adj'])
-
-    print(modifier_df)
 
     return modifier_df
 

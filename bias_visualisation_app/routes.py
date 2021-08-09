@@ -311,10 +311,11 @@ def query():
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 def download_total(filename='total_dataframe.csv'):
+    print('Working now!')
     uploads = path.join(path.dirname(__file__), "static\\", filename)
     print(uploads)
-    # return send_from_directory(directory=uploads, filename=filename)
-    return send_file(uploads, as_attachment=True)
+    return send_from_directory(directory=uploads, filename=filename)
+    #return send_file(uploads, as_attachment=True)
 
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])

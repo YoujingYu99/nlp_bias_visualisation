@@ -44,7 +44,7 @@
       <div class="row">
         <div class="input-field col s12 m10">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></i></h2>
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
             <form method="POST" action="/detect_text">
                  <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
                  <br/>
@@ -93,17 +93,20 @@
 
 
      <h5>Download the Complete Dataframe Here</h5>
-     <a href="{{ url_for('download_total', filename='total_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Total Dataframe</a>
+{#     <a href="{{ url_for('download_total', filename='total_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Total Dataframe</a>#}
+     <button type="button" onclick="window.location.href='{{ url_for( 'download_total' , filename='total_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Total Dataframe</button>
      </br>
      </br>
 
      <h5>Download the SVO Dataframe Here</h5>
-     <a href="{{ url_for('download_SVO', filename='SVO_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download SVO Dataframe</a>
+{#     <a href="{{ url_for('download_SVO', filename='SVO_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download SVO Dataframe</a>#}
+     <button type="button" onclick="window.location.href='{{ url_for( 'download_SVO' , filename='SVO_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download SVO Dataframe</button>
      </br>
      </br>
 
      <h5>Download the Modifiers Dataframe Here</h5>
-     <a href="{{ url_for('download_modifier', filename='modifier_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Modifier Dataframe</a>
+{#     <a href="{{ url_for('download_modifier', filename='modifier_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Modifier Dataframe</a>#}
+     <button type="button" onclick="window.location.href='{{ url_for( 'download_modifier' , filename='modifier_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Modifiers Dataframe</button>
      </br>
      </br>
 
