@@ -1,11 +1,11 @@
 from nltk.stem.wordnet import WordNetLemmatizer
-import random
 import nltk.corpus as nc
-import nltk.classify as cf
 import nltk
 import spacy
-import numpy as np
 import pandas as pd
+
+
+
 
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
 OBJECTS = ["dobj", "dative", "attr", "oprd"]
@@ -212,45 +212,10 @@ def findSVOs(tokens):
     return svos
 
 
-# def findSVAOs(tokens):
-#     svos = []
-#     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
-#     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-#     print(verbs)
-#     for v in verbs:
-#         print('start getting subs')
-#         subs, verbNegated = getAllSubs(v)
-#         # hopefully there are subs, if not, don't examine this verb any longer
-#         if len(subs) > 0:
-#             v, objs = getAllObjs(v)
-#             print('verb, objects')
-#             print(v, objs)
-#             if len(objs) > 0:
-#                 print(objs)
-#                 print('obj not empty')
-#                 for sub in subs:
-#                     for obj in objs:
-#                         objNegated = isNegated(obj)
-#                         obj_desc_tokens = generate_left_right_adjectives(obj)
-#                         sub_compound = generate_sub_compound(sub)
-#                         svos.append((" ".join(tok.lower_ for tok in sub_compound),
-#                                      "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-#                                      " ".join(tok.lower_ for tok in obj_desc_tokens)))
-#
-#             if len(objs) == 0:
-#                 print(objs)
-#                 print('obj empty')
-#                 svos = [str(subs[0]), str(v)]
-#                 svos.append(" ")
-#             print('SVO list')
-#             print(svos)
-#     return svos
-
 def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    print('first identified verbs', verbs)
     # not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
     not_verbs = []
     for tok in tokens:
@@ -310,7 +275,6 @@ def findSVAOs(tokens):
         tokens_new_str = [str(t) for t in tokens]
         for new_verb in new_verbs:
             new_objs, new_verbNegated = getAllSubs(new_verb)
-            print(new_objs)
             get_index = tokens_new_str.index(str(new_verb))
             after_tok_list = tokens_new[get_index + 1:]
             after_tok_list_str = tokens_new_str[get_index + 1:]
@@ -333,7 +297,6 @@ def findSVAOs(tokens):
                 svos = tuple(svos)
                 svos = [svos]
 
-    print('Final SVO list', svos)
     return svos
 
 
@@ -364,10 +327,9 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'He', 'him', 'Him'])
+male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'She', 'her', 'Her'])
-
+female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself'])
 
 neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
                     'neutral']
@@ -393,17 +355,18 @@ def clean_SVO_dataframe(SVO_df):
         verb_base_list.append(base_word)
 
     SVO_df['verb'] = verb_base_list
+    SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
 
-    print(SVO_df)
     return SVO_df
 
 
 def determine_gender(token):
     if token == 'nothing':
         gender = 'neutral_intransitive'
-    elif token in female_names or 'girl' in token or 'woman' in token:
+    elif token in female_names or 'girl' in token or 'woman' in token or 'mrs' in token or 'Mrs' in token or 'Miss' in token or 'miss' in token:
         gender = 'female'
-    elif token in male_names or 'boy' in token or ('man' in token and 'woman' not in token):
+    elif token in male_names or 'boy' in token or (
+            'man' in token and 'woman' not in token) or 'Mr' in token or 'Mister' in token:
         gender = 'male'
     elif token in neutral_sub_list:
         gender = 'neutral'
@@ -445,11 +408,12 @@ def determine_gender_SVO(input_data):
 
     # cleaning up the SVO dataframe
     SVO_df = clean_SVO_dataframe(SVO_df)
+    print(SVO_df)
 
     return SVO_df
 
 
-sentence = 'She is supported by John. Hilary is supported. Mary smiles. Lucy has been smiling. Linda eats bread. '
+sentence = 'She takes off her coat. Hilary is supported. Mary smiles. Lucy has been smiling. Linda eats bread. '
 
 determine_gender_SVO(sentence)
 
