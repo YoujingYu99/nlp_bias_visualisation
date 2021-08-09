@@ -213,13 +213,9 @@ def get_text_file(corpora_file):
 
 
 from nltk.stem.wordnet import WordNetLemmatizer
-import random
 import nltk.corpus as nc
-import nltk.classify as cf
 import nltk
 import spacy
-import numpy as np
-import pandas as pd
 
 SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
 OBJECTS = ["dobj", "dative", "attr", "oprd"]
@@ -351,11 +347,13 @@ def getObjFromXComp(deps):
                 return v, objs
     return None, None
 
+
 non_sub_pos = ["DET", "AUX"]
+
 
 def getAllSubs(v):
     verbNegated = isNegated(v)
-    #subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
+    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
     subs = []
     for tok in v.lefts:
         if tok.dep_ in SUBJECTS and tok.pos_ not in non_sub_pos:
@@ -423,52 +421,21 @@ def findSVOs(tokens):
                     svos.append((sub.lower_, "!" + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
     return svos
 
-# def findSVAOs(tokens):
-#     svos = []
-#     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
-#     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-#     print(verbs)
-#     for v in verbs:
-#         print('start getting subs')
-#         subs, verbNegated = getAllSubs(v)
-#         # hopefully there are subs, if not, don't examine this verb any longer
-#         if len(subs) > 0:
-#             v, objs = getAllObjs(v)
-#             print('verb, objects')
-#             print(v, objs)
-#             if len(objs) > 0:
-#                 print(objs)
-#                 print('obj not empty')
-#                 for sub in subs:
-#                     for obj in objs:
-#                         objNegated = isNegated(obj)
-#                         obj_desc_tokens = generate_left_right_adjectives(obj)
-#                         sub_compound = generate_sub_compound(sub)
-#                         svos.append((" ".join(tok.lower_ for tok in sub_compound),
-#                                      "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-#                                      " ".join(tok.lower_ for tok in obj_desc_tokens)))
-#
-#             if len(objs) == 0:
-#                 print(objs)
-#                 print('obj empty')
-#                 svos = [str(subs[0]), str(v)]
-#                 svos.append(" ")
-#             print('SVO list')
-#             print(svos)
-#     return svos
 
 def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
     verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    #not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
+    print('first identified verbs', verbs)
+    # not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
     not_verbs = []
     for tok in tokens:
         if tok.pos_ == "VERB" and tok.tag_ == "VBN":
             not_verbs.append(tok)
 
-    #if (not_verbs not in verbs or len(not_verbs) == 0):
+    # if (not_verbs not in verbs or len(not_verbs) == 0):
     if len(not_verbs) == 0:
+        print('safe to proceed with first identified verb!')
         for v in verbs:
             subs, verbNegated = getAllSubs(v)
             # hopefully there are subs, if not, don't examine this verb any longer
@@ -491,6 +458,7 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     elif not_verbs[0] not in verbs:
+        print('safe to proceed with first identified verb!')
         for v in verbs:
             subs, verbNegated = getAllSubs(v)
             # hopefully there are subs, if not, don't examine this verb any longer
@@ -517,28 +485,31 @@ def findSVAOs(tokens):
         tokens_new = [t for t in tokens]
         tokens_new_str = [str(t) for t in tokens]
         for new_verb in new_verbs:
-                new_objs, new_verbNegated = getAllSubs(new_verb)
-                get_index = tokens_new_str.index(str(new_verb))
-                after_tok_list = tokens_new[get_index + 1:]
-                after_tok_list_str = tokens_new_str[get_index + 1:]
-                if 'by' in after_tok_list_str:
-                    new_subs = []
-                    for after_tok in after_tok_list:
-                        if after_tok.dep_ in SUBJECTS and after_tok.pos_ not in non_sub_pos:
-                            new_subs.append(after_tok)
-                        elif type(after_tok.dep_) == int or float and after_tok.pos_ not in non_sub_pos:
-                            new_subs.append(after_tok)
-                    # 'by' is at position 0
-                    new_sub = new_subs[1]
-                    svos = [str(new_sub), str(new_verb), str(new_objs[0])]
-                    svos = tuple(svos)
-                    svos = [svos]
+            new_objs, new_verbNegated = getAllSubs(new_verb)
+            print(new_objs)
+            get_index = tokens_new_str.index(str(new_verb))
+            after_tok_list = tokens_new[get_index + 1:]
+            after_tok_list_str = tokens_new_str[get_index + 1:]
+            if 'by' in after_tok_list_str:
+                print('look for nouns after by')
+                new_subs = []
+                for after_tok in after_tok_list:
+                    if after_tok.dep_ in SUBJECTS and after_tok.pos_ not in non_sub_pos:
+                        new_subs.append(after_tok)
+                    elif type(after_tok.dep_) == int or float and after_tok.pos_ not in non_sub_pos:
+                        new_subs.append(after_tok)
+                # 'by' is at position 0
+                new_sub = new_subs[1]
+                svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+                svos = tuple(svos)
+                svos = [svos]
 
-                else:
-                    svos = ['neutral', str(new_verb), str(new_objs[0])]
-                    svos = tuple(svos)
-                    svos = [svos]
+            else:
+                svos = ['neutral', str(new_verb), str(new_objs[0])]
+                svos = tuple(svos)
+                svos = [svos]
 
+    print('Final SVO list', svos)
     return svos
 
 
@@ -567,58 +538,23 @@ def generate_left_right_adjectives(obj):
 
     return obj_desc_tokens
 
+
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'him'])
+male_names.extend(['he', 'He', 'him', 'Him'])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'her'])
-models, acs = [], []
+female_names.extend(['she', 'She', 'her', 'Her'])
 
-for n_letters in range(1, 6):
-    data = []
-    for male_name in male_names:
-        feature = {'feature': male_name[-n_letters:].lower()}
-        data.append((feature, 'male'))
-    for female_name in female_names:
-        feature = {'feature': female_name[-n_letters:].lower()}
-        data.append((feature, 'female'))
-    random.seed(7)
-    random.shuffle(data)
-    train_data = data[:int(len(data) / 2)]
-    test_data = data[int(len(data) / 2):]
-    model = cf.NaiveBayesClassifier.train(train_data)
-    ac = cf.accuracy(model, test_data)
-    models.append(model)
-    acs.append(ac)
 
-best_index = np.array(acs).argmax()
-best_letters = best_index + 1
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
+                    'neutral']
 
-gender_model = models[best_index]
-best_ac = acs[best_index]
+spec_chars = ['!', ''','#','%','&',''', '(', ')',
+              '*', '+', ',', '-', '.', '/', ':', ';', '<',
+              '=', '>', '?', '@', '[', '\\', ']', '^', '_',
+              '`', '{', '|', '}', '~', '–']
 
-neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs']
-
-spec_chars = ['!',''','#','%','&',''','(',')',
-              '*','+',',','-','.','/',':',';','<',
-              '=','>','?','@','[','\\',']','^','_',
-              '`','{','|','}','~','–']
-
-def reset_gender(subject, subject_gender):
-    if subject == 'he':
-        subject_gender_new = 'male'
-    elif subject == 'she':
-        subject_gender_new = 'female'
-    elif subject in neutral_sub_list:
-        subject_gender_new = 'neutral'
-    else:
-        subject_gender_new = subject_gender
-    return subject_gender_new
 
 def clean_SVO_dataframe(SVO_df):
-    # cleaning up the SVO dataframe
-    SVO_df['subject_gender'] = SVO_df.apply(lambda x: reset_gender(x.subject, x.subject_gender), axis=1)
-    SVO_df['object_gender'] = SVO_df.apply(lambda x: reset_gender(x.object, x.object_gender), axis=1)
-
     for char in spec_chars:
         SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
         SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
@@ -639,6 +575,20 @@ def clean_SVO_dataframe(SVO_df):
 
 
 
+def determine_gender(token):
+
+    if token == 'nothing':
+        gender = 'neutral_intransitive'
+    elif token in female_names or 'girl' in token or 'woman' in token or 'mrs' in token or 'Mrs' in token or 'Miss' in token or 'miss' in token:
+        gender = 'female'
+    elif token in male_names or 'boy' in token or ('man' in token and 'woman' not in token) or 'Mr' in token or 'Mister' in token:
+        gender = 'male'
+    elif token in neutral_sub_list:
+        gender = 'neutral'
+    else:
+        gender = 'neutral'
+    return gender
+
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
@@ -656,16 +606,8 @@ def determine_gender_SVO(input_data):
             SVO_list = findSVAOs(parse)
             for i in SVO_list:
                 sub, verb, obj = i[0], i[1], i[2]
-                if sub == 'neutral':
-                    sub_gender = 'neutral'
-                else:
-                    sub_feature = {'feature': sub[-best_letters:]}
-                    sub_gender = gender_model.classify(sub_feature)
-                if obj == 'nothing':
-                    obj_gender = 'neutral_intransitive'
-                else:
-                    obj_feature = {'feature': obj[-best_letters:]}
-                    obj_gender = gender_model.classify(obj_feature)
+                sub_gender = determine_gender(sub)
+                obj_gender = determine_gender(obj)
 
                 sub_list.append(sub)
                 sub_gender_list.append(sub_gender)
@@ -679,9 +621,8 @@ def determine_gender_SVO(input_data):
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
 
-    #cleaning up the SVO dataframe
+    # cleaning up the SVO dataframe
     SVO_df = clean_SVO_dataframe(SVO_df)
-
 
     return SVO_df
 
@@ -1034,45 +975,52 @@ def specific_bar_graph(df_name='specific_df'):
         return plot_bar
 
     except:
-        mpl.rcParams['axes.unicode_minus'] = False
-        np.random.seed(12345)
-        df = load_obj(name=df_name)
-        set_x_tick = True
+        try:
+            mpl.rcParams['axes.unicode_minus'] = False
+            np.random.seed(12345)
+            df = load_obj(name=df_name)
+            set_x_tick = True
 
-        plt.style.use('ggplot')
-        plt.rcParams['font.family'] = ['sans-serif']
-        plt.rcParams['font.sans-serif'] = ['SimHei']
-        fig, ax = plt.subplots()
+            plt.style.use('ggplot')
+            plt.rcParams['font.family'] = ['sans-serif']
+            plt.rcParams['font.sans-serif'] = ['SimHei']
+            fig, ax = plt.subplots()
 
-        # set up the colors
-        cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
-        df_mean = df.mean(axis=1)
-        norm = plt.Normalize(df_mean.min(), df_mean.max())
-        colors = cmap(norm(df_mean))
+            # set up the colors
+            cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+            df_mean = df.mean(axis=1)
+            norm = plt.Normalize(df_mean.min(), df_mean.max())
+            colors = cmap(norm(df_mean))
 
-        ax.barh(
-            df['verb'],
-            df['Frequency'],
-            yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-            color=colors)
-        fig.colorbar(ScalarMappable(cmap=cmap))
+            ax.barh(
+                df['verb'],
+                df['Frequency'],
+                yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+                color=colors)
+            fig.colorbar(ScalarMappable(cmap=cmap))
 
-        ax.set_title('Specific Word Frequency', fontsize=12)
-        ax.set_xlabel('Frequency')
-        ax.xaxis.set_visible(set_x_tick)
+            ax.set_title('Specific Word Frequency', fontsize=12)
+            ax.set_xlabel('Frequency')
+            ax.xaxis.set_visible(set_x_tick)
 
-        ax.set_ylabel('Word')
-        plt.tight_layout()
+            ax.set_ylabel('Word')
+            plt.tight_layout()
 
-        # save file to static
-        bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
-        bar_name_ex = bar_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
-        bar_path = save_img_path + '.png'
-        plt.savefig(bar_path)
-        plot_bar = url_for('static', filename=bar_name_ex)
+            # save file to static
+            bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
+            bar_name_ex = bar_name + '.png'
+            save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+            bar_path = save_img_path + '.png'
+            plt.savefig(bar_path)
+            plot_bar = url_for('static', filename=bar_name_ex)
 
-        return plot_bar
+            return plot_bar
+
+        except:
+            print("Not enough words for Plotting a bar chart")
+            plot_bar = url_for('static', filename="nothing_here.jpg")
+
+
 
 
 # def bar_graph(token_list, value_list):
