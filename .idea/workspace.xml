@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_postmodifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/SVO_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/premodifier_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/total_dataframe.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_modifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_modifier2.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_premodifier.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="">
       <change afterPath="$PROJECT_DIR$/bias_visualisation_app/data/amalgum/amalgum/dep/amalgum_academic_doc009.conllu" afterDir="false" />
@@ -4167,7 +4167,7 @@
       <workItem from="1628447856032" duration="467000" />
       <workItem from="1628449125459" duration="44000" />
       <workItem from="1628496153082" duration="6447000" />
-      <workItem from="1628583104583" duration="8921000" />
+      <workItem from="1628583104583" duration="10604000" />
     </task>
     <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
       <created>1628096157891</created>
@@ -4414,7 +4414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628584008746</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Successfully identifying gender-specific post-modifying nouns">
+      <created>1628592668185</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1628592668185</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -4434,7 +4441,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Creating copy of dataframe to avoid warning" />
     <MESSAGE value="Clean up spaces" />
     <MESSAGE value="Adding strip to stemmatize verbs better" />
     <MESSAGE value="Startign on intransitive verb identification" />
@@ -4459,12 +4465,13 @@
     <MESSAGE value="Adding routes for modifier, analysis and its graphs" />
     <MESSAGE value="Trying to fix the download bug" />
     <MESSAGE value="Adding JS files to solve the animation problem. Solving all warnings on files not found issues." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding JS files to solve the animation problem. Solving all warnings on files not found issues." />
+    <MESSAGE value="Successfully identifying gender-specific post-modifying nouns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully identifying gender-specific post-modifying nouns" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628502087617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_postmodifier Coverage Results" MODIFIED="1628592457217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_postmodifier Coverage Results" MODIFIED="1628592554199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628586057402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>

@@ -104,9 +104,14 @@
      </br>
      </br>
 
-     <h5>Download the premodifiers Dataframe Here</h5>
+     <h5>Download the Premodifiers Dataframe Here</h5>
 {#     <a href="{{ url_for('download_premodifier', filename='premodifier_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download premodifier Dataframe</a>#}
-     <button type="button" onclick="window.location.href='{{ url_for( 'download_premodifier' , filename='premodifier_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download premodifiers Dataframe</button>
+     <button type="button" onclick="window.location.href='{{ url_for( 'download_premodifier' , filename='premodifier_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Premodifiers Dataframe</button>
+     </br>
+     </br>
+     <h5>Download the Postmodifiers Dataframe Here</h5>
+{#     <a href="{{ url_for('download_premodifier', filename='premodifier_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download premodifier Dataframe</a>#}
+     <button type="button" onclick="window.location.href='{{ url_for( 'download_postmodifier' , filename='postmodifier_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Postmodifiers Dataframe</button>
      </br>
      </br>
 
@@ -124,8 +129,16 @@
                 </br>
                 </br>
                 </br>
-                <h5>Upload Adjectives Dataframe Here</h5>
+                <h5>Upload Premodifier Dataframe Here</h5>
                 <input type="file" name="premodifier_file" placeholder="Upload Premodifier Dataframe Here" required="true">
+                </br>
+                </br>
+                <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="reset">Clear</button>
+                </br>
+                </br>
+                </br>
+                <h5>Upload Postmodifier Dataframe Here</h5>
+                <input type="file" name="postmodifier_file" placeholder="Upload Postmodifier Dataframe Here" required="true">
                 </br>
                 </br>
                 <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="reset">Clear</button>
