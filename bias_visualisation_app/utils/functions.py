@@ -203,7 +203,7 @@ def get_text_file(corpora_file):
     fileDir = os.path.dirname(os.path.realpath('__file__'))
 
     # os.path.join is used so that paths work in every operating system
-    save_user_path = os.path.join(fileDir, 'bias_visualisation_app\\data\\user_uploads')
+    save_user_path = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'user_uploads')
 
     with open(os.path.join(save_user_path, filename), 'w+', encoding='utf-8') as f:
         for line in corpora_file:
@@ -455,7 +455,6 @@ def findSVAOs(tokens):
 
     # if (not_verbs not in verbs or len(not_verbs) == 0):
     if len(not_verbs) == 0:
-        print('safe to proceed with first identified verb!')
         for v in verbs:
             subs, verbNegated = getAllSubs(v)
             # hopefully there are subs, if not, don't examine this verb any longer
@@ -478,7 +477,6 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     elif not_verbs[0] not in verbs:
-        print('safe to proceed with first identified verb!')
         for v in verbs:
             subs, verbNegated = getAllSubs(v)
             # hopefully there are subs, if not, don't examine this verb any longer
@@ -510,7 +508,6 @@ def findSVAOs(tokens):
             after_tok_list = tokens_new[get_index + 1:]
             after_tok_list_str = tokens_new_str[get_index + 1:]
             if 'by' in after_tok_list_str:
-                print('look for nouns after by')
                 new_subs = []
                 for after_tok in after_tok_list:
                     if after_tok.dep_ in SUBJECTS and after_tok.pos_ not in non_sub_pos:
@@ -812,31 +809,36 @@ def dataframe_by_gender(view_df):
 
 
 def save_obj(obj, name):
-    save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+    path_parent = os.path.dirname(os.getcwd())
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
 
 def save_obj_text(obj, name):
-    save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+    path_parent = os.path.dirname(os.getcwd())
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_downloads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
 
 def save_obj_user_uploads(obj, name):
-    save_df_path = path.join(path.dirname(__file__), "..\\static\\user_uploads\\", name)
+    path_parent = os.path.dirname(os.getcwd())
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_uploads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
 
 def load_obj(name):
-    save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+    path_parent = os.path.dirname(os.getcwd())
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_downloads', name)
     df_path = save_df_path + '.csv'
     return pd.read_csv(df_path)
 
 
 def load_obj_user_uploads(name):
-    upload_df_path = path.join(path.dirname(__file__), "..\\static\\user_uploads", name)
+    path_parent = os.path.dirname(os.getcwd())
+    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_uploads', name)
     df_path = upload_df_path + '.csv'
     return pd.read_csv(df_path)
 
@@ -886,7 +888,6 @@ def generate_bias_values(input_data):
     save_obj_text(premodifier_df, name='premodifier_dataframe')
 
     postmodifier_df = determine_gender_postmodifier(input_data)
-    print(postmodifier_df)
     save_obj_text(postmodifier_df, name='postmodifier_dataframe')
 
 

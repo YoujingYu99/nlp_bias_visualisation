@@ -5,6 +5,7 @@ The interactive web interface for data bias visualisation
 from __future__ import unicode_literals
 
 import sys
+import logging
 from flask import Flask, render_template, url_for, request, jsonify, send_file, send_from_directory
 from bias_visualisation_app import app
 from os import environ, path
@@ -316,35 +317,46 @@ def query():
 #
 #     return render_template('query.html', data_question=dataframe_to_display)
 
-@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download_total(filename='total_dataframe.csv'):
-    print('Working now!')
-    uploads = path.join(path.dirname(__file__), "static\\", filename)
-    print(uploads)
-    return send_from_directory(directory=uploads, filename=filename)
+
+@app.route('/download/<df_name>', methods=['GET', 'POST'])
+def download(df_name):
+    print('calling download_total_route')
+    uploads = path.join(path.dirname(__file__), 'static', 'user_downloads', df_name)
+    total_data = pd.read_csv(uploads)
+    print(total_data)
+    return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], filename=df_name, as_attachment=True)
     #return send_file(uploads, as_attachment=True)
 
 
-@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download_SVO(filename='SVO_dataframe.csv'):
-    uploads = path.join(path.dirname(__file__), "static\\", filename)
-    print(uploads)
-    # return send_from_directory(directory=uploads, filename=filename)
-    return send_file(uploads, as_attachment=True)
-
-@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download_premodifier(filename='premodifier_dataframe.csv'):
-    uploads = path.join(path.dirname(__file__), "static\\", filename)
-    print(uploads)
-    # return send_from_directory(directory=uploads, filename=filename)
-    return send_file(uploads, as_attachment=True)
-
-@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-def download_postmodifier(filename='postmodifier_dataframe.csv'):
-    uploads = path.join(path.dirname(__file__), "static\\", filename)
-    print(uploads)
-    # return send_from_directory(directory=uploads, filename=filename)
-    return send_file(uploads, as_attachment=True)
+# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+# def download_total(filename):
+#     print('calling download_total_route')
+#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     total_data = pd.read_csv(uploads)
+#     print(total_data)
+#     return send_from_directory(directory=app.config['UPLOAD_FOLDER'], filename=filename, as_attachment=True)
+#     #return send_file(uploads, as_attachment=True)
+#
+#
+# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+# def download_SVO(filename='SVO_dataframe.csv'):
+#     uploads = path.join(path.dirname(__file__), "static", filename)
+#
+#     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
+#
+# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+# def download_premodifier(filename='premodifier_dataframe.csv'):
+#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     print(uploads)
+#     # return send_from_directory(directory=uploads, filename=filename)
+#     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
+#
+# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+# def download_postmodifier(filename='postmodifier_dataframe.csv'):
+#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     print(uploads)
+#     # return send_from_directory(directory=uploads, filename=filename)
+#     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
 
 @app.route('/about')
 def about():
