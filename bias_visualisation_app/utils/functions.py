@@ -586,6 +586,59 @@ def clean_SVO_dataframe(SVO_df):
 
     return SVO_df
 
+def clean_premodifier_dataframe(premodifier_df):
+    for char in spec_chars:
+        premodifier_df['female_premodifier'] = premodifier_df['female_premodifier'].astype(str).str.replace(char, ' ')
+        premodifier_df['male_premodifier'] = premodifier_df['male_premodifier'].astype(str).str.replace(char, ' ')
+
+
+    # get base form of words
+    female_premodifier_list = premodifier_df['female_premodifier'].to_list()
+    female_premodifier_base_list = []
+    for premodifier in female_premodifier_list:
+        base_word = WordNetLemmatizer().lemmatize(premodifier)
+        base_word.strip()
+        female_premodifier_base_list.append(base_word)
+    premodifier_df['female_premodifier'] = female_premodifier_base_list
+
+    male_premodifier_list = premodifier_df['male_premodifier'].to_list()
+    male_premodifier_base_list = []
+    for premodifier in male_premodifier_list:
+        base_word = WordNetLemmatizer().lemmatize(premodifier)
+        base_word.strip()
+        male_premodifier_base_list.append(base_word)
+    premodifier_df['male_premodifier'] = male_premodifier_base_list
+    
+    premodifier_df = premodifier_df.apply(lambda x: x.astype(str).str.lower())
+
+    return premodifier_df
+
+
+def clean_postmodifier_dataframe(postmodifier_df):
+    for char in spec_chars:
+        postmodifier_df['female_postmodifier'] = postmodifier_df['female_postmodifier'].astype(str).str.replace(char, ' ')
+        postmodifier_df['male_postmodifier'] = postmodifier_df['male_postmodifier'].astype(str).str.replace(char, ' ')
+
+    # get base form of words
+    female_postmodifier_list = postmodifier_df['female_postmodifier'].to_list()
+    female_postmodifier_base_list = []
+    for postmodifier in female_postmodifier_list:
+        base_word = WordNetLemmatizer().lemmatize(postmodifier)
+        base_word.strip()
+        female_postmodifier_base_list.append(base_word)
+    postmodifier_df['female_postmodifier'] = female_postmodifier_base_list
+
+    male_postmodifier_list = postmodifier_df['male_postmodifier'].to_list()
+    male_postmodifier_base_list = []
+    for postmodifier in male_postmodifier_list:
+        base_word = WordNetLemmatizer().lemmatize(postmodifier)
+        base_word.strip()
+        male_postmodifier_base_list.append(base_word)
+    postmodifier_df['male_postmodifier'] = male_postmodifier_base_list
+
+    postmodifier_df = postmodifier_df.apply(lambda x: x.astype(str).str.lower())
+
+    return postmodifier_df
 
 def determine_gender(token):
     if token == 'nothing':
@@ -651,6 +704,8 @@ def determine_gender_premodifier(input_data):
     premodifier_df = pd.DataFrame({'female_premodifier': tot_female_premodifier_list})
     premodifier_df.loc[:, 'male_premodifier'] = pd.Series(tot_male_premodifier_list)
 
+    premodifier_df = clean_premodifier_dataframe(premodifier_df)
+
     return premodifier_df
 
 def determine_gender_postmodifier(input_data):
@@ -669,6 +724,8 @@ def determine_gender_postmodifier(input_data):
             
     postmodifier_df = pd.DataFrame({'female_postmodifier': tot_female_postmodifier_list})
     postmodifier_df.loc[:, 'male_postmodifier'] = pd.Series(tot_male_postmodifier_list)
+
+    postmodifier_df = clean_postmodifier_dataframe(postmodifier_df)
     
     return postmodifier_df
 
@@ -831,7 +888,7 @@ def save_obj_user_uploads(obj, name):
 
 def load_obj(name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_downloads', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', name)
     df_path = save_df_path + '.csv'
     return pd.read_csv(df_path)
 
