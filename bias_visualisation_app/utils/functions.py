@@ -673,7 +673,7 @@ def determine_gender_postmodifier(input_data):
     postmodifier_df = pd.DataFrame({'female_postmodifier': tot_female_postmodifier_list})
     postmodifier_df.loc[:, 'male_postmodifier'] = pd.Series(tot_male_postmodifier_list)
     
-    return tot_female_postmodifier_list, tot_male_postmodifier_list
+    return postmodifier_df
 
 
 post_modifiers = ["compounds", "pobj"]
@@ -886,6 +886,7 @@ def generate_bias_values(input_data):
     save_obj_text(premodifier_df, name='premodifier_dataframe')
 
     postmodifier_df = determine_gender_postmodifier(input_data)
+    print(postmodifier_df)
     save_obj_text(postmodifier_df, name='postmodifier_dataframe')
 
 

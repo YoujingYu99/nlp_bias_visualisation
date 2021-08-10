@@ -132,13 +132,35 @@
             <div id="tab3" class="col s12">
               <h5>Adjectives</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_adjs }}</p></div>
-              <h3 style="text-align: center">Female </h3>
+              <h3 style="text-align: center">Female Adjectives</h3>
                 {{ data_fm_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_pre }}</p></div>
+              <h3 style="text-align: center">Female  Premodifiers</h3>
+                {{ data_fm_premodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
+              <h3 style="text-align: center">Female Postmodifiers</h3>
+                {{ data_fm_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_adjs }}</p></div>
-              <h3 style="text-align: center">Male </h3>
+              <h3 style="text-align: center">Male Adjectives</h3>
                 {{ data_m_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_pre }}</p></div>
+              <h3 style="text-align: center">Male  Premodifiers</h3>
+                {{ data_m_premodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
+              <h3 style="text-align: center">Male Postmodifiers</h3>
+                {{ data_m_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
             </div>
 
 <!--            <div id="tab4" class="col s12">-->
