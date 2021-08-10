@@ -319,7 +319,7 @@ def getAdjectives(toks):
 
     return toks_with_adjectives
 
-def findmodifiers(tokens):
+def findpremodifiers(tokens):
     nouns = [tok for tok in tokens if tok.pos_ in noun_list]
     adj_noun_pair = getAdjectives(nouns)
     female_adj_list, male_adj_list = gender_adjs(adj_noun_pair)
@@ -559,7 +559,7 @@ def generate_left_right_adjectives(obj):
 male_names = nc.names.words('male.txt')
 male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Woman', 'women', 'Women'])
+female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Woman', 'women', 'Women', 'lady', 'Lady'])
 neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
                     'neutral']
 
@@ -637,7 +637,7 @@ def determine_gender_SVO(input_data):
 
     return SVO_df
 
-def determine_gender_modifier(input_data):
+def determine_gender_premodifier(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_adj_list = []
@@ -645,15 +645,15 @@ def determine_gender_modifier(input_data):
     for sentence in sent_text:
         parse = parser(sentence)
         try:
-            female_adj_list, male_adj_list = findmodifiers(parse)
+            female_adj_list, male_adj_list = findpremodifiers(parse)
             tot_female_adj_list.extend(female_adj_list)
             tot_male_adj_list.extend(male_adj_list)
         except:
             continue
-    modifier_df = pd.DataFrame({'female_adj': tot_female_adj_list})
-    modifier_df.loc[:, 'male_adj'] = pd.Series(tot_male_adj_list)
+    premodifier_df = pd.DataFrame({'female_adj': tot_female_adj_list})
+    premodifier_df.loc[:, 'male_adj'] = pd.Series(tot_male_adj_list)
 
-    return modifier_df
+    return premodifier_df
 
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
@@ -823,8 +823,8 @@ def generate_bias_values(input_data):
     SVO_df = determine_gender_SVO(input_data)
     save_obj_text(SVO_df, name='SVO_dataframe')
 
-    ADJ_df = determine_gender_modifier(input_data)
-    save_obj_text(ADJ_df, name='modifier_dataframe')
+    ADJ_df = determine_gender_premodifier(input_data)
+    save_obj_text(ADJ_df, name='premodifier_dataframe')
 
 
 def frame_from_file(view_df):
@@ -889,26 +889,26 @@ def SVO_analysis(view_df):
 
     return female_sub_df_new, female_obj_df_new, female_intran_df_new, male_sub_df_new, male_obj_df_new, male_intran_df_new
 
-def modifier_analysis(view_df):
+def premodifier_analysis(view_df):
     # columns = ['female_adj', 'male_adj']
     female_adj_df = view_df.drop('male_adj', axis=1)
     male_adj_df = view_df.drop('female_adj', axis=1)
-    female_modifier_new = female_adj_df.copy()
-    female_modifier_new['Frequency'] = female_modifier_new['female_adj'].map(female_modifier_new['female_adj'].value_counts())
-    female_modifier_new.sort_values('Frequency', inplace=True, ascending=False)
-    female_modifier_new.drop_duplicates(subset='female_adj',
+    female_premodifier_new = female_adj_df.copy()
+    female_premodifier_new['Frequency'] = female_premodifier_new['female_adj'].map(female_premodifier_new['female_adj'].value_counts())
+    female_premodifier_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_premodifier_new.drop_duplicates(subset='female_adj',
                                       keep=False, inplace=True)
     
-    male_modifier_new = male_adj_df.copy()
-    male_modifier_new['Frequency'] = male_modifier_new['male_adj'].map(male_modifier_new['male_adj'].value_counts())
-    male_modifier_new.sort_values('Frequency', inplace=True, ascending=False)
-    male_modifier_new.drop_duplicates(subset='male_adj',
+    male_premodifier_new = male_adj_df.copy()
+    male_premodifier_new['Frequency'] = male_premodifier_new['male_adj'].map(male_premodifier_new['male_adj'].value_counts())
+    male_premodifier_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_premodifier_new.drop_duplicates(subset='male_adj',
                                    keep=False, inplace=True)
 
-    female_modifier_new.rename(columns={'female_adj': 'word'}, inplace=True)
-    male_modifier_new.rename(columns={'male_adj': 'word'}, inplace=True)
+    female_premodifier_new.rename(columns={'female_adj': 'word'}, inplace=True)
+    male_premodifier_new.rename(columns={'male_adj': 'word'}, inplace=True)
 
-    return female_modifier_new, male_modifier_new
+    return female_premodifier_new, male_premodifier_new
 
 def gender_dataframe_from_tuple(view_df):
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
@@ -1566,13 +1566,13 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     return plot_pca_female
 
 
-def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_modifier_dataframe):
+def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(
         input_SVO_dataframe)
-    female_modifier_df, male_modifier_df = modifier_analysis(input_modifier_dataframe)
+    female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
     if select_gender == 'female':
         if select_wordtype == 'nouns':
             return female_noun_df
@@ -1584,8 +1584,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return female_sub_df
         if select_wordtype == 'object_verbs':
             return female_obj_df
-        if select_wordtype == 'modifiers':
-            return female_modifier_df
+        if select_wordtype == 'premodifiers':
+            return female_premodifier_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
@@ -1601,8 +1601,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return male_sub_df
         if select_wordtype == 'object_verbs':
             return male_obj_df
-        if select_wordtype == 'modifiers':
-            return male_modifier_df
+        if select_wordtype == 'premodifiers':
+            return male_premodifier_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'

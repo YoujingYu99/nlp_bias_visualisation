@@ -42,7 +42,7 @@ def generate_left_right_adjectives(obj):
 sentence = 'Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup.'
 
 
-def determine_gender_modifier_test(sentence):
+def determine_gender_premodifier_test(sentence):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
     sent_text = nltk.sent_tokenize(sentence)
     tot_female_adj_list = []
@@ -50,15 +50,15 @@ def determine_gender_modifier_test(sentence):
     for sentence in sent_text:
         parse = parser(sentence)
         try:
-            female_adj_list, male_adj_list = findmodifiers(parse)
+            female_adj_list, male_adj_list = findpremodifiers(parse)
             tot_female_adj_list.extend(female_adj_list)
             tot_male_adj_list.extend(male_adj_list)
         except:
             continue
-    return tot_female_adj_list, male_adj_list
+    return tot_female_adj_list, tot_male_adj_list
 noun_list = ['NOUN', 'PRON' 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
 
-def findmodifiers(tokens):
+def findpremodifiers(tokens):
     nouns = [tok for tok in tokens if tok.pos_ in noun_list]
     adj_noun_pair = getAdjectives(nouns)
     female_adj_list, male_adj_list = gender_adjs(adj_noun_pair)
@@ -86,4 +86,4 @@ def gender_adjs(adj_noun_pair):
 
 
 
-determine_gender_modifier_test(sentence)
+print(determine_gender_premodifier_test(sentence))
