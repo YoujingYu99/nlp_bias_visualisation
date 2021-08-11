@@ -15,7 +15,7 @@ from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_
 from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
 from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
-    SVO_analysis, premodifier_analysis, postmodifier_analysis,\
+    SVO_analysis, premodifier_analysis, aux_analysis, aux_analysis, \
     generate_bias_values, save_obj, save_obj_text, save_obj_user_uploads, load_obj, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
@@ -190,7 +190,8 @@ def detect_dataframe():
         try:
             dataframe_SVO = request.files['SVO_file']
             dataframe_premodifier = request.files['premodifier_file']
-            dataframe_postmodifier = request.files['postmodifier_file']
+            dataframe_aux = request.files['aux_file']
+            dataframe_aux = request.files['aux_file']
             dataframe_total = request.files['total_file']
         except:
             print("error with this line!")
@@ -206,8 +207,11 @@ def detect_dataframe():
         input_dataframe_premodifier = pd.read_csv(dataframe_premodifier)
         save_obj_user_uploads(input_dataframe_premodifier, name="premodifier_dataframe_user_uploads")
 
-        input_dataframe_postmodifier = pd.read_csv(dataframe_postmodifier)
-        save_obj_user_uploads(input_dataframe_postmodifier, name="postmodifier_dataframe_user_uploads")
+        input_dataframe_aux = pd.read_csv(dataframe_aux)
+        save_obj_user_uploads(input_dataframe_aux, name="aux_dataframe_user_uploads")
+
+        input_dataframe_aux = pd.read_csv(dataframe_aux)
+        save_obj_user_uploads(input_dataframe_aux, name="aux_dataframe_user_uploads")
 
         # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
@@ -249,7 +253,8 @@ def analysis():
     view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
     input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
     input_premodifier_dataframe = load_obj_user_uploads(name="premodifier_dataframe_user_uploads")
-    input_postmodifier_dataframe = load_obj_user_uploads(name="postmodifier_dataframe_user_uploads")
+    input_aux_dataframe = load_obj_user_uploads(name="aux_dataframe_user_uploads")
+    input_aux_dataframe = load_obj_user_uploads(name="aux_dataframe_user_uploads")
 
     # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
@@ -257,7 +262,8 @@ def analysis():
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
     female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
-    female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
+    female_aux_df, male_aux_df = aux_analysis(input_aux_dataframe)
+    female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
@@ -265,9 +271,10 @@ def analysis():
                            data_fm_intran_verb=female_intran_df,
                            data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
                            data_m_intran_verb=male_intran_df, data_m_sub_verb=male_sub_df,
-                           data_m_obj_verb=male_obj_df, data_fm_premodifier=female_premodifier_df, data_m_premodifier=male_premodifier_df, data_fm_postmodifier=female_postmodifier_df, data_m_postmodifier=male_postmodifier_df,
+                           data_m_obj_verb=male_obj_df, data_fm_premodifier=female_premodifier_df, data_m_premodifier=male_premodifier_df, data_fm_aux=female_aux_df, data_m_aux=male_aux_df, data_fm_before_aux=female_before_aux_df, data_m_before_aux=male_before_aux_df,
+                           data_fm_follow_aux=female_follow_aux_df, data_m_follow_aux=male_follow_aux_df,
                            wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'intransitive_verbs'}, {'type': 'subject_verbs'},
-                                          {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'postmodifiers'}],
+                                          {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'auxs'}, {'type': 'before_aux'}, {'type': 'follow_aux'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
@@ -279,11 +286,12 @@ def query():
         input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
         input_premodifier_dataframe = load_obj_user_uploads(name="premodifier_dataframe_user_uploads")
         input_postmodifier_dataframe = load_obj_user_uploads(name="postmodifier_dataframe_user_uploads")
+        input_aux_dataframe = load_obj_user_uploads(name="aux_dataframe_user_uploads")
 
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe)
+                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
@@ -352,7 +360,7 @@ def download(df_name):
 #     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
 #
 # @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-# def download_postmodifier(filename='postmodifier_dataframe.csv'):
+# def download_aux(filename='aux_dataframe.csv'):
 #     uploads = path.join(path.dirname(__file__), "static", filename)
 #     print(uploads)
 #     # return send_from_directory(directory=uploads, filename=filename)

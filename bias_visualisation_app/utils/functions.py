@@ -640,6 +640,52 @@ def clean_postmodifier_dataframe(postmodifier_df):
 
     return postmodifier_df
 
+def clean_aux_dataframe(aux_df):
+    for char in spec_chars:
+        aux_df['female_before_aux'] = aux_df['female_before_aux'].astype(str).str.replace(char, ' ')
+        aux_df['male_before_aux'] = aux_df['male_before_aux'].astype(str).str.replace(char, ' ')
+        aux_df['female_follow_aux'] = aux_df['female_follow_aux'].astype(str).str.replace(char, ' ')
+        aux_df['male_follow_aux'] = aux_df['male_follow_aux'].astype(str).str.replace(char, ' ')
+
+    # get base form of words
+    female_before_aux_list = aux_df['female_before_aux'].to_list()
+    female_before_aux_base_list = []
+    for aux in female_before_aux_list:
+        base_word = WordNetLemmatizer().lemmatize(aux)
+        base_word.strip()
+        female_before_aux_base_list.append(base_word)
+    aux_df['female_before_aux'] = female_before_aux_base_list
+
+    male_before_aux_list = aux_df['male_before_aux'].to_list()
+    male_before_aux_base_list = []
+    for aux in male_before_aux_list:
+        base_word = WordNetLemmatizer().lemmatize(aux)
+        base_word.strip()
+        male_before_aux_base_list.append(base_word)
+    aux_df['male_before_aux'] = male_before_aux_base_list
+
+    # get base form of words
+    female_follow_aux_list = aux_df['female_follow_aux'].to_list()
+    female_follow_aux_base_list = []
+    for aux in female_follow_aux_list:
+        base_word = WordNetLemmatizer().lemmatize(aux)
+        base_word.strip()
+        female_follow_aux_base_list.append(base_word)
+    aux_df['female_follow_aux'] = female_follow_aux_base_list
+
+    male_follow_aux_list = aux_df['male_follow_aux'].to_list()
+    male_follow_aux_base_list = []
+    for aux in male_follow_aux_list:
+        base_word = WordNetLemmatizer().lemmatize(aux)
+        base_word.strip()
+        male_follow_aux_base_list.append(base_word)
+    aux_df['male_follow_aux'] = male_follow_aux_base_list
+
+
+    aux_df = aux_df.apply(lambda x: x.astype(str).str.lower())
+
+    return aux_df
+
 def determine_gender(token):
     if token == 'nothing':
         gender = 'neutral_intransitive'
@@ -729,6 +775,7 @@ def determine_gender_postmodifier(input_data):
     
     return postmodifier_df
 
+    
 
 post_modifiers = ["compounds", "pobj"]
 post_modifiers_noun_list = ["women", "Women", "female", "Female", "men", "Men", "male", "Male"]
@@ -768,6 +815,147 @@ def findmalePostmodifiers(sent):
             continue
 
     return male_postmodifier_list
+
+aux_word_list = ["are", "is", "were", "was", "be"]
+det_word_list = ["a", "an"]
+
+male_nouns = nc.names.words('male.txt')
+male_nouns.extend(['he', 'him', 'himself', 'gentleman', 'gentlemen', 'man', 'men', 'male'])
+male_nouns = [x.lower() for x in male_nouns]
+female_nouns = nc.names.words('female.txt')
+female_nouns.extend(['she', 'her', 'herself', 'lady', 'ladys', 'woman', 'women', 'female'])
+female_nouns = [x.lower() for x in female_nouns]
+
+
+sentence = 'Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraodinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.'
+
+
+
+def findfemalefollow_auxs(sent):
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    female_follow_aux_list = []
+    for female_noun in female_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(female_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split - 1] in aux_word_list:
+                follow_aux = tokens[sentence_split - 2]
+                if tags[sentence_split - 2][1].startswith('NN'):
+                    female_follow_aux_list.append(follow_aux)
+            elif tokens[sentence_split - 1] in det_word_list:
+                follow_aux = tokens[sentence_split - 3]
+                if tags[sentence_split - 3][1].startswith('NN'):
+                    female_follow_aux_list.append(follow_aux)
+            else:
+                pass
+        except:
+            continue
+
+    return female_follow_aux_list
+
+def findmalefollow_auxs(sent):
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    male_follow_aux_list = []
+    for male_noun in male_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(male_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split - 1] in aux_word_list:
+                follow_aux = tokens[sentence_split - 2]
+                if tags[sentence_split - 2][1].startswith('NN'):
+                    male_follow_aux_list.append(follow_aux)
+            elif tokens[sentence_split - 1] in det_word_list:
+                follow_aux = tokens[sentence_split - 3]
+                if tags[sentence_split - 3][1].startswith('NN'):
+                    male_follow_aux_list.append(follow_aux)
+            else:
+                pass
+        except:
+            continue
+
+    return male_follow_aux_list
+
+def findfemalebefore_auxs(sent):
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    female_before_aux_list = []
+    for female_noun in female_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(female_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split + 1] in aux_word_list:
+                before_aux = tokens[sentence_split + 2]
+                if tags[sentence_split + 2][1].startswith('NN'):
+                    female_before_aux_list.append(before_aux)
+            elif tokens[sentence_split + 1] in det_word_list:
+                before_aux = tokens[sentence_split + 3]
+                if tags[sentence_split + 3][1].startswith('NN'):
+                    female_before_aux_list.append(before_aux)
+            else:
+                pass
+        except:
+            continue
+
+    return female_before_aux_list
+
+def findmalebefore_auxs(sent):
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    male_before_aux_list = []
+    for male_noun in male_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(male_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split + 1] in aux_word_list:
+                before_aux = tokens[sentence_split + 2]
+                if tags[sentence_split + 2][1].startswith('NN'):
+                    male_before_aux_list.append(before_aux)
+            elif tokens[sentence_split + 1] in det_word_list:
+                before_aux = tokens[sentence_split + 3]
+                if tags[sentence_split + 3][1].startswith('NN'):
+                    male_before_aux_list.append(before_aux)
+            else:
+                pass
+        except:
+            continue
+
+    return male_before_aux_list
+
+
+def determine_gender_aux(input_data):
+    input_data = input_data.lower()
+    sent_text = nltk.sent_tokenize(input_data)
+    tot_female_follow_aux_list = []
+    tot_male_follow_aux_list = []
+    tot_female_before_aux_list = []
+    tot_male_before_aux_list = []
+    for sent in sent_text:
+        try:
+            female_follow_aux_list = findfemalefollow_auxs(sent)
+            male_follow_aux_list = findmalefollow_auxs(sent)
+            female_before_aux_list = findfemalebefore_auxs(sent)
+            male_before_aux_list = findmalebefore_auxs(sent)
+            tot_female_follow_aux_list.extend(female_follow_aux_list)
+            tot_male_follow_aux_list.extend(male_follow_aux_list)
+            tot_female_before_aux_list.extend(female_before_aux_list)
+            tot_male_before_aux_list.extend(male_before_aux_list)
+        except:
+            continue
+
+    aux_df = pd.DataFrame({'female_before_aux': tot_female_before_aux_list})
+    aux_df.loc[:, 'male_before_aux'] = pd.Series(tot_male_before_aux_list)
+    aux_df.loc[:, 'female_follow_aux'] = pd.Series(tot_female_follow_aux_list)
+    aux_df.loc[:, 'male_follow_aux'] = pd.Series(tot_male_follow_aux_list)
+
+    aux_df = clean_aux_dataframe(aux_df)
+
+    return aux_df
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
     # put into a dataframe
@@ -947,6 +1135,9 @@ def generate_bias_values(input_data):
     postmodifier_df = determine_gender_postmodifier(input_data)
     save_obj_text(postmodifier_df, name='postmodifier_dataframe')
 
+    aux_df = determine_gender_aux(input_data)
+    save_obj_text(aux_df, name='aux_dataframe')
+
 
 def frame_from_file(view_df):
     token_list, value_list, pos_list = generate_list(view_df)
@@ -1055,6 +1246,48 @@ def postmodifier_analysis(view_df):
 
     return female_postmodifier_new, male_postmodifier_new
 
+def aux_analysis(view_df):
+    # columns = ['female_before_aux', male_before_aux', female_follow_aux', male_follow_aux' ]
+    female_before_aux_df = view_df[['female_before_aux']]
+    male_before_aux_df = view_df[['male_before_aux']]
+    female_follow_aux_df = view_df[['female_follow_aux']]
+    male_follow_aux_df = view_df[['male_follow_aux']]
+
+    female_before_aux_new = female_before_aux_df.copy()
+    female_before_aux_new['Frequency'] = female_before_aux_new['female_before_aux'].map(
+        female_before_aux_new['female_before_aux'].value_counts())
+    female_before_aux_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_before_aux_new.drop_duplicates(subset='female_before_aux',
+                                           keep=False, inplace=True)
+
+    male_before_aux_new = male_before_aux_df.copy()
+    male_before_aux_new['Frequency'] = male_before_aux_new['male_before_aux'].map(
+        male_before_aux_new['male_before_aux'].value_counts())
+    male_before_aux_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_before_aux_new.drop_duplicates(subset='male_before_aux',
+                                          keep=False, inplace=True)
+    
+    female_follow_aux_new = female_follow_aux_df.copy()
+    female_follow_aux_new['Frequency'] = female_follow_aux_new['female_follow_aux'].map(
+        female_follow_aux_new['female_follow_aux'].value_counts())
+    female_follow_aux_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_follow_aux_new.drop_duplicates(subset='female_follow_aux',
+                                           keep=False, inplace=True)
+
+    male_follow_aux_new = male_follow_aux_df.copy()
+    male_follow_aux_new['Frequency'] = male_follow_aux_new['male_follow_aux'].map(
+        male_follow_aux_new['male_follow_aux'].value_counts())
+    male_follow_aux_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_follow_aux_new.drop_duplicates(subset='male_follow_aux',
+                                          keep=False, inplace=True)
+
+    female_before_aux_new.rename(columns={'female_before_aux': 'word'}, inplace=True)
+    male_before_aux_new.rename(columns={'male_before_aux': 'word'}, inplace=True)
+
+    female_follow_aux_new.rename(columns={'female_follow_aux': 'word'}, inplace=True)
+    male_follow_aux_new.rename(columns={'male_follow_aux': 'word'}, inplace=True)
+
+    return female_before_aux_new, male_before_aux_new, female_follow_aux_new, male_follow_aux_new
 
 
 def gender_dataframe_from_tuple(view_df):
@@ -1713,7 +1946,7 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     return plot_pca_female
 
 
-def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe):
+def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
@@ -1721,6 +1954,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
         input_SVO_dataframe)
     female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
+    female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
+
     if select_gender == 'female':
         if select_wordtype == 'nouns':
             return female_noun_df
@@ -1736,6 +1971,10 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return female_premodifier_df
         if select_wordtype == 'postmodifiers':
             return female_postmodifier_df
+        if select_wordtype == 'before_aux':
+            return female_before_aux_df
+        if select_wordtype == 'follow_aux':
+            return female_follow_aux_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
@@ -1755,6 +1994,10 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return male_premodifier_df
         if select_wordtype == 'postmodifiers':
             return male_postmodifier_df
+        if select_wordtype == 'before_aux':
+            return male_before_aux_df
+        if select_wordtype == 'follow_aux':
+            return male_follow_aux_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'

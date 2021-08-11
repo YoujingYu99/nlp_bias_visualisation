@@ -11,9 +11,7 @@ COMPOUNDS = ["compound"]
 PREPOSITIONS = ["prep"]
 
 
-follow_aux_noun_list = ["women", "Women", "female", "Female", "men", "Men", "male", "Male"]
-female_follow_aux_noun_list = ["woman", "women", "female", "lady"]
-male_follow_aux_noun_list = ["man", "men", "male"]
+
 aux_word_list = ["are", "is", "were", "was", "be"]
 det_word_list = ["a", "an"]
 
@@ -128,7 +126,6 @@ def findmalebefore_auxs(sent):
 def determine_gender_follow_aux_test(sentence):
     sentence = sentence.lower()
     sent_text = nltk.sent_tokenize(sentence)
-    print(sent_text)
     tot_female_follow_aux_list = []
     tot_male_follow_aux_list = []
     tot_female_before_aux_list = []

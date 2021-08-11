@@ -114,6 +114,11 @@
      <button type="button" onclick="window.location.href='{{ url_for( 'download' , df_name='postmodifier_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Postmodifiers Dataframe</button>
      </br>
      </br>
+     <h5>Download the Auxiliary Dataframe Here</h5>
+{#     <a href="{{ url_for('download_premodifier', filename='premodifier_dataframe.csv') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download premodifier Dataframe</a>#}
+     <button type="button" onclick="window.location.href='{{ url_for( 'download' , df_name='aux_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Auxiliary Dataframe</button>
+     </br>
+     </br>
 
      <!--Upload SVO and Total Dataframe-->
      <div class="row">
@@ -147,6 +152,14 @@
                 </br>
                 <h5>Upload the Postmodifier Dataframe Here</h5>
                 <input type="file" name="postmodifier_file" placeholder="Upload Postmodifier Dataframe Here" required="true">
+                </br>
+                </br>
+                <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="reset">Clear</button>
+                </br>
+                </br>
+                </br>
+                <h5>Upload the Auxiliary Dataframe Here</h5>
+                <input type="file" name="aux_file" placeholder="Upload Auxiliary Dataframe Here" required="true">
                 </br>
                 </br>
                 <button class="btn btn-small waves-effect waves-light dark-blue lighten-1" type="reset">Clear</button>
