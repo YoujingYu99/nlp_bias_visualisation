@@ -5,28 +5,28 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 gender_biased_word_pairs = [
-    ("woman", "man"),
-    ("daughter", "son"),
-    ("mother", "father"),
-    ("gal", "guy"),
-    ("girl", "boy"),
-    ("vagina", "penis"),
-    ("feminine", "masculine"),
-    ("ladies", "gentlemen"),
-    ("wife", "husband"),
-    ("female", "male"),
-    ("girlfriend", "boyfriend"),
-    ("queen", "king"),
-    ("spokeswoman", "spokesman"),
+    ('woman', 'man'),
+    ('daughter', 'son'),
+    ('mother', 'father'),
+    ('gal', 'guy'),
+    ('girl', 'boy'),
+    ('vagina', 'penis'),
+    ('feminine', 'masculine'),
+    ('ladies', 'gentlemen'),
+    ('wife', 'husband'),
+    ('female', 'male'),
+    ('girlfriend', 'boyfriend'),
+    ('queen', 'king'),
+    ('spokeswoman', 'spokesman'),
 ]
 
 gender_neutral_words = [
-    #"who",
-    #"what",
-    #"where",
-    #"the",
-    #"it",
-    "human"
+    #'who',
+    #'what',
+    #'where',
+    #'the',
+    #'it',
+    'human'
 ]
 
 
@@ -34,7 +34,7 @@ class PcaBiasCalculator:
     def __init__(
             self,
             model_path=path.join(
-                path.dirname(__file__), "../data/gum_word2vec.model"
+                path.dirname(__file__), '../data/gum_word2vec.model'
             ),
             biased_word_pairs=gender_biased_word_pairs,
             neutral_words=gender_neutral_words,
@@ -75,11 +75,11 @@ class PcaBiasCalculator:
         return self.model.wv.vocab.keys()
 
     def detect_bias(self, raw_word):
-        """
+        '''
         Use PCA to find the gender bias vector, and determine bias based on position along the gender vector
-        """
+        '''
         # eliminate white spaces using underscore
-        word = re.sub(r"\s+", "_", raw_word)
+        word = re.sub(r'\s+', '_', raw_word)
         if word not in self.model.wv:
             return None
         word_val = self.pca.transform(np.array([self.model.wv[word]]))[0][0]

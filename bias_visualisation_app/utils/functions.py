@@ -45,8 +45,8 @@ from .PcaBiasCalculator import PcaBiasCalculator
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 # NLP bias detection
-# if environ.get("USE_PRECALCULATED_BIASES", "").upper() == "TRUE":
-#     print("using precalculated biases")
+# if environ.get('USE_PRECALCULATED_BIASES', '').upper() == 'TRUE':
+#     print('using precalculated biases')
 #     calculator = PrecalculatedBiasCalculator()
 # else:
 #     calculator = PcaBiasCalculator()
@@ -57,13 +57,13 @@ sys.setrecursionlimit(10000)
 calculator = PrecalculatedBiasCalculator()
 
 neutral_words = [
-    "is",
-    "was",
-    "who",
-    "what",
-    "where",
-    "the",
-    "it",
+    'is',
+    'was',
+    'who',
+    'what',
+    'where',
+    'the',
+    'it',
 ]
 
 # POS tagging for different word types
@@ -73,16 +73,16 @@ verb_list = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VERB']
 
 
 def tsv_reader(path, file):
-    """
+    '''
     :param path: the path into amalgum dataset
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: a list of rows (lists containing words in sentences)
-    """
+    '''
     if not file.endswith('.tsv'):
         file += '.tsv'
     if os.path.exists(os.path.join(path, file)):
         tsv_file = open(os.path.join(path, file), encoding='utf-8')
-        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        read_tsv = csv.reader(tsv_file, delimiter='\t')
         return read_tsv
     else:
         print(os.path.join(path, file))
@@ -91,14 +91,14 @@ def tsv_reader(path, file):
 
 
 def conllu_reader(path, file):
-    """
+    '''
     :param path: the path into amalgum dataset
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: a token list generator
-    """
+    '''
     file += '.conllu'
     if os.path.exists(os.path.join(path, file)):
-        data_file = open(os.path.join(path, file), "r", encoding="utf-8")
+        data_file = open(os.path.join(path, file), 'r', encoding='utf-8')
         tokenlists = parse_incr(data_file)
         return tokenlists
     else:
@@ -108,11 +108,11 @@ def conllu_reader(path, file):
 
 
 def etree_reader(path, file):
-    """
+    '''
     :param path: the path into amalgum dataset
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: an element tree object
-    """
+    '''
     file += '.xml'
     if os.path.exists(os.path.join(path, file)):
         tree = ET.parse(os.path.join(path, file))
@@ -124,12 +124,12 @@ def etree_reader(path, file):
 
 
 def get_txt(file, path, save_path):
-    """
+    '''
     :param file: the file in the tsv folder
     :param path: the path of the file's parent directory
     :param save_path: the path to save the newly generated file
     :return: the plain text version of the file using the same name
-    """
+    '''
     f_read = tsv_reader(path, file)
     f_read = [x for x in f_read if x != []]
     f_out = []
@@ -142,20 +142,20 @@ def get_txt(file, path, save_path):
             f.write(line + '\n')
     f.close()
     if os.path.exists(os.path.join(save_path, file + '.txt')):
-        print("writing completed: " + file)
+        print('writing completed: ' + file)
 
 
 def txt_list(path):
-    """
+    '''
     :param txt_dir: the path of the txt files to be extracted
     :return: a clean list containing the raw sentences
-    """
+    '''
     training_list = []
     txt_files = os.listdir(path)
     file_n = len(txt_files)
-    print("{} files being processed".format(file_n))
+    print('{} files being processed'.format(file_n))
     for file in txt_files:
-        with open(os.path.join(path, file), "r", encoding='utf-8') as file_in:
+        with open(os.path.join(path, file), 'r', encoding='utf-8') as file_in:
             for line in file_in:
                 # create word tokens as well as remove puntuation in one go
                 rem_tok_punc = RegexpTokenizer(r'\w+')
@@ -174,14 +174,14 @@ def txt_list(path):
 
 
 def tsv_txt(tsv_dir, txt_dir):
-    """
+    '''
     :param tsv_dir: the path of the tsv files
     :param txt_dir: the path of the txt files to be saved
     :return: extract all text from the tsv files and save to the txt directory
-    """
+    '''
     tsv_files = os.listdir(tsv_dir)
     file_n = len(tsv_files)
-    print("{} files being processed".format(file_n))
+    print('{} files being processed'.format(file_n))
     for file in tsv_files:
         file = file[:-4]
         get_txt(file, tsv_dir, txt_dir)
@@ -218,12 +218,12 @@ import nltk.corpus as nc
 import nltk
 import spacy
 
-SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
-OBJECTS = ["dobj", "dative", "attr", "oprd"]
-ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
-              "hmod", "infmod", "xcomp", "rcmod", "poss", "possessive"]
-COMPOUNDS = ["compound"]
-PREPOSITIONS = ["prep"]
+SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
+OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
+ADJECTIVES = ['acomp', 'advcl', 'advmod', 'amod', 'appos', 'nn', 'nmod', 'ccomp', 'complm',
+              'hmod', 'infmod', 'xcomp', 'rcmod', 'poss', 'possessive']
+COMPOUNDS = ['compound']
+PREPOSITIONS = ['prep']
 
 def getSubsFromConjunctions(subs):
     moreSubs = []
@@ -232,8 +232,8 @@ def getSubsFromConjunctions(subs):
         rights = list(sub.rights)
         rightDeps = {tok.lower_ for tok in rights}
         # look for multiple subjects
-        if "and" in rightDeps:
-            moreSubs.extend([tok for tok in rights if tok.dep_ in SUBJECTS or tok.pos_ == "NOUN"])
+        if 'and' in rightDeps:
+            moreSubs.extend([tok for tok in rights if tok.dep_ in SUBJECTS or tok.pos_ == 'NOUN'])
             if len(moreSubs) > 0:
                 moreSubs.extend(getSubsFromConjunctions(moreSubs))
     return moreSubs
@@ -246,8 +246,8 @@ def getObjsFromConjunctions(objs):
         rights = list(obj.rights)
         rightDeps = {tok.lower_ for tok in rights}
         # look for multiple objects
-        if "and" in rightDeps:
-            moreObjs.extend([tok for tok in rights if tok.dep_ in OBJECTS or tok.pos_ == "NOUN"])
+        if 'and' in rightDeps:
+            moreObjs.extend([tok for tok in rights if tok.dep_ in OBJECTS or tok.pos_ == 'NOUN'])
             if len(moreObjs) > 0:
                 moreObjs.extend(getObjsFromConjunctions(moreObjs))
     return moreObjs
@@ -258,8 +258,8 @@ def getVerbsFromConjunctions(verbs):
     for verb in verbs:
         rightDeps = {tok.lower_ for tok in verb.rights}
         # look for multiple verbs
-        if "and" in rightDeps:
-            moreVerbs.extend([tok for tok in verb.rights if tok.pos_ == "VERB"])
+        if 'and' in rightDeps:
+            moreVerbs.extend([tok for tok in verb.rights if tok.pos_ == 'VERB'])
             if len(moreVerbs) > 0:
                 moreVerbs.extend(getVerbsFromConjunctions(moreVerbs))
     return moreVerbs
@@ -267,23 +267,23 @@ def getVerbsFromConjunctions(verbs):
 
 def findSubs(tok):
     head = tok.head
-    while head.pos_ != "VERB" and head.pos_ != "NOUN" and head.head != head:
+    while head.pos_ != 'VERB' and head.pos_ != 'NOUN' and head.head != head:
         head = head.head
-    if head.pos_ == "VERB":
-        subs = [tok for tok in head.lefts if tok.dep_ == "SUB"]
+    if head.pos_ == 'VERB':
+        subs = [tok for tok in head.lefts if tok.dep_ == 'SUB']
         if len(subs) > 0:
             verbNegated = isNegated(head)
             subs.extend(getSubsFromConjunctions(subs))
             return subs, verbNegated
         elif head.head != head:
             return findSubs(head)
-    elif head.pos_ == "NOUN":
+    elif head.pos_ == 'NOUN':
         return [head], isNegated(tok)
     return [], False
 
 
 def isNegated(tok):
-    negations = {"no", "not", "n't", "never", "none"}
+    negations = {'no', 'not', "n't", 'never', 'none'}
     for dep in list(tok.lefts) + list(tok.rights):
         if dep.lower_ in negations:
             return True
@@ -292,21 +292,21 @@ def isNegated(tok):
 
 def findSVs(tokens):
     svs = []
-    verbs = [tok for tok in tokens if tok.pos_ == "VERB"]
+    verbs = [tok for tok in tokens if tok.pos_ == 'VERB']
     for v in verbs:
         subs, verbNegated = getAllSubs(v)
         if len(subs) > 0:
             for sub in subs:
-                svs.append((sub.orth_, "!" + v.orth_ if verbNegated else v.orth_))
+                svs.append((sub.orth_, '!' + v.orth_ if verbNegated else v.orth_))
     return svs
 
 
 def getObjsFromPrepositions(deps):
     objs = []
     for dep in deps:
-        if dep.pos_ == "ADP" and dep.dep_ == "prep":
+        if dep.pos_ == 'ADP' and dep.dep_ == 'prep':
             objs.extend(
-                [tok for tok in dep.rights if tok.dep_ in OBJECTS or (tok.pos_ == "PRON" and tok.lower_ == "me")])
+                [tok for tok in dep.rights if tok.dep_ in OBJECTS or (tok.pos_ == 'PRON' and tok.lower_ == 'me')])
     return objs
 
 
@@ -332,10 +332,10 @@ def gender_premodifiers(premodifier_noun_pair):
     male_premodifier_list = []
     for pair in premodifier_noun_pair:
         noun = pair[-1]
-        if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'Mrs' in noun or 'Miss' in noun or 'miss' in noun:
+        if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'miss' in noun:
             premodifiers = pair[:-1]
             female_premodifier_list.extend(premodifiers)
-        elif noun in male_names or 'boy' in noun or ('man' in noun and 'woman' not in noun) or 'Mr' in noun or 'Mister' in noun:
+        elif noun in male_names or 'boy' in noun or ('man' in noun and 'woman' not in noun) or 'mr' in noun or 'mister' in noun:
             premodifiers = pair[:-1]
             male_premodifier_list.extend(premodifiers)
         else:
@@ -346,8 +346,8 @@ def gender_premodifiers(premodifier_noun_pair):
 
 def getObjsFromAttrs(deps):
     for dep in deps:
-        if dep.pos_ == "NOUN" and dep.dep_ == "attr":
-            verbs = [tok for tok in dep.rights if tok.pos_ == "VERB"]
+        if dep.pos_ == 'NOUN' and dep.dep_ == 'attr':
+            verbs = [tok for tok in dep.rights if tok.pos_ == 'VERB']
             if len(verbs) > 0:
                 for v in verbs:
                     rights = list(v.rights)
@@ -360,7 +360,7 @@ def getObjsFromAttrs(deps):
 
 def getObjFromXComp(deps):
     for dep in deps:
-        if dep.pos_ == "VERB" and dep.dep_ == "xcomp":
+        if dep.pos_ == 'VERB' and dep.dep_ == 'xcomp':
             v = dep
             rights = list(v.rights)
             objs = [tok for tok in rights if tok.dep_ in OBJECTS]
@@ -370,12 +370,12 @@ def getObjFromXComp(deps):
     return None, None
 
 
-non_sub_pos = ["DET", "AUX"]
+non_sub_pos = ['DET', 'AUX']
 
 
 def getAllSubs(v):
     verbNegated = isNegated(v)
-    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
+    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != 'DET']
     subs = []
     for tok in v.lefts:
         if tok.dep_ in SUBJECTS and tok.pos_ not in non_sub_pos:
@@ -431,7 +431,7 @@ def getAllObjsWithAdjectives(v):
 
 def findSVOs(tokens):
     svos = []
-    verbs = [tok for tok in tokens if tok.pos_ == "AUX"]
+    verbs = [tok for tok in tokens if tok.pos_ == 'AUX']
     for v in verbs:
         subs, verbNegated = getAllSubs(v)
         # hopefully there are subs, if not, don't examine this verb any longer
@@ -440,18 +440,18 @@ def findSVOs(tokens):
             for sub in subs:
                 for obj in objs:
                     objNegated = isNegated(obj)
-                    svos.append((sub.lower_, "!" + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
+                    svos.append((sub.lower_, '!' + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
     return svos
 
 
 def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
-    verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    # not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
+    verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.dep_ != 'aux']
+    # not_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN'][0]#
     not_verbs = []
     for tok in tokens:
-        if tok.pos_ == "VERB" and tok.tag_ == "VBN":
+        if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
             not_verbs.append(tok)
 
     # if (not_verbs not in verbs or len(not_verbs) == 0):
@@ -467,9 +467,9 @@ def findSVAOs(tokens):
                             objNegated = isNegated(obj)
                             obj_desc_tokens = generate_left_right_adjectives(obj)
                             sub_compound = generate_sub_compound(sub)
-                            svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                         "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                         " ".join(tok.lower_ for tok in obj_desc_tokens)))
+                            svos.append((' '.join(tok.lower_ for tok in sub_compound),
+                                         '!' + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         ' '.join(tok.lower_ for tok in obj_desc_tokens)))
 
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
@@ -489,9 +489,9 @@ def findSVAOs(tokens):
                             objNegated = isNegated(obj)
                             obj_desc_tokens = generate_left_right_adjectives(obj)
                             sub_compound = generate_sub_compound(sub)
-                            svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                         "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                         " ".join(tok.lower_ for tok in obj_desc_tokens)))
+                            svos.append((' '.join(tok.lower_ for tok in sub_compound),
+                                         '!' + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         ' '.join(tok.lower_ for tok in obj_desc_tokens)))
 
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
@@ -500,7 +500,7 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     else:
-        new_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"]
+        new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
         tokens_new = [t for t in tokens]
         tokens_new_str = [str(t) for t in tokens]
         for new_verb in new_verbs:
@@ -556,11 +556,10 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
+male_names.extend(['he', 'him',  'himself',])
 female_names = nc.names.words('female.txt')
-female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Woman', 'women', 'Women', 'lady', 'Lady'])
-neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
-                    'neutral']
+female_names.extend(['she', 'her', 'herself', 'woman', 'women', 'lady'])
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs', 'neutral']
 
 spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '*', '+', ',', '-', '.', '/', ':', ';', '<',
@@ -704,6 +703,7 @@ def determine_gender(token):
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     sub_list = []
     sub_gender_list = []
@@ -737,6 +737,7 @@ def determine_gender_SVO(input_data):
 
 def determine_gender_premodifier(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_premodifier_list = []
     tot_male_premodifier_list = []
@@ -782,10 +783,10 @@ def determine_gender_postmodifier(input_data):
 
     
 
-post_modifiers = ["compounds", "pobj"]
-post_modifiers_noun_list = ["women", "Women", "female", "Female", "men", "Men", "male", "Male"]
-female_postmodifier_noun_list = ["women", "female"]
-male_postmodifier_noun_list = ["men", "male"]
+post_modifiers = ['compounds', 'pobj']
+post_modifiers_noun_list = ['women', 'female',  'men', 'male']
+female_postmodifier_noun_list = ['women', 'female']
+male_postmodifier_noun_list = ['men', 'male']
 
 def findfemalePostmodifiers(sent):
     tokens = nltk.word_tokenize(sent)
@@ -821,8 +822,8 @@ def findmalePostmodifiers(sent):
 
     return male_postmodifier_list
 
-aux_word_list = ["are", "is", "were", "was", "be"]
-det_word_list = ["a", "an"]
+aux_word_list = ['are', 'is', 'were', 'was', 'be']
+det_word_list = ['a', 'an']
 
 male_nouns = nc.names.words('male.txt')
 male_nouns.extend(['he', 'him', 'himself', 'gentleman', 'gentlemen', 'man', 'men', 'male'])
@@ -830,10 +831,6 @@ male_nouns = [x.lower() for x in male_nouns]
 female_nouns = nc.names.words('female.txt')
 female_nouns.extend(['she', 'her', 'herself', 'lady', 'ladys', 'woman', 'women', 'female'])
 female_nouns = [x.lower() for x in female_nouns]
-
-
-sentence = 'Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraodinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.'
-
 
 
 def findfemalefollow_auxs(sent):
@@ -1030,30 +1027,30 @@ def dataframe_by_gender(view_df):
 #     return male_dict, female_dict
 
 # def save_obj(obj, name):
-#     save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+#     save_df_path = path.join(path.dirname(__file__), '..\\static\\', name)
 #     df_path = save_df_path + '.pkl'
 #     with open(df_path, 'wb') as f:
 #         pickle.dump(obj, f)
 #
 # def save_obj_text(obj, name):
-#     save_df_path = path.join(path.dirname(__file__), "..\\static\\", name)
+#     save_df_path = path.join(path.dirname(__file__), '..\\static\\', name)
 #     df_path = save_df_path + '.pkl'
 #     with open(df_path, 'wb') as f:
 #         pickle.dump(obj, f)
 #
 # def save_obj_user_uploads(obj, name):
-#     save_df_path = path.join(path.dirname(__file__), "..\\static\\user_uploads\\", name)
+#     save_df_path = path.join(path.dirname(__file__), '..\\static\\user_uploads\\', name)
 #     df_path = save_df_path + '.pkl'
 #     with open(df_path, 'wb') as f:
 #         pickle.dump(obj, f)
 #
 # def load_obj(name):
-#     save_df_path = path.join(path.dirname(__file__), "..\\static\\")
+#     save_df_path = path.join(path.dirname(__file__), '..\\static\\')
 #     with open(save_df_path + name + '.pkl', 'rb') as f:
 #         return pickle.load(f)
 #
 # def load_obj_user_uploads(name):
-#     upload_df_path = path.join(path.dirname(__file__), "..\\static\\user_uploads\\")
+#     upload_df_path = path.join(path.dirname(__file__), '..\\static\\user_uploads\\')
 #     with open(upload_df_path + name + '.pkl', 'rb') as f:
 #         return pickle.load(f)
 
@@ -1110,20 +1107,20 @@ def generate_bias_values(input_data):
     view_results = []
     for obj in objs:
         token_result = {
-            "token": obj["text"],
-            "bias": calculator.detect_bias(obj["text"]),
-            "parts": [
+            'token': obj['text'],
+            'bias': calculator.detect_bias(obj['text']),
+            'parts': [
                 {
-                    "whitespace": token.whitespace_,
-                    "pos": token.pos_,
-                    "dep": token.dep_,
-                    "ent": token.ent_type_,
-                    "skip": token.pos_
-                            in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART", "CCONJ"]
+                    'whitespace': token.whitespace_,
+                    'pos': token.pos_,
+                    'dep': token.dep_,
+                    'ent': token.ent_type_,
+                    'skip': token.pos_
+                            in ['AUX', 'ADP', 'PUNCT', 'SPACE', 'DET', 'PART', 'CCONJ']
                             or len(token) < 2
                             or token.text.lower() in neutral_words,
                 }
-                for token in obj["tokens"]
+                for token in obj['tokens']
             ],
         }
         results.append(token_result)
@@ -1375,7 +1372,7 @@ def bar_graph(dataframe, token_list, value_list):
     # save file to static
     bar_name = token_list[0] + token_list[-2]
     bar_name_ex = bar_name + '.png'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
     bar_path = save_img_path + '.png'
     plt.savefig(bar_path)
     plot_bar = url_for('static', filename=bar_name_ex)
@@ -1419,7 +1416,7 @@ def specific_bar_graph(df_name='specific_df'):
         # save file to static
         bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
         bar_name_ex = bar_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+        save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
         bar_path = save_img_path + '.png'
         plt.savefig(bar_path)
         plot_bar = url_for('static', filename=bar_name_ex)
@@ -1461,7 +1458,7 @@ def specific_bar_graph(df_name='specific_df'):
             # save file to static
             bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
             bar_name_ex = bar_name + '.png'
-            save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+            save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
             bar_path = save_img_path + '.png'
             plt.savefig(bar_path)
             plot_bar = url_for('static', filename=bar_name_ex)
@@ -1503,7 +1500,7 @@ def specific_bar_graph(df_name='specific_df'):
                 # save file to static
                 bar_name = df['word'].iloc[0] + df['word'].iloc[1]
                 bar_name_ex = bar_name + '.png'
-                save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+                save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
                 bar_path = save_img_path + '.png'
                 plt.savefig(bar_path)
                 plot_bar = url_for('static', filename=bar_name_ex)
@@ -1512,8 +1509,8 @@ def specific_bar_graph(df_name='specific_df'):
 
             except:
 
-                print("Not enough words for Plotting a bar chart")
-                plot_bar = url_for('static', filename="nothing_here.jpg")
+                print('Not enough words for Plotting a bar chart')
+                plot_bar = url_for('static', filename='nothing_here.jpg')
 
 
 # def bar_graph(token_list, value_list):
@@ -1546,7 +1543,7 @@ def specific_bar_graph(df_name='specific_df'):
 #     # save file to static
 #     bar_name = token_list[0]
 #     bar_name_ex = bar_name + '.png'
-#     save_img_path = path.join(path.dirname(__file__), "..\\static\\", bar_name)
+#     save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
 #     bar_path = save_img_path + '.png'
 #     plt.savefig(bar_path)
 #     plot_bar = url_for('static', filename=bar_name_ex)
@@ -1572,13 +1569,13 @@ def cloud_image(token_list, value_list):
     female_data = {k: v for (k, v) in data.items() if v < 0}
 
     # cloud
-    cloud_color = "magma"
-    cloud_bg_color = "white"
+    cloud_color = 'magma'
+    cloud_bg_color = 'white'
     # cloud_custom_font = False
 
     # transform mask
-    # female_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "female_symbol.png")
-    # male_mask_path = path.join(path.dirname(__file__), "..\\static\\images", "male_symbol.png")
+    # female_mask_path = path.join(path.dirname(__file__), '..\\static\\images', 'female_symbol.png')
+    # male_mask_path = path.join(path.dirname(__file__), '..\\static\\images', 'male_symbol.png')
     #
     # female_cloud_mask = np.array(Image.open(female_mask_path))
     # male_cloud_mask = np.array(Image.open(male_mask_path))
@@ -1606,7 +1603,7 @@ def cloud_image(token_list, value_list):
         # save file to static
         female_cloud_name = str(next(iter(female_data))) + 'femalecloud'
         female_cloud_name_ex = female_cloud_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), "..\\static\\", female_cloud_name)
+        save_img_path = path.join(path.dirname(__file__), '..\\static\\', female_cloud_name)
         img_path = save_img_path + '.png'
         female_wordcloud.to_file(img_path)
 
@@ -1615,8 +1612,8 @@ def cloud_image(token_list, value_list):
     except:
         # https: // www.wattpad.com / 729617965 - there % 27s - nothing - here - 3
         # https://images-na.ssl-images-amazon.com/images/I/41wjfr0wSsL.png
-        print("Not enough words for female cloud!")
-        plot_female_cloud = url_for('static', filename="nothing_here.jpg")
+        print('Not enough words for female cloud!')
+        plot_female_cloud = url_for('static', filename='nothing_here.jpg')
 
     try:
         male_wordcloud.generate_from_frequencies(male_data)
@@ -1624,24 +1621,24 @@ def cloud_image(token_list, value_list):
         # save file to static
         male_cloud_name = str(next(iter(male_data))) + 'malecloud'
         male_cloud_name_ex = male_cloud_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), "..\\static\\", male_cloud_name)
+        save_img_path = path.join(path.dirname(__file__), '..\\static\\', male_cloud_name)
         img_path = save_img_path + '.png'
         male_wordcloud.to_file(img_path)
 
         plot_male_cloud = url_for('static', filename=male_cloud_name_ex)
 
     except:
-        print("Not enough words for male cloud!")
-        plot_male_cloud = url_for('static', filename="nothing_here.jpg")
+        print('Not enough words for male cloud!')
+        plot_male_cloud = url_for('static', filename='nothing_here.jpg')
 
     return plot_female_cloud, plot_male_cloud
 
 
-def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors for Amalgum(Overall)"):
-    """Creates a TSNE model and plots it"""
+def tsne_graph(token_list, iterations=3000, seed=20, title='TSNE Visualisation of Word-Vectors for Amalgum(Overall)'):
+    '''Creates a TSNE model and plots it'''
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -1671,7 +1668,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     # save file to static
     tsne_name = token_list[0] + token_list[-2] + 'tsne'
     tsne_name_ex = tsne_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', tsne_name)
     tsne_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
@@ -1683,8 +1680,8 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
                      textcoords='offset points',
                      ha='right',
                      va='bottom')
-    plt.ylabel("TSNE Latent Dimension 1")
-    plt.xlabel("TSNE Latent Dimension 2")
+    plt.ylabel('TSNE Latent Dimension 1')
+    plt.xlabel('TSNE Latent Dimension 2')
     plt.title(title)
     plt.savefig(tsne_path)
     plot_tsne = url_for('static', filename=tsne_name_ex)
@@ -1692,11 +1689,11 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     return plot_tsne
 
 
-def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation(Male)"):
-    """Creates a TSNE model and plots it"""
+def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title='TSNE Visualisation(Male)'):
+    '''Creates a TSNE model and plots it'''
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -1726,7 +1723,7 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     # save file to static
     tsne_name = token_list[0] + token_list[-2] + 'tsne_male'
     tsne_name_ex = tsne_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', tsne_name)
     tsne_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
@@ -1738,8 +1735,8 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
                      textcoords='offset points',
                      ha='right',
                      va='bottom')
-    plt.ylabel("TSNE Latent Dimension 1")
-    plt.xlabel("TSNE Latent Dimension 2")
+    plt.ylabel('TSNE Latent Dimension 1')
+    plt.xlabel('TSNE Latent Dimension 2')
     plt.title(title)
     plt.savefig(tsne_path)
     plot_tsne_male = url_for('static', filename=tsne_name_ex)
@@ -1747,11 +1744,11 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     return plot_tsne_male
 
 
-def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation (Female)"):
-    """Creates a TSNE model and plots it"""
+def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title='TSNE Visualisation (Female)'):
+    '''Creates a TSNE model and plots it'''
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -1781,7 +1778,7 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
     # save file to static
     tsne_name = token_list[0] + token_list[-2] + 'tsne_female'
     tsne_name_ex = tsne_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", tsne_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', tsne_name)
     tsne_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
@@ -1793,8 +1790,8 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
                      textcoords='offset points',
                      ha='right',
                      va='bottom')
-    plt.ylabel("TSNE Latent Dimension 1")
-    plt.xlabel("TSNE Latent Dimension 2")
+    plt.ylabel('TSNE Latent Dimension 1')
+    plt.xlabel('TSNE Latent Dimension 2')
     plt.title(title)
     plt.savefig(tsne_path)
     plot_tsne_female = url_for('static', filename=tsne_name_ex)
@@ -1802,11 +1799,11 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
     return plot_tsne_female
 
 
-def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum"):
-    """Creates a PCA model and plots it"""
+def pca_graph(token_list, title='PCA Visualisation of Word-Vectors for Amalgum'):
+    '''Creates a PCA model and plots it'''
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -1835,7 +1832,7 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
     # save file to static
     pca_name = token_list[0] + token_list[-2] + 'pca'
     pca_name_ex = pca_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", pca_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', pca_name)
     pca_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
@@ -1847,8 +1844,8 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
                      textcoords='offset points',
                      ha='right',
                      va='bottom')
-    plt.ylabel("PCA Latent Dimension 1")
-    plt.xlabel("PCA Latent Dimension 2")
+    plt.ylabel('PCA Latent Dimension 1')
+    plt.xlabel('PCA Latent Dimension 2')
     plt.title(title)
     plt.savefig(pca_path)
     plot_pca = url_for('static', filename=pca_name_ex)
@@ -1856,11 +1853,11 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
     return plot_pca
 
 
-def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
-    """Creates a PCA model and plots it"""
+def pca_graph_male(token_list, value_list, title='PCA Visualisation(Male)'):
+    '''Creates a PCA model and plots it'''
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -1889,7 +1886,7 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
     # save file to static
     pca_name = token_list[0] + token_list[-2] + 'pca_male'
     pca_name_ex = pca_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", pca_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', pca_name)
     pca_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
@@ -1901,8 +1898,8 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
                      textcoords='offset points',
                      ha='right',
                      va='bottom')
-    plt.ylabel("PCA Latent Dimension 1")
-    plt.xlabel("PCA Latent Dimension 2")
+    plt.ylabel('PCA Latent Dimension 1')
+    plt.xlabel('PCA Latent Dimension 2')
     plt.title(title)
     plt.savefig(pca_path)
     plot_pca_male = url_for('static', filename=pca_name_ex)
@@ -1910,11 +1907,11 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
     return plot_pca_male
 
 
-def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
-    """Creates a PCA model and plots it"""
+def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
+    '''Creates a PCA model and plots it'''
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "../data/gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -1943,7 +1940,7 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     # save file to static
     pca_name = token_list[0] + token_list[-2] + 'pca_female'
     pca_name_ex = pca_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), "..\\static\\", pca_name)
+    save_img_path = path.join(path.dirname(__file__), '..\\static\\', pca_name)
     pca_path = save_img_path + '.jpg'
 
     plt.figure(figsize=(10, 10))
@@ -1955,8 +1952,8 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
                      textcoords='offset points',
                      ha='right',
                      va='bottom')
-    plt.ylabel("PCA Latent Dimension 1")
-    plt.xlabel("PCA Latent Dimension 2")
+    plt.ylabel('PCA Latent Dimension 1')
+    plt.xlabel('PCA Latent Dimension 2')
     plt.title(title)
     plt.savefig(pca_path)
     plot_pca_female = url_for('static', filename=pca_name_ex)

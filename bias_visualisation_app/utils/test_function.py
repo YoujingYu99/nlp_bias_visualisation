@@ -7,12 +7,12 @@ import pandas as pd
 
 
 
-SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
-OBJECTS = ["dobj", "dative", "attr", "oprd"]
-ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
-              "hmod", "infmod", "xcomp", "rcmod", "poss", "possessive"]
-COMPOUNDS = ["compound"]
-PREPOSITIONS = ["prep"]
+SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
+OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
+ADJECTIVES = ['acomp', 'advcl', 'advmod', 'amod', 'appos', 'nn', 'nmod', 'ccomp', 'complm',
+              'hmod', 'infmod', 'xcomp', 'rcmod', 'poss', 'possessive']
+COMPOUNDS = ['compound']
+PREPOSITIONS = ['prep']
 
 
 def getSubsFromConjunctions(subs):
@@ -22,8 +22,8 @@ def getSubsFromConjunctions(subs):
         rights = list(sub.rights)
         rightDeps = {tok.lower_ for tok in rights}
         # look for multiple subjects
-        if "and" in rightDeps:
-            moreSubs.extend([tok for tok in rights if tok.dep_ in SUBJECTS or tok.pos_ == "NOUN"])
+        if 'and' in rightDeps:
+            moreSubs.extend([tok for tok in rights if tok.dep_ in SUBJECTS or tok.pos_ == 'NOUN'])
             if len(moreSubs) > 0:
                 moreSubs.extend(getSubsFromConjunctions(moreSubs))
     return moreSubs
@@ -36,8 +36,8 @@ def getObjsFromConjunctions(objs):
         rights = list(obj.rights)
         rightDeps = {tok.lower_ for tok in rights}
         # look for multiple objects
-        if "and" in rightDeps:
-            moreObjs.extend([tok for tok in rights if tok.dep_ in OBJECTS or tok.pos_ == "NOUN"])
+        if 'and' in rightDeps:
+            moreObjs.extend([tok for tok in rights if tok.dep_ in OBJECTS or tok.pos_ == 'NOUN'])
             if len(moreObjs) > 0:
                 moreObjs.extend(getObjsFromConjunctions(moreObjs))
     return moreObjs
@@ -48,8 +48,8 @@ def getVerbsFromConjunctions(verbs):
     for verb in verbs:
         rightDeps = {tok.lower_ for tok in verb.rights}
         # look for multiple verbs
-        if "and" in rightDeps:
-            moreVerbs.extend([tok for tok in verb.rights if tok.pos_ == "VERB"])
+        if 'and' in rightDeps:
+            moreVerbs.extend([tok for tok in verb.rights if tok.pos_ == 'VERB'])
             if len(moreVerbs) > 0:
                 moreVerbs.extend(getVerbsFromConjunctions(moreVerbs))
     return moreVerbs
@@ -57,23 +57,23 @@ def getVerbsFromConjunctions(verbs):
 
 def findSubs(tok):
     head = tok.head
-    while head.pos_ != "VERB" and head.pos_ != "NOUN" and head.head != head:
+    while head.pos_ != 'VERB' and head.pos_ != 'NOUN' and head.head != head:
         head = head.head
-    if head.pos_ == "VERB":
-        subs = [tok for tok in head.lefts if tok.dep_ == "SUB"]
+    if head.pos_ == 'VERB':
+        subs = [tok for tok in head.lefts if tok.dep_ == 'SUB']
         if len(subs) > 0:
             verbNegated = isNegated(head)
             subs.extend(getSubsFromConjunctions(subs))
             return subs, verbNegated
         elif head.head != head:
             return findSubs(head)
-    elif head.pos_ == "NOUN":
+    elif head.pos_ == 'NOUN':
         return [head], isNegated(tok)
     return [], False
 
 
 def isNegated(tok):
-    negations = {"no", "not", "n't", "never", "none"}
+    negations = {'no', 'not', "n't", 'never', 'none'}
     for dep in list(tok.lefts) + list(tok.rights):
         if dep.lower_ in negations:
             return True
@@ -82,21 +82,21 @@ def isNegated(tok):
 
 def findSVs(tokens):
     svs = []
-    verbs = [tok for tok in tokens if tok.pos_ == "VERB"]
+    verbs = [tok for tok in tokens if tok.pos_ == 'VERB']
     for v in verbs:
         subs, verbNegated = getAllSubs(v)
         if len(subs) > 0:
             for sub in subs:
-                svs.append((sub.orth_, "!" + v.orth_ if verbNegated else v.orth_))
+                svs.append((sub.orth_, '!' + v.orth_ if verbNegated else v.orth_))
     return svs
 
 
 def getObjsFromPrepositions(deps):
     objs = []
     for dep in deps:
-        if dep.pos_ == "ADP" and dep.dep_ == "prep":
+        if dep.pos_ == 'ADP' and dep.dep_ == 'prep':
             objs.extend(
-                [tok for tok in dep.rights if tok.dep_ in OBJECTS or (tok.pos_ == "PRON" and tok.lower_ == "me")])
+                [tok for tok in dep.rights if tok.dep_ in OBJECTS or (tok.pos_ == 'PRON' and tok.lower_ == 'me')])
     return objs
 
 
@@ -106,7 +106,7 @@ def getAdjectives(toks):
         adjs = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
         adjs.append(tok)
         adjs.extend([right for right in tok.rights if tok.dep_ in ADJECTIVES])
-        tok_with_adj = " ".join([adj.lower_ for adj in adjs])
+        tok_with_adj = ' '.join([adj.lower_ for adj in adjs])
         toks_with_adjectives.extend(adjs)
 
     return toks_with_adjectives
@@ -114,8 +114,8 @@ def getAdjectives(toks):
 
 def getObjsFromAttrs(deps):
     for dep in deps:
-        if dep.pos_ == "NOUN" and dep.dep_ == "attr":
-            verbs = [tok for tok in dep.rights if tok.pos_ == "VERB"]
+        if dep.pos_ == 'NOUN' and dep.dep_ == 'attr':
+            verbs = [tok for tok in dep.rights if tok.pos_ == 'VERB']
             if len(verbs) > 0:
                 for v in verbs:
                     rights = list(v.rights)
@@ -128,7 +128,7 @@ def getObjsFromAttrs(deps):
 
 def getObjFromXComp(deps):
     for dep in deps:
-        if dep.pos_ == "VERB" and dep.dep_ == "xcomp":
+        if dep.pos_ == 'VERB' and dep.dep_ == 'xcomp':
             v = dep
             rights = list(v.rights)
             objs = [tok for tok in rights if tok.dep_ in OBJECTS]
@@ -138,12 +138,12 @@ def getObjFromXComp(deps):
     return None, None
 
 
-non_sub_pos = ["DET", "AUX"]
+non_sub_pos = ['DET', 'AUX']
 
 
 def getAllSubs(v):
     verbNegated = isNegated(v)
-    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != "DET"]
+    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != 'DET']
     subs = []
     for tok in v.lefts:
         if tok.dep_ in SUBJECTS and tok.pos_ not in non_sub_pos:
@@ -199,7 +199,7 @@ def getAllObjsWithAdjectives(v):
 
 def findSVOs(tokens):
     svos = []
-    verbs = [tok for tok in tokens if tok.pos_ == "AUX"]
+    verbs = [tok for tok in tokens if tok.pos_ == 'AUX']
     for v in verbs:
         subs, verbNegated = getAllSubs(v)
         # hopefully there are subs, if not, don't examine this verb any longer
@@ -208,18 +208,18 @@ def findSVOs(tokens):
             for sub in subs:
                 for obj in objs:
                     objNegated = isNegated(obj)
-                    svos.append((sub.lower_, "!" + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
+                    svos.append((sub.lower_, '!' + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
     return svos
 
 
 def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
-    verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.dep_ != "aux"]
-    # not_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"][0]#
+    verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.dep_ != 'aux']
+    # not_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN'][0]#
     not_verbs = []
     for tok in tokens:
-        if tok.pos_ == "VERB" and tok.tag_ == "VBN":
+        if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
             not_verbs.append(tok)
 
     # if (not_verbs not in verbs or len(not_verbs) == 0):
@@ -236,9 +236,9 @@ def findSVAOs(tokens):
                             objNegated = isNegated(obj)
                             obj_desc_tokens = generate_left_right_adjectives(obj)
                             sub_compound = generate_sub_compound(sub)
-                            svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                         "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                         " ".join(tok.lower_ for tok in obj_desc_tokens)))
+                            svos.append((' '.join(tok.lower_ for tok in sub_compound),
+                                         '!' + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         ' '.join(tok.lower_ for tok in obj_desc_tokens)))
 
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
@@ -259,9 +259,9 @@ def findSVAOs(tokens):
                             objNegated = isNegated(obj)
                             obj_desc_tokens = generate_left_right_adjectives(obj)
                             sub_compound = generate_sub_compound(sub)
-                            svos.append((" ".join(tok.lower_ for tok in sub_compound),
-                                         "!" + v.lower_ if verbNegated or objNegated else v.lower_,
-                                         " ".join(tok.lower_ for tok in obj_desc_tokens)))
+                            svos.append((' '.join(tok.lower_ for tok in sub_compound),
+                                         '!' + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         ' '.join(tok.lower_ for tok in obj_desc_tokens)))
 
                 if len(objs) == 0:
                     svos = [str(subs[0]), str(v)]
@@ -270,7 +270,7 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     else:
-        new_verbs = [tok for tok in tokens if tok.pos_ == "VERB" and tok.tag_ == "VBN"]
+        new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
         tokens_new = [t for t in tokens]
         tokens_new_str = [str(t) for t in tokens]
         for new_verb in new_verbs:

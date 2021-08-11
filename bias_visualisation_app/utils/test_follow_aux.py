@@ -3,17 +3,17 @@ import nltk
 from nltk.corpus import brown
 import spacy
 
-SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
-OBJECTS = ["dobj", "dative", "attr", "oprd"]
-ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
-              "hmod", "infmod", "xcomp", "rcmod", "poss", "possessive"]
-COMPOUNDS = ["compound"]
-PREPOSITIONS = ["prep"]
+SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
+OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
+ADJECTIVES = ['acomp', 'advcl', 'advmod', 'amod', 'appos', 'nn', 'nmod', 'ccomp', 'complm',
+              'hmod', 'infmod', 'xcomp', 'rcmod', 'poss', 'possessive']
+COMPOUNDS = ['compound']
+PREPOSITIONS = ['prep']
 
 
 
-aux_word_list = ["are", "is", "were", "was", "be"]
-det_word_list = ["a", "an"]
+aux_word_list = ['are', 'is', 'were', 'was', 'be']
+det_word_list = ['a', 'an']
 
 male_nouns = nc.names.words('male.txt')
 male_nouns.extend(['he', 'him', 'himself', 'gentleman', 'gentlemen', 'man', 'men', 'male'])

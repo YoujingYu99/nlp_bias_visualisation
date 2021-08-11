@@ -3,12 +3,12 @@ import nltk.corpus as nc
 import nltk
 import spacy
 
-SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
-OBJECTS = ["dobj", "dative", "attr", "oprd"]
-ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
-              "hmod", "infmod", "xcomp", "rcmod", "poss", "possessive"]
-COMPOUNDS = ["compound"]
-PREPOSITIONS = ["prep"]
+SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
+OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
+ADJECTIVES = ['acomp', 'advcl', 'advmod', 'amod', 'appos', 'nn', 'nmod', 'ccomp', 'complm',
+              'hmod', 'infmod', 'xcomp', 'rcmod', 'poss', 'possessive']
+COMPOUNDS = ['compound']
+PREPOSITIONS = ['prep']
 
 male_names = nc.names.words('male.txt')
 male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])

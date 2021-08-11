@@ -3,17 +3,17 @@ import nltk
 from nltk.corpus import brown
 import spacy
 
-SUBJECTS = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl", "compounds", "pobj"]
-OBJECTS = ["dobj", "dative", "attr", "oprd"]
-ADJECTIVES = ["acomp", "advcl", "advmod", "amod", "appos", "nn", "nmod", "ccomp", "complm",
-              "hmod", "infmod", "xcomp", "rcmod", "poss", "possessive"]
-COMPOUNDS = ["compound"]
-PREPOSITIONS = ["prep"]
+SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
+OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
+ADJECTIVES = ['acomp', 'advcl', 'advmod', 'amod', 'appos', 'nn', 'nmod', 'ccomp', 'complm',
+              'hmod', 'infmod', 'xcomp', 'rcmod', 'poss', 'possessive']
+COMPOUNDS = ['compound']
+PREPOSITIONS = ['prep']
 
-post_modifiers = ["compounds", "pobj"]
-post_modifiers_noun_list = ["women", "Women", "female", "Female", "men", "Men", "male", "Male"]
-female_postmodifier_noun_list = ["women", "female"]
-male_postmodifier_noun_list = ["men", "male"]
+post_modifiers = ['compounds', 'pobj']
+post_modifiers_noun_list = ['women', 'Women', 'female', 'Female', 'men', 'Men', 'male', 'Male']
+female_postmodifier_noun_list = ['women', 'female']
+male_postmodifier_noun_list = ['men', 'male']
 
 sentence = 'Women writers support male fighters. Male cleaners are more careful. Lucy likes female dramas. Women like sunglasses.'
 
@@ -72,18 +72,18 @@ def determine_gender_postmodifier_test(sentence):
 print(determine_gender_postmodifier_test(sentence))
 
 # women_noundist = nltk.FreqDist(w2 for ((w1, t1), (w2, t2)) in
-#             nltk.bigrams(brown.tagged_words(tagset="universal"))
-#             if w1.lower() == "women" and t2 == "NOUN")
+#             nltk.bigrams(brown.tagged_words(tagset='universal'))
+#             if w1.lower() == 'women' and t2 == 'NOUN')
 # print(women_noundist)
 #
 # men_noundist = nltk.FreqDist(w2 for ((w1, t1), (w2, t2)) in
-#             nltk.bigrams(brown.tagged_words(tagset="universal"))
-#             if w1.lower() == "men" and t2 == "NOUN")
+#             nltk.bigrams(brown.tagged_words(tagset='universal'))
+#             if w1.lower() == 'men' and t2 == 'NOUN')
 #
 # female_noundist = nltk.FreqDist(w2 for ((w1, t1), (w2, t2)) in
-#             nltk.bigrams(brown.tagged_words(tagset="universal"))
-#             if w1.lower() == "female" and t2 == "NOUN")
+#             nltk.bigrams(brown.tagged_words(tagset='universal'))
+#             if w1.lower() == 'female' and t2 == 'NOUN')
 
 # male_noundist = nltk.FreqDist(w2 for ((w1, t1), (w2, t2)) in
-#             nltk.bigrams(brown.tagged_words(tagset="universal"))
-#             if w1.lower() == "male" and t2 == "NOUN")
+#             nltk.bigrams(brown.tagged_words(tagset='universal'))
+#             if w1.lower() == 'male' and t2 == 'NOUN')

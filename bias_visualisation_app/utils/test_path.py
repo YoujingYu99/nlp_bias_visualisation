@@ -10,7 +10,7 @@ def save_obj(obj, name):
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
-dates = pd.date_range("20130101", periods=6)
-df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
+dates = pd.date_range('20130101', periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
 
 save_obj(df, 'test_df')

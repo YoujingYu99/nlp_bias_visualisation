@@ -1,6 +1,6 @@
-"""
+'''
 The interactive web interface for data bias visualisation
-"""
+'''
 
 from __future__ import unicode_literals
 
@@ -49,7 +49,7 @@ nlp = spacy.load('en_core_web_sm')
 #
 # # Sumy
 # def sumy_summary(docx):
-#     parser = PlaintextParser.from_string(docx, Tokenizer("english"))
+#     parser = PlaintextParser.from_string(docx, Tokenizer('english'))
 #     lex_summarizer = LexRankSummarizer()
 #     summary = lex_summarizer(parser.document, 3)
 #     summary_list = [str(sentence) for sentence in summary]
@@ -133,60 +133,60 @@ def visualisation():
 #                            summary_reading_time_nltk=summary_reading_time_nltk)
 
 
-@app.route("/detect_text", methods=['GET', 'POST'])
+@app.route('/detect_text', methods=['GET', 'POST'])
 def detect_text():
-    if request.method == "POST":
+    if request.method == 'POST':
         input_data = request.form['rawtext']
-        # sentence = request.args.get("sentence")
+        # sentence = request.args.get('sentence')
         if not input_data:
-            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
+            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
         if len(input_data) > 50000:
             raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 500000 characters long"
+                'Input Paragraph must be at most 500000 characters long'
             )
         generate_bias_values(input_data)
 
     return render_template('index.html')
 
 
-@app.route("/detect_url", methods=['GET', 'POST'])
+@app.route('/detect_url', methods=['GET', 'POST'])
 def detect_url():
-    if request.method == "POST":
+    if request.method == 'POST':
         raw_url = request.form['raw_url']
         input_data = get_text_url(raw_url)
         if not input_data:
-            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
+            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
         if len(input_data) > 50000:
             raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 500000 characters long"
+                'Input Paragraph must be at most 500000 characters long'
             )
         generate_bias_values(input_data)
 
     return render_template('index.html')
 
 
-@app.route("/detect_corpora", methods=['GET', 'POST'])
+@app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
-    if request.method == "POST":
+    if request.method == 'POST':
         try:
             corpora_file = request.files['raw_file']
         except:
-            print("error with this line!")
+            print('error with this line!')
             print(sys.exc_info()[0])
         input_data = get_text_file(corpora_file)
         if not input_data:
-            raise werkzeug.exceptions.BadRequest("You must provide a paragraph")
+            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
         if len(input_data) > 50000:
             raise werkzeug.exceptions.BadRequest(
-                "Input Paragraph must be at most 500000 characters long"
+                'Input Paragraph must be at most 500000 characters long'
             )
         generate_bias_values(input_data)
     return render_template('index.html')
 
 
-@app.route("/detect_dataframe", methods=['GET', 'POST'])
+@app.route('/detect_dataframe', methods=['GET', 'POST'])
 def detect_dataframe():
-    if request.method == "POST":
+    if request.method == 'POST':
         try:
             complete_file = request.files['complete_file']
             dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
@@ -195,25 +195,25 @@ def detect_dataframe():
             dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
             dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
         except:
-            print("error with this line!")
+            print('error with this line!')
             print(sys.exc_info()[0])
 
         input_dataframe_total = dataframe_total
-        save_obj_user_uploads(input_dataframe_total, name="total_dataframe_user_uploads")
+        save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
         view_df = frame_from_file(input_dataframe_total)[0]
         token_list, value_list = frame_from_file(input_dataframe_total)[1]
 
         input_dataframe_SVO = dataframe_SVO
-        save_obj_user_uploads(input_dataframe_SVO, name="SVO_dataframe_user_uploads")
+        save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
 
         input_dataframe_premodifier = dataframe_premodifier
-        save_obj_user_uploads(input_dataframe_premodifier, name="premodifier_dataframe_user_uploads")
+        save_obj_user_uploads(input_dataframe_premodifier, name='premodifier_dataframe_user_uploads')
 
         input_dataframe_postmodifier = dataframe_postmodifier
-        save_obj_user_uploads(input_dataframe_postmodifier, name="postmodifier_dataframe_user_uploads")
+        save_obj_user_uploads(input_dataframe_postmodifier, name='postmodifier_dataframe_user_uploads')
 
         input_dataframe_aux = dataframe_aux
-        save_obj_user_uploads(input_dataframe_aux, name="aux_dataframe_user_uploads")
+        save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
 
         # plot the bar graphs and word clouds
         plot_bar = bar_graph(view_df, token_list, value_list)
@@ -227,12 +227,12 @@ def detect_dataframe():
             plot_pca_male = pca_graph_male(token_list, value_list)
             plot_pca_female = pca_graph_female(token_list, value_list)
         else:
-            plot_tsne = url_for('static', filename="nothing_here.png")
-            plot_tsne_male = url_for('static', filename="nothing_here.png")
-            plot_tsne_female = url_for('static', filename="nothing_here.png")
-            plot_pca = url_for('static', filename="nothing_here.png")
-            plot_pca_male = url_for('static', filename="nothing_here.png")
-            plot_pca_female = url_for('static', filename="nothing_here.png")
+            plot_tsne = url_for('static', filename='nothing_here.png')
+            plot_tsne_male = url_for('static', filename='nothing_here.png')
+            plot_tsne_female = url_for('static', filename='nothing_here.png')
+            plot_pca = url_for('static', filename='nothing_here.png')
+            plot_pca_male = url_for('static', filename='nothing_here.png')
+            plot_pca_female = url_for('static', filename='nothing_here.png')
 
         return render_template('visualisation.html', bar_graph=plot_bar,
                                female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
@@ -242,7 +242,7 @@ def detect_dataframe():
 
 
 # . It works by looking at differences between male and female word pairs
-#       like "he" and "she", or "boy" and "girl", and then comparing the
+#       like 'he' and 'she', or 'boy' and 'girl', and then comparing the
 #       differences between those words to other word vectors in the word2vec
 #       dataset.
 
@@ -252,11 +252,11 @@ def detect_dataframe():
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
     # open dataframe file
-    view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
-    input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
-    input_premodifier_dataframe = load_obj_user_uploads(name="premodifier_dataframe_user_uploads")
-    input_postmodifier_dataframe = load_obj_user_uploads(name="postmodifier_dataframe_user_uploads")
-    input_aux_dataframe = load_obj_user_uploads(name="aux_dataframe_user_uploads")
+    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
+    input_SVO_dataframe = load_obj_user_uploads(name='SVO_dataframe_user_uploads')
+    input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
+    input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
+    input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
 
     # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
@@ -288,11 +288,11 @@ def query():
     plot_bar = None
     if request.method == 'POST':
         # open dataframe file
-        view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
-        input_SVO_dataframe = load_obj_user_uploads(name="SVO_dataframe_user_uploads")
-        input_premodifier_dataframe = load_obj_user_uploads(name="premodifier_dataframe_user_uploads")
-        input_postmodifier_dataframe = load_obj_user_uploads(name="postmodifier_dataframe_user_uploads")
-        input_aux_dataframe = load_obj_user_uploads(name="aux_dataframe_user_uploads")
+        view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
+        input_SVO_dataframe = load_obj_user_uploads(name='SVO_dataframe_user_uploads')
+        input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
+        input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
+        input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
 
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
@@ -310,13 +310,13 @@ def query():
 #     if request.method == 'POST':
 #         # rawtext = request.form['rawtext']
 #         # female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
-#         # if "adjectives" in rawtext:
-#         #     if "female" in rawtext:
+#         # if 'adjectives' in rawtext:
+#         #     if 'female' in rawtext:
 #         #         female_adjs = female_adjs()
-#         #     elif "male" in rawtext:
+#         #     elif 'male' in rawtext:
 #         #         male_adjs = male_adjs()
 #         #     else:
-#         #         print("Please enter a valid question")
+#         #         print('Please enter a valid question')
 #
 #     return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
 #
@@ -345,7 +345,7 @@ def download(df_name):
 # @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 # def download_total(filename):
 #     print('calling download_total_route')
-#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     uploads = path.join(path.dirname(__file__), 'static', filename)
 #     total_data = pd.read_csv(uploads)
 #     print(total_data)
 #     return send_from_directory(directory=app.config['UPLOAD_FOLDER'], filename=filename, as_attachment=True)
@@ -354,20 +354,20 @@ def download(df_name):
 #
 # @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 # def download_SVO(filename='SVO_dataframe.csv'):
-#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     uploads = path.join(path.dirname(__file__), 'static', filename)
 #
 #     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
 #
 # @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 # def download_premodifier(filename='premodifier_dataframe.csv'):
-#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     uploads = path.join(path.dirname(__file__), 'static', filename)
 #     print(uploads)
 #     # return send_from_directory(directory=uploads, filename=filename)
 #     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
 #
 # @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 # def download_aux(filename='aux_dataframe.csv'):
-#     uploads = path.join(path.dirname(__file__), "static", filename)
+#     uploads = path.join(path.dirname(__file__), 'static', filename)
 #     print(uploads)
 #     # return send_from_directory(directory=uploads, filename=filename)
 #     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
