@@ -1,4 +1,4 @@
-import nltk, pandas as pd, numpy as np
+
 from nltk.parse import CoreNLPParser
 from nltk.parse.corenlp import CoreNLPDependencyParser
 from nltk.tree import ParentedTree
@@ -6,13 +6,13 @@ from nltk.tree import ParentedTree
 # (previously using nltk=3.4.5)
 # now using 3.3.0
 
-#nltk.download()
+# nltk.download()
 
 dep_parser = CoreNLPDependencyParser()
 pos_tagger = CoreNLPParser(tagtype='pos')
 
-def triplet_extraction(input_sent, output=['parse_tree','spo','result']):
-    # Parse the input sentence with Stanford CoreNLP Parser
+def triplet_extraction(input_sent, output=['parse_tree', 'spo', 'result']):
+    # parse the input sentence with Stanford CoreNLP Parser
     pos_type = pos_tagger.tag(input_sent.split())
     parse_tree, = ParentedTree.convert(list(pos_tagger.parse(input_sent.split()))[0])
     dep_type, = ParentedTree.convert(dep_parser.parse(input_sent.split()))

@@ -1,6 +1,6 @@
-'''
+"""
 Helper script to pre-generate all word biases as a big JSON, so the server doesn't need as much memory to run
-'''
+"""
 
 import json
 from os import path

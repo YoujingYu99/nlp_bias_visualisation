@@ -1,35 +1,21 @@
-'''
+"""
 The interactive web interface for data bias visualisation
-'''
+"""
 
 from __future__ import unicode_literals
 
-import sys
-import logging
-from flask import Flask, render_template, url_for, request, jsonify, send_file, send_from_directory
+from flask import  render_template, url_for, request, send_from_directory
 from bias_visualisation_app import app
-from os import environ, path
-import os
-import pickle
-from bias_visualisation_app.utils.parse_sentence import parse_sentence, textify_tokens
-from bias_visualisation_app.utils.PcaBiasCalculator import PcaBiasCalculator
-from bias_visualisation_app.utils.PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list, list_to_dataframe, \
+from os import path
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, \
     SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, \
-    generate_bias_values, save_obj, save_obj_text, save_obj_user_uploads, load_obj, load_obj_user_uploads, \
+    generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
 import werkzeug
 import spacy
-import time
-import requests
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-from matplotlib.cm import ScalarMappable
-
 import sys
 
 sys.setrecursionlimit(10000)

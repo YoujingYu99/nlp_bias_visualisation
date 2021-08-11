@@ -1,18 +1,17 @@
 import spacy
 
-
 nlp = spacy.load('en_core_web_md')
 # avoid doing word splitting and exceptions and crazy stuff, just do a basic whitespace based parse
 nlp.tokenizer.rules = {}
 
 
 def combine_compound_words(sentence):
-    '''
-    :param sentence: 
-    :return: 
+    """
+    :param sentence:
+    :return:
     Combined words into compound words with underscore.
-    '''
-    
+    """
+
     doc = nlp(sentence)
     reformulated_sentence_parts = []
     compound_parts = []
@@ -32,7 +31,7 @@ def combine_compound_words(sentence):
 
 
 def parse_sentence(sentence):
-    '''Parses a sentence and return a dictionary of the form {'tokens': [interface], 'text': 'interface'}.'''
+    """Parses a sentence and return a dictionary of the form {'tokens': [interface], 'text': 'interface'}."""
     doc = nlp(sentence)
     results = []
     reverse_entities_map = {}
@@ -60,7 +59,7 @@ def parse_sentence(sentence):
                 if len(compound_part_indices):
                     compound_part_indices.append(i)
                     tokens = [doc[j] for j in compound_part_indices]
-                    span = doc[compound_part_indices[0] : i + 1]
+                    span = doc[compound_part_indices[0]: i + 1]
                     results.append(
                         {
                             'tokens': tokens,
@@ -77,6 +76,7 @@ def parse_sentence(sentence):
                     )
 
     return results
+
 
 def textify_tokens(parse_result):
     return [res['text'] for res in parse_result]

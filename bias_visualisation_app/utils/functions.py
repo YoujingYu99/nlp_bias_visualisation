@@ -3,17 +3,13 @@ import sys
 from os import path
 from os import listdir
 from io import open
-from conllu import parse, parse_incr
+from conllu import parse_incr
 import csv
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 import requests
 import werkzeug
 from werkzeug.utils import secure_filename
-from nltk.stem.wordnet import WordNetLemmatizer
-import nltk.corpus as nc
-import nltk
-import spacy
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from flask import url_for
@@ -22,26 +18,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import plotly.express as px
-from matplotlib import cm
 from matplotlib.cm import ScalarMappable
-from wordcloud import WordCloud, ImageColorGenerator, STOPWORDS
-from PIL import Image
-import re
-import cython
-from gensim.models import phrases
-from gensim import corpora, models, similarities
-from sklearn.metrics.pairwise import cosine_similarity
-from scipy import spatial
-from statistics import mean
-from gensim.models import Word2Vec, KeyedVectors
-from string import ascii_letters, digits
+from wordcloud import WordCloud
+from gensim.models import Word2Vec
 from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
-from gensim.test.utils import datapath
 
-from .parse_sentence import parse_sentence, textify_tokens
-from .PcaBiasCalculator import PcaBiasCalculator
+from .parse_sentence import parse_sentence
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 # NLP bias detection
@@ -73,11 +56,11 @@ verb_list = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VERB']
 
 
 def tsv_reader(path, file):
-    '''
+    """
     :param path: the path into amalgum dataset
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: a list of rows (lists containing words in sentences)
-    '''
+    """
     if not file.endswith('.tsv'):
         file += '.tsv'
     if os.path.exists(os.path.join(path, file)):
@@ -91,11 +74,11 @@ def tsv_reader(path, file):
 
 
 def conllu_reader(path, file):
-    '''
+    """
     :param path: the path into amalgum dataset
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: a token list generator
-    '''
+    """
     file += '.conllu'
     if os.path.exists(os.path.join(path, file)):
         data_file = open(os.path.join(path, file), 'r', encoding='utf-8')
@@ -108,11 +91,11 @@ def conllu_reader(path, file):
 
 
 def etree_reader(path, file):
-    '''
+    """
     :param path: the path into amalgum dataset
     :param file: the file name in the folder: amalgum_genre_docxxx
     :return: an element tree object
-    '''
+    """
     file += '.xml'
     if os.path.exists(os.path.join(path, file)):
         tree = ET.parse(os.path.join(path, file))
@@ -124,12 +107,12 @@ def etree_reader(path, file):
 
 
 def get_txt(file, path, save_path):
-    '''
+    """
     :param file: the file in the tsv folder
     :param path: the path of the file's parent directory
     :param save_path: the path to save the newly generated file
     :return: the plain text version of the file using the same name
-    '''
+    """
     f_read = tsv_reader(path, file)
     f_read = [x for x in f_read if x != []]
     f_out = []
@@ -146,10 +129,10 @@ def get_txt(file, path, save_path):
 
 
 def txt_list(path):
-    '''
+    """
     :param txt_dir: the path of the txt files to be extracted
     :return: a clean list containing the raw sentences
-    '''
+    """
     training_list = []
     txt_files = os.listdir(path)
     file_n = len(txt_files)
@@ -174,11 +157,11 @@ def txt_list(path):
 
 
 def tsv_txt(tsv_dir, txt_dir):
-    '''
+    """
     :param tsv_dir: the path of the tsv files
     :param txt_dir: the path of the txt files to be saved
     :return: extract all text from the tsv files and save to the txt directory
-    '''
+    """
     tsv_files = os.listdir(tsv_dir)
     file_n = len(tsv_files)
     print('{} files being processed'.format(file_n))

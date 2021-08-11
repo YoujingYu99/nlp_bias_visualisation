@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_cors import CORS
 import os
 
 path_parent = os.path.dirname(os.getcwd())

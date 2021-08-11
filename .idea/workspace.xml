@@ -3,7 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/PcaBiasCalculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/PcaBiasCalculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/PrecalculatedBiasCalculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/PrecalculatedBiasCalculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/model_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/model_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/parse_sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/parse_sentence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/precalculate_biases.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/precalculate_biases.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_postmodifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_postmodifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_stanford.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_stanford.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +140,7 @@
       <workItem from="1628496153082" duration="6447000" />
       <workItem from="1628583104583" duration="18881000" />
       <workItem from="1628671054207" duration="8086000" />
-      <workItem from="1628688255973" duration="8805000" />
+      <workItem from="1628688255973" duration="9209000" />
     </task>
     <task id="LOCAL-00001" summary="Successfully writing dataframe for subject and object gender identification">
       <created>1628096157891</created>
@@ -461,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628696599230</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Clean up code format">
+      <created>1628697347782</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1628697347782</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Uniform all SVO data types. Reassigning gender" />
     <MESSAGE value="Adding transitive and intransitive verbs for female and male" />
     <MESSAGE value="Clean up current code lines" />
     <MESSAGE value="Change the gender identification algorithm to identify gender-specific words(ie. profession, people's names only)" />
@@ -506,7 +522,8 @@
     <MESSAGE value="Solving renaming issues" />
     <MESSAGE value="Combining all csv files into a single Excel file to avoid downloading multiple times" />
     <MESSAGE value="Solving the encoding issue and prevent 'referenced before assignment bug'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solving the encoding issue and prevent 'referenced before assignment bug'" />
+    <MESSAGE value="Clean up code format" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up code format" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />

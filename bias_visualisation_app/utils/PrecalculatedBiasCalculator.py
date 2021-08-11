@@ -4,15 +4,15 @@ from os import path
 
 
 class PrecalculatedBiasCalculator:
-    '''
+    """
     Helper around loading and using pre-calculated biases
     Useful in production to save server memory
-    '''
+    """
 
     def __init__(
         self, bias_json=path.join(path.dirname(__file__), '../data/amalgum_biases.json')
     ):
-        # fix uint=8 issse
+        # fix uint=8 issue
         with open(bias_json, 'rb') as json_file:
             self.biases = json.load(json_file)
 

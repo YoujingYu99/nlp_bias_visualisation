@@ -1,5 +1,5 @@
 import re
-from gensim.models import KeyedVectors, Word2Vec
+from gensim.models import Word2Vec
 from os import path
 import numpy as np
 from sklearn.decomposition import PCA

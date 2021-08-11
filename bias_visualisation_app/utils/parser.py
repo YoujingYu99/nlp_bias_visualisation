@@ -1,8 +1,8 @@
-'''
-This file is to translate the natural language input at the web interface 
+"""
+This file is to translate the natural language input at the web interface
 to query language that can be used to extract information from the corpora
-'''
-import os
+"""
+
 
 nl_query = 'Are most nurses women ?'  # pre-set, should be attained from the webpage input
 database = 'amalgum'  # should be attained from the webpage input
@@ -28,6 +28,5 @@ class UserParser:
         '''
 
     def ln2sql(self):
-        '''to be finished later'''
+        """to be finished later"""
         return  # or should generate a json file for the downstream
-

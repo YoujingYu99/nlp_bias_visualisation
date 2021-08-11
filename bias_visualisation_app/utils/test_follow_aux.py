@@ -1,7 +1,6 @@
 import nltk.corpus as nc
 import nltk
-from nltk.corpus import brown
-import spacy
+
 
 SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
 OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
