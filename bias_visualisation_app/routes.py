@@ -188,29 +188,31 @@ def detect_corpora():
 def detect_dataframe():
     if request.method == "POST":
         try:
-            dataframe_SVO = request.files['SVO_file']
-            dataframe_premodifier = request.files['premodifier_file']
-            dataframe_postmodifier = request.files['postmodifier_file']
-            dataframe_aux = request.files['aux_file']
-            dataframe_total = request.files['total_file']
+            complete_file = request.files['complete_file']
+            dataframe_SVO = pd.read_excel(complete_file, sheetname='SVO_dataframe')
+            dataframe_premodifier = pd.read_excel(complete_file, sheetname='premodifier_dataframe')
+            dataframe_postmodifier = pd.read_excel(complete_file, sheetname='postmodifier_dataframe')
+            dataframe_aux = pd.read_excel(complete_file, sheetname='aux_dataframe')
+            dataframe_total = pd.read_excel(complete_file, sheetname='total_dataframe')
         except:
             print("error with this line!")
             print(sys.exc_info()[0])
-        input_dataframe_total = pd.read_csv(dataframe_total)
+
+        input_dataframe_total = dataframe_total
         save_obj_user_uploads(input_dataframe_total, name="total_dataframe_user_uploads")
         view_df = frame_from_file(input_dataframe_total)[0]
         token_list, value_list = frame_from_file(input_dataframe_total)[1]
 
-        input_dataframe_SVO = pd.read_csv(dataframe_SVO)
+        input_dataframe_SVO = dataframe_SVO
         save_obj_user_uploads(input_dataframe_SVO, name="SVO_dataframe_user_uploads")
 
-        input_dataframe_premodifier = pd.read_csv(dataframe_premodifier)
+        input_dataframe_premodifier = dataframe_premodifier
         save_obj_user_uploads(input_dataframe_premodifier, name="premodifier_dataframe_user_uploads")
 
-        input_dataframe_postmodifier = pd.read_csv(dataframe_postmodifier)
+        input_dataframe_postmodifier = dataframe_postmodifier
         save_obj_user_uploads(input_dataframe_postmodifier, name="postmodifier_dataframe_user_uploads")
 
-        input_dataframe_aux = pd.read_csv(dataframe_aux)
+        input_dataframe_aux = dataframe_aux
         save_obj_user_uploads(input_dataframe_aux, name="aux_dataframe_user_uploads")
 
         # plot the bar graphs and word clouds

@@ -1,6 +1,7 @@
 import os
 import sys
 from os import path
+from os import listdir
 from io import open
 from conllu import parse, parse_incr
 import csv
@@ -1078,6 +1079,18 @@ def save_obj_user_uploads(obj, name):
     obj.to_csv(df_path, index=False)
 
 
+
+def concat_csv_excel():
+    path_parent = os.path.dirname(os.getcwd())
+    csv_path = os.path.join(path_parent, 'static', 'user_downloads')
+    writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'))  # Arbitrary output name
+    csvfiles = [f for f in listdir(csv_path) if os.path.isfile(os.path.join(csv_path, f))]
+    print(csvfiles)
+    for csvfilename in csvfiles:
+        df = pd.read_csv(os.path.join(csv_path, csvfilename))
+        df.to_excel(writer, sheet_name=os.path.splitext(csvfilename)[0])
+    writer.save()
+
 def load_obj(name):
     path_parent = os.path.dirname(os.getcwd())
     save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', name)
@@ -1141,6 +1154,8 @@ def generate_bias_values(input_data):
 
     aux_df = determine_gender_aux(input_data)
     save_obj_text(aux_df, name='aux_dataframe')
+
+    concat_csv_excel()
 
 
 def frame_from_file(view_df):
