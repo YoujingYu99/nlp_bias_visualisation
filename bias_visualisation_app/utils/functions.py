@@ -747,8 +747,10 @@ def determine_gender_premodifier(input_data):
             tot_male_premodifier_list.extend(male_premodifier_list)
         except:
             continue
-    premodifier_df = pd.DataFrame({'female_premodifier': tot_female_premodifier_list})
-    premodifier_df.loc[:, 'male_premodifier'] = pd.Series(tot_male_premodifier_list)
+    list_of_series = [pd.Series(tot_female_premodifier_list), pd.Series(tot_male_premodifier_list)]
+
+    premodifier_df = pd.concat(list_of_series, axis=1)
+    premodifier_df.columns = ['female_premodifier', 'male_premodifier']
 
     premodifier_df = clean_premodifier_dataframe(premodifier_df)
 
@@ -767,9 +769,11 @@ def determine_gender_postmodifier(input_data):
             tot_male_postmodifier_list.extend(male_postmodifier_list)
         except:
             continue
-            
-    postmodifier_df = pd.DataFrame({'female_postmodifier': tot_female_postmodifier_list})
-    postmodifier_df.loc[:, 'male_postmodifier'] = pd.Series(tot_male_postmodifier_list)
+
+    list_of_series = [pd.Series(tot_female_postmodifier_list), pd.Series(tot_male_postmodifier_list)]
+
+    postmodifier_df = pd.concat(list_of_series, axis=1)
+    postmodifier_df.columns = ['female_postmodifier', 'male_postmodifier']
 
     postmodifier_df = clean_postmodifier_dataframe(postmodifier_df)
     
@@ -948,10 +952,10 @@ def determine_gender_aux(input_data):
         except:
             continue
 
-    aux_df = pd.DataFrame({'female_before_aux': tot_female_before_aux_list})
-    aux_df.loc[:, 'male_before_aux'] = pd.Series(tot_male_before_aux_list)
-    aux_df.loc[:, 'female_follow_aux'] = pd.Series(tot_female_follow_aux_list)
-    aux_df.loc[:, 'male_follow_aux'] = pd.Series(tot_male_follow_aux_list)
+    list_of_series = [pd.Series(tot_female_before_aux_list), pd.Series(tot_male_before_aux_list), pd.Series(tot_female_follow_aux_list), pd.Series(tot_male_follow_aux_list)]
+
+    aux_df = pd.concat(list_of_series, axis=1)
+    aux_df.columns = ['female_before_aux', 'male_before_aux', 'female_follow_aux', 'male_follow_aux']
 
     aux_df = clean_aux_dataframe(aux_df)
 

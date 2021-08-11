@@ -190,7 +190,7 @@ def detect_dataframe():
         try:
             dataframe_SVO = request.files['SVO_file']
             dataframe_premodifier = request.files['premodifier_file']
-            dataframe_aux = request.files['aux_file']
+            dataframe_postmodifier = request.files['postmodifier_file']
             dataframe_aux = request.files['aux_file']
             dataframe_total = request.files['total_file']
         except:
@@ -207,8 +207,8 @@ def detect_dataframe():
         input_dataframe_premodifier = pd.read_csv(dataframe_premodifier)
         save_obj_user_uploads(input_dataframe_premodifier, name="premodifier_dataframe_user_uploads")
 
-        input_dataframe_aux = pd.read_csv(dataframe_aux)
-        save_obj_user_uploads(input_dataframe_aux, name="aux_dataframe_user_uploads")
+        input_dataframe_postmodifier = pd.read_csv(dataframe_postmodifier)
+        save_obj_user_uploads(input_dataframe_postmodifier, name="postmodifier_dataframe_user_uploads")
 
         input_dataframe_aux = pd.read_csv(dataframe_aux)
         save_obj_user_uploads(input_dataframe_aux, name="aux_dataframe_user_uploads")
