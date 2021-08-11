@@ -80,26 +80,50 @@ def findmalefollow_auxs(sent):
 def findfemalebefore_auxs(sent):
     tokens = nltk.word_tokenize(sent)
     tags = nltk.pos_tag(tokens)
-    female_follow_aux_list = []
+    female_before_aux_list = []
     for female_noun in female_nouns:
         try:
             # You are interested in splitting the sentence here
             sentence_split = tokens.index(female_noun)
             # Find the words where tag meets your criteria (must be a noun / proper noun)
-            if tokens[sentence_split - 1] in aux_word_list:
-                follow_aux = tokens[sentence_split - 2]
-                if tags[sentence_split - 2][1].startswith('NN'):
-                    female_follow_aux_list.append(follow_aux)
-            elif tokens[sentence_split - 1] in det_word_list:
-                follow_aux = tokens[sentence_split - 3]
-                if tags[sentence_split - 3][1].startswith('NN'):
-                    female_follow_aux_list.append(follow_aux)
+            if tokens[sentence_split + 1] in aux_word_list:
+                before_aux = tokens[sentence_split + 2]
+                if tags[sentence_split + 2][1].startswith('NN'):
+                    female_before_aux_list.append(before_aux)
+            elif tokens[sentence_split + 1] in det_word_list:
+                before_aux = tokens[sentence_split + 3]
+                if tags[sentence_split + 3][1].startswith('NN'):
+                    female_before_aux_list.append(before_aux)
             else:
                 pass
         except:
             continue
 
-    return female_follow_aux_list
+    return female_before_aux_list
+
+def findmalebefore_auxs(sent):
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    male_before_aux_list = []
+    for male_noun in male_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(male_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split + 1] in aux_word_list:
+                before_aux = tokens[sentence_split + 2]
+                if tags[sentence_split + 2][1].startswith('NN'):
+                    male_before_aux_list.append(before_aux)
+            elif tokens[sentence_split + 1] in det_word_list:
+                before_aux = tokens[sentence_split + 3]
+                if tags[sentence_split + 3][1].startswith('NN'):
+                    male_before_aux_list.append(before_aux)
+            else:
+                pass
+        except:
+            continue
+
+    return male_before_aux_list
 
 def determine_gender_follow_aux_test(sentence):
     sentence = sentence.lower()
@@ -107,15 +131,21 @@ def determine_gender_follow_aux_test(sentence):
     print(sent_text)
     tot_female_follow_aux_list = []
     tot_male_follow_aux_list = []
+    tot_female_before_aux_list = []
+    tot_male_before_aux_list = []
     for sent in sent_text:
         try:
             female_follow_aux_list = findfemalefollow_auxs(sent)
             male_follow_aux_list = findmalefollow_auxs(sent)
+            female_before_aux_list = findfemalebefore_auxs(sent)
+            male_before_aux_list = findmalebefore_auxs(sent)
             tot_female_follow_aux_list.extend(female_follow_aux_list)
             tot_male_follow_aux_list.extend(male_follow_aux_list)
+            tot_female_before_aux_list.extend(female_before_aux_list)
+            tot_male_before_aux_list.extend(male_before_aux_list)
         except:
             continue
-    return tot_female_follow_aux_list, tot_male_follow_aux_list
+    return tot_female_follow_aux_list, tot_female_before_aux_list, tot_male_follow_aux_list, tot_male_before_aux_list
 
 
 print(determine_gender_follow_aux_test(sentence))
