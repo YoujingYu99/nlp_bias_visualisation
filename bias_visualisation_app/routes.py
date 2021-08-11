@@ -189,11 +189,11 @@ def detect_dataframe():
     if request.method == "POST":
         try:
             complete_file = request.files['complete_file']
-            dataframe_SVO = pd.read_excel(complete_file, sheetname='SVO_dataframe')
-            dataframe_premodifier = pd.read_excel(complete_file, sheetname='premodifier_dataframe')
-            dataframe_postmodifier = pd.read_excel(complete_file, sheetname='postmodifier_dataframe')
-            dataframe_aux = pd.read_excel(complete_file, sheetname='aux_dataframe')
-            dataframe_total = pd.read_excel(complete_file, sheetname='total_dataframe')
+            dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
+            dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
+            dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
+            dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
+            dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
         except:
             print("error with this line!")
             print(sys.exc_info()[0])
@@ -282,6 +282,10 @@ def analysis():
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
+    dataframe_to_display = None
+    select_gender = None
+    select_wordtype = None
+    plot_bar = None
     if request.method == 'POST':
         # open dataframe file
         view_df = load_obj_user_uploads(name="total_dataframe_user_uploads")
@@ -332,7 +336,7 @@ def query():
 def download(df_name):
     print('calling download_total_route')
     uploads = path.join(path.dirname(__file__), 'static', 'user_downloads', df_name)
-    total_data = pd.read_csv(uploads)
+    total_data = pd.read_excel(uploads)
     print(total_data)
     return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], filename=df_name, as_attachment=True)
     #return send_file(uploads, as_attachment=True)
