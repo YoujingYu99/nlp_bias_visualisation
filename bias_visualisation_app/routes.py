@@ -4,7 +4,7 @@ The interactive web interface for data bias visualisation
 
 from __future__ import unicode_literals
 
-from flask import  render_template, url_for, request, send_from_directory
+from flask import redirect, render_template, url_for, request, send_from_directory
 from bias_visualisation_app import app
 from os import path
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, \
@@ -180,11 +180,7 @@ def detect_url():
 @app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
     if request.method == 'POST':
-        try:
-            corpora_file = request.files['raw_file']
-        except:
-            print('error with this line!')
-            print(sys.exc_info()[0])
+        corpora_file = request.files['raw_file']
         input_data = get_text_file(corpora_file)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
@@ -199,21 +195,15 @@ def detect_corpora():
 @app.route('/detect_dataframe', methods=['GET', 'POST'])
 def detect_dataframe():
     if request.method == 'POST':
-        try:
-            complete_file = request.files['complete_file']
-            dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
-            dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
-            dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
-            dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
-            dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
-        except:
-            print('error with this line!')
-            print(sys.exc_info()[0])
+        complete_file = request.files['complete_file']
+        dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
+        dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
+        dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
+        dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
+        dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
 
         input_dataframe_total = dataframe_total
         save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
-        view_df = frame_from_file(input_dataframe_total)[0]
-        token_list, value_list = frame_from_file(input_dataframe_total)[1]
 
         input_dataframe_SVO = dataframe_SVO
         save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
@@ -227,30 +217,7 @@ def detect_dataframe():
         input_dataframe_aux = dataframe_aux
         save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
 
-        # plot the bar graphs and word clouds
-        plot_bar = bar_graph(view_df, token_list, value_list)
-        plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
-        # only perform tsne plot if more than 100 tokens
-        if len(token_list) > 100:
-            plot_tsne = tsne_graph(token_list)
-            plot_tsne_male = tsne_graph_male(token_list, value_list)
-            plot_tsne_female = tsne_graph_female(token_list, value_list)
-            plot_pca = pca_graph(token_list)
-            plot_pca_male = pca_graph_male(token_list, value_list)
-            plot_pca_female = pca_graph_female(token_list, value_list)
-        else:
-            plot_tsne = url_for('static', filename='nothing_here.png')
-            plot_tsne_male = url_for('static', filename='nothing_here.png')
-            plot_tsne_female = url_for('static', filename='nothing_here.png')
-            plot_pca = url_for('static', filename='nothing_here.png')
-            plot_pca_male = url_for('static', filename='nothing_here.png')
-            plot_pca_female = url_for('static', filename='nothing_here.png')
-
-        return render_template('visualisation.html', bar_graph=plot_bar,
-                               female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
-                               tsne_graph=plot_tsne,
-                               male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
-                               male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
+        return redirect(url_for('visualisation'))
 
 
 # . It works by looking at differences between male and female word pairs
