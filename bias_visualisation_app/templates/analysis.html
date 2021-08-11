@@ -125,27 +125,27 @@
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
+              <h3 style="text-align: center">Female(Women are ...)</h3>
+                {{ data_fm_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
+              <h3 style="text-align: center">Female(... are women)</h3>
+                {{ data_fm_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              </br>
+              </br>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Male</h3>
                 {{ data_m_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
-              <h3 style="text-align: center">Female</h3>
-                {{ data_fm_before_auxm_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
-              </br>
-              </br>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
-              <h3 style="text-align: center">Male</h3>
+              <h3 style="text-align: center">Male(Men are ...)</h3>
                 {{ data_m_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
-              <h3 style="text-align: center">Feale</h3>
-                {{ data_fm_follow_auxm_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
-              </br>
-              </br>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
-              <h3 style="text-align: center">Male</h3>
+              <h3 style="text-align: center">Male(... are men)</h3>
                 {{ data_m_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 

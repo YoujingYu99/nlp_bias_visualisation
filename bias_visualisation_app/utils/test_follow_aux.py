@@ -23,7 +23,7 @@ female_nouns.extend(['she', 'her', 'herself', 'lady', 'ladys', 'woman', 'women',
 female_nouns = [x.lower() for x in female_nouns]
 
 
-sentence = 'Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraodinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.'
+sentence = 'Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.'
 
 
 
