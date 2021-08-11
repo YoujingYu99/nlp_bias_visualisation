@@ -128,17 +128,17 @@ def get_txt(file, path, save_path):
         print('writing completed: ' + file)
 
 
-def txt_list(path):
+def txt_list(txt_dir):
     """
     :param txt_dir: the path of the txt files to be extracted
     :return: a clean list containing the raw sentences
     """
     training_list = []
-    txt_files = os.listdir(path)
+    txt_files = os.listdir(txt_dir)
     file_n = len(txt_files)
     print('{} files being processed'.format(file_n))
     for file in txt_files:
-        with open(os.path.join(path, file), 'r', encoding='utf-8') as file_in:
+        with open(os.path.join(txt_dir, file), 'r', encoding='utf-8') as file_in:
             for line in file_in:
                 # create word tokens as well as remove puntuation in one go
                 rem_tok_punc = RegexpTokenizer(r'\w+')
