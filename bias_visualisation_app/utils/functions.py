@@ -142,7 +142,6 @@ def txt_list(txt_dir):
             for line in file_in:
                 # create word tokens as well as remove puntuation in one go
                 rem_tok_punc = RegexpTokenizer(r'\w+')
-
                 tokens = rem_tok_punc.tokenize(line)
                 # convert the words to lower case
                 words = [w.lower() for w in tokens]
@@ -170,7 +169,7 @@ def tsv_txt(tsv_dir, txt_dir):
         get_txt(file, tsv_dir, txt_dir)
 
 
-# Fetch Text From Url
+# Fetch text from Url
 def get_text_url(url):
     # page = urllib.request.urlopen(url)
     # soup = BeautifulSoup(page)
@@ -207,6 +206,7 @@ ADJECTIVES = ['acomp', 'advcl', 'advmod', 'amod', 'appos', 'nn', 'nmod', 'ccomp'
               'hmod', 'infmod', 'xcomp', 'rcmod', 'poss', 'possessive']
 COMPOUNDS = ['compound']
 PREPOSITIONS = ['prep']
+
 
 def getSubsFromConjunctions(subs):
     moreSubs = []
@@ -300,7 +300,7 @@ def getPremodifiers(toks):
         premodifiers.append(tok)
         premodifiers = [str(token) for token in premodifiers]
         toks_with_premodifiers.append(premodifiers)
-    
+
     return toks_with_premodifiers
 
 
@@ -310,6 +310,7 @@ def findpremodifiers(tokens):
     female_premodifier_list, male_premodifier_list = gender_premodifiers(premodifier_noun_pair)
     return female_premodifier_list, male_premodifier_list
 
+
 def gender_premodifiers(premodifier_noun_pair):
     female_premodifier_list = []
     male_premodifier_list = []
@@ -318,7 +319,8 @@ def gender_premodifiers(premodifier_noun_pair):
         if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'miss' in noun:
             premodifiers = pair[:-1]
             female_premodifier_list.extend(premodifiers)
-        elif noun in male_names or 'boy' in noun or ('man' in noun and 'woman' not in noun) or 'mr' in noun or 'mister' in noun:
+        elif noun in male_names or 'boy' in noun or (
+                'man' in noun and 'woman' not in noun) or 'mr' in noun or 'mister' in noun:
             premodifiers = pair[:-1]
             male_premodifier_list.extend(premodifiers)
         else:
@@ -539,10 +541,11 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'him',  'himself',])
+male_names.extend(['he', 'him', 'himself', ])
 female_names = nc.names.words('female.txt')
 female_names.extend(['she', 'her', 'herself', 'woman', 'women', 'lady'])
-neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs', 'neutral']
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
+                    'neutral']
 
 spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '*', '+', ',', '-', '.', '/', ':', ';', '<',
@@ -569,11 +572,11 @@ def clean_SVO_dataframe(SVO_df):
 
     return SVO_df
 
+
 def clean_premodifier_dataframe(premodifier_df):
     for char in spec_chars:
         premodifier_df['female_premodifier'] = premodifier_df['female_premodifier'].astype(str).str.replace(char, ' ')
         premodifier_df['male_premodifier'] = premodifier_df['male_premodifier'].astype(str).str.replace(char, ' ')
-
 
     # get base form of words
     female_premodifier_list = premodifier_df['female_premodifier'].to_list()
@@ -591,7 +594,7 @@ def clean_premodifier_dataframe(premodifier_df):
         base_word.strip()
         male_premodifier_base_list.append(base_word)
     premodifier_df['male_premodifier'] = male_premodifier_base_list
-    
+
     premodifier_df = premodifier_df.apply(lambda x: x.astype(str).str.lower())
 
     return premodifier_df
@@ -599,7 +602,8 @@ def clean_premodifier_dataframe(premodifier_df):
 
 def clean_postmodifier_dataframe(postmodifier_df):
     for char in spec_chars:
-        postmodifier_df['female_postmodifier'] = postmodifier_df['female_postmodifier'].astype(str).str.replace(char, ' ')
+        postmodifier_df['female_postmodifier'] = postmodifier_df['female_postmodifier'].astype(str).str.replace(char,
+                                                                                                                ' ')
         postmodifier_df['male_postmodifier'] = postmodifier_df['male_postmodifier'].astype(str).str.replace(char, ' ')
 
     # get base form of words
@@ -622,6 +626,7 @@ def clean_postmodifier_dataframe(postmodifier_df):
     postmodifier_df = postmodifier_df.apply(lambda x: x.astype(str).str.lower())
 
     return postmodifier_df
+
 
 def clean_aux_dataframe(aux_df):
     for char in spec_chars:
@@ -664,10 +669,10 @@ def clean_aux_dataframe(aux_df):
         male_follow_aux_base_list.append(base_word)
     aux_df['male_follow_aux'] = male_follow_aux_base_list
 
-
     aux_df = aux_df.apply(lambda x: x.astype(str).str.lower())
 
     return aux_df
+
 
 def determine_gender(token):
     if token == 'nothing':
@@ -715,8 +720,8 @@ def determine_gender_SVO(input_data):
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
 
-
     return SVO_df
+
 
 def determine_gender_premodifier(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
@@ -741,6 +746,7 @@ def determine_gender_premodifier(input_data):
 
     return premodifier_df
 
+
 def determine_gender_postmodifier(input_data):
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
@@ -761,15 +767,15 @@ def determine_gender_postmodifier(input_data):
     postmodifier_df.columns = ['female_postmodifier', 'male_postmodifier']
 
     postmodifier_df = clean_postmodifier_dataframe(postmodifier_df)
-    
+
     return postmodifier_df
 
-    
 
 post_modifiers = ['compounds', 'pobj']
-post_modifiers_noun_list = ['women', 'female',  'men', 'male']
+post_modifiers_noun_list = ['women', 'female', 'men', 'male']
 female_postmodifier_noun_list = ['women', 'female']
 male_postmodifier_noun_list = ['men', 'male']
+
 
 def findfemalePostmodifiers(sent):
     tokens = nltk.word_tokenize(sent)
@@ -780,13 +786,15 @@ def findfemalePostmodifiers(sent):
             # splitting the sentence here
             sentence_split = tokens.index(female_noun)
             # find the words where tag meets the criteria
-            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1: sentence_split + 2] if tag.startswith('NN')]
+            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1: sentence_split + 2] if
+                                  tag.startswith('NN')]
             post_modifier = nouns_before_split[0]
             female_postmodifier_list.append(post_modifier)
         except:
             continue
 
     return female_postmodifier_list
+
 
 def findmalePostmodifiers(sent):
     tokens = nltk.word_tokenize(sent)
@@ -804,6 +812,7 @@ def findmalePostmodifiers(sent):
             continue
 
     return male_postmodifier_list
+
 
 aux_word_list = ['are', 'is', 'were', 'was', 'be']
 det_word_list = ['a', 'an']
@@ -840,6 +849,7 @@ def findfemalefollow_auxs(sent):
 
     return female_follow_aux_list
 
+
 def findmalefollow_auxs(sent):
     tokens = nltk.word_tokenize(sent)
     tags = nltk.pos_tag(tokens)
@@ -864,6 +874,7 @@ def findmalefollow_auxs(sent):
 
     return male_follow_aux_list
 
+
 def findfemalebefore_auxs(sent):
     tokens = nltk.word_tokenize(sent)
     tags = nltk.pos_tag(tokens)
@@ -887,6 +898,7 @@ def findfemalebefore_auxs(sent):
             continue
 
     return female_before_aux_list
+
 
 def findmalebefore_auxs(sent):
     tokens = nltk.word_tokenize(sent)
@@ -933,7 +945,8 @@ def determine_gender_aux(input_data):
         except:
             continue
 
-    list_of_series = [pd.Series(tot_female_before_aux_list), pd.Series(tot_male_before_aux_list), pd.Series(tot_female_follow_aux_list), pd.Series(tot_male_follow_aux_list)]
+    list_of_series = [pd.Series(tot_female_before_aux_list), pd.Series(tot_male_before_aux_list),
+                      pd.Series(tot_female_follow_aux_list), pd.Series(tot_male_follow_aux_list)]
 
     aux_df = pd.concat(list_of_series, axis=1)
     aux_df.columns = ['female_before_aux', 'male_before_aux', 'female_follow_aux', 'male_follow_aux']
@@ -941,6 +954,7 @@ def determine_gender_aux(input_data):
     aux_df = clean_aux_dataframe(aux_df)
 
     return aux_df
+
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
     # put into a dataframe
@@ -1040,24 +1054,25 @@ def dataframe_by_gender(view_df):
 
 def save_obj(obj, name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False, encoding='utf-16')
 
 
 def save_obj_text(obj, name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_downloads', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
+                                'user_downloads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False, encoding='utf-16')
 
 
 def save_obj_user_uploads(obj, name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_uploads', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
+                                'user_uploads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False, encoding='utf-16')
-
 
 
 def concat_csv_excel():
@@ -1066,20 +1081,23 @@ def concat_csv_excel():
     writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'))  # Arbitrary output name
     csvfiles = [f for f in listdir(csv_path) if os.path.isfile(os.path.join(csv_path, f))]
     for csvfilename in csvfiles:
-        df = pd.read_csv(os.path.join(csv_path, csvfilename), na_values='-32768', encoding='utf-16', engine='c', error_bad_lines=False)
+        df = pd.read_csv(os.path.join(csv_path, csvfilename), na_values='-32768', encoding='utf-16', engine='c',
+                         error_bad_lines=False)
         df.to_excel(writer, sheet_name=os.path.splitext(csvfilename)[0], index=False)
     writer.save()
 
+
 def load_obj(name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', name)
     df_path = save_df_path + '.csv'
     return pd.read_csv(df_path, na_values='-32768', encoding='utf-16', engine='c', error_bad_lines=False)
 
 
 def load_obj_user_uploads(name):
     path_parent = os.path.dirname(os.getcwd())
-    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_uploads', name)
+    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
+                                  'user_uploads', name)
     df_path = upload_df_path + '.csv'
     return pd.read_csv(df_path, na_values='-32768', encoding='utf-16', engine='c', error_bad_lines=False)
 
@@ -1199,21 +1217,24 @@ def SVO_analysis(view_df):
 
     return female_sub_df_new, female_obj_df_new, female_intran_df_new, male_sub_df_new, male_obj_df_new, male_intran_df_new
 
+
 def premodifier_analysis(view_df):
     # columns = ['female_adj', 'male_adj']
     female_premodifier_df = view_df.drop('male_premodifier', axis=1)
     male_premodifier_df = view_df.drop('female_premodifier', axis=1)
     female_premodifier_new = female_premodifier_df.copy()
-    female_premodifier_new['Frequency'] = female_premodifier_new['female_premodifier'].map(female_premodifier_new['female_premodifier'].value_counts())
+    female_premodifier_new['Frequency'] = female_premodifier_new['female_premodifier'].map(
+        female_premodifier_new['female_premodifier'].value_counts())
     female_premodifier_new.sort_values('Frequency', inplace=True, ascending=False)
     female_premodifier_new.drop_duplicates(subset='female_premodifier',
-                                      keep=False, inplace=True)
-    
+                                           keep=False, inplace=True)
+
     male_premodifier_new = male_premodifier_df.copy()
-    male_premodifier_new['Frequency'] = male_premodifier_new['male_premodifier'].map(male_premodifier_new['male_premodifier'].value_counts())
+    male_premodifier_new['Frequency'] = male_premodifier_new['male_premodifier'].map(
+        male_premodifier_new['male_premodifier'].value_counts())
     male_premodifier_new.sort_values('Frequency', inplace=True, ascending=False)
     male_premodifier_new.drop_duplicates(subset='male_premodifier',
-                                   keep=False, inplace=True)
+                                         keep=False, inplace=True)
 
     female_premodifier_new.rename(columns={'female_premodifier': 'word'}, inplace=True)
     male_premodifier_new.rename(columns={'male_premodifier': 'word'}, inplace=True)
@@ -1230,19 +1251,20 @@ def postmodifier_analysis(view_df):
         female_postmodifier_new['female_postmodifier'].value_counts())
     female_postmodifier_new.sort_values('Frequency', inplace=True, ascending=False)
     female_postmodifier_new.drop_duplicates(subset='female_postmodifier',
-                                           keep=False, inplace=True)
+                                            keep=False, inplace=True)
 
     male_postmodifier_new = male_postmodifier_df.copy()
     male_postmodifier_new['Frequency'] = male_postmodifier_new['male_postmodifier'].map(
         male_postmodifier_new['male_postmodifier'].value_counts())
     male_postmodifier_new.sort_values('Frequency', inplace=True, ascending=False)
     male_postmodifier_new.drop_duplicates(subset='male_postmodifier',
-                                         keep=False, inplace=True)
+                                          keep=False, inplace=True)
 
     female_postmodifier_new.rename(columns={'female_postmodifier': 'word'}, inplace=True)
     male_postmodifier_new.rename(columns={'male_postmodifier': 'word'}, inplace=True)
 
     return female_postmodifier_new, male_postmodifier_new
+
 
 def aux_analysis(view_df):
     # columns = ['female_before_aux', male_before_aux', female_follow_aux', male_follow_aux' ]
@@ -1256,28 +1278,28 @@ def aux_analysis(view_df):
         female_before_aux_new['female_before_aux'].value_counts())
     female_before_aux_new.sort_values('Frequency', inplace=True, ascending=False)
     female_before_aux_new.drop_duplicates(subset='female_before_aux',
-                                           keep=False, inplace=True)
+                                          keep=False, inplace=True)
 
     male_before_aux_new = male_before_aux_df.copy()
     male_before_aux_new['Frequency'] = male_before_aux_new['male_before_aux'].map(
         male_before_aux_new['male_before_aux'].value_counts())
     male_before_aux_new.sort_values('Frequency', inplace=True, ascending=False)
     male_before_aux_new.drop_duplicates(subset='male_before_aux',
-                                          keep=False, inplace=True)
-    
+                                        keep=False, inplace=True)
+
     female_follow_aux_new = female_follow_aux_df.copy()
     female_follow_aux_new['Frequency'] = female_follow_aux_new['female_follow_aux'].map(
         female_follow_aux_new['female_follow_aux'].value_counts())
     female_follow_aux_new.sort_values('Frequency', inplace=True, ascending=False)
     female_follow_aux_new.drop_duplicates(subset='female_follow_aux',
-                                           keep=False, inplace=True)
+                                          keep=False, inplace=True)
 
     male_follow_aux_new = male_follow_aux_df.copy()
     male_follow_aux_new['Frequency'] = male_follow_aux_new['male_follow_aux'].map(
         male_follow_aux_new['male_follow_aux'].value_counts())
     male_follow_aux_new.sort_values('Frequency', inplace=True, ascending=False)
     male_follow_aux_new.drop_duplicates(subset='male_follow_aux',
-                                          keep=False, inplace=True)
+                                        keep=False, inplace=True)
 
     female_before_aux_new.rename(columns={'female_before_aux': 'word'}, inplace=True)
     male_before_aux_new.rename(columns={'male_before_aux': 'word'}, inplace=True)
@@ -1944,7 +1966,8 @@ def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
     return plot_pca_female
 
 
-def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe):
+def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,
+                         input_postmodifier_dataframe, input_aux_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
@@ -1952,7 +1975,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
         input_SVO_dataframe)
     female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
-    female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
+    female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(
+        input_aux_dataframe)
 
     if select_gender == 'female':
         if select_wordtype == 'nouns':

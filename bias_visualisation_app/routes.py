@@ -8,7 +8,7 @@ from flask import  render_template, url_for, request, send_from_directory
 from bias_visualisation_app import app
 from os import path
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, \
-    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, \
+    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, generate_list,\
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
@@ -87,7 +87,33 @@ def index():
 
 @app.route('/visualisation')
 def visualisation():
-    return render_template('visualisation.html')
+    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
+    token_list, value_list = generate_list(view_df)[0], generate_list(view_df)[1]
+
+    # plot the bar graphs and word clouds
+    plot_bar = bar_graph(view_df, token_list, value_list)
+    plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
+    # only perform tsne plot if more than 100 tokens
+    if len(token_list) > 100:
+        plot_tsne = tsne_graph(token_list)
+        plot_tsne_male = tsne_graph_male(token_list, value_list)
+        plot_tsne_female = tsne_graph_female(token_list, value_list)
+        plot_pca = pca_graph(token_list)
+        plot_pca_male = pca_graph_male(token_list, value_list)
+        plot_pca_female = pca_graph_female(token_list, value_list)
+    else:
+        plot_tsne = url_for('static', filename='nothing_here.png')
+        plot_tsne_male = url_for('static', filename='nothing_here.png')
+        plot_tsne_female = url_for('static', filename='nothing_here.png')
+        plot_pca = url_for('static', filename='nothing_here.png')
+        plot_pca_male = url_for('static', filename='nothing_here.png')
+        plot_pca_female = url_for('static', filename='nothing_here.png')
+
+    return render_template('visualisation.html', bar_graph=plot_bar,
+                           female_word_cloud=plot_female_cloud, male_word_cloud=plot_male_cloud,
+                           tsne_graph=plot_tsne,
+                           male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
+                           male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
 
 # @app.route('/comparer', methods=['GET', 'POST'])
@@ -361,3 +387,7 @@ def download(df_name):
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
+# text for testing functions
+# 'Women writers support male fighters. Male cleaners are more careful. Lucy likes female dramas. Women like sunglasses. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.'

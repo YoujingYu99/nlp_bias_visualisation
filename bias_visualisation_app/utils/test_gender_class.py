@@ -24,7 +24,7 @@ train_set, test_set = featuresets[500:], featuresets[:500]
 classifier = nltk.NaiveBayesClassifier.train(train_set)
 
 # Here we print the accuracy (low accuracy)
-print(nltk.classify.accuracy(classifier2, test_set))
+print(nltk.classify.accuracy(classifier, test_set))
 
 # Let's check for the error we made when predicting name genders
 # using a new set called dev-test set
