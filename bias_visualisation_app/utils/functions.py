@@ -579,6 +579,50 @@ spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '=', '>', '?', '@', '[', '\\', ']', '^', '_',
               '`', '{', '|', '}', '~', '–']
 
+# def clean_SVO_dataframe(SVO_df):
+#     for char in spec_chars:
+#         SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
+#         SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
+#         #SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
+#
+#
+#     # get base form of verb
+#     verb_list = SVO_df['verb'].to_list()
+#     verb_base_list = []
+#     for verb in verb_list:
+#         verb.strip()
+#         if '!' in verb:
+#             verb = verb.replace('!', '')
+#             verb.strip()
+#             try:
+#                 main_verb, particle = verb.split()[0], verb.split()[1]
+#                 base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
+#                 base_word.strip()
+#                 base_phrasal_verb = '!' + base_word + ' ' + particle
+#                 verb_base_list.append(base_phrasal_verb)
+#             except:
+#                 verb = verb.split()[0]
+#                 base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+#                 base_word.strip()
+#                 verb_base_list.append('!' + base_word)
+#         else:
+#             verb.strip()
+#             try:
+#                 main_verb, particle = verb.split()[0], verb.split()[1]
+#                 base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
+#                 base_word.strip()
+#                 base_phrasal_verb = base_word + ' ' + particle
+#                 verb_base_list.append(base_phrasal_verb)
+#             except:
+#                 verb = verb.split()[0]
+#                 base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+#                 base_word.strip()
+#                 verb_base_list.append(base_word)
+#
+#     SVO_df['verb'] = verb_base_list
+#     SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
+#
+#     return SVO_df
 
 def clean_SVO_dataframe(SVO_df):
     for char in spec_chars:
@@ -607,6 +651,34 @@ def clean_SVO_dataframe(SVO_df):
     SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
 
     return SVO_df
+
+
+def clean_premodifier_dataframe(premodifier_df):
+    for char in spec_chars:
+        premodifier_df['female_premodifier'] = premodifier_df['female_premodifier'].astype(str).str.replace(char, ' ')
+        premodifier_df['male_premodifier'] = premodifier_df['male_premodifier'].astype(str).str.replace(char, ' ')
+
+    # get base form of words
+    female_premodifier_list = premodifier_df['female_premodifier'].to_list()
+    female_premodifier_base_list = []
+    for premodifier in female_premodifier_list:
+        base_word = WordNetLemmatizer().lemmatize(premodifier)
+        base_word.strip()
+        female_premodifier_base_list.append(base_word)
+    premodifier_df['female_premodifier'] = female_premodifier_base_list
+
+    male_premodifier_list = premodifier_df['male_premodifier'].to_list()
+    male_premodifier_base_list = []
+    for premodifier in male_premodifier_list:
+        base_word = WordNetLemmatizer().lemmatize(premodifier)
+        base_word.strip()
+        male_premodifier_base_list.append(base_word)
+    premodifier_df['male_premodifier'] = male_premodifier_base_list
+
+    premodifier_df = premodifier_df.apply(lambda x: x.astype(str).str.lower())
+
+    return premodifier_df
+
 
 
 def clean_premodifier_dataframe(premodifier_df):
