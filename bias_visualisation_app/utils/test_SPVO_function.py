@@ -80,15 +80,15 @@ def isNegated(tok):
     return False
 
 
-def findSVs(tokens):
-    svs = []
-    verbs = [tok for tok in tokens if tok.pos_ == 'VERB']
-    for v in verbs:
-        subs, verbNegated = getAllSubs(v)
-        if len(subs) > 0:
-            for sub in subs:
-                svs.append((sub.orth_, '!' + v.orth_ if verbNegated else v.orth_))
-    return svs
+# def findSVs(tokens):
+#     svs = []
+#     verbs = [tok for tok in tokens if tok.pos_ == 'VERB']
+#     for v in verbs:
+#         subs, verbNegated = getAllSubs(v)
+#         if len(subs) > 0:
+#             for sub in subs:
+#                 svs.append((sub.orth_, '!' + v.orth_ if verbNegated else v.orth_))
+#     return svs
 
 
 def getObjsFromPrepositions(deps):
@@ -112,18 +112,18 @@ def getAdjectives(toks):
     return toks_with_adjectives
 
 
-def getObjsFromAttrs(deps):
-    for dep in deps:
-        if dep.pos_ == 'NOUN' and dep.dep_ == 'attr':
-            verbs = [tok for tok in dep.rights if tok.pos_ == 'VERB']
-            if len(verbs) > 0:
-                for v in verbs:
-                    rights = list(v.rights)
-                    objs = [tok for tok in rights if tok.dep_ in OBJECTS]
-                    objs.extend(getObjsFromPrepositions(rights))
-                    if len(objs) > 0:
-                        return v, objs
-    return None, None
+# def getObjsFromAttrs(deps):
+#     for dep in deps:
+#         if dep.pos_ == 'NOUN' and dep.dep_ == 'attr':
+#             verbs = [tok for tok in dep.rights if tok.pos_ == 'VERB']
+#             if len(verbs) > 0:
+#                 for v in verbs:
+#                     rights = list(v.rights)
+#                     objs = [tok for tok in rights if tok.dep_ in OBJECTS]
+#                     objs.extend(getObjsFromPrepositions(rights))
+#                     if len(objs) > 0:
+#                         return v, objs
+#     return None, None
 
 
 def getObjFromXComp(deps):
@@ -178,23 +178,23 @@ def getAllObjs(v):
     return v, objs
 
 
-def getAllObjsWithAdjectives(v):
-    # rights is a generator
-    rights = list(v.rights)
-    objs = [tok for tok in rights if tok.dep_ in OBJECTS]
-
-    if len(objs) == 0:
-        objs = [tok for tok in rights if tok.dep_ in ADJECTIVES]
-
-    objs.extend(getObjsFromPrepositions(rights))
-
-    potentialNewVerb, potentialNewObjs = getObjFromXComp(rights)
-    if potentialNewVerb is not None and potentialNewObjs is not None and len(potentialNewObjs) > 0:
-        objs.extend(potentialNewObjs)
-        v = potentialNewVerb
-    if len(objs) > 0:
-        objs.extend(getObjsFromConjunctions(objs))
-    return v, objs
+# def getAllObjsWithAdjectives(v):
+#     # rights is a generator
+#     rights = list(v.rights)
+#     objs = [tok for tok in rights if tok.dep_ in OBJECTS]
+#
+#     if len(objs) == 0:
+#         objs = [tok for tok in rights if tok.dep_ in ADJECTIVES]
+#
+#     objs.extend(getObjsFromPrepositions(rights))
+#
+#     potentialNewVerb, potentialNewObjs = getObjFromXComp(rights)
+#     if potentialNewVerb is not None and potentialNewObjs is not None and len(potentialNewObjs) > 0:
+#         objs.extend(potentialNewObjs)
+#         v = potentialNewVerb
+#     if len(objs) > 0:
+#         objs.extend(getObjsFromConjunctions(objs))
+#     return v, objs
 
 
 def findSVOs(tokens):
@@ -211,20 +211,48 @@ def findSVOs(tokens):
                     svos.append((sub.lower_, '!' + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
     return svos
 
+def findverbs(tokens):
+    verbs = []
+    # verbs is a list of lists, each element list contains either a single verb or a phrasal verb pair
+    for tok in tokens:
+        if tok.pos_ == 'VERB' and tok.dep_ != 'aux':
+            # look for phrasal verbs
+            try:
+                particle_list = [right_tok for right_tok in tok.rights if right_tok.dep_ == 'prt']
+                verbs.append([tok, particle_list[0]])
+            except:
+                verbs.append([tok])
+    print('verbs', verbs)
+    not_verbs = []
+    for tok in tokens:
+        if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
+            try:
+                # look for phrasal verbs
+                particle_list = [right_tok for right_tok in tok.rights if right_tok.dep_ == 'prt']
+                not_verbs.append([tok, particle_list[0]])
+            except:
+                not_verbs.append([tok])
+
+    print('not verbs', not_verbs)
+    return verbs, not_verbs
+
 
 def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
-    verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.dep_ != 'aux']
-    # not_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN'][0]#
-    not_verbs = []
-    for tok in tokens:
-        if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
-            not_verbs.append(tok)
-
-    # if (not_verbs not in verbs or len(not_verbs) == 0):
+    # verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.dep_ != 'aux']
+    # print('actual verbs', verbs)
+    # # not_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN'][0]#
+    # not_verbs = []
+    # for tok in tokens:
+    #     if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
+    #         not_verbs.append(tok)
+    # print('not verbs!', not_verbs)
+    # # if (not_verbs not in verbs or len(not_verbs) == 0):
+    print('just before new function')
+    verbs, not_verbs = findverbs(tokens)
     if len(not_verbs) == 0:
-        print('safe to proceed with first identified verb!')
+        print('No VBN verbs')
         for v in verbs:
             subs, verbNegated = getAllSubs(v)
             # hopefully there are subs, if not, don't examine this verb any longer
@@ -270,6 +298,7 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     else:
+        print('normal verbs')
         new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
         tokens_new = [t for t in tokens]
         tokens_new_str = [str(t) for t in tokens]
@@ -387,6 +416,7 @@ def determine_gender_SVO(input_data):
     # now loop over each sentence and tokenize it separately
     for sentence in sent_text:
         parse = parser(sentence)
+        print(parse)
         try:
             SVO_list = findSVAOs(parse)
             for i in SVO_list:
@@ -413,7 +443,7 @@ def determine_gender_SVO(input_data):
     return SVO_df
 
 
-sentence = 'She takes off her coat. Hilary is supported. Mary smiles. Lucy has been smiling. Linda eats bread. '
+sentence = 'She takes off her coat. Hilary is supported. Mary smiles. Lucy has been smiling. Linda eats bread. Marilyn marries John. Anna looks up a book.'
 
 determine_gender_SVO(sentence)
 
