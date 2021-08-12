@@ -249,15 +249,18 @@ def findSVAOs(tokens):
     #         not_verbs.append(tok)
     # print('not verbs!', not_verbs)
     # # if (not_verbs not in verbs or len(not_verbs) == 0):
-    print('just before new function')
     verbs, not_verbs = findverbs(tokens)
     if len(not_verbs) == 0:
         print('No VBN verbs')
+        print(verbs)
+        print(type(verbs))
         for v in verbs:
-            subs, verbNegated = getAllSubs(v)
+            main_v = v[0]
+
+            subs, verbNegated = getAllSubs(main_v)
             # hopefully there are subs, if not, don't examine this verb any longer
             if len(subs) > 0:
-                v, objs = getAllObjs(v)
+                main_v, objs = getAllObjs(main_v)
                 if len(objs) > 0:
                     for sub in subs:
                         for obj in objs:
@@ -265,7 +268,7 @@ def findSVAOs(tokens):
                             obj_desc_tokens = generate_left_right_adjectives(obj)
                             sub_compound = generate_sub_compound(sub)
                             svos.append((' '.join(tok.lower_ for tok in sub_compound),
-                                         '!' + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         '!' + str(v).lower() if verbNegated or objNegated else str(v).lower(),
                                          ' '.join(tok.lower_ for tok in obj_desc_tokens)))
 
                 if len(objs) == 0:
@@ -277,10 +280,11 @@ def findSVAOs(tokens):
     elif not_verbs[0] not in verbs:
         print('safe to proceed with first identified verb!')
         for v in verbs:
-            subs, verbNegated = getAllSubs(v)
+            main_v = v[0]
+            subs, verbNegated = getAllSubs(main_v)
             # hopefully there are subs, if not, don't examine this verb any longer
             if len(subs) > 0:
-                v, objs = getAllObjs(v)
+                main_v, objs = getAllObjs(main_v)
                 if len(objs) > 0:
                     for sub in subs:
                         for obj in objs:
@@ -288,7 +292,7 @@ def findSVAOs(tokens):
                             obj_desc_tokens = generate_left_right_adjectives(obj)
                             sub_compound = generate_sub_compound(sub)
                             svos.append((' '.join(tok.lower_ for tok in sub_compound),
-                                         '!' + v.lower_ if verbNegated or objNegated else v.lower_,
+                                         '!' + str(v).lower() if verbNegated or objNegated else str(v).lower(),
                                          ' '.join(tok.lower_ for tok in obj_desc_tokens)))
 
                 if len(objs) == 0:
@@ -298,13 +302,23 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     else:
-        print('normal verbs')
-        new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
+        print('need to change subject object order')
+        #new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
+        new_verbs = []
+        for tok in tokens:
+            if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
+                try:
+                    # look for phrasal verbs
+                    particle_list = [right_tok for right_tok in tok.rights if right_tok.dep_ == 'prt']
+                    new_verbs.append([tok, particle_list[0]])
+                except:
+                    new_verbs.append([tok])
         tokens_new = [t for t in tokens]
         tokens_new_str = [str(t) for t in tokens]
-        for new_verb in new_verbs:
-            new_objs, new_verbNegated = getAllSubs(new_verb)
-            get_index = tokens_new_str.index(str(new_verb))
+        for v in new_verbs:
+            main_v = v[0]
+            new_objs, new_verbNegated = getAllSubs(main_v)
+            get_index = tokens_new_str.index(str(main_v))
             after_tok_list = tokens_new[get_index + 1:]
             after_tok_list_str = tokens_new_str[get_index + 1:]
             if 'by' in after_tok_list_str:
@@ -317,12 +331,12 @@ def findSVAOs(tokens):
                         new_subs.append(after_tok)
                 # 'by' is at position 0
                 new_sub = new_subs[1]
-                svos = [str(new_sub), str(new_verb), str(new_objs[0])]
+                svos = [str(new_sub), str(v.lower()), str(new_objs[0])]
                 svos = tuple(svos)
                 svos = [svos]
 
             else:
-                svos = ['neutral', str(new_verb), str(new_objs[0])]
+                svos = ['neutral', str(v.lower()), str(new_objs[0])]
                 svos = tuple(svos)
                 svos = [svos]
 
