@@ -673,7 +673,55 @@ def clean_aux_dataframe(aux_df):
 
     return aux_df
 
+def clean_possess_dataframe(possess_df):
+    for char in spec_chars:
+        possess_df['female_possessive'] = possess_df['female_possessive'].astype(str).str.replace(char, ' ')
+        possess_df['male_possessive'] = possess_df['male_possessive'].astype(str).str.replace(char, ' ')
+        possess_df['female_possessor'] = possess_df['female_possessor'].astype(str).str.replace(char, ' ')
+        possess_df['male_possessor'] = possess_df['male_possessor'].astype(str).str.replace(char, ' ')
 
+    # get base form of words
+    female_possessive_list = possess_df['female_possessive'].to_list()
+    female_possessive_base_list = []
+    for possessive in female_possessive_list:
+        base_word = WordNetLemmatizer().lemmatize(possessive)
+        base_word.strip()
+        female_possessive_base_list.append(base_word)
+    possess_df['female_possessive'] = female_possessive_base_list
+
+    male_possessive_list = possess_df['male_possessive'].to_list()
+    male_possessive_base_list = []
+    for possessive in male_possessive_list:
+        base_word = WordNetLemmatizer().lemmatize(possessive)
+        base_word.strip()
+        male_possessive_base_list.append(base_word)
+    possess_df['male_possessive'] = male_possessive_base_list
+
+    female_possessor_list = possess_df['female_possessor'].to_list()
+    female_possessor_base_list = []
+    for possessor in female_possessor_list:
+        base_word = WordNetLemmatizer().lemmatize(possessor)
+        base_word.strip()
+        female_possessor_base_list.append(base_word)
+    possess_df['female_possessor'] = female_possessor_base_list
+
+    male_possessor_list = possess_df['male_possessor'].to_list()
+    male_possessor_base_list = []
+    for possessor in male_possessor_list:
+        base_word = WordNetLemmatizer().lemmatize(possessor)
+        base_word.strip()
+        male_possessor_base_list.append(base_word)
+    possess_df['male_possessor'] = male_possessor_base_list
+
+    possess_df = possess_df.apply(lambda x: x.astype(str).str.lower())
+
+    return possess_df
+    
+    
+    
+    
+    
+    
 def determine_gender(token):
     if token == 'nothing':
         gender = 'neutral_intransitive'
@@ -955,6 +1003,120 @@ def determine_gender_aux(input_data):
 
     return aux_df
 
+def findfemale_possessives(sent):
+    # e.g. women's rights
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    female_possessive_list = []
+    for female_noun in female_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(female_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split + 1] == "'s":
+                possessive = tokens[sentence_split + 2]
+                if tags[sentence_split + 2][1].startswith('NN'):
+                    female_possessive_list.append(possessive)
+            else:
+                pass
+        except:
+            continue
+
+    return female_possessive_list
+
+def findfemale_possessors(sent):
+    # e.g. Norway's women
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    female_possessor_list = []
+    for female_noun in female_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(female_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split - 1] == "'s":
+                possessor = tokens[sentence_split - 2]
+                if tags[sentence_split - 2][1].startswith('NN'):
+                    female_possessor_list.append(possessor)
+            else:
+                pass
+        except:
+            continue
+
+    return female_possessor_list
+
+def findmale_possessives(sent):
+    # e.g. men's shoes
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    male_possessive_list = []
+    for male_noun in male_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(male_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split + 1] == "'s":
+                possessive = tokens[sentence_split + 2]
+                if tags[sentence_split + 2][1].startswith('NN'):
+                    male_possessive_list.append(possessive)
+            else:
+                pass
+        except:
+            continue
+
+    return male_possessive_list
+
+def findmale_possessors(sent):
+    # e.g. Norway's women
+    tokens = nltk.word_tokenize(sent)
+    tags = nltk.pos_tag(tokens)
+    male_possessor_list = []
+    for male_noun in male_nouns:
+        try:
+            # You are interested in splitting the sentence here
+            sentence_split = tokens.index(male_noun)
+            # Find the words where tag meets your criteria (must be a noun / proper noun)
+            if tokens[sentence_split - 1] == "'s":
+                possessor = tokens[sentence_split - 2]
+                if tags[sentence_split - 2][1].startswith('NN'):
+                    male_possessor_list.append(possessor)
+            else:
+                pass
+        except:
+            continue
+
+    return male_possessor_list
+
+def determine_gender_possess(input_data):
+    input_data = input_data.lower()
+    sent_text = nltk.sent_tokenize(input_data)
+    tot_female_possessive_list = []
+    tot_male_possessive_list = []
+    tot_female_possessor_list = []
+    tot_male_possessor_list = []
+    for sent in sent_text:
+        try:
+            female_possessive_list = findfemale_possessives(sent)
+            male_possessive_list = findmale_possessives(sent)
+            female_possessor_list = findfemale_possessors(sent)
+            male_possessor_list = findmale_possessors(sent)
+            tot_female_possessive_list.extend(female_possessive_list)
+            tot_male_possessive_list.extend(male_possessive_list)
+            tot_female_possessor_list.extend(female_possessor_list)
+            tot_male_possessor_list.extend(male_possessor_list)
+        except:
+            continue
+
+    list_of_series = [pd.Series(tot_female_possessive_list), pd.Series(tot_male_possessive_list),
+                      pd.Series(tot_male_possessor_list), pd.Series(tot_male_possessor_list)]
+
+    possess_df = pd.concat(list_of_series, axis=1)
+    possess_df.columns = ['female_possessive', 'male_possessive', 'female_possessor', 'male_possessor']
+
+    possess_df = clean_possess_dataframe(possess_df)
+
+    return possess_df
+
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
     # put into a dataframe
@@ -1150,6 +1312,9 @@ def generate_bias_values(input_data):
     aux_df = determine_gender_aux(input_data)
     save_obj_text(aux_df, name='aux_dataframe')
 
+    possess_df = determine_gender_possess(input_data)
+    save_obj_text(possess_df, name='possess_dataframe')
+
     concat_csv_excel()
 
 
@@ -1307,6 +1472,48 @@ def aux_analysis(view_df):
 
     return female_before_aux_new, male_before_aux_new, female_follow_aux_new, male_follow_aux_new
 
+def possess_analysis(view_df):
+    # columns = ['female_possessive', male_possessive', female_possessor', male_possessor' ]
+    female_possessive_df = view_df[['female_possessive']]
+    male_possessive_df = view_df[['male_possessive']]
+    female_possessor_df = view_df[['female_possessor']]
+    male_possessor_df = view_df[['male_possessor']]
+
+    female_possessive_new = female_possessive_df.copy()
+    female_possessive_new['Frequency'] = female_possessive_new['female_possessive'].map(
+        female_possessive_new['female_possessive'].value_counts())
+    female_possessive_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_possessive_new.drop_duplicates(subset='female_possessive',
+                                          keep=False, inplace=True)
+
+    male_possessive_new = male_possessive_df.copy()
+    male_possessive_new['Frequency'] = male_possessive_new['male_possessive'].map(
+        male_possessive_new['male_possessive'].value_counts())
+    male_possessive_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_possessive_new.drop_duplicates(subset='male_possessive',
+                                          keep=False, inplace=True)
+
+    female_possessor_new = female_possessor_df.copy()
+    female_possessor_new['Frequency'] = female_possessor_new['female_possessor'].map(
+        female_possessor_new['female_possessor'].value_counts())
+    female_possessor_new.sort_values('Frequency', inplace=True, ascending=False)
+    female_possessor_new.drop_duplicates(subset='female_possessor',
+                                          keep=False, inplace=True)
+
+    male_possessor_new = male_possessor_df.copy()
+    male_possessor_new['Frequency'] = male_possessor_new['male_possessor'].map(
+        male_possessor_new['male_possessor'].value_counts())
+    male_possessor_new.sort_values('Frequency', inplace=True, ascending=False)
+    male_possessor_new.drop_duplicates(subset='male_possessor',
+                                        keep=False, inplace=True)
+
+    female_possessive_new.rename(columns={'female_possessive': 'word'}, inplace=True)
+    male_possessive_new.rename(columns={'male_possessive': 'word'}, inplace=True)
+
+    female_possessor_new.rename(columns={'female_possessor': 'word'}, inplace=True)
+    male_possessor_new.rename(columns={'male_possessor': 'word'}, inplace=True)
+
+    return female_possessive_new, male_possessive_new, female_possessor_new, male_possessor_new
 
 def gender_dataframe_from_tuple(view_df):
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
@@ -1965,7 +2172,7 @@ def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
 
 
 def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,
-                         input_postmodifier_dataframe, input_aux_dataframe):
+                         input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
@@ -1975,6 +2182,7 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(
         input_aux_dataframe)
+    female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
 
     if select_gender == 'female':
         if select_wordtype == 'nouns':
@@ -1995,6 +2203,10 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return female_before_aux_df
         if select_wordtype == 'follow_aux':
             return female_follow_aux_df
+        if select_wordtype == 'possessives':
+            return female_possessive_df
+        if select_wordtype == 'possessors':
+            return female_possessor_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
@@ -2018,6 +2230,10 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return male_before_aux_df
         if select_wordtype == 'follow_aux':
             return male_follow_aux_df
+        if select_wordtype == 'possessives':
+            return male_possessive_df
+        if select_wordtype == 'possessors':
+            return male_possessor_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'

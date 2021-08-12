@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_possessive.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_possessive2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/SVO_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/total_dataframe.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_SVO_function.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +68,7 @@
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\bias_visualisation_app\utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_possessive2">
+  <component name="RunManager" selected="Flask server.visualising_data_bias">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -141,21 +145,7 @@
       <workItem from="1628757076867" duration="2396000" />
       <workItem from="1628761461218" duration="2931000" />
       <workItem from="1628766356177" duration="1503000" />
-      <workItem from="1628770008254" duration="2239000" />
-    </task>
-    <task id="LOCAL-00006" summary="Sorting SVO dataframes">
-      <created>1628147723958</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1628147723958</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Adding query for SVO. Plotting SVO graphs.">
-      <created>1628155456791</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1628155456791</updated>
+      <workItem from="1628770008254" duration="4371000" />
     </task>
     <task id="LOCAL-00008" summary="Fixing visualisation issue">
       <created>1628155591974</created>
@@ -486,7 +476,21 @@
       <option name="project" value="LOCAL" />
       <updated>1628770378763</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Successfully writing the possesive identification">
+      <created>1628772295574</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1628772295574</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Finished writing the possessive and possessor functions">
+      <created>1628772594398</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1628772594398</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,8 +510,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="testing modifier" />
-    <MESSAGE value="More testing of modifier identification" />
     <MESSAGE value="Finished writing adj and gender classification" />
     <MESSAGE value="Adding routes for modifier, analysis and its graphs" />
     <MESSAGE value="Trying to fix the download bug" />
@@ -531,13 +533,16 @@
     <MESSAGE value="Regrouping routes to avoid 500 error when user switches tabs" />
     <MESSAGE value="Migrating from chrome to Firefox" />
     <MESSAGE value="Using spacy==3.0.7 solved the environment issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Using spacy==3.0.7 solved the environment issue" />
+    <MESSAGE value="Successfully writing the possesive identification" />
+    <MESSAGE value="Finished writing the possessive and possessor functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished writing the possessive and possessor functions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive2.coverage" NAME="test_possessive2 Coverage Results" MODIFIED="1628772550571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628502087617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_path Coverage Results" MODIFIED="1628604890921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628770231074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628774158487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_csv_concat.coverage" NAME="test_csv_concat Coverage Results" MODIFIED="1628692591265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_follow_aux.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1628679183926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />

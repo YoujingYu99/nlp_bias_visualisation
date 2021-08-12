@@ -7,8 +7,8 @@ from __future__ import unicode_literals
 from flask import redirect, render_template, url_for, request, send_from_directory
 from bias_visualisation_app import app
 from os import path
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, \
-    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, generate_list,\
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list,\
+    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis,\
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
@@ -200,6 +200,7 @@ def detect_dataframe():
         dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
         dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
         dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
+        dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe')
         dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
 
         input_dataframe_total = dataframe_total
@@ -216,6 +217,9 @@ def detect_dataframe():
 
         input_dataframe_aux = dataframe_aux
         save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
+
+        input_dataframe_possess = dataframe_possess
+        save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
 
         return redirect(url_for('visualisation'))
 
@@ -236,6 +240,7 @@ def analysis():
     input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
     input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
     input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
+    input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
 
     # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
@@ -245,6 +250,7 @@ def analysis():
     female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
+    female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
 
     return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
@@ -253,9 +259,9 @@ def analysis():
                            data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
                            data_m_intran_verb=male_intran_df, data_m_sub_verb=male_sub_df,
                            data_m_obj_verb=male_obj_df, data_fm_premodifier=female_premodifier_df, data_m_premodifier=male_premodifier_df, data_fm_postmodifier=female_postmodifier_df, data_m_postmodifier=male_postmodifier_df, data_fm_before_aux=female_before_aux_df, data_m_before_aux=male_before_aux_df,
-                           data_fm_follow_aux=female_follow_aux_df, data_m_follow_aux=male_follow_aux_df,
+                           data_fm_follow_aux=female_follow_aux_df, data_m_follow_aux=male_follow_aux_df, data_fm_possessive=female_possessive_df, data_m_possessive=male_possessive_df, data_fm_possessor=female_possessor_df, data_m_possessor=male_possessor_df,
                            wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'intransitive_verbs'}, {'type': 'subject_verbs'},
-                                          {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'auxs'}, {'type': 'before_aux'}, {'type': 'follow_aux'}],
+                                          {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'auxs'}, {'type': 'before_aux'}, {'type': 'follow_aux'}, {'type': 'possessives'}, {'type': 'possessors'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
@@ -272,11 +278,12 @@ def query():
         input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
         input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
         input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
+        input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
 
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe)
+                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
@@ -357,4 +364,4 @@ def about():
 
 
 # text for testing functions
-# 'Women writers support male fighters. Male cleaners are more careful. Lucy likes female dramas. Women like sunglasses. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.'
+# "Women writers support male fighters. Male cleaners are more careful. Lucy likes female dramas. Women like sunglasses. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are minority. The woman is a teacher. Sarah is an engineer. The culprit is Linda.We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. Japan's women live longest. Canada's John clinged a gold prize."
