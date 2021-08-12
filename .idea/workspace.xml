@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/SVO_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/total_dataframe.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_SVO_function.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_possessive2.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_SVO_function.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -68,7 +62,7 @@
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\bias_visualisation_app\utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.visualising_data_bias">
+  <component name="RunManager" selected="Python.test_SVO_function">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -78,7 +72,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_possessive2" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="test_SVO_function" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="visualising_data_bias" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -91,7 +85,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_possessive2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_SVO_function.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -117,7 +111,7 @@
     </configuration>
     <list>
       <item itemvalue="Flask server.visualising_data_bias" />
-      <item itemvalue="Python.test_possessive2" />
+      <item itemvalue="Python.test_SVO_function" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -145,14 +139,7 @@
       <workItem from="1628757076867" duration="2396000" />
       <workItem from="1628761461218" duration="2931000" />
       <workItem from="1628766356177" duration="1503000" />
-      <workItem from="1628770008254" duration="4371000" />
-    </task>
-    <task id="LOCAL-00008" summary="Fixing visualisation issue">
-      <created>1628155591974</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1628155591974</updated>
+      <workItem from="1628770008254" duration="5543000" />
     </task>
     <task id="LOCAL-00009" summary="Combining two routes as one; reverting graph labels.">
       <created>1628156517896</created>
@@ -490,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628772594398</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Successfully adding routes for possessives and possessors. Integrate whole thing into the xlsx file as well.">
+      <created>1628774596318</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1628774596319</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished writing adj and gender classification" />
     <MESSAGE value="Adding routes for modifier, analysis and its graphs" />
     <MESSAGE value="Trying to fix the download bug" />
     <MESSAGE value="Adding JS files to solve the animation problem. Solving all warnings on files not found issues." />
@@ -535,14 +528,15 @@
     <MESSAGE value="Using spacy==3.0.7 solved the environment issue" />
     <MESSAGE value="Successfully writing the possesive identification" />
     <MESSAGE value="Finished writing the possessive and possessor functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished writing the possessive and possessor functions" />
+    <MESSAGE value="Successfully adding routes for possessives and possessors. Integrate whole thing into the xlsx file as well." />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully adding routes for possessives and possessors. Integrate whole thing into the xlsx file as well." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive2.coverage" NAME="test_possessive2 Coverage Results" MODIFIED="1628772550571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628502087617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_path Coverage Results" MODIFIED="1628604890921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628774158487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1628774426322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_csv_concat.coverage" NAME="test_csv_concat Coverage Results" MODIFIED="1628692591265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_follow_aux.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1628679183926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
