@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_SPVO_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_SPVO_function.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,14 +139,7 @@
       <workItem from="1628757076867" duration="2396000" />
       <workItem from="1628761461218" duration="2931000" />
       <workItem from="1628766356177" duration="1503000" />
-      <workItem from="1628770008254" duration="13892000" />
-    </task>
-    <task id="LOCAL-00012" summary="Clean up spaces">
-      <created>1628172535334</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1628172535334</updated>
+      <workItem from="1628770008254" duration="14129000" />
     </task>
     <task id="LOCAL-00013" summary="Adding strip to stemmatize verbs better">
       <created>1628183137138</created>
@@ -487,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628781729135</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Finished writing the phrasal verb functions. New problem with uploading files as Firefox seem to have cache. May be solvable when interactive.">
+      <created>1628786797421</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1628786797421</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Successfully identifying gender-specific post-modifying nouns" />
     <MESSAGE value="Adding postmodifier routes and analysis functions" />
     <MESSAGE value="Finished writing the postmodifier algorithms" />
     <MESSAGE value="Improve postmodifier algorithm to avoiding nonadjacent nouns being identified" />
@@ -532,7 +528,8 @@
     <MESSAGE value="Starting on phrasal verbs" />
     <MESSAGE value="Testing phrasal verb identification" />
     <MESSAGE value="Successfully identifying the phrasal verbs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Successfully identifying the phrasal verbs" />
+    <MESSAGE value="Finished writing the phrasal verb functions. New problem with uploading files as Firefox seem to have cache. May be solvable when interactive." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished writing the phrasal verb functions. New problem with uploading files as Firefox seem to have cache. May be solvable when interactive." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
