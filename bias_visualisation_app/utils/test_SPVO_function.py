@@ -237,6 +237,34 @@ def findverbs(tokens):
     return verbs, not_verbs
 
 
+def clean_SVO_dataframe(SVO_df):
+    for char in spec_chars:
+        SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
+        SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
+        SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
+
+    # get base form of verb
+    verb_list = SVO_df['verb'].to_list()
+    verb_base_list = []
+    for verb in verb_list:
+        verb.strip()
+        try:
+            main_verb, particle = verb.split()[0], verb.split()[1]
+            base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
+            base_word.strip()
+            base_phrasal_verb = base_word + ' ' + particle
+            verb_base_list.append(base_phrasal_verb)
+        except:
+            verb = verb.split()[0]
+            base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+            base_word.strip()
+            verb_base_list.append(base_word)
+
+    SVO_df['verb'] = verb_base_list
+    SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
+
+    return SVO_df
+
 def findSVAOs(tokens):
     svos = []
     # exclude the auxiliary verbs such as 'She is smart.' Ignore adjective analysis since adjectives have already been identified in the previous algorithms.
@@ -383,25 +411,6 @@ spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '`', '{', '|', '}', '~', '–']
 
 
-def clean_SVO_dataframe(SVO_df):
-    for char in spec_chars:
-        SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
-        SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
-        SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
-
-    # get base form of verb
-    verb_list = SVO_df['verb'].to_list()
-    verb_base_list = []
-    for verb in verb_list:
-        base_word = WordNetLemmatizer().lemmatize(verb, 'v')
-        base_word.strip()
-        verb_base_list.append(base_word)
-
-    SVO_df['verb'] = verb_base_list
-    SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
-
-    return SVO_df
-
 
 def determine_gender(token):
     if token == 'nothing':
@@ -450,8 +459,10 @@ def determine_gender_SVO(input_data):
     SVO_df = pd.DataFrame(list(zip(sub_list, sub_gender_list, verb_list, obj_list, obj_gender_list)),
                           columns=['subject', 'subject_gender', 'verb', 'object', 'object_gender'])
 
+    print(SVO_df)
     # cleaning up the SVO dataframe
     SVO_df = clean_SVO_dataframe(SVO_df)
+    print('after cleaning')
     print(SVO_df)
 
     return SVO_df
@@ -459,7 +470,7 @@ def determine_gender_SVO(input_data):
 
 sentence = 'She takes off her coat. Hilary is supported. Mary smiles. Lucy has been smiling. Linda eats bread. Marilyn marries John. Anna looks up a book.'
 
-determine_gender_SVO(sentence)
+SVO_df = determine_gender_SVO(sentence)
 
 
 def SVO_analysis(view_df):
@@ -531,6 +542,8 @@ def determine_gender_SVO_test(sentence):
             print(SVO_list)
         except:
             continue
+
+
 
 # determine_gender_SVO_test(sentence)
 
