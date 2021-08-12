@@ -1056,7 +1056,7 @@ def save_obj(obj, name):
     path_parent = os.path.dirname(os.getcwd())
     save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', name)
     df_path = save_df_path + '.csv'
-    obj.to_csv(df_path, index=False, encoding='utf-16')
+    obj.to_csv(df_path, index=False)
 
 
 def save_obj_text(obj, name):
@@ -1064,15 +1064,14 @@ def save_obj_text(obj, name):
     save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
                                 'user_downloads', name)
     df_path = save_df_path + '.csv'
-    obj.to_csv(df_path, index=False, encoding='utf-16')
+    obj.to_csv(df_path, index=False)
 
 
 def save_obj_user_uploads(obj, name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
-                                'user_uploads', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
     df_path = save_df_path + '.csv'
-    obj.to_csv(df_path, index=False, encoding='utf-16')
+    obj.to_csv(df_path, index=False)
 
 
 def concat_csv_excel():
@@ -1081,8 +1080,7 @@ def concat_csv_excel():
     writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'))  # Arbitrary output name
     csvfiles = [f for f in listdir(csv_path) if os.path.isfile(os.path.join(csv_path, f))]
     for csvfilename in csvfiles:
-        df = pd.read_csv(os.path.join(csv_path, csvfilename), na_values='-32768', encoding='utf-16', engine='c',
-                         error_bad_lines=False)
+        df = pd.read_csv(os.path.join(csv_path, csvfilename), error_bad_lines=False, engine='c')
         df.to_excel(writer, sheet_name=os.path.splitext(csvfilename)[0], index=False)
     writer.save()
 
@@ -1091,7 +1089,7 @@ def load_obj(name):
     path_parent = os.path.dirname(os.getcwd())
     save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', name)
     df_path = save_df_path + '.csv'
-    return pd.read_csv(df_path, na_values='-32768', encoding='utf-16', engine='c', error_bad_lines=False)
+    return pd.read_csv(df_path, error_bad_lines=False)
 
 
 def load_obj_user_uploads(name):
@@ -1099,7 +1097,7 @@ def load_obj_user_uploads(name):
     upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
                                   'user_uploads', name)
     df_path = upload_df_path + '.csv'
-    return pd.read_csv(df_path, na_values='-32768', encoding='utf-16', engine='c', error_bad_lines=False)
+    return pd.read_csv(df_path, error_bad_lines=False)
 
 
 def generate_bias_values(input_data):
