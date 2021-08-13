@@ -8,7 +8,7 @@ from flask import redirect, render_template, url_for, request, send_from_directo
 from bias_visualisation_app import app
 from os import path
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list,\
-    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis,\
+    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis,gender_count_analysis,\
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
@@ -201,6 +201,7 @@ def detect_dataframe():
         dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
         dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
         dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe')
+        dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe')
         dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
 
         input_dataframe_total = dataframe_total
@@ -220,6 +221,9 @@ def detect_dataframe():
 
         input_dataframe_possess = dataframe_possess
         save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
+
+        input_dataframe_gender_count = dataframe_gender_count
+        save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
 
         return redirect(url_for('visualisation'))
 
@@ -241,6 +245,7 @@ def analysis():
     input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
     input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
     input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
+    input_gender_count_dataframe = load_obj_user_uploads(name='gender_count_dataframe_user_uploads')
 
     # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
@@ -251,8 +256,9 @@ def analysis():
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
     female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
+    female_count, male_count = gender_count_analysis(input_gender_count_dataframe)
 
-    return render_template('analysis.html', data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
+    return render_template('analysis.html', female_count=female_count, male_count=male_count, data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
                            data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
                            data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
                            data_fm_intran_verb=female_intran_df,

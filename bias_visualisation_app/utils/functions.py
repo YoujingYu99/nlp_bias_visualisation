@@ -1226,6 +1226,23 @@ def determine_gender_possess(input_data):
 
     return possess_df
 
+def gender_count(input_data):
+    input_data = input_data.lower()
+    sent_text = nltk.sent_tokenize(input_data)
+    tot_count_female = 0
+    tot_count_male = 0
+    for sent in sent_text:
+        tokens = nltk.word_tokenize(sent)
+        for tok in tokens:
+            if tok in female_nouns:
+                tot_count_female += 1
+            if tok in male_nouns:
+                tot_count_male += 1
+
+    data = [[tot_count_female, tot_count_male]]
+    gender_count_df = pd.DataFrame(data, columns=['female_count', 'male_count'])
+
+    return gender_count_df
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
     # put into a dataframe
@@ -1423,6 +1440,9 @@ def generate_bias_values(input_data):
 
     possess_df = determine_gender_possess(input_data)
     save_obj_text(possess_df, name='possess_dataframe')
+
+    gender_count_df = gender_count(input_data)
+    save_obj_text(gender_count_df, name='gender_count_dataframe')
 
     concat_csv_excel()
 
@@ -1623,6 +1643,13 @@ def possess_analysis(view_df):
     male_possessor_new.rename(columns={'male_possessor': 'word'}, inplace=True)
 
     return female_possessive_new, male_possessive_new, female_possessor_new, male_possessor_new
+
+def gender_count_analysis(view_df):
+    female_count = int(view_df['female_count'].iloc[0])
+    male_count = int(view_df['male_count'].iloc[0])
+
+    return female_count, male_count
+
 
 def gender_dataframe_from_tuple(view_df):
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
