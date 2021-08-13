@@ -19,7 +19,7 @@ p {
   white-space: pre-line;
   padding: 10px 10px;
   margin: 30px 20px;
-  font-family: Georgia, serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 
@@ -31,7 +31,7 @@ p {
   min-height: 380px;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,.9);
+  color: rgba(255,255,100,.9);
 }
   .parallax-container .section {
     width: 100%;
@@ -54,36 +54,36 @@ p {
 }
 
 .icon-block {
-  padding: 0 15px;
+  padding: 0 10px;
 }
 .icon-block .material-icons {
   font-size: inherit;
 }
 
 footer.page-footer {
-  margin: 0;
+  margin: auto;
 }
 
-.imgcolumn{
-  float: left;
-  flex: 33.33%;
-  padding: 5px;
-}
+/*.imgcolumn{*/
+/*  float: left;*/
+/*  flex: 33.33%;*/
+/*  padding: 5px;*/
+/*}*/
 
 /* includes alternating gray and white with on-hover color */
 
-.mystyle {
-    text-align: center;
-    border-collapse: collapse;
-    border: 1px solid silver;
-}
+/*.mystyle {*/
+/*    text-align: center;*/
+/*    border-collapse: collapse;*/
+/*    border: 1px solid silver;*/
+/*}*/
 
-.mystyle td, th {
-    padding: 5px;
-}
+/*.mystyle td, th {*/
+/*    padding: 5px;*/
+/*}*/
 
 
-.mystyle tr:hover {
-    background: silver;
-    cursor: pointer;
-}
+/*.mystyle tr:hover {*/
+/*    background: silver;*/
+/*    cursor: pointer;*/
+/*}*/
