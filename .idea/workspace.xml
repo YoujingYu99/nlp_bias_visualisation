@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/SVO_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/aux_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/complete_file.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/gender_count_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/possess_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/postmodifier_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/premodifier_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/total_dataframe.csv" afterDir="false" />
+    <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="Adding '!' to verbs in negation contexted sentences">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +56,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_path.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -73,7 +64,7 @@
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\bias_visualisation_app\utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.visualising_data_bias">
+  <component name="RunManager" selected="Python.test_follow_aux">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -83,7 +74,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_path" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="test_follow_aux" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="visualising_data_bias" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -96,7 +87,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_path.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -122,7 +113,7 @@
     </configuration>
     <list>
       <item itemvalue="Flask server.visualising_data_bias" />
-      <item itemvalue="Python.test_path" />
+      <item itemvalue="Python.test_follow_aux" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -153,14 +144,7 @@
       <workItem from="1628770008254" duration="14263000" />
       <workItem from="1628787148015" duration="1010000" />
       <workItem from="1628844028482" duration="7719000" />
-      <workItem from="1629103995152" duration="4576000" />
-    </task>
-    <task id="LOCAL-00018" summary="Prevent the algorithm from identifying auxiliary words such 'has', 'been' as subjects">
-      <created>1628256623404</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1628256623404</updated>
+      <workItem from="1629103995152" duration="6532000" />
     </task>
     <task id="LOCAL-00019" summary="Adding the algorithm for identifying 'Hilary is supported by John ' as 'John support Hilary'">
       <created>1628261309435</created>
@@ -498,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629104954024</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Adding '!' to verbs in negation contexted sentences">
+      <created>1629108819740</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1629108819740</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +509,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished writing and testing both functions" />
     <MESSAGE value="Adding routes for aux" />
     <MESSAGE value="Solving concat issue" />
     <MESSAGE value="Solving renaming issues" />
@@ -543,15 +533,16 @@
     <MESSAGE value="Changed some animation and css properties to make it more visually appealing." />
     <MESSAGE value="Adding gender count function; display the information on the analysis page." />
     <MESSAGE value="Preparing for negations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Preparing for negations" />
+    <MESSAGE value="Adding '!' to verbs in negation contexted sentences" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding '!' to verbs in negation contexted sentences" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive2.coverage" NAME="test_SPVO_function Coverage Results" MODIFIED="1628785304576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628502087617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_path Coverage Results" MODIFIED="1628604890921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1629108507187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_path Coverage Results" MODIFIED="1629105554516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1629108649429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1629110532105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_csv_concat.coverage" NAME="test_csv_concat Coverage Results" MODIFIED="1628692591265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_follow_aux.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1628679183926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
