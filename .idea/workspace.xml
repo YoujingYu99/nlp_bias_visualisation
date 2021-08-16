@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_aux.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_follow_aux.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -144,14 +144,8 @@
       <workItem from="1628787148015" duration="1010000" />
       <workItem from="1628844028482" duration="7719000" />
       <workItem from="1629103995152" duration="8441000" />
-      <workItem from="1629112805057" duration="42000" />
-    </task>
-    <task id="LOCAL-00021" summary="Tested with : 'Hilary smiles', 'Hilary is smiling', 'Hilary is supported', 'Hilary is supported by John'. Returning desired results.">
-      <created>1628263159497</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1628263159498</updated>
+      <workItem from="1629112805057" duration="76000" />
+      <workItem from="1629119691170" duration="1541000" />
     </task>
     <task id="LOCAL-00022" summary="Clean up and beautify the algorithm">
       <created>1628263486755</created>
@@ -489,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629112697922</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Adding more complete determinant words.">
+      <created>1629112866103</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1629112866103</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +510,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Solving renaming issues" />
     <MESSAGE value="Combining all csv files into a single Excel file to avoid downloading multiple times" />
     <MESSAGE value="Solving the encoding issue and prevent 'referenced before assignment bug'" />
     <MESSAGE value="Clean up code format" />
@@ -534,7 +534,8 @@
     <MESSAGE value="Adding '!' to verbs in negation contexted sentences" />
     <MESSAGE value="Add negation to auxiliary word pairs" />
     <MESSAGE value="Adding negation for auxiliary pairs and displaying them" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding negation for auxiliary pairs and displaying them" />
+    <MESSAGE value="Adding more complete determinant words." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding more complete determinant words." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
