@@ -428,6 +428,7 @@ def findSVOs(tokens):
                     svos.append((sub.lower_, '!' + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
     return svos
 
+
 def findverbs(tokens):
     verbs = []
     # verbs is a list of lists, each element list contains either a single verb or a phrasal verb pair
@@ -450,6 +451,7 @@ def findverbs(tokens):
                 not_verbs.append([tok])
 
     return verbs, not_verbs
+
 
 def findSVAOs(tokens):
     svos = []
@@ -502,7 +504,7 @@ def findSVAOs(tokens):
                     svos = [svos]
 
     else:
-        #new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
+        # new_verbs = [tok for tok in tokens if tok.pos_ == 'VERB' and tok.tag_ == 'VBN']
         new_verbs = []
         for tok in tokens:
             if tok.pos_ == 'VERB' and tok.tag_ == 'VBN':
@@ -579,73 +581,46 @@ spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '=', '>', '?', '@', '[', '\\', ']', '^', '_',
               '`', '{', '|', '}', '~', '–']
 
-# def clean_SVO_dataframe(SVO_df):
-#     for char in spec_chars:
-#         SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
-#         SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
-#         #SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
-#
-#
-#     # get base form of verb
-#     verb_list = SVO_df['verb'].to_list()
-#     verb_base_list = []
-#     for verb in verb_list:
-#         verb.strip()
-#         if '!' in verb:
-#             verb = verb.replace('!', '')
-#             verb.strip()
-#             try:
-#                 main_verb, particle = verb.split()[0], verb.split()[1]
-#                 base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
-#                 base_word.strip()
-#                 base_phrasal_verb = '!' + base_word + ' ' + particle
-#                 verb_base_list.append(base_phrasal_verb)
-#             except:
-#                 verb = verb.split()[0]
-#                 base_word = WordNetLemmatizer().lemmatize(verb, 'v')
-#                 base_word.strip()
-#                 verb_base_list.append('!' + base_word)
-#         else:
-#             verb.strip()
-#             try:
-#                 main_verb, particle = verb.split()[0], verb.split()[1]
-#                 base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
-#                 base_word.strip()
-#                 base_phrasal_verb = base_word + ' ' + particle
-#                 verb_base_list.append(base_phrasal_verb)
-#             except:
-#                 verb = verb.split()[0]
-#                 base_word = WordNetLemmatizer().lemmatize(verb, 'v')
-#                 base_word.strip()
-#                 verb_base_list.append(base_word)
-#
-#     SVO_df['verb'] = verb_base_list
-#     SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
-#
-#     return SVO_df
+
 
 def clean_SVO_dataframe(SVO_df):
     for char in spec_chars:
         SVO_df['subject'] = SVO_df['subject'].str.replace(char, ' ')
         SVO_df['object'] = SVO_df['object'].str.replace(char, ' ')
-        SVO_df['verb'] = SVO_df['verb'].str.replace(char, ' ')
 
     # get base form of verb
     verb_list = SVO_df['verb'].to_list()
     verb_base_list = []
     for verb in verb_list:
+        verb = verb.replace("[", '').replace("]", "")
         verb.strip()
-        try:
-            main_verb, particle = verb.split()[0], verb.split()[1]
-            base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
-            base_word.strip()
-            base_phrasal_verb = base_word + ' ' + particle
-            verb_base_list.append(base_phrasal_verb)
-        except:
-            verb = verb.split()[0]
-            base_word = WordNetLemmatizer().lemmatize(verb, 'v')
-            base_word.strip()
-            verb_base_list.append(base_word)
+        if '!' in verb:
+            verb = verb.replace('!', '')
+            verb.strip()
+            try:
+                main_verb, particle = verb.split()[0], verb.split()[1]
+                base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
+                base_word.strip()
+                base_phrasal_verb = '!' + base_word + ' ' + particle
+                verb_base_list.append(base_phrasal_verb)
+            except:
+                verb = verb.split()[0]
+                base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+                base_word.strip()
+                verb_base_list.append('!' + base_word)
+        else:
+            verb.strip()
+            try:
+                main_verb, particle = verb.split()[0], verb.split()[1]
+                base_word = WordNetLemmatizer().lemmatize(main_verb, 'v')
+                base_word.strip()
+                base_phrasal_verb = base_word + ' ' + particle
+                verb_base_list.append(base_phrasal_verb)
+            except:
+                verb = verb.split()[0]
+                base_word = WordNetLemmatizer().lemmatize(verb, 'v')
+                base_word.strip()
+                verb_base_list.append(base_word)
 
     SVO_df['verb'] = verb_base_list
     SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
@@ -781,6 +756,7 @@ def clean_aux_dataframe(aux_df):
 
     return aux_df
 
+
 def clean_possess_dataframe(possess_df):
     for char in spec_chars:
         possess_df['female_possessive'] = possess_df['female_possessive'].astype(str).str.replace(char, ' ')
@@ -824,12 +800,8 @@ def clean_possess_dataframe(possess_df):
     possess_df = possess_df.apply(lambda x: x.astype(str).str.lower())
 
     return possess_df
-    
-    
-    
-    
-    
-    
+
+
 def determine_gender(token):
     if token == 'nothing':
         gender = 'neutral_intransitive'
@@ -1107,10 +1079,12 @@ def determine_gender_aux(input_data):
 
     aux_df = pd.concat(list_of_series, axis=1)
     aux_df.columns = ['female_before_aux', 'male_before_aux', 'female_follow_aux', 'male_follow_aux']
-
+    print('original')
+    print(aux_df)
     aux_df = clean_aux_dataframe(aux_df)
 
     return aux_df
+
 
 def findfemale_possessives(sent):
     # e.g. women's rights
@@ -1133,6 +1107,7 @@ def findfemale_possessives(sent):
 
     return female_possessive_list
 
+
 def findfemale_possessors(sent):
     # e.g. Norway's women
     tokens = nltk.word_tokenize(sent)
@@ -1153,6 +1128,7 @@ def findfemale_possessors(sent):
             continue
 
     return female_possessor_list
+
 
 def findmale_possessives(sent):
     # e.g. men's shoes
@@ -1175,6 +1151,7 @@ def findmale_possessives(sent):
 
     return male_possessive_list
 
+
 def findmale_possessors(sent):
     # e.g. Norway's women
     tokens = nltk.word_tokenize(sent)
@@ -1195,6 +1172,7 @@ def findmale_possessors(sent):
             continue
 
     return male_possessor_list
+
 
 def determine_gender_possess(input_data):
     input_data = input_data.lower()
@@ -1226,6 +1204,7 @@ def determine_gender_possess(input_data):
 
     return possess_df
 
+
 def gender_count(input_data):
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
@@ -1243,6 +1222,7 @@ def gender_count(input_data):
     gender_count_df = pd.DataFrame(data, columns=['female_count', 'male_count'])
 
     return gender_count_df
+
 
 def list_to_dataframe(view_results, scale_range=(-1, 1)):
     # put into a dataframe
@@ -1357,7 +1337,8 @@ def save_obj_text(obj, name):
 
 def save_obj_user_uploads(obj, name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
+                                'user_uploads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
@@ -1601,6 +1582,7 @@ def aux_analysis(view_df):
 
     return female_before_aux_new, male_before_aux_new, female_follow_aux_new, male_follow_aux_new
 
+
 def possess_analysis(view_df):
     # columns = ['female_possessive', male_possessive', female_possessor', male_possessor' ]
     female_possessive_df = view_df[['female_possessive']]
@@ -1620,21 +1602,21 @@ def possess_analysis(view_df):
         male_possessive_new['male_possessive'].value_counts())
     male_possessive_new.sort_values('Frequency', inplace=True, ascending=False)
     male_possessive_new.drop_duplicates(subset='male_possessive',
-                                          keep=False, inplace=True)
+                                        keep=False, inplace=True)
 
     female_possessor_new = female_possessor_df.copy()
     female_possessor_new['Frequency'] = female_possessor_new['female_possessor'].map(
         female_possessor_new['female_possessor'].value_counts())
     female_possessor_new.sort_values('Frequency', inplace=True, ascending=False)
     female_possessor_new.drop_duplicates(subset='female_possessor',
-                                          keep=False, inplace=True)
+                                         keep=False, inplace=True)
 
     male_possessor_new = male_possessor_df.copy()
     male_possessor_new['Frequency'] = male_possessor_new['male_possessor'].map(
         male_possessor_new['male_possessor'].value_counts())
     male_possessor_new.sort_values('Frequency', inplace=True, ascending=False)
     male_possessor_new.drop_duplicates(subset='male_possessor',
-                                        keep=False, inplace=True)
+                                       keep=False, inplace=True)
 
     female_possessive_new.rename(columns={'female_possessive': 'word'}, inplace=True)
     male_possessive_new.rename(columns={'male_possessive': 'word'}, inplace=True)
@@ -1643,6 +1625,7 @@ def possess_analysis(view_df):
     male_possessor_new.rename(columns={'male_possessor': 'word'}, inplace=True)
 
     return female_possessive_new, male_possessive_new, female_possessor_new, male_possessor_new
+
 
 def gender_count_analysis(view_df):
     female_count = int(view_df['female_count'].iloc[0])
@@ -2318,7 +2301,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(
         input_aux_dataframe)
-    female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
+    female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(
+        input_possess_dataframe)
 
     if select_gender == 'female':
         if select_wordtype == 'nouns':
