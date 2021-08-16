@@ -429,7 +429,6 @@ def determine_gender(token):
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
-
     sent_text = nltk.sent_tokenize(input_data)
     sub_list = []
     sub_gender_list = []

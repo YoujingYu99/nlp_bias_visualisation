@@ -994,169 +994,109 @@ female_nouns.extend(['she', 'her', 'herself', 'lady', 'ladys', 'woman', 'women',
 female_nouns = [x.lower() for x in female_nouns]
 
 
-def findfemalefollow_auxs(sent):
-    # e.g. Most writers are female. Most writers are a woman. Most writers are not female. The teacher is not a man.
-    tokens = nltk.word_tokenize(sent)
-    tags = nltk.pos_tag(tokens)
+def findfemalefollow_auxs(tokens):
     female_follow_aux_list = []
-    for female_noun in female_nouns:
-        try:
-            # You are interested in splitting the sentence here
-            sentence_split = tokens.index(female_noun)
-            # Find the words where tag meets your criteria (must be a noun / proper noun)
-            if tokens[sentence_split - 1] in aux_word_list:
-                #e.g.Most writers are female
-                follow_aux = tokens[sentence_split - 2]
-                if tags[sentence_split - 2][1].startswith('NN'):
-                    female_follow_aux_list.append(follow_aux)
-            elif tokens[sentence_split - 1] in det_word_list and tokens[sentence_split - 2] in aux_word_list:
-                # Most writers are a woman
-                follow_aux = tokens[sentence_split - 3]
-                if tags[sentence_split - 3][1].startswith('NN'):
-                    female_follow_aux_list.append(follow_aux)
-            elif tokens[sentence_split - 1] in neg_word_list and tokens[sentence_split - 2] in aux_word_list:
-                # Most writers are not female.
-                follow_aux = tokens[sentence_split - 3]
-                if tags[sentence_split - 3][1].startswith('NN'):
-                    female_follow_aux_list.append('!' + str(follow_aux).lower())
-            elif tokens[sentence_split - 1] in det_word_list and tokens[sentence_split - 2] in neg_word_list and tokens[sentence_split - 3] in aux_word_list:
-                # Most writers are not a man.
-                follow_aux = tokens[sentence_split - 4]
-                if tags[sentence_split - 4][1].startswith('NN'):
-                    female_follow_aux_list.append('!' + str(follow_aux).lower())
+    for tok in tokens:
+        if tok.pos_ == 'AUX' and tok.dep_ == 'ROOT':
+            is_negated = isNegated(tok)
+            # e.g. Most writers are female
+            noun_list = [right_tok.text for right_tok in tok.rights if right_tok.text in female_nouns]
+            if noun_list:
+                try:
+                    follow_aux_list = [left_tok.text for left_tok in tok.lefts if left_tok.dep_ == 'nsubj' and left_tok.pos_ == 'NOUN']
+                    follow_aux = follow_aux_list[-1]
+                    if is_negated == True:
+                        female_follow_aux_list.append('!' + str(follow_aux))
+                    else:
+                        female_follow_aux_list.append(str(follow_aux))
+                except:
+                    pass
             else:
-                pass
-        except:
-            continue
+                continue
 
     return female_follow_aux_list
 
-def findmalefollow_auxs(sent):
-    # e.g. Most writers are male. Most writers are a woman. Most writers are not male. The teacher is not a man.
-    tokens = nltk.word_tokenize(sent)
-    tags = nltk.pos_tag(tokens)
+def findmalefollow_auxs(tokens):
     male_follow_aux_list = []
-    for male_noun in male_nouns:
-        try:
-            # You are interested in splitting the sentence here
-            sentence_split = tokens.index(male_noun)
-            # Find the words where tag meets your criteria (must be a noun / proper noun)
-            if tokens[sentence_split - 1] in aux_word_list:
-                #e.g.Most writers are male
-                follow_aux = tokens[sentence_split - 2]
-                if tags[sentence_split - 2][1].startswith('NN'):
-                    male_follow_aux_list.append(follow_aux)
-            elif tokens[sentence_split - 1] in det_word_list and tokens[sentence_split - 2] in aux_word_list:
-                # Most writers are a woman
-                follow_aux = tokens[sentence_split - 3]
-                if tags[sentence_split - 3][1].startswith('NN'):
-                    male_follow_aux_list.append(follow_aux)
-            elif tokens[sentence_split - 1] in neg_word_list and tokens[sentence_split - 2] in aux_word_list:
-                # Most writers are not male.
-                follow_aux = tokens[sentence_split - 3]
-                if tags[sentence_split - 3][1].startswith('NN'):
-                    male_follow_aux_list.append('!' + str(follow_aux).lower())
-            elif tokens[sentence_split - 1] in det_word_list and tokens[sentence_split - 2] in neg_word_list and tokens[sentence_split - 3] in aux_word_list:
-                # Most writers are not a man.
-                follow_aux = tokens[sentence_split - 4]
-                if tags[sentence_split - 4][1].startswith('NN'):
-                    male_follow_aux_list.append('!' + str(follow_aux).lower())
+    for tok in tokens:
+        if tok.pos_ == 'AUX' and tok.dep_ == 'ROOT':
+            is_negated = isNegated(tok)
+            # e.g. Most writers are male
+            noun_list = [right_tok.text for right_tok in tok.rights if right_tok.text in male_nouns]
+            if noun_list:
+                try:
+                    follow_aux_list = [left_tok.text for left_tok in tok.lefts if left_tok.dep_ == 'nsubj' and left_tok.pos_ == 'NOUN']
+                    follow_aux = follow_aux_list[-1]
+                    if is_negated == True:
+                        male_follow_aux_list.append('!' + str(follow_aux))
+                    else:
+                        male_follow_aux_list.append(str(follow_aux))
+                except:
+                    pass
             else:
-                pass
-        except:
-            continue
+                continue
 
     return male_follow_aux_list
 
-def findfemalebefore_auxs(sent):
-    # Women are minority. Mary is a teacher. Women are not minority. Mary is not a teacher
-    tokens = nltk.word_tokenize(sent)
-    tags = nltk.pos_tag(tokens)
+def findfemalebefore_auxs(tokens):
     female_before_aux_list = []
-    for female_noun in female_nouns:
-        try:
-            # You are interested in splitting the sentence here
-            sentence_split = tokens.index(female_noun)
-            # Find the words where tag meets your criteria (must be a noun / proper noun)
-            if tokens[sentence_split + 1] in aux_word_list:
-                # Women are minority.
-                before_aux = tokens[sentence_split + 2]
-                if tags[sentence_split + 2][1].startswith('NN'):
-                    female_before_aux_list.append(before_aux)
-            elif tokens[sentence_split + 1] in det_word_list and tokens[sentence_split + 2] in aux_word_list:
-                # Women are a minority
-                before_aux = tokens[sentence_split + 3]
-                if tags[sentence_split + 3][1].startswith('NN'):
-                    female_before_aux_list.append(before_aux)
-            elif tokens[sentence_split + 1] in neg_word_list and tokens[sentence_split + 2] in aux_word_list:
-                # Women are not minority.
-                before_aux = tokens[sentence_split + 3]
-                if tags[sentence_split + 3][1].startswith('NN'):
-                    female_before_aux_list.append('!' + str(before_aux).lower())
-            elif tokens[sentence_split + 1] in det_word_list and tokens[sentence_split + 2] in neg_word_list and tokens[sentence_split + 3] in aux_word_list:
-                # Women are not a minority.
-                before_aux = tokens[sentence_split + 4]
-                if tags[sentence_split + 4][1].startswith('NN'):
-                    female_before_aux_list.append('!' + str(before_aux).lower())
+    for tok in tokens:
+        if tok.pos_ == 'AUX' and tok.dep_ == 'ROOT':
+            is_negated = isNegated(tok)
+            # e.g. Women are the main source of income.
+            noun_list = [left_tok.text for left_tok in tok.lefts if left_tok.text in female_nouns]
+            if noun_list:
+                try:
+                    before_aux_list = [right_tok.text for right_tok in tok.rights if right_tok.dep_ == 'attr']
+                    before_aux = before_aux_list[-1]
+                    if is_negated == True:
+                        female_before_aux_list.append('!' + str(before_aux))
+                    else:
+                        female_before_aux_list.append(str(before_aux))
+                except:
+                    pass
             else:
-                pass
-        except:
-            continue
+                continue
 
     return female_before_aux_list
 
-def findmalebefore_auxs(sent):
-    # Women are minority. Mary is a teacher. Women are not minority. Mary is not a teacher
-    tokens = nltk.word_tokenize(sent)
-    tags = nltk.pos_tag(tokens)
+def findmalebefore_auxs(tokens):
     male_before_aux_list = []
-    for male_noun in male_nouns:
-        try:
-            # You are interested in splitting the sentence here
-            sentence_split = tokens.index(male_noun)
-            # Find the words where tag meets your criteria (must be a noun / proper noun)
-            if tokens[sentence_split + 1] in aux_word_list:
-                # Women are minority.
-                before_aux = tokens[sentence_split + 2]
-                if tags[sentence_split + 2][1].startswith('NN'):
-                    male_before_aux_list.append(before_aux)
-            elif tokens[sentence_split + 1] in det_word_list and tokens[sentence_split + 2] in aux_word_list:
-                # Women are a minority
-                before_aux = tokens[sentence_split + 3]
-                if tags[sentence_split + 3][1].startswith('NN'):
-                    male_before_aux_list.append(before_aux)
-            elif tokens[sentence_split + 1] in neg_word_list and tokens[sentence_split + 2] in aux_word_list:
-                # Women are not minority.
-                before_aux = tokens[sentence_split + 3]
-                if tags[sentence_split + 3][1].startswith('NN'):
-                    male_before_aux_list.append('!' + str(before_aux).lower())
-            elif tokens[sentence_split + 1] in det_word_list and tokens[sentence_split + 2] in neg_word_list and tokens[sentence_split + 3] in aux_word_list:
-                # Women are not a minority.
-                before_aux = tokens[sentence_split + 4]
-                if tags[sentence_split + 4][1].startswith('NN'):
-                    male_before_aux_list.append('!' + str(before_aux).lower())
+    for tok in tokens:
+        if tok.pos_ == 'AUX' and tok.dep_ == 'ROOT':
+            is_negated = isNegated(tok)
+            # e.g. Men are the most irrational species.
+            noun_list = [left_tok.text for left_tok in tok.lefts if left_tok.text in male_nouns]
+            if noun_list:
+                try:
+                    before_aux_list = [right_tok.text for right_tok in tok.rights if right_tok.dep_ == 'attr']
+                    before_aux = before_aux_list[-1]
+                    if is_negated == True:
+                        male_before_aux_list.append('!' + str(before_aux))
+                    else:
+                        male_before_aux_list.append(str(before_aux))
+                except:
+                    pass
             else:
-                pass
-        except:
-            continue
+                continue
 
     return male_before_aux_list
 
-
-
 def determine_gender_aux(input_data):
     input_data = input_data.lower()
+    parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_follow_aux_list = []
     tot_male_follow_aux_list = []
     tot_female_before_aux_list = []
     tot_male_before_aux_list = []
     for sent in sent_text:
+        parse = parser(sent)
         try:
-            female_follow_aux_list = findfemalefollow_auxs(sent)
-            male_follow_aux_list = findmalefollow_auxs(sent)
-            female_before_aux_list = findfemalebefore_auxs(sent)
-            male_before_aux_list = findmalebefore_auxs(sent)
+            female_follow_aux_list = findfemalefollow_auxs(parse)
+            male_follow_aux_list = findmalefollow_auxs(parse)
+            female_before_aux_list = findfemalebefore_auxs(parse)
+            male_before_aux_list = findmalebefore_auxs(parse)
             tot_female_follow_aux_list.extend(female_follow_aux_list)
             tot_male_follow_aux_list.extend(male_follow_aux_list)
             tot_female_before_aux_list.extend(female_before_aux_list)
