@@ -685,8 +685,7 @@ def clean_premodifier_dataframe(premodifier_df):
 
 def clean_postmodifier_dataframe(postmodifier_df):
     for char in spec_chars:
-        postmodifier_df['female_postmodifier'] = postmodifier_df['female_postmodifier'].astype(str).str.replace(char,
-                                                                                                                ' ')
+        postmodifier_df['female_postmodifier'] = postmodifier_df['female_postmodifier'].astype(str).str.replace(char, ' ')
         postmodifier_df['male_postmodifier'] = postmodifier_df['male_postmodifier'].astype(str).str.replace(char, ' ')
 
     # get base form of words
@@ -712,44 +711,84 @@ def clean_postmodifier_dataframe(postmodifier_df):
 
 
 def clean_aux_dataframe(aux_df):
-    for char in spec_chars:
-        aux_df['female_before_aux'] = aux_df['female_before_aux'].astype(str).str.replace(char, ' ')
-        aux_df['male_before_aux'] = aux_df['male_before_aux'].astype(str).str.replace(char, ' ')
-        aux_df['female_follow_aux'] = aux_df['female_follow_aux'].astype(str).str.replace(char, ' ')
-        aux_df['male_follow_aux'] = aux_df['male_follow_aux'].astype(str).str.replace(char, ' ')
 
     # get base form of words
     female_before_aux_list = aux_df['female_before_aux'].to_list()
     female_before_aux_base_list = []
     for aux in female_before_aux_list:
-        base_word = WordNetLemmatizer().lemmatize(aux)
-        base_word.strip()
-        female_before_aux_base_list.append(base_word)
+        aux = str(aux)
+        print(aux)
+        try:
+            if '!' in aux:
+                aux = aux.replace('!', '')
+                aux.strip()
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                female_before_aux_base_list.append('!' + base_word)
+            else:
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                female_before_aux_base_list.append(base_word)
+        except:
+            continue
     aux_df['female_before_aux'] = female_before_aux_base_list
 
     male_before_aux_list = aux_df['male_before_aux'].to_list()
     male_before_aux_base_list = []
     for aux in male_before_aux_list:
-        base_word = WordNetLemmatizer().lemmatize(aux)
-        base_word.strip()
-        male_before_aux_base_list.append(base_word)
+        aux = str(aux)
+        try:
+            if '!' in aux:
+                aux = aux.replace('!', '')
+                aux.strip()
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                male_before_aux_base_list.append('!' + base_word)
+            else:
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                male_before_aux_base_list.append(base_word)
+        except:
+            continue
     aux_df['male_before_aux'] = male_before_aux_base_list
 
     # get base form of words
     female_follow_aux_list = aux_df['female_follow_aux'].to_list()
     female_follow_aux_base_list = []
     for aux in female_follow_aux_list:
-        base_word = WordNetLemmatizer().lemmatize(aux)
-        base_word.strip()
-        female_follow_aux_base_list.append(base_word)
+        aux = str(aux)
+        try:
+            if '!' in aux:
+                aux = aux.replace('!', '')
+                aux.strip()
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                female_follow_aux_base_list.append('!' + base_word)
+            else:
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                female_follow_aux_base_list.append(base_word)
+        except:
+            continue
     aux_df['female_follow_aux'] = female_follow_aux_base_list
 
     male_follow_aux_list = aux_df['male_follow_aux'].to_list()
     male_follow_aux_base_list = []
     for aux in male_follow_aux_list:
-        base_word = WordNetLemmatizer().lemmatize(aux)
-        base_word.strip()
-        male_follow_aux_base_list.append(base_word)
+        aux = str(aux)
+        try:
+            if '!' in aux:
+                aux = aux.replace('!', '')
+                aux.strip()
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                male_follow_aux_base_list.append('!' + base_word)
+            else:
+                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word.strip()
+                male_follow_aux_base_list.append(base_word)
+        except:
+            continue
     aux_df['male_follow_aux'] = male_follow_aux_base_list
 
     aux_df = aux_df.apply(lambda x: x.astype(str).str.lower())
@@ -1133,6 +1172,7 @@ def determine_gender_aux(input_data):
     print('original')
     print(aux_df)
     aux_df = clean_aux_dataframe(aux_df)
+    print(aux_df)
 
     return aux_df
 
