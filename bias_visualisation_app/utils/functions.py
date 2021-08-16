@@ -983,7 +983,7 @@ def findmalePostmodifiers(sent):
 
 
 aux_word_list = ['are', 'is', 'were', 'was', 'be']
-det_word_list = ['a', 'an']
+det_word_list = ['a', 'an', 'the']
 neg_word_list = ['not', "n't"]
 
 male_nouns = nc.names.words('male.txt')
