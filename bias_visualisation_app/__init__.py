@@ -3,9 +3,19 @@ import os
 
 path_parent = os.path.dirname(os.getcwd())
 save_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
-print(save_path)
 
 app = Flask(__name__)
 app.config['DOWNLOAD_FOLDER'] = save_path
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 from bias_visualisation_app import routes
+
+@app.after_request
+def add_header(response):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'no-store, max-age=0'
+    return response

@@ -716,7 +716,6 @@ def clean_aux_dataframe(aux_df):
     female_before_aux_base_list = []
     for aux in female_before_aux_list:
         aux = str(aux)
-        print(aux)
         try:
             if '!' in aux:
                 aux = aux.replace('!', '')
@@ -1222,8 +1221,7 @@ def determine_gender_possess(input_data):
             continue
 
     list_of_series = [pd.Series(tot_female_possessive_list), pd.Series(tot_male_possessive_list),
-                      pd.Series(tot_male_possessor_list), pd.Series(tot_male_possessor_list)]
-
+                      pd.Series(tot_female_possessor_list), pd.Series(tot_male_possessor_list)]
     possess_df = pd.concat(list_of_series, axis=1)
     possess_df.columns = ['female_possessive', 'male_possessive', 'female_possessor', 'male_possessor']
 

@@ -15,7 +15,7 @@ female_nouns = nc.names.words('female.txt')
 female_nouns.extend(['she', 'her', 'herself', 'lady', 'ladys', 'woman', 'women', 'female'])
 female_nouns = [x.lower() for x in female_nouns]
 
-sentence = "We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. Japan's women live longest. Canada's John clinged a gold prize."
+sentence = "We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. Japan's women live longest. Canada's John clinged a gold prize. The world's women need to unite. "
 
 
 def findfemale_possessives(sent):

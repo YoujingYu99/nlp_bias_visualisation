@@ -3,7 +3,7 @@ The interactive web interface for data bias visualisation
 """
 
 from __future__ import unicode_literals
-
+from flask_caching import Cache
 from flask import redirect, render_template, url_for, request, send_from_directory
 from bias_visualisation_app import app
 from os import path
@@ -19,6 +19,7 @@ import pandas as pd
 import sys
 
 sys.setrecursionlimit(10000)
+cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 
 # from urllib.request import urlopen
 # from urllib3 import urlopen
@@ -370,4 +371,4 @@ def about():
 
 
 # text for testing functions
-# "Women writers support male fighters. Male cleaners are not more careful. Lucy likes female dramas. Women do not like sunglasses. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are not minority. The woman is a teacher. Sarah is an engineer. The culprit is not Linda.We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. Japan's women live longest. Canada's John did not cling a gold prize. Anna looks up a book. John asked Marilyn out. Steven did not take the coat off. Most writers are a woman. Most writers are not male. The teacher is not a man. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are not victims. Men are minority. The woman isn't a teacher. Sarah is not a nurse."
+# "Women writers support male fighters. Male cleaners are not more careful. Lucy likes female dramas. Women do not like sunglasses. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are not minority. The woman is a teacher. Sarah is an engineer. The culprit is not Linda.We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. Japan's women live longest. Canada's John did not cling a gold prize. The world's women should unite together. Anna looks up a book. John asked Marilyn out. Steven did not take the coat off. Most writers are a woman. Most writers are not male. The teacher is not a man. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are not victims. Men are minority. The woman isn't a teacher. Sarah is not a nurse."
