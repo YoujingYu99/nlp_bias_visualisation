@@ -11,75 +11,65 @@ COMPOUNDS = ['compound']
 PREPOSITIONS = ['prep']
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'Himself'])
+male_names.extend(['he', 'He', 'him', 'Him', 'himself', 'man', 'men', 'gentleman', 'gentlemen'])
 female_names = nc.names.words('female.txt')
 female_names.extend(['she', 'She', 'her', 'Her', 'herself', 'Herself', 'woman', 'Woman', 'women', 'Women'])
 
-def getAdjectives(toks):
-    toks_with_adjectives = []
+def getPremodifiers(toks):
+    toks_with_premodifiers = []
     for tok in toks:
-        adjs = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
-        adjs.append(tok)
-        adjs = [str(token) for token in adjs]
-        toks_with_adjectives.append(adjs)
+        premodifiers = [left for left in tok.lefts if left.dep_ in ADJECTIVES]
+        premodifiers.append(tok)
+        premodifiers = [str(token) for token in premodifiers]
+        toks_with_premodifiers.append(premodifiers)
 
-    return toks_with_adjectives
-
-def generate_left_right_adjectives(obj):
-    obj_desc_tokens = []
-    for tok in obj.lefts:
-        if tok.dep_ in ADJECTIVES:
-            obj_desc_tokens.extend(generate_left_right_adjectives(tok))
-    obj_desc_tokens.append(obj)
-
-    for tok in obj.rights:
-        if tok.dep_ in ADJECTIVES:
-            obj_desc_tokens.extend(generate_left_right_adjectives(tok))
-
-    return obj_desc_tokens
+    return toks_with_premodifiers
 
 
-sentence = 'Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind beautiful girl picks a cup.'
+
+sentence = 'Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He admires vulnerable strong women. The kind boy picks a cup. Our women are strong. I hate their men.'
 
 
-def determine_gender_premodifier_test(sentence):
+def determine_gender_premodifier_test(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
-    sent_text = nltk.sent_tokenize(sentence)
-    tot_female_adj_list = []
-    tot_male_adj_list = []
+    input_data = input_data.lower()
+    sent_text = nltk.sent_tokenize(input_data)
+    tot_female_premodifier_list = []
+    tot_male_premodifier_list = []
     for sentence in sent_text:
         parse = parser(sentence)
         try:
-            female_adj_list, male_adj_list = findpremodifiers(parse)
-            tot_female_adj_list.extend(female_adj_list)
-            tot_male_adj_list.extend(male_adj_list)
+            female_premodifier_list, male_premodifier_list = findpremodifiers(parse)
+            tot_female_premodifier_list.extend(female_premodifier_list)
+            tot_male_premodifier_list.extend(male_premodifier_list)
         except:
             continue
-    return tot_female_adj_list, tot_male_adj_list
+    return tot_female_premodifier_list, tot_male_premodifier_list
+
 noun_list = ['NOUN', 'PRON' 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
 
 def findpremodifiers(tokens):
     nouns = [tok for tok in tokens if tok.pos_ in noun_list]
-    adj_noun_pair = getAdjectives(nouns)
-    female_adj_list, male_adj_list = gender_adjs(adj_noun_pair)
-    return female_adj_list, male_adj_list
+    premodifier_noun_pair = getPremodifiers(nouns)
+    female_premodifier_list, male_premodifier_list = gender_premodifiers(premodifier_noun_pair)
+    return female_premodifier_list, male_premodifier_list
 
-def gender_adjs(adj_noun_pair):
-    female_adj_list = []
-    male_adj_list = []
-    for pair in adj_noun_pair:
+def gender_premodifiers(premodifier_noun_pair):
+    female_premodifier_list = []
+    male_premodifier_list = []
+    for pair in premodifier_noun_pair:
         noun = pair[-1]
-        if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'Mrs' in noun or 'Miss' in noun or 'miss' in noun:
-            adjs = pair[:-1]
-            female_adj_list.extend(adjs)
-        elif noun in male_names or 'boy' in noun or ('man' in noun and 'woman' not in noun) or 'Mr' in noun or 'Mister' in noun:
-            adjs = pair[:-1]
-            male_adj_list.extend(adjs)
+        if noun in female_names or 'girl' in noun or 'woman' in noun or 'mrs' in noun or 'miss' in noun:
+            premodifiers = pair[:-1]
+            female_premodifier_list.extend(premodifiers)
+        elif noun in male_names or 'boy' in noun or (
+                'man' in noun and 'woman' not in noun) or 'mr' in noun or 'mister' in noun:
+            premodifiers = pair[:-1]
+            male_premodifier_list.extend(premodifiers)
         else:
             continue
 
-    return female_adj_list, male_adj_list
-
+    return female_premodifier_list, male_premodifier_list
 
 
 

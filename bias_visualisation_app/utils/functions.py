@@ -570,11 +570,10 @@ def generate_left_right_adjectives(obj):
 
 
 male_names = nc.names.words('male.txt')
-male_names.extend(['he', 'him', 'himself', ])
+male_names.extend(['he', 'him', 'himself', 'man', 'men', 'gentleman', 'gentlemen'])
 female_names = nc.names.words('female.txt')
 female_names.extend(['she', 'her', 'herself', 'woman', 'women', 'lady'])
-neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs',
-                    'neutral']
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs', 'neutral']
 
 spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '*', '+', ',', '-', '.', '/', ':', ';', '<',
@@ -1109,10 +1108,7 @@ def determine_gender_aux(input_data):
 
     aux_df = pd.concat(list_of_series, axis=1)
     aux_df.columns = ['female_before_aux', 'male_before_aux', 'female_follow_aux', 'male_follow_aux']
-    print('original')
-    print(aux_df)
     aux_df = clean_aux_dataframe(aux_df)
-    print(aux_df)
 
     return aux_df
 
