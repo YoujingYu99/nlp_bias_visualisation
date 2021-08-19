@@ -181,7 +181,7 @@ def detect_url():
 @app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
     if request.method == 'POST':
-        corpora_file = request.files['raw_file']
+        corpora_file = request.files['corpora_file']
         input_data = get_text_file(corpora_file)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
