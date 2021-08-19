@@ -3,9 +3,11 @@ import os
 
 path_parent = os.path.dirname(os.getcwd())
 save_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
+debias_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
 
 app = Flask(__name__)
 app.config['DOWNLOAD_FOLDER'] = save_path
+app.config['DEBIAS_FOLDER'] = debias_path
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 from bias_visualisation_app import routes

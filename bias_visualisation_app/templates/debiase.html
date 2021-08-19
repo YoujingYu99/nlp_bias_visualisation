@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+<!--Slider -->
+  <section class="slider">
+      <div id="index-banner" class="parallax-container">
+         <ul class="slides" style="background-color:#6e9190">
+          <li>
+            <img src="#" alt="Unsplashed background img 1" alt="">
+            <div class="caption center-align">
+              <h1 style="font-size: 500%">Dynamic Data Statements</h1>
+              <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+               Using SpaCy,Gensim,NLTK and Sumy
+              </h5>
+
+               <div class="row center">
+              <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect #4db6ac teal lighten-2">Refresh</a>
+            </div>
+            </div>
+          </li>
+          <li>
+{#           <img src="backgroundpurple.png" alt="Unsplashed background img 1">#}
+            <div class="caption left-align">
+              <h1 style="font-size: 500%">Bias Visualisation with NLTK</h1>
+              <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+               NLP based App
+              </h5>
+              <a href="about.html" class="btn-large waves-effect #4db6ac teal lighten-2">Learn More</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+  </section>
+
+  <!-- SECTION: DEBIASE FILE-->
+  <section class="section section-solutions-about grey lighten-3">
+    <form class="col s12" method="POST" action="/debiase">
+        <div class="container">
+          <div class="row">
+            <div class="input-field col s12 m10">
+              <div class="icon-block">
+                <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> Would you like to debiase your dataset?</h2>
+                <form method="POST" action="#">
+                 <textarea name="user_threshold" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Threshold Here."></textarea>
+                <br/>
+                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+
+    <div class="container">
+      <div class="section">
+        <h5>Download the Debiased File Here</h5>
+        <a href="{{ url_for('download_debiased_file', txt_name='debiased_file.txt') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Debiased File</a>
+      </div>
+    </div>
+
+
+  </section>
+{% endblock content %}

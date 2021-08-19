@@ -10,7 +10,7 @@ import nltk
 from bias_visualisation_app.utils.functions import load_obj_user_uploads, load_total_dataframe
 
 
-def txt_list():
+def user_input_list():
     """
     :param txt_dir: the path of the txt files to be extracted
     :return: a clean list containing the raw sentences
@@ -54,10 +54,10 @@ def calculate_sentence_bias_score(word_list):
 
     return sentence_score_df
 
-word_list = txt_list()
-sentence_score_df = calculate_sentence_bias_score(word_list)
 
-def debiased_file(threshold_value, sentence_score_df):
+def debiased_file(threshold_value):
+    word_list = user_input_list()
+    sentence_score_df = calculate_sentence_bias_score(word_list)
     debiased_df = sentence_score_df.loc[sentence_score_df['score'] > threshold_value]
     debiased_sentence_list = []
     for index, row in debiased_df.iterrows():
@@ -72,5 +72,5 @@ def debiased_file(threshold_value, sentence_score_df):
         f.write('\n'.join(debiased_sentence_list))
 
 
-debiased_file(threshold_value=0.5, sentence_score_df=sentence_score_df)
+debiased_file(threshold_value=0.5)
 

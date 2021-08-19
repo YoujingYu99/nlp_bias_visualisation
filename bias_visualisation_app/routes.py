@@ -12,7 +12,7 @@ from bias_visualisation_app.utils.functions import get_text_url, get_text_file, 
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
-    pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question
+    pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file
 import werkzeug
 import spacy
 import pandas as pd
@@ -311,6 +311,17 @@ def query():
     return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender),
                            type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
 
+@app.route('/debiase', methods=['GET', 'POST'])
+def debiase():
+    if request.method == 'POST':
+        user_threshold = request.form['user_threshold']
+        debiased_file(float(user_threshold))
+    return render_template('debiase.html')
+
+
+
+
+
 
 # @app.route('/analyse_adj', methods=['GET', 'POST'])
 # def analyse_adj():
@@ -341,13 +352,18 @@ def query():
 
 @app.route('/download/<df_name>', methods=['GET', 'POST'])
 def download(df_name):
-    print('calling download_total_route')
     uploads = path.join(path.dirname(__file__), 'static', 'user_downloads', df_name)
     total_data = pd.read_excel(uploads)
-    print(total_data)
     return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], filename=df_name, as_attachment=True)
     #return send_file(uploads, as_attachment=True)
 
+
+@app.route('/download_debiased_file/<txt_name>', methods=['GET', 'POST'])
+def download_debiased_file(txt_name):
+    debiased_file_name = path.join(path.dirname(__file__), 'static', txt_name)
+    return send_from_directory(directory=app.config['DEBIAS_FOLDER'], filename=txt_name, as_attachment=True)
+
+    #return send_file(uploads, as_attachment=True)
 
 # @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 # def download_total(filename):
