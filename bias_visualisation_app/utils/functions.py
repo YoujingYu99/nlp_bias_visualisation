@@ -1396,11 +1396,15 @@ def load_obj(name):
 
 def load_obj_user_uploads(name):
     path_parent = os.path.dirname(os.getcwd())
-    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
-                                  'user_uploads', name)
+    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
     df_path = upload_df_path + '.csv'
     return pd.read_csv(df_path, error_bad_lines=False)
 
+def load_total_dataframe(name):
+    path_parent = os.path.dirname(os.getcwd())
+    upload_df_path = os.path.join(path_parent, '..', '..', 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
+    df_path = upload_df_path + '.csv'
+    return pd.read_csv(df_path, error_bad_lines=False)
 
 def generate_bias_values(input_data):
     objs = parse_sentence(input_data)

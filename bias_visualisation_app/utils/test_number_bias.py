@@ -7,7 +7,7 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 import nltk
 
-from bias_visualisation_app.utils.functions import load_obj_user_uploads
+from bias_visualisation_app.utils.functions import load_obj_user_uploads, load_total_dataframe
 
 
 def txt_list():
@@ -18,8 +18,6 @@ def txt_list():
     fileDir = os.path.dirname(os.path.realpath('__file__'))
     txt_dir = os.path.join(fileDir, '..', '..','bias_visualisation_app', 'data', 'user_uploads')
     word_list = []
-    # Invoke all the english stopwords
-    stop_word_list = set(stopwords.words('english'))
 
     with open(os.path.join(txt_dir, 'user_input_text'), 'r', encoding='utf-8') as file_in:
         for line in file_in:
@@ -28,19 +26,28 @@ def txt_list():
                 sent = sent.lower()
                 sent = sent.translate(str.maketrans('', '', string.punctuation))
                 tokens = nltk.word_tokenize(sent)
-
                 word_list.append(tokens)
 
     return word_list
 
 
-# def calculate_sentence_bias_score(word_list):
-#     view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
-#     for sent in word_list:
-#         for word in sent:
+def calculate_sentence_bias_score(word_list):
+    view_df = load_total_dataframe(name='total_dataframe_user_uploads')
+    for sent in word_list:
+        bias_list = []
+        for word in sent:
+            try:
+                bias_value = view_df.loc[view_df['token'] == word, 'bias'].iloc[0]
+                bias_list.append(bias_value)
+            except:
+                continue
+        if len(bias_list) == 0:
+            mean_bias_score = 0
+        else:
+            mean_bias_score = sum(bias_list)/len(bias_list)
+        print(mean_bias_score)
 
+word_list = txt_list()
 
+print(calculate_sentence_bias_score(word_list))
 
-
-
-print(txt_list())
