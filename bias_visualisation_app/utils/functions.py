@@ -1,5 +1,6 @@
 import os
 import sys
+import string
 from os import path
 from os import listdir
 from io import open
@@ -2371,7 +2372,92 @@ def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
     return plot_pca_female
 
 
-def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,
+# def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,
+#                          input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe):
+#     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
+#     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
+#     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
+#     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(
+#         input_SVO_dataframe)
+#     female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
+#     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
+#     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(
+#         input_aux_dataframe)
+#     female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(
+#         input_possess_dataframe)
+#     female_profession_df, male_profession_df = profession_analysis(input_profession_dataframe)
+#
+#     if select_gender == 'female':
+#         if select_wordtype == 'nouns':
+#             return female_noun_df
+#         if select_wordtype == 'adjectives':
+#             return female_adj_df
+#         if select_wordtype == 'intransitive_verbs':
+#             return female_intran_df
+#         if select_wordtype == 'subject_verbs':
+#             return female_sub_df
+#         if select_wordtype == 'object_verbs':
+#             return female_obj_df
+#         if select_wordtype == 'premodifiers':
+#             return female_premodifier_df
+#         if select_wordtype == 'postmodifiers':
+#             return female_postmodifier_df
+#         if select_wordtype == 'before_aux':
+#             return female_before_aux_df
+#         if select_wordtype == 'follow_aux':
+#             return female_follow_aux_df
+#         if select_wordtype == 'possessives':
+#             return female_possessive_df
+#         if select_wordtype == 'possessors':
+#             return female_possessor_df
+#         if select_wordtype == 'professions':
+#             return female_profession_df
+#         else:
+#             raise werkzeug.exceptions.BadRequest(
+#                 'Please recheck your question'
+#             )
+#     if select_gender == 'male':
+#         if select_wordtype == 'nouns':
+#             return male_noun_df
+#         if select_wordtype == 'adjectives':
+#             return male_adj_df
+#         if select_wordtype == 'intransitive_verbs':
+#             return male_intran_df
+#         if select_wordtype == 'subject_verbs':
+#             return male_sub_df
+#         if select_wordtype == 'object_verbs':
+#             return male_obj_df
+#         if select_wordtype == 'premodifiers':
+#             return male_premodifier_df
+#         if select_wordtype == 'postmodifiers':
+#             return male_postmodifier_df
+#         if select_wordtype == 'before_aux':
+#             return male_before_aux_df
+#         if select_wordtype == 'follow_aux':
+#             return male_follow_aux_df
+#         if select_wordtype == 'possessives':
+#             return male_possessive_df
+#         if select_wordtype == 'possessors':
+#             return male_possessor_df
+#         if select_wordtype == 'professions':
+#             return male_profession_df
+#         else:
+#             raise werkzeug.exceptions.BadRequest(
+#                 'Please recheck your question'
+#             )
+
+female_synonyms = ['woman', 'women', 'female', 'females']
+male_synonyms = ['man', 'men', 'male', 'males']
+
+def common_member(a, b):
+    a_set = set(a)
+    b_set = set(b)
+    if (a_set & b_set):
+        return True
+    else:
+        return False
+
+def analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
                          input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
@@ -2386,64 +2472,67 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
         input_possess_dataframe)
     female_profession_df, male_profession_df = profession_analysis(input_profession_dataframe)
 
-    if select_gender == 'female':
-        if select_wordtype == 'nouns':
+    user_question = input_question.lower()
+    user_question = user_question.translate(str.maketrans('', '', string.punctuation))
+    user_question_list = user_question.split()
+    # first step is to determine gender
+    if common_member(user_question_list, female_synonyms) is True and common_member(user_question_list, male_synonyms) is False:
+        # second step is to parse the dataform
+        if 'nouns' in user_question_list:
             return female_noun_df
-        if select_wordtype == 'adjectives':
+        if 'adjectives' in user_question_list:
             return female_adj_df
-        if select_wordtype == 'intransitive_verbs':
-            return female_intran_df
-        if select_wordtype == 'subject_verbs':
-            return female_sub_df
-        if select_wordtype == 'object_verbs':
-            return female_obj_df
-        if select_wordtype == 'premodifiers':
-            return female_premodifier_df
-        if select_wordtype == 'postmodifiers':
-            return female_postmodifier_df
-        if select_wordtype == 'before_aux':
+        if 'verbs' in user_question_list and 'intransitive' not in user_question_list:
+            return female_verb_df
+        if 'auxiliary' in user_question_list and 'before' in user_question_list:
+            # e.g. Men are the most irrational species.
             return female_before_aux_df
-        if select_wordtype == 'follow_aux':
+        if 'auxiliary' in user_question_list and 'after' in user_question_list:
             return female_follow_aux_df
-        if select_wordtype == 'possessives':
-            return female_possessive_df
-        if select_wordtype == 'possessors':
+        if 'possessors' in user_question_list:
             return female_possessor_df
-        if select_wordtype == 'professions':
+        if 'possessives' in user_question_list:
+            return female_possessive_df
+        if 'premodifiers' in user_question_list:
+            return female_premodifier_df
+        if 'postmodifiers' in user_question_list:
+            return female_postmodifier_df
+        if 'professions' in user_question_list or 'jobs' in user_question_list:
             return female_profession_df
-        else:
-            raise werkzeug.exceptions.BadRequest(
-                'Please recheck your question'
-            )
-    if select_gender == 'male':
-        if select_wordtype == 'nouns':
+        if 'intransitive' in user_question_list:
+            return female_intran_df
+        if 'actions' in user_question_list and 'by' in user_question_list:
+            return female_sub_df
+        if 'actions' in user_question_list and 'against' in user_question_list:
+            return female_obj_df
+
+    elif common_member(user_question_list, female_synonyms) is False and common_member(user_question_list, male_synonyms) is True:
+        if 'nouns' in user_question_list:
             return male_noun_df
-        if select_wordtype == 'adjectives':
+        if 'adjectives' in user_question_list:
             return male_adj_df
-        if select_wordtype == 'intransitive_verbs':
-            return male_intran_df
-        if select_wordtype == 'subject_verbs':
-            return male_sub_df
-        if select_wordtype == 'object_verbs':
-            return male_obj_df
-        if select_wordtype == 'premodifiers':
-            return male_premodifier_df
-        if select_wordtype == 'postmodifiers':
-            return male_postmodifier_df
-        if select_wordtype == 'before_aux':
+        if 'verbs' in user_question_list and 'intransitive' not in user_question_list:
+            return male_verb_df
+        if 'auxiliary' in user_question_list and 'before' in user_question_list:
             return male_before_aux_df
-        if select_wordtype == 'follow_aux':
+        if 'auxiliary' in user_question_list and 'after' in user_question_list:
             return male_follow_aux_df
-        if select_wordtype == 'possessives':
-            return male_possessive_df
-        if select_wordtype == 'possessors':
+        if 'possessors' in user_question_list:
             return male_possessor_df
-        if select_wordtype == 'professions':
+        if 'possessives' in user_question_list:
+            return male_possessive_df
+        if 'premodifiers' in user_question_list:
+            return male_premodifier_df
+        if 'postmodifiers' in user_question_list:
+            return male_postmodifier_df
+        if 'professions' in user_question_list or 'jobs' in user_question_list:
             return male_profession_df
-        else:
-            raise werkzeug.exceptions.BadRequest(
-                'Please recheck your question'
-            )
+        if 'intransitive' in user_question_list:
+            return male_intran_df
+        if 'actions' in user_question_list and 'by' in user_question_list:
+            return male_sub_df
+        if 'actions' in user_question_list and 'against' in user_question_list:
+            return male_obj_df
 
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
 # p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'

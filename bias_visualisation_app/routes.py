@@ -12,7 +12,7 @@ from bias_visualisation_app.utils.functions import get_text_url, get_text_file, 
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
-    pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, df_based_on_question
+    pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question
 import werkzeug
 import spacy
 import pandas as pd
@@ -294,10 +294,14 @@ def query():
         input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
         input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
 
-        select_wordtype = request.form.get('type_select')
-        select_gender = request.form.get('gender_select')
-        dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
+        # select_wordtype = request.form.get('type_select')
+        # select_gender = request.form.get('gender_select')
+        # dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
+        #                                             input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
+
+        input_question = request.form['user_question']
+        dataframe_to_display = analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
+                         input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
