@@ -195,6 +195,15 @@ def get_text_file(corpora_file):
 
     return line
 
+def save_user_file_text(user_text):
+    # user inputs a string
+    fileDir = os.path.dirname(os.path.realpath('__file__'))
+
+    # os.path.join is used so that paths work in every operating system
+    save_user_path = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'user_uploads')
+
+    with open(os.path.join(save_user_path, 'user_input_text'), 'w+', encoding='utf-8') as f:
+       f.write(user_text)
 
 from nltk.stem.wordnet import WordNetLemmatizer
 import nltk.corpus as nc

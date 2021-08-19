@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,14 +153,7 @@
       <workItem from="1629209354149" duration="3447000" />
       <workItem from="1629278351020" duration="1627000" />
       <workItem from="1629364770614" duration="3634000" />
-      <workItem from="1629374823654" duration="10522000" />
-    </task>
-    <task id="LOCAL-00036" summary="Successfully identifying gender-specific post-modifying nouns">
-      <created>1628592668185</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1628592668185</updated>
+      <workItem from="1629374823654" duration="10944000" />
     </task>
     <task id="LOCAL-00037" summary="Adding postmodifier routes and analysis functions">
       <created>1628594320791</created>
@@ -496,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629385422973</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Solving minor bugs">
+      <created>1629385693214</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1629385693214</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +518,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Successfully identifying the phrasal verbs" />
     <MESSAGE value="Finished writing the phrasal verb functions. New problem with uploading files as Firefox seem to have cache. May be solvable when interactive." />
     <MESSAGE value="Testing more examples of phrasal verbs" />
     <MESSAGE value="Starting working on using ! to represent negative verbs/adjs/nouns" />
@@ -541,7 +542,8 @@
     <MESSAGE value="Adding routes for professions of each gender." />
     <MESSAGE value="Finished initial query. Next step is to add more illustrations and examples for users to ask similar questions" />
     <MESSAGE value="Adding examples for users." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding examples for users." />
+    <MESSAGE value="Solving minor bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solving minor bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

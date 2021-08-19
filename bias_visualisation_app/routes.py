@@ -7,7 +7,7 @@ from flask_caching import Cache
 from flask import redirect, render_template, url_for, request, send_from_directory
 from bias_visualisation_app import app
 from os import path
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list,\
+from bias_visualisation_app.utils.functions import get_text_url, get_text_file, save_user_file_text, generate_list,\
     SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis, profession_analysis, gender_count_analysis,\
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
@@ -150,6 +150,7 @@ def visualisation():
 def detect_text():
     if request.method == 'POST':
         input_data = request.form['rawtext']
+        save_user_file_text(input_data)
         # sentence = request.args.get('sentence')
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
@@ -167,6 +168,7 @@ def detect_url():
     if request.method == 'POST':
         raw_url = request.form['raw_url']
         input_data = get_text_url(raw_url)
+        save_user_file_text(input_data)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
         if len(input_data) > 50000:
@@ -181,8 +183,9 @@ def detect_url():
 @app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
     if request.method == 'POST':
-        corpora_file = request.files['corpora_file']
+        corpora_file = request.files['raw_corpora']
         input_data = get_text_file(corpora_file)
+        save_user_file_text(input_data)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
         if len(input_data) > 50000:
