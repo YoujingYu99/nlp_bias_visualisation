@@ -8,7 +8,7 @@ from flask import redirect, render_template, url_for, request, send_from_directo
 from bias_visualisation_app import app
 from os import path
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, generate_list,\
-    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis,gender_count_analysis,\
+    SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis, profession_analysis, gender_count_analysis,\
     generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
     frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
@@ -202,6 +202,7 @@ def detect_dataframe():
         dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
         dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
         dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe')
+        dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe')
         dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe')
         dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
 
@@ -222,6 +223,9 @@ def detect_dataframe():
 
         input_dataframe_possess = dataframe_possess
         save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
+
+        input_dataframe_profession = dataframe_profession
+        save_obj_user_uploads(input_dataframe_profession, name='profession_dataframe_user_uploads')
 
         input_dataframe_gender_count = dataframe_gender_count
         save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
@@ -246,6 +250,7 @@ def analysis():
     input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
     input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
     input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
+    input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
     input_gender_count_dataframe = load_obj_user_uploads(name='gender_count_dataframe_user_uploads')
 
     # view_df = frame_from_file(input_dataframe)[0]
@@ -257,10 +262,11 @@ def analysis():
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
     female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
+    female_profession_df, male_profession_df = profession_analysis(input_profession_dataframe)
     female_count, male_count = gender_count_analysis(input_gender_count_dataframe)
 
     return render_template('analysis.html', female_count=female_count, male_count=male_count, data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
-                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_adj=female_adj_df,
+                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_profession=female_profession_df, data_m_profession=male_profession_df, data_fm_adj=female_adj_df,
                            data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
                            data_fm_intran_verb=female_intran_df,
                            data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
@@ -268,7 +274,7 @@ def analysis():
                            data_m_obj_verb=male_obj_df, data_fm_premodifier=female_premodifier_df, data_m_premodifier=male_premodifier_df, data_fm_postmodifier=female_postmodifier_df, data_m_postmodifier=male_postmodifier_df, data_fm_before_aux=female_before_aux_df, data_m_before_aux=male_before_aux_df,
                            data_fm_follow_aux=female_follow_aux_df, data_m_follow_aux=male_follow_aux_df, data_fm_possessive=female_possessive_df, data_m_possessive=male_possessive_df, data_fm_possessor=female_possessor_df, data_m_possessor=male_possessor_df,
                            wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'intransitive_verbs'}, {'type': 'subject_verbs'},
-                                          {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'before_aux'}, {'type': 'follow_aux'}, {'type': 'possessives'}, {'type': 'possessors'}],
+                                          {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'before_aux'}, {'type': 'follow_aux'}, {'type': 'possessives'}, {'type': 'possessors'}, {'type': 'professions'}],
                            gender_data=[{'type': 'female'}, {'type': 'male'}])
 
 
@@ -286,11 +292,12 @@ def query():
         input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
         input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
         input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
+        input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
 
         select_wordtype = request.form.get('type_select')
         select_gender = request.form.get('gender_select')
         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe)
+                                                    input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
         save_obj(dataframe_to_display, name='specific_df')
         plot_bar = specific_bar_graph(df_name='specific_df')
 
@@ -371,4 +378,4 @@ def about():
 
 
 # text for testing functions
-# "Women writers support male fighters. Male cleaners are not more careful. Lucy likes female dramas. Women do not like gloves. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He adores vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are not minority. The woman is a teacher. Sarah is an engineer. The culprit is not Linda.We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. California's women live longest. Australia's John did not cling a gold prize. The world's women should unite together. Anna looks up a book. John asked Marilyn out. Steven did not take the coat off. Most writers are a woman. Most writers are not male. The teacher is not a man. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are not victims. Men are minority. The woman isn't a teacher. Sarah is not a mathematician. Women pregnant should be carefully treated. Men generous are kind."
+# "Women writers support male fighters. Male cleaners are not more careful. Lucy likes female dramas. Women do not like gloves. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He adores vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are not minority. The woman is a teacher. Sarah is an engineer. The culprit is not Linda.We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. California's women live longest. Australia's John did not cling a gold prize. The world's women should unite together. Anna looks up a book. John asked Marilyn out. Steven did not take the coat off. Most writers are a woman. Most writers are not male. The teacher is not a man. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are not victims. Men are minority. The woman isn't a teacher. Sarah is not a mathematician. Women pregnant should be carefully treated. Men generous are kind. John is a pilot. Steven is a fireman. Most nurses are male."

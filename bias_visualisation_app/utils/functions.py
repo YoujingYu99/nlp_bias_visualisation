@@ -1427,7 +1427,7 @@ def generate_bias_values(input_data):
             continue
         view_results.append(item)
 
-    print(view_results)
+
     view_df = list_to_dataframe(view_results)
     save_obj_text(view_df, name='total_dataframe')
 
@@ -1445,6 +1445,9 @@ def generate_bias_values(input_data):
 
     possess_df = determine_gender_possess(input_data)
     save_obj_text(possess_df, name='possess_dataframe')
+
+    profession_df = determine_gender_professions(view_df)
+    save_obj_text(profession_df, name='profession_dataframe')
 
     gender_count_df = gender_count(input_data)
     save_obj_text(gender_count_df, name='gender_count_dataframe')
@@ -1650,6 +1653,60 @@ def possess_analysis(view_df):
 
     return female_possessive_new, male_possessive_new, female_possessor_new, male_possessor_new
 
+def profession_analysis(view_df):
+    # columns = ['female_profession', 'female_bias', male_profession', 'male_bias']
+    female_profession_df = view_df[['female_profession', 'female_bias']].copy()
+    female_profession_df.sort_values(by=['female_bias'])
+    female_profession_df.rename(columns={'female_profession': 'token'}, inplace=True)
+    female_profession_df.rename(columns={'female_bias': 'bias'}, inplace=True)
+
+    male_profession_df = view_df[['male_profession', 'male_bias']].copy()
+    male_profession_df.sort_values(by=['male_bias'])
+    male_profession_df.rename(columns={'male_profession': 'token'}, inplace=True)
+    male_profession_df.rename(columns={'male_bias': 'bias'}, inplace=True)
+
+
+    return female_profession_df, male_profession_df
+
+
+
+def txt_profession_list():
+    """
+    :param txt_dir: the path of the txt files to be extracted
+    :return: a clean list containing the raw sentences
+    """
+    profession_list = []
+    profession_txt = os.path.join(os.path.dirname(__file__), '..', 'data', 'professions.txt')
+    with open(profession_txt, 'r', encoding='utf-8') as file_in:
+        for line in file_in:
+            profession_list.append(line.strip())
+        profession_list = [x.lower() for x in profession_list]
+    return profession_list
+
+
+def determine_gender_professions(view_df):
+    profession_list = txt_profession_list()
+    view_dict = view_df.to_dict('records')
+    female_professions = []
+    female_professions_bias = []
+    male_professions = []
+    male_professions_bias = []
+    for item in view_dict:
+        if item['pos'] == 'NOUN':
+            if item['token'] in profession_list:
+                if item['bias'] < 0:
+                    female_professions.append(item['token'])
+                    female_professions_bias.append(item['bias'])
+                elif item['bias'] > 0:
+                    male_professions.append(item['token'])
+                    male_professions_bias.append(item['bias'])
+
+    #convert list to dataframe
+    list_of_series = [pd.Series(female_professions), pd.Series(female_professions_bias), pd.Series(male_professions), pd.Series(male_professions_bias)]
+    profession_df = pd.concat(list_of_series, axis=1)
+    profession_df.columns = ['female_profession', 'female_bias', 'male_profession', 'male_bias']
+
+    return profession_df
 
 def gender_count_analysis(view_df):
     female_count = int(view_df['female_count'].iloc[0])
@@ -2315,7 +2372,7 @@ def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
 
 
 def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,
-                         input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe):
+                         input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe):
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
@@ -2327,6 +2384,7 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
         input_aux_dataframe)
     female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(
         input_possess_dataframe)
+    female_profession_df, male_profession_df = profession_analysis(input_profession_dataframe)
 
     if select_gender == 'female':
         if select_wordtype == 'nouns':
@@ -2351,6 +2409,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return female_possessive_df
         if select_wordtype == 'possessors':
             return female_possessor_df
+        if select_wordtype == 'professions':
+            return female_profession_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'
@@ -2378,6 +2438,8 @@ def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_data
             return male_possessive_df
         if select_wordtype == 'possessors':
             return male_possessor_df
+        if select_wordtype == 'professions':
+            return male_profession_df
         else:
             raise werkzeug.exceptions.BadRequest(
                 'Please recheck your question'

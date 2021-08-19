@@ -40,9 +40,9 @@ def determine_gender_professions(view_df):
     #convert list to dataframe
     list_of_series = [pd.Series(female_professions), pd.Series(female_professions_bias), pd.Series(male_professions), pd.Series(male_professions_bias)]
     profession_df = pd.concat(list_of_series, axis=1)
-    profession_df.columns = ['female_profession', 'bias', 'male_profession', 'bias']
+    profession_df.columns = ['female_profession', 'female_bias', 'male_profession', 'male_bias']
 
     return profession_df
 
-
+print(view_df)
 print(determine_gender_professions(view_df))
