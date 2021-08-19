@@ -2543,6 +2543,9 @@ def analyse_question(input_question, view_df, input_SVO_dataframe, input_premodi
         if 'actions' in user_question_list and 'against' in user_question_list:
             return male_obj_df
 
+
+
+
 # p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
 # p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'
 #
