@@ -949,18 +949,16 @@ def findfemalePostmodifiers(sent):
     female_postmodifier_list = []
     for female_noun in female_postmodifier_noun_list:
         try:
-            # splitting the sentence here
+            # You are interested in splitting the sentence here
             sentence_split = tokens.index(female_noun)
-            # find the words where tag meets the criteria
-            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1: sentence_split + 2] if
-                                  tag.startswith('NN')]
+            # Find the words where tag meets your criteria (must be a noun / adjective)
+            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1: sentence_split + 2] if tag.startswith(('NN', 'JJ'))]
             post_modifier = nouns_before_split[0]
             female_postmodifier_list.append(post_modifier)
         except:
             continue
 
     return female_postmodifier_list
-
 
 def findmalePostmodifiers(sent):
     tokens = nltk.word_tokenize(sent)
@@ -971,7 +969,7 @@ def findmalePostmodifiers(sent):
             # You are interested in splitting the sentence here
             sentence_split = tokens.index(male_noun)
             # Find the words where tag meets your criteria (must be a noun / proper noun)
-            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1:] if tag.startswith('NN')]
+            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1:] if tag.startswith(('NN', 'JJ'))]
             post_modifier = nouns_before_split[0]
             male_postmodifier_list.append(post_modifier)
         except:

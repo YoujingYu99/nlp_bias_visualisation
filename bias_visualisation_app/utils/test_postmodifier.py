@@ -14,7 +14,7 @@ post_modifiers_noun_list = ['women', 'Women', 'female', 'Female', 'men', 'Men', 
 female_postmodifier_noun_list = ['women', 'female']
 male_postmodifier_noun_list = ['men', 'male']
 
-sentence = 'Women writers support male fighters. Male cleaners are more careful. Lucy likes female dramas. Women like sunglasses.'
+sentence = 'Women writers support male fighters. Male cleaners are more careful. Lucy likes female dramas. Women like sunglasses. Women pregant are not to be messed with.'
 
 
 
@@ -26,8 +26,8 @@ def findfemalePostmodifiers(sent):
         try:
             # You are interested in splitting the sentence here
             sentence_split = tokens.index(female_noun)
-            # Find the words where tag meets your criteria (must be a noun / proper noun)
-            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1: sentence_split + 2] if tag.startswith('NN')]
+            # Find the words where tag meets your criteria (must be a noun / adjective)
+            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1: sentence_split + 2] if tag.startswith(('NN', 'JJ'))]
             post_modifier = nouns_before_split[0]
             female_postmodifier_list.append(post_modifier)
         except:
@@ -44,7 +44,7 @@ def findmalePostmodifiers(sent):
             # You are interested in splitting the sentence here
             sentence_split = tokens.index(male_noun)
             # Find the words where tag meets your criteria (must be a noun / proper noun)
-            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1:] if tag.startswith('NN')]
+            nouns_before_split = [word for (word, tag) in tags[sentence_split + 1:] if tag.startswith(('NN', 'JJ'))]
             post_modifier = nouns_before_split[0]
             male_postmodifier_list.append(post_modifier)
         except:
