@@ -162,7 +162,7 @@ def detect_text():
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
         except:
-            flash('Please enter a valid text.', 'info')
+            flash('Please enter a valid text.', 'danger')
 
     return render_template('index.html')
 
@@ -183,7 +183,7 @@ def detect_url():
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
         except:
-            flash('Please enter a valid URL.', 'error')
+            flash('Please enter a valid URL.', 'danger')
 
     return render_template('index.html')
 
@@ -204,7 +204,7 @@ def detect_corpora():
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
         except:
-            flash('Please enter a valid txt file.', 'error')
+            flash('Please enter a valid txt file.', 'danger')
     return render_template('index.html')
 
 
@@ -246,10 +246,11 @@ def detect_dataframe():
             input_dataframe_gender_count = dataframe_gender_count
             save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
 
-        except:
-            flash('Please input the complete excel file.', 'error')
+            return redirect(url_for('visualisation'))
 
-        return redirect(url_for('visualisation'))
+        except:
+            flash('Please input the complete excel file.', 'danger')
+            return redirect(url_for('index'))
 
 
 # . It works by looking at differences between male and female word pairs
@@ -331,7 +332,7 @@ def query():
                                type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
     except:
 
-        flash('Please enter a valid question!', 'error')
+        flash('Please enter a valid question!', 'danger')
 
         return redirect(url_for('analysis'))
 
@@ -346,9 +347,9 @@ def debiase():
                 debiased_file(user_threshold)
                 flash('You can download the debiased file now!', 'info')
             else:
-                flash('Please enter a number between 0 and 1!', 'error')
+                flash('Please enter a number between 0 and 1!', 'danger')
         except:
-            flash('Please enter a valid number!', 'error')
+            flash('Please enter a valid number!', 'danger')
 
     return render_template('debiase.html')
 
