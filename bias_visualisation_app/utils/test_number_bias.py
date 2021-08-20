@@ -18,23 +18,23 @@ def user_input_list():
     """
     fileDir = os.path.dirname(os.path.realpath('__file__'))
     txt_dir = os.path.join(fileDir, '..', '..','bias_visualisation_app', 'data', 'user_uploads')
+    original_word_list = []
     word_list = []
-    punct_list = []
 
-    with open(os.path.join(txt_dir, 'user_input_text'), 'r', encoding='utf-8') as file_in:
+    with open(os.path.join(txt_dir, 'user_input_text.txt'), 'r', encoding='utf-8') as file_in:
         for line in file_in:
             sent_text = nltk.sent_tokenize(line)
             for sent in sent_text:
-                sent = sent.lower()
-                punct = sent[-1]
-                sent = sent.translate(str.maketrans('', '', string.punctuation))
-                tokens = nltk.word_tokenize(sent)
+                new_sent = sent.lower()
+                new_sent = new_sent.translate(str.maketrans('', '', string.punctuation))
+                tokens = nltk.word_tokenize(new_sent)
+                original_word_list.append(sent)
                 word_list.append(tokens)
-                punct_list.append(punct)
-    return word_list, punct_list
+
+    return original_word_list, word_list
 
 
-def calculate_sentence_bias_score(word_list, punct_list):
+def calculate_sentence_bias_score(original_word_list ,word_list):
     view_df = load_total_dataframe(name='total_dataframe_user_uploads')
     sentence_score_list = []
     count = 0
@@ -52,7 +52,7 @@ def calculate_sentence_bias_score(word_list, punct_list):
         else:
             mean_bias_score = sum(bias_list)/len(bias_list)
 
-        sentence_score = {'sentence': sent, 'score': mean_bias_score, 'punct': punct_list[count]}
+        sentence_score = {'sentence': original_word_list[count], 'score': mean_bias_score}
         sentence_score_list.append(sentence_score)
         count += 1
 
@@ -69,13 +69,12 @@ special_phrases = ["dont", "doesnt", "wont", "wouldnt", "cant", "couldnt", "need
 
 
 def debiased_file(threshold_value):
-    word_list, punct_list = user_input_list()
-    sentence_score_df = calculate_sentence_bias_score(word_list, punct_list)
+    original_word_list, word_list = user_input_list()
+    sentence_score_df = calculate_sentence_bias_score(original_word_list, word_list)
     debiased_df = sentence_score_df[sentence_score_df['score'].between(-abs(threshold_value), threshold_value)]
     debiased_sentence_list = []
     for index, row in debiased_df.iterrows():
-        sentence = row['sentence']
-        new_sentence = ' '.join(str(x) for x in sentence) + row['punct']
+        new_sentence = row['sentence']
 
         try:
             new_sentence.replace(replacers)

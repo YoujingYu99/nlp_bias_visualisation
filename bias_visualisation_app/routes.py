@@ -320,7 +320,7 @@ def query():
             #                                             input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
 
             input_question = request.form['user_question']
-            dataframe_to_display = analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
+            select_gender, select_wordtype, dataframe_to_display = analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
                              input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
 
             save_obj(dataframe_to_display, name='specific_df')
@@ -341,18 +341,30 @@ def debiase():
     if request.method == 'POST':
         user_threshold = request.form['user_threshold']
         try:
-            if 0 <= float(user_threshold) <= 1:
-                    debiased_file(float(user_threshold))
-                    flash('You can download the debiased file now!', 'info')
-            elif float(user_threshold) < 0 or float(user_threshold) > 1:
-                    flash('Please enter a number between 0 and 1!', 'error')
+            user_threshold = float(user_threshold)
+            if 0 <= user_threshold and user_threshold <= 1:
+                debiased_file(user_threshold)
+                flash('You can download the debiased file now!', 'info')
+            else:
+                flash('Please enter a number between 0 and 1!', 'error')
         except:
             flash('Please enter a valid number!', 'error')
 
     return render_template('debiase.html')
 
 
-
+# @app.route('/debiase', methods=['GET', 'POST'])
+# def debiase():
+#     if request.method == 'POST':
+#         user_threshold = request.form['user_threshold']
+#         user_threshold = float(user_threshold)
+#
+#         if 0 <= user_threshold and user_threshold <= 1:
+#             debiased_file(user_threshold)
+#             flash('You can download the debiased file now!', 'info')
+#
+#
+#     return render_template('debiase.html')
 
 
 

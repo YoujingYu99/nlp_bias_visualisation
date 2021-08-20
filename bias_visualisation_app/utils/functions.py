@@ -207,7 +207,7 @@ def save_user_file_text(user_text):
     # os.path.join is used so that paths work in every operating system
     save_user_path = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'user_uploads')
 
-    with open(os.path.join(save_user_path, 'user_input_text'), 'w+', encoding='utf-8') as f:
+    with open(os.path.join(save_user_path, 'user_input_text.txt'), 'w+', encoding='utf-8') as f:
        f.write(user_text)
 
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -1407,7 +1407,9 @@ def load_obj_user_uploads(name):
 
 def load_total_dataframe(name):
     path_parent = os.path.dirname(os.getcwd())
-    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
+    upload_df_path = os.path.join(path_parent,
+                                               'visualising_data_bias', 'bias_visualisation_app',
+                                  'static', 'user_uploads', name)
     df_path = upload_df_path + '.csv'
     return pd.read_csv(df_path, error_bad_lines=False)
 
@@ -2406,61 +2408,90 @@ def analyse_question(input_question, view_df, input_SVO_dataframe, input_premodi
     # first step is to determine gender
     if common_member(user_question_list, female_synonyms) is True and common_member(user_question_list, male_synonyms) is False:
         # second step is to parse the dataform
+        select_gender = 'Female'
         if 'nouns' in user_question_list:
-            return female_noun_df
+            select_wordtype = 'Nouns'
+            return select_gender, select_wordtype, female_noun_df
         if 'adjectives' in user_question_list:
-            return female_adj_df
+            select_wordtype = 'Adjectives'
+            return  select_gender, select_wordtype, female_adj_df
         if 'verbs' in user_question_list and 'intransitive' not in user_question_list:
-            return female_verb_df
+            select_wordtype = 'Verbs'
+            return  select_gender, select_wordtype, female_verb_df
         if 'auxiliary' in user_question_list and 'before' in user_question_list:
             # e.g. Men are the most irrational species.
-            return female_before_aux_df
+            select_wordtype = 'Subject Auxiliary Words'
+            return  select_gender, select_wordtype, female_before_aux_df
         if 'auxiliary' in user_question_list and 'after' in user_question_list:
-            return female_follow_aux_df
+            select_wordtype = 'Object Auxiliary Words'
+            return  select_gender, select_wordtype, female_follow_aux_df
         if 'possessors' in user_question_list:
-            return female_possessor_df
+            select_wordtype = 'Possessors'
+            return  select_gender, select_wordtype, female_possessor_df
         if 'possessives' in user_question_list:
-            return female_possessive_df
+            select_wordtype = 'Possessives'
+            return  select_gender, select_wordtype, female_possessive_df
         if 'premodifiers' in user_question_list:
-            return female_premodifier_df
+            select_wordtype = 'Premodifiers'
+            return  select_gender, select_wordtype, female_premodifier_df
         if 'postmodifiers' in user_question_list:
-            return female_postmodifier_df
+            select_wordtype = 'Postmodifiers'
+            return  select_gender, select_wordtype, female_postmodifier_df
         if 'professions' in user_question_list or 'jobs' in user_question_list:
-            return female_profession_df
+            select_wordtype = 'Professions'
+            return  select_gender, select_wordtype, female_profession_df
         if 'intransitive' in user_question_list:
-            return female_intran_df
+            select_wordtype = 'Intransitive Verbs'
+            return  select_gender, select_wordtype, female_intran_df
         if 'actions' in user_question_list and 'by' in user_question_list:
-            return female_sub_df
+            select_wordtype = 'Actions as Subjects'
+            return  select_gender, select_wordtype, female_sub_df
         if 'actions' in user_question_list and 'against' in user_question_list:
-            return female_obj_df
+            select_wordtype = 'Actions as Objects'
+            return  select_gender, select_wordtype, female_obj_df
 
     elif common_member(user_question_list, female_synonyms) is False and common_member(user_question_list, male_synonyms) is True:
+        select_gender = 'Male'
         if 'nouns' in user_question_list:
-            return male_noun_df
+            select_wordtype = 'Nouns'
+            return select_gender, select_wordtype, male_noun_df
         if 'adjectives' in user_question_list:
-            return male_adj_df
+            select_wordtype = 'Adjectives'
+            return select_gender, select_wordtype, male_adj_df
         if 'verbs' in user_question_list and 'intransitive' not in user_question_list:
-            return male_verb_df
+            select_wordtype = 'Verbs'
+            return select_gender, select_wordtype, male_verb_df
         if 'auxiliary' in user_question_list and 'before' in user_question_list:
-            return male_before_aux_df
+            # e.g. Men are the most irrational species.
+            select_wordtype = 'Subject Auxiliary Words'
+            return select_gender, select_wordtype, male_before_aux_df
         if 'auxiliary' in user_question_list and 'after' in user_question_list:
-            return male_follow_aux_df
+            select_wordtype = 'Object Auxiliary Words'
+            return select_gender, select_wordtype, male_follow_aux_df
         if 'possessors' in user_question_list:
-            return male_possessor_df
+            select_wordtype = 'Possessors'
+            return select_gender, select_wordtype, male_possessor_df
         if 'possessives' in user_question_list:
-            return male_possessive_df
+            select_wordtype = 'Possessives'
+            return select_gender, select_wordtype, male_possessive_df
         if 'premodifiers' in user_question_list:
-            return male_premodifier_df
+            select_wordtype = 'Premodifiers'
+            return select_gender, select_wordtype, male_premodifier_df
         if 'postmodifiers' in user_question_list:
-            return male_postmodifier_df
+            select_wordtype = 'Postmodifiers'
+            return select_gender, select_wordtype, male_postmodifier_df
         if 'professions' in user_question_list or 'jobs' in user_question_list:
-            return male_profession_df
+            select_wordtype = 'Professions'
+            return select_gender, select_wordtype, male_profession_df
         if 'intransitive' in user_question_list:
-            return male_intran_df
+            select_wordtype = 'Intransitive Verbs'
+            return select_gender, select_wordtype, male_intran_df
         if 'actions' in user_question_list and 'by' in user_question_list:
-            return male_sub_df
+            select_wordtype = 'Actions as Subjects'
+            return select_gender, select_wordtype, male_sub_df
         if 'actions' in user_question_list and 'against' in user_question_list:
-            return male_obj_df
+            select_wordtype = 'Actions as Objects'
+            return select_gender, select_wordtype, male_obj_df
 
 
 def user_input_list():
@@ -2469,24 +2500,24 @@ def user_input_list():
     :return: a clean list containing the raw sentences
     """
     fileDir = os.path.dirname(os.path.realpath('__file__'))
-    txt_dir = os.path.join(fileDir,'bias_visualisation_app', 'data', 'user_uploads')
+    txt_dir = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'user_uploads')
+    original_word_list = []
     word_list = []
-    punct_list = []
 
-    with open(os.path.join(txt_dir, 'user_input_text'), 'r', encoding='utf-8') as file_in:
+    with open(os.path.join(txt_dir, 'user_input_text.txt'), 'r', encoding='utf-8') as file_in:
         for line in file_in:
             sent_text = nltk.sent_tokenize(line)
             for sent in sent_text:
-                sent = sent.lower()
-                punct = sent[-1]
-                sent = sent.translate(str.maketrans('', '', string.punctuation))
-                tokens = nltk.word_tokenize(sent)
+                new_sent = sent.lower()
+                new_sent = new_sent.translate(str.maketrans('', '', string.punctuation))
+                tokens = nltk.word_tokenize(new_sent)
+                original_word_list.append(sent)
                 word_list.append(tokens)
-                punct_list.append(punct)
-    return word_list, punct_list
+
+    return original_word_list, word_list
 
 
-def calculate_sentence_bias_score(word_list, punct_list):
+def calculate_sentence_bias_score(original_word_list ,word_list):
     view_df = load_total_dataframe(name='total_dataframe_user_uploads')
     sentence_score_list = []
     count = 0
@@ -2504,7 +2535,7 @@ def calculate_sentence_bias_score(word_list, punct_list):
         else:
             mean_bias_score = sum(bias_list)/len(bias_list)
 
-        sentence_score = {'sentence': sent, 'score': mean_bias_score, 'punct': punct_list[count]}
+        sentence_score = {'sentence': original_word_list[count], 'score': mean_bias_score}
         sentence_score_list.append(sentence_score)
         count += 1
 
@@ -2520,13 +2551,12 @@ replacers = {"dont": "don't", "doesnt": "doesn't", "wont": "won't", "wouldnt": "
 special_phrases = ["dont", "doesnt", "wont", "wouldnt", "cant", "couldnt", "neednt", "shouldnt"]
 
 def debiased_file(threshold_value):
-    word_list, punct_list = user_input_list()
-    sentence_score_df = calculate_sentence_bias_score(word_list, punct_list)
+    original_word_list, word_list = user_input_list()
+    sentence_score_df = calculate_sentence_bias_score(original_word_list, word_list)
     debiased_df = sentence_score_df[sentence_score_df['score'].between(-abs(threshold_value), threshold_value)]
     debiased_sentence_list = []
     for index, row in debiased_df.iterrows():
-        sentence = row['sentence']
-        new_sentence = ' '.join(str(x) for x in sentence) + row['punct']
+        new_sentence = row['sentence']
 
         try:
             new_sentence.replace(replacers)
@@ -2536,7 +2566,7 @@ def debiased_file(threshold_value):
         debiased_sentence_list.append(new_sentence)
 
     path_parent = os.path.dirname(os.getcwd())
-    save_path = os.path.join(path_parent,'visualising_data_bias','bias_visualisation_app','static')
+    save_path = os.path.join(path_parent,'visualising_data_bias', 'bias_visualisation_app', 'static')
 
     with open(os.path.join(save_path, 'debiased_file' + '.txt'), 'w+', encoding='utf-8') as f:
         f.write('\n'.join(debiased_sentence_list))
