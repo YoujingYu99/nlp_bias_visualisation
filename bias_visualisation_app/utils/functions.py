@@ -20,6 +20,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib.cm import ScalarMappable
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objs as go
+import plotly.io as pio
 from wordcloud import WordCloud
 from gensim.models import Word2Vec
 from sklearn.manifold import TSNE
@@ -1761,46 +1766,19 @@ def parse_pos_dataframe(view_df):
 
 def bar_graph(dataframe, token_list, value_list):
     # set minus sign
-    mpl.rcParams['axes.unicode_minus'] = False
-    np.random.seed(12345)
     df = dataframe
-    if len(token_list) > 15:
-        set_x_tick = False
-    else:
-        set_x_tick = True
-
-    plt.style.use('ggplot')
-    plt.rcParams['font.family'] = ['sans-serif']
-    plt.rcParams['font.sans-serif'] = ['SimHei']
-    fig, ax = plt.subplots()
-
-    # set up the colors
-    cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
-    df_mean = df.mean(axis=1)
-    norm = plt.Normalize(df_mean.min(), df_mean.max())
-    colors = cmap(norm(df_mean))
-
-    ax.bar(
-        token_list,
-        value_list,
-        yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-        color=colors)
-    fig.colorbar(ScalarMappable(cmap=cmap))
-
-    ax.set_title('Word Bias Visualisation', fontsize=12)
-    ax.set_xlabel('Word')
-    ax.xaxis.set_visible(set_x_tick)
-    ax.set_ylabel('Bias Value')
-    plt.tight_layout()
 
     # save file to static
     bar_name = token_list[0] + token_list[-2]
-    bar_name_ex = bar_name + '.png'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
-    bar_path = save_img_path + '.png'
-    plt.savefig(bar_path)
-    plot_bar = url_for('static', filename=bar_name_ex)
+    save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
 
+    bar_name_ex = bar_name + '.html'
+    bar_path = save_img_path + '.html'
+    fig = px.bar(df, x='token', y='bias', color='bias', color_continuous_scale=px.colors.sequential.Cividis_r)
+    fig.update_xaxes(title='words', visible=True, showticklabels=False)
+    fig.update_yaxes(title='bias value', visible=True, showticklabels=False)
+    pio.write_html(fig, file=bar_path, auto_open=False)
+    plot_bar = url_for('static', filename=bar_name_ex)
     return plot_bar
 
 
@@ -1840,7 +1818,7 @@ def specific_bar_graph(df_name='specific_df'):
         # save file to static
         bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
         bar_name_ex = bar_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
+        save_img_path = os.path.join(path.dirname(__file__), '..', 'static', bar_name)
         bar_path = save_img_path + '.png'
         plt.savefig(bar_path)
         plot_bar = url_for('static', filename=bar_name_ex)
@@ -1882,7 +1860,7 @@ def specific_bar_graph(df_name='specific_df'):
             # save file to static
             bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
             bar_name_ex = bar_name + '.png'
-            save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
+            save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
             bar_path = save_img_path + '.png'
             plt.savefig(bar_path)
             plot_bar = url_for('static', filename=bar_name_ex)
@@ -1924,7 +1902,7 @@ def specific_bar_graph(df_name='specific_df'):
                 # save file to static
                 bar_name = df['word'].iloc[0] + df['word'].iloc[1]
                 bar_name_ex = bar_name + '.png'
-                save_img_path = path.join(path.dirname(__file__), '..\\static\\', bar_name)
+                save_img_path = path.join(path.dirname(__file__), '..', 'static', bar_name)
                 bar_path = save_img_path + '.png'
                 plt.savefig(bar_path)
                 plot_bar = url_for('static', filename=bar_name_ex)
@@ -2025,9 +2003,9 @@ def cloud_image(token_list, value_list):
         female_wordcloud.generate_from_frequencies(female_data)
 
         # save file to static
-        female_cloud_name = str(next(iter(female_data))) + 'femalecloud'
+        female_cloud_name = 'femalecloud'
         female_cloud_name_ex = female_cloud_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), '..\\static\\', female_cloud_name)
+        save_img_path = path.join(path.dirname(__file__), '..', 'static', female_cloud_name)
         img_path = save_img_path + '.png'
         female_wordcloud.to_file(img_path)
 
@@ -2043,9 +2021,9 @@ def cloud_image(token_list, value_list):
         male_wordcloud.generate_from_frequencies(male_data)
 
         # save file to static
-        male_cloud_name = str(next(iter(male_data))) + 'malecloud'
+        male_cloud_name = 'malecloud'
         male_cloud_name_ex = male_cloud_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), '..\\static\\', male_cloud_name)
+        save_img_path = path.join(path.dirname(__file__),  '..', 'static', male_cloud_name)
         img_path = save_img_path + '.png'
         male_wordcloud.to_file(img_path)
 
@@ -2058,11 +2036,51 @@ def cloud_image(token_list, value_list):
     return plot_female_cloud, plot_male_cloud
 
 
-def tsne_graph(token_list, iterations=3000, seed=20, title='TSNE Visualisation of Word-Vectors for Amalgum(Overall)'):
-    '''Creates a TSNE model and plots it'''
+N = 10 # divide the dataframe into 10 animation frames
+import math
+def interactive_scatter(token_df, name, path, kind):
+    # we need to make the token_df have points divided into N animation frames
+    # first we need to divide the df into 10 groups with NO 0-9
+    n = len(token_df.index)
+    groupsize = math.ceil(n/N)
+    groupno = []
+    for i in range(N):
+        if i==N-1:
+            grouplist = [N-1]*(n%groupsize)
+        else:
+            grouplist = [i]*groupsize
+        groupno.extend(grouplist)
+    token_df['groupNO'] = groupno
+    animationno = groupno
+    for i in range(N-1): # except for the last group
+        # for groupNO x, we need to duplicate N-1-x times
+        df_try = token_df[token_df['groupNO'] == i]
+        token_df = token_df.append([df_try]*(N-1-i))
+        for x in range(i+1, N):
+            animationno.extend([x]*groupsize)
+    for y, no in enumerate(animationno):
+        if no==N-1:
+            animationno[y] = n
+        else:
+            animationno[y] = (no + 1) * groupsize
+
+    token_df['NO of words shown'] = animationno
+
+    fig = px.scatter(token_df, x='x', y='y', animation_frame='NO of words shown', text='word')
+    fig["layout"].pop("updatemenus")
+    fig.update_xaxes(title='{} Latent Dimentsion 1'.format(kind), visible=True, showticklabels=True)
+    fig.update_yaxes(title='{} Latent Dimentsion 2'.format(kind), visible=True, showticklabels=True)
+    pio.write_html(fig, file=path, auto_open=False)
+    plot_tsne = url_for('static', filename=name)
+
+    return plot_tsne
+
+
+def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors"):
+    """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..', 'data', 'gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -2082,42 +2100,23 @@ def tsne_graph(token_list, iterations=3000, seed=20, title='TSNE Visualisation o
     tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
                       random_state=seed)
     new_values = tsne_model.fit_transform(my_word_vectors)
+    new_values = np.array(new_values)
+    # new_values is a list of dots coordinates and we need to make it a dataframe with the word_name on it
+    word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    x = []
-    y = []
-    for value in new_values:
-        x.append(value[0])
-        y.append(value[1])
-
-    # save file to static
     tsne_name = token_list[0] + token_list[-2] + 'tsne'
-    tsne_name_ex = tsne_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', tsne_name)
-    tsne_path = save_img_path + '.jpg'
+    tsne_name_ex = tsne_name + '.html'
+    save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
+    tsne_path = save_img_path + '.html'
 
-    plt.figure(figsize=(10, 10))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(my_word_list[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom')
-    plt.ylabel('TSNE Latent Dimension 1')
-    plt.xlabel('TSNE Latent Dimension 2')
-    plt.title(title)
-    plt.savefig(tsne_path)
-    plot_tsne = url_for('static', filename=tsne_name_ex)
-
-    return plot_tsne
+    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE')
 
 
-def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title='TSNE Visualisation(Male)'):
-    '''Creates a TSNE model and plots it'''
+def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation(Male)"):
+    """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..', 'data' ,'gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -2137,42 +2136,21 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title='TSN
     tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
                       random_state=seed)
     new_values = tsne_model.fit_transform(my_word_vectors)
+    word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    x = []
-    y = []
-    for value in new_values:
-        x.append(value[0])
-        y.append(value[1])
-
-    # save file to static
     tsne_name = token_list[0] + token_list[-2] + 'tsne_male'
-    tsne_name_ex = tsne_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', tsne_name)
-    tsne_path = save_img_path + '.jpg'
+    tsne_name_ex = tsne_name + '.html'
+    save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
+    tsne_path = save_img_path + '.html'
 
-    plt.figure(figsize=(10, 10))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(my_word_list[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom')
-    plt.ylabel('TSNE Latent Dimension 1')
-    plt.xlabel('TSNE Latent Dimension 2')
-    plt.title(title)
-    plt.savefig(tsne_path)
-    plot_tsne_male = url_for('static', filename=tsne_name_ex)
-
-    return plot_tsne_male
+    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE')
 
 
-def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title='TSNE Visualisation (Female)'):
-    '''Creates a TSNE model and plots it'''
+def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation (Female)"):
+    """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..', 'data', 'gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -2192,42 +2170,21 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title='T
     tsne_model = TSNE(perplexity=5, n_components=2, init='pca', n_iter=iterations,
                       random_state=seed)
     new_values = tsne_model.fit_transform(my_word_vectors)
+    word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    x = []
-    y = []
-    for value in new_values:
-        x.append(value[0])
-        y.append(value[1])
-
-    # save file to static
     tsne_name = token_list[0] + token_list[-2] + 'tsne_female'
-    tsne_name_ex = tsne_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', tsne_name)
-    tsne_path = save_img_path + '.jpg'
+    tsne_name_ex = tsne_name + '.html'
+    save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
+    tsne_path = save_img_path + '.html'
 
-    plt.figure(figsize=(10, 10))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(my_word_list[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom')
-    plt.ylabel('TSNE Latent Dimension 1')
-    plt.xlabel('TSNE Latent Dimension 2')
-    plt.title(title)
-    plt.savefig(tsne_path)
-    plot_tsne_female = url_for('static', filename=tsne_name_ex)
-
-    return plot_tsne_female
+    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE')
 
 
-def pca_graph(token_list, title='PCA Visualisation of Word-Vectors for Amalgum'):
-    '''Creates a PCA model and plots it'''
+def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum"):
+    """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..','data', 'gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -2246,6 +2203,7 @@ def pca_graph(token_list, title='PCA Visualisation of Word-Vectors for Amalgum')
 
     pca_model = PCA(n_components=2, svd_solver='full')
     new_values = pca_model.fit_transform(my_word_vectors)
+    word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
     x = []
     y = []
@@ -2255,33 +2213,18 @@ def pca_graph(token_list, title='PCA Visualisation of Word-Vectors for Amalgum')
 
     # save file to static
     pca_name = token_list[0] + token_list[-2] + 'pca'
-    pca_name_ex = pca_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', pca_name)
-    pca_path = save_img_path + '.jpg'
+    pca_name_ex = pca_name + '.html'
+    save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
+    pca_path = save_img_path + '.html'
 
-    plt.figure(figsize=(10, 10))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(my_word_list[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom')
-    plt.ylabel('PCA Latent Dimension 1')
-    plt.xlabel('PCA Latent Dimension 2')
-    plt.title(title)
-    plt.savefig(pca_path)
-    plot_pca = url_for('static', filename=pca_name_ex)
-
-    return plot_pca
+    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
 
 
-def pca_graph_male(token_list, value_list, title='PCA Visualisation(Male)'):
-    '''Creates a PCA model and plots it'''
+def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
+    """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), "..", "data", "gum_word2vec.model")
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -2300,6 +2243,7 @@ def pca_graph_male(token_list, value_list, title='PCA Visualisation(Male)'):
 
     pca_model = PCA(n_components=2, svd_solver='full')
     new_values = pca_model.fit_transform(my_word_vectors)
+    word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
     x = []
     y = []
@@ -2309,33 +2253,18 @@ def pca_graph_male(token_list, value_list, title='PCA Visualisation(Male)'):
 
     # save file to static
     pca_name = token_list[0] + token_list[-2] + 'pca_male'
-    pca_name_ex = pca_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', pca_name)
-    pca_path = save_img_path + '.jpg'
+    pca_name_ex = pca_name + '.html'
+    save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
+    pca_path = save_img_path + '.html'
 
-    plt.figure(figsize=(10, 10))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(my_word_list[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom')
-    plt.ylabel('PCA Latent Dimension 1')
-    plt.xlabel('PCA Latent Dimension 2')
-    plt.title(title)
-    plt.savefig(pca_path)
-    plot_pca_male = url_for('static', filename=pca_name_ex)
-
-    return plot_pca_male
+    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
 
 
-def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
-    '''Creates a PCA model and plots it'''
+def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
+    """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '../data/gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..', 'data', 'gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -2354,6 +2283,7 @@ def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
 
     pca_model = PCA(n_components=2, svd_solver='full')
     new_values = pca_model.fit_transform(my_word_vectors)
+    word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
     x = []
     y = []
@@ -2363,26 +2293,11 @@ def pca_graph_female(token_list, value_list, title='PCA Visualisation(Female)'):
 
     # save file to static
     pca_name = token_list[0] + token_list[-2] + 'pca_female'
-    pca_name_ex = pca_name + '.jpg'
-    save_img_path = path.join(path.dirname(__file__), '..\\static\\', pca_name)
-    pca_path = save_img_path + '.jpg'
+    pca_name_ex = pca_name + '.html'
+    save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
+    pca_path = save_img_path + '.html'
 
-    plt.figure(figsize=(10, 10))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(my_word_list[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom')
-    plt.ylabel('PCA Latent Dimension 1')
-    plt.xlabel('PCA Latent Dimension 2')
-    plt.title(title)
-    plt.savefig(pca_path)
-    plot_pca_female = url_for('static', filename=pca_name_ex)
-
-    return plot_pca_female
+    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
 
 
 # def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,
