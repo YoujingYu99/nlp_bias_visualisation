@@ -1771,7 +1771,7 @@ def bar_graph(dataframe, token_list, value_list):
     df = dataframe
 
     # save file to static
-    bar_name = token_list[0] + token_list[-2]
+    bar_name = 'total_bar_graph'
     save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
 
     bar_name_ex = bar_name + '.html'
@@ -1818,7 +1818,7 @@ def specific_bar_graph(df_name='specific_df'):
         plt.tight_layout()
 
         # save file to static
-        bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
+        bar_name = 'specific_bar_graph'
         bar_name_ex = bar_name + '.png'
         save_img_path = os.path.join(path.dirname(__file__), '..', 'static', bar_name)
         bar_path = save_img_path + '.png'
@@ -1860,7 +1860,7 @@ def specific_bar_graph(df_name='specific_df'):
             plt.tight_layout()
 
             # save file to static
-            bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
+            bar_name = 'specific_bar_graph'
             bar_name_ex = bar_name + '.png'
             save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
             bar_path = save_img_path + '.png'
@@ -1902,7 +1902,7 @@ def specific_bar_graph(df_name='specific_df'):
                 plt.tight_layout()
 
                 # save file to static
-                bar_name = df['word'].iloc[0] + df['word'].iloc[1]
+                bar_name = 'specific_bar_graph'
                 bar_name_ex = bar_name + '.png'
                 save_img_path = path.join(path.dirname(__file__), '..', 'static', bar_name)
                 bar_path = save_img_path + '.png'
@@ -2106,7 +2106,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     # new_values is a list of dots coordinates and we need to make it a dataframe with the word_name on it
     word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    tsne_name = token_list[0] + token_list[-2] + 'tsne'
+    tsne_name = 'tsne'
     tsne_name_ex = tsne_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
@@ -2140,7 +2140,7 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     new_values = tsne_model.fit_transform(my_word_vectors)
     word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    tsne_name = token_list[0] + token_list[-2] + 'tsne_male'
+    tsne_name = 'tsne_male'
     tsne_name_ex = tsne_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
@@ -2174,7 +2174,7 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
     new_values = tsne_model.fit_transform(my_word_vectors)
     word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    tsne_name = token_list[0] + token_list[-2] + 'tsne_female'
+    tsne_name = 'tsne_female'
     tsne_name_ex = tsne_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
@@ -2214,7 +2214,7 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
         y.append(value[1])
 
     # save file to static
-    pca_name = token_list[0] + token_list[-2] + 'pca'
+    pca_name = 'pca'
     pca_name_ex = pca_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
@@ -2254,7 +2254,7 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
         y.append(value[1])
 
     # save file to static
-    pca_name = token_list[0] + token_list[-2] + 'pca_male'
+    pca_name = 'pca_male'
     pca_name_ex = pca_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
@@ -2294,7 +2294,7 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
         y.append(value[1])
 
     # save file to static
-    pca_name = token_list[0] + token_list[-2] + 'pca_female'
+    pca_name = 'pca_female'
     pca_name_ex = pca_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
