@@ -9,6 +9,8 @@ app = Flask(__name__)
 app.config['DOWNLOAD_FOLDER'] = save_path
 app.config['DEBIAS_FOLDER'] = debias_path
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config['SECRET_KEY'] = "234798238423"
+
 
 from bias_visualisation_app import routes
 

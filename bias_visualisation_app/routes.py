@@ -4,7 +4,7 @@ The interactive web interface for data bias visualisation
 
 from __future__ import unicode_literals
 from flask_caching import Cache
-from flask import redirect, render_template, url_for, request, send_from_directory
+from flask import redirect, render_template, url_for, request, send_from_directory, flash
 from bias_visualisation_app import app
 from os import path
 from bias_visualisation_app.utils.functions import get_text_url, get_text_file, save_user_file_text, generate_list,\
@@ -149,16 +149,20 @@ def visualisation():
 @app.route('/detect_text', methods=['GET', 'POST'])
 def detect_text():
     if request.method == 'POST':
-        input_data = request.form['rawtext']
-        save_user_file_text(input_data)
-        # sentence = request.args.get('sentence')
-        if not input_data:
-            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-        if len(input_data) > 50000:
-            raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 500000 characters long'
-            )
-        generate_bias_values(input_data)
+        try:
+            input_data = request.form['rawtext']
+            save_user_file_text(input_data)
+            # sentence = request.args.get('sentence')
+            if not input_data:
+                raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
+            if len(input_data) > 50000:
+                raise werkzeug.exceptions.BadRequest(
+                    'Input Paragraph must be at most 500000 characters long'
+                )
+            generate_bias_values(input_data)
+            flash('Your file is ready for download!', 'info')
+        except:
+            flash('Please enter a valid text.', 'info')
 
     return render_template('index.html')
 
@@ -166,16 +170,20 @@ def detect_text():
 @app.route('/detect_url', methods=['GET', 'POST'])
 def detect_url():
     if request.method == 'POST':
-        raw_url = request.form['raw_url']
-        input_data = get_text_url(raw_url)
-        save_user_file_text(input_data)
-        if not input_data:
-            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-        if len(input_data) > 50000:
-            raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 500000 characters long'
-            )
-        generate_bias_values(input_data)
+        try:
+            raw_url = request.form['raw_url']
+            input_data = get_text_url(raw_url)
+            save_user_file_text(input_data)
+            if not input_data:
+                raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
+            if len(input_data) > 50000:
+                raise werkzeug.exceptions.BadRequest(
+                    'Input Paragraph must be at most 500000 characters long'
+                )
+            generate_bias_values(input_data)
+            flash('Your file is ready for download!', 'info')
+        except:
+            flash('Please enter a valid URL.', 'error')
 
     return render_template('index.html')
 
@@ -183,55 +191,63 @@ def detect_url():
 @app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
     if request.method == 'POST':
-        corpora_file = request.files['raw_corpora']
-        input_data = get_text_file(corpora_file)
-        save_user_file_text(input_data)
-        if not input_data:
-            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-        if len(input_data) > 50000:
-            raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 500000 characters long'
-            )
-        generate_bias_values(input_data)
+        try:
+            corpora_file = request.files['raw_corpora']
+            input_data = get_text_file(corpora_file)
+            save_user_file_text(input_data)
+            if not input_data:
+                raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
+            if len(input_data) > 50000:
+                raise werkzeug.exceptions.BadRequest(
+                    'Input Paragraph must be at most 500000 characters long'
+                )
+            generate_bias_values(input_data)
+            flash('Your file is ready for download!', 'info')
+        except:
+            flash('Please enter a valid txt file.', 'error')
     return render_template('index.html')
 
 
 @app.route('/detect_dataframe', methods=['GET', 'POST'])
 def detect_dataframe():
     if request.method == 'POST':
-        complete_file = request.files['complete_file']
-        dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
-        dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
-        dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
-        dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
-        dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe')
-        dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe')
-        dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe')
-        dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
+        try:
+            complete_file = request.files['complete_file']
+            dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
+            dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
+            dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
+            dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
+            dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe')
+            dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe')
+            dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe')
+            dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
 
-        input_dataframe_total = dataframe_total
-        save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
+            input_dataframe_total = dataframe_total
+            save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
 
-        input_dataframe_SVO = dataframe_SVO
-        save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
+            input_dataframe_SVO = dataframe_SVO
+            save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
 
-        input_dataframe_premodifier = dataframe_premodifier
-        save_obj_user_uploads(input_dataframe_premodifier, name='premodifier_dataframe_user_uploads')
+            input_dataframe_premodifier = dataframe_premodifier
+            save_obj_user_uploads(input_dataframe_premodifier, name='premodifier_dataframe_user_uploads')
 
-        input_dataframe_postmodifier = dataframe_postmodifier
-        save_obj_user_uploads(input_dataframe_postmodifier, name='postmodifier_dataframe_user_uploads')
+            input_dataframe_postmodifier = dataframe_postmodifier
+            save_obj_user_uploads(input_dataframe_postmodifier, name='postmodifier_dataframe_user_uploads')
 
-        input_dataframe_aux = dataframe_aux
-        save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
+            input_dataframe_aux = dataframe_aux
+            save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
 
-        input_dataframe_possess = dataframe_possess
-        save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
+            input_dataframe_possess = dataframe_possess
+            save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
 
-        input_dataframe_profession = dataframe_profession
-        save_obj_user_uploads(input_dataframe_profession, name='profession_dataframe_user_uploads')
+            input_dataframe_profession = dataframe_profession
+            save_obj_user_uploads(input_dataframe_profession, name='profession_dataframe_user_uploads')
 
-        input_dataframe_gender_count = dataframe_gender_count
-        save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
+            input_dataframe_gender_count = dataframe_gender_count
+            save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
+
+        except:
+            flash('Please input the complete excel file.', 'error')
 
         return redirect(url_for('visualisation'))
 
@@ -287,35 +303,52 @@ def query():
     select_gender = None
     select_wordtype = None
     plot_bar = None
-    if request.method == 'POST':
-        # open dataframe file
-        view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
-        input_SVO_dataframe = load_obj_user_uploads(name='SVO_dataframe_user_uploads')
-        input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
-        input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
-        input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
-        input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
-        input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
+    try:
+        if request.method == 'POST':
+            # open dataframe file
+            view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
+            input_SVO_dataframe = load_obj_user_uploads(name='SVO_dataframe_user_uploads')
+            input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
+            input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
+            input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
+            input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
+            input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
 
-        # select_wordtype = request.form.get('type_select')
-        # select_gender = request.form.get('gender_select')
-        # dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-        #                                             input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
+            # select_wordtype = request.form.get('type_select')
+            # select_gender = request.form.get('gender_select')
+            # dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
+            #                                             input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
 
-        input_question = request.form['user_question']
-        dataframe_to_display = analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
-                         input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
-        save_obj(dataframe_to_display, name='specific_df')
-        plot_bar = specific_bar_graph(df_name='specific_df')
+            input_question = request.form['user_question']
+            dataframe_to_display = analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
+                             input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
 
-    return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender),
-                           type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
+            save_obj(dataframe_to_display, name='specific_df')
+            plot_bar = specific_bar_graph(df_name='specific_df')
+
+
+        return render_template('query.html', data_question=dataframe_to_display, gender_in_question=str(select_gender),
+                               type_in_question=str(select_wordtype), bar_graph_specific=plot_bar)
+    except:
+
+        flash('Please enter a valid question!', 'error')
+
+        return redirect(url_for('analysis'))
+
 
 @app.route('/debiase', methods=['GET', 'POST'])
 def debiase():
     if request.method == 'POST':
         user_threshold = request.form['user_threshold']
-        debiased_file(float(user_threshold))
+        try:
+            if 0 <= float(user_threshold) <= 1:
+                    debiased_file(float(user_threshold))
+                    flash('You can download the debiased file now!', 'info')
+            elif float(user_threshold) < 0 or float(user_threshold) > 1:
+                    flash('Please enter a number between 0 and 1!', 'error')
+        except:
+            flash('Please enter a valid number!', 'error')
+
     return render_template('debiase.html')
 
 

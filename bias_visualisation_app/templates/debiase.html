@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
+
+
+
 <!--Slider -->
   <section class="slider">
       <div id="index-banner" class="parallax-container">
@@ -41,7 +44,7 @@
               <div class="icon-block">
                 <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> Would you like to debiase your dataset?</h2>
                 <form method="POST" action="#">
-                 <textarea name="user_threshold" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Threshold Here."></textarea>
+                 <textarea name="user_threshold" cols="3" rows="5" class="form-control" required="true" placeholder="Please enter a value between 0 and 1."></textarea>
                 <br/>
                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
