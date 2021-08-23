@@ -156,12 +156,28 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-        <div class="col min-vh-100 py-3">
+        <div class="col min-vh-100 p-4">
             <!-- toggler -->
             <button class="btn float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
-                <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+                <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>?
             </button>
-            Content..
+            <form class="col s12" method="POST" action="/query">
+            <div class="container">
+              <div class="row">
+                <div class="input-field col s12 m10">
+                  <div class="icon-block">
+                  <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>
+                  <form method="POST" action="/analyse_question">
+                   <textarea name="user_question" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here (e.g. What actions do women usually perform? What are the adjectives mostly associated with men?)"></textarea>
+                   <br/>
+                   <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                   <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
         </div>
     </div>
   </div>
@@ -169,25 +185,25 @@
 
 
 <!--User input question -->
-  <section class="section section-solutions-about grey lighten-3">
-    <form class="col s12" method="POST" action="/query">
-        <div class="container">
-          <div class="row">
-            <div class="input-field col s12 m10">
-              <div class="icon-block">
-                <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>
-                <form method="POST" action="/analyse_question">
-                 <textarea name="user_question" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here (e.g. What actions do women usually perform? What are the adjectives mostly associated with men?)"></textarea>
-                <br/>
-                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
-                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-    </form>
-  </section>
+{#  <section class="section section-solutions-about grey lighten-3">#}
+{#    <form class="col s12" method="POST" action="/query">#}
+{#        <div class="container">#}
+{#          <div class="row">#}
+{#            <div class="input-field col s12 m10">#}
+{#              <div class="icon-block">#}
+{#                <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>#}
+{#                <form method="POST" action="/analyse_question">#}
+{#                 <textarea name="user_question" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here (e.g. What actions do women usually perform? What are the adjectives mostly associated with men?)"></textarea>#}
+{#                <br/>#}
+{#                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>#}
+{#                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>#}
+{#                </form>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#    </form>#}
+{#  </section>#}
 
   <!-- SECTION: RESULTS FOR ADJECTIVES, NOUNS AND VERBS -->
   <section class="section section-solutions-about grey lighten-3 ">

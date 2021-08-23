@@ -188,14 +188,7 @@
       <workItem from="1629463915107" duration="4189000" />
       <workItem from="1629477405425" duration="1961000" />
       <workItem from="1629617370866" duration="822000" />
-      <workItem from="1629710348192" duration="2114000" />
-    </task>
-    <task id="LOCAL-00049" summary="Furthur clean up">
-      <created>1628697743677</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1628697743677</updated>
+      <workItem from="1629710348192" duration="2695000" />
     </task>
     <task id="LOCAL-00050" summary="More cleaning">
       <created>1628698071495</created>
@@ -533,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629711116066</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Testing on sidebar navigations for linguistic terms explanations">
+      <created>1629712591151</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1629712591151</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Starting on prenomial premodifiers" />
     <MESSAGE value="adding prenomial premodifiers for gendered words." />
     <MESSAGE value="Fixing minor bug in the possess algorithm; Adding cache" />
     <MESSAGE value="Testing cache on firefox browser" />
@@ -578,7 +577,8 @@
     <MESSAGE value="Adding success messages. Reverting back to Bootstrap. Adding routes for errors" />
     <MESSAGE value="Testing cache on graphs. It works successfully on chrome now." />
     <MESSAGE value="Changing css styling for buttons to make it look nicer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing css styling for buttons to make it look nicer." />
+    <MESSAGE value="Testing on sidebar navigations for linguistic terms explanations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing on sidebar navigations for linguistic terms explanations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -602,7 +602,7 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive.coverage" NAME="test_possessive Coverage Results" MODIFIED="1629210830381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_number_bias Coverage Results" MODIFIED="1629391066114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1629711644121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1629712848669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1629110532105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>
