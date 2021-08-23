@@ -2,13 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/debiased_file.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/femalecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/fm_dic.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/m_dic.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/malecloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/pca.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/pca_female.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/pca_male.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/specific_bar_graph.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/specific_df.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/total_bar_graph.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/tsne.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/tsne_female.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/tsne_male.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/SVO_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/aux_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/complete_file.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/gender_count_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/possess_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/postmodifier_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/premodifier_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/profession_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/total_dataframe.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/SVO_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/aux_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/gender_count_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/possess_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/postmodifier_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/premodifier_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/profession_dataframe_user_uploads.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/total_dataframe_user_uploads.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/debiase.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/debiase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,14 +188,7 @@
       <workItem from="1629463915107" duration="4189000" />
       <workItem from="1629477405425" duration="1961000" />
       <workItem from="1629617370866" duration="822000" />
-      <workItem from="1629710348192" duration="642000" />
-    </task>
-    <task id="LOCAL-00048" summary="Clean up code format">
-      <created>1628697347782</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1628697347782</updated>
+      <workItem from="1629710348192" duration="2114000" />
     </task>
     <task id="LOCAL-00049" summary="Furthur clean up">
       <created>1628697743677</created>
@@ -507,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629479378250</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Changing css styling for buttons to make it look nicer.">
+      <created>1629711116066</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1629711116066</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Successfully rewriting aux algorithm to give more freedom of adjectives and allow negated cases as well." />
     <MESSAGE value="Starting on prenomial premodifiers" />
     <MESSAGE value="adding prenomial premodifiers for gendered words." />
     <MESSAGE value="Fixing minor bug in the possess algorithm; Adding cache" />
@@ -552,7 +577,8 @@
     <MESSAGE value="Adding error messages for different errors. Numbering and lining back the debiased dataset." />
     <MESSAGE value="Adding success messages. Reverting back to Bootstrap. Adding routes for errors" />
     <MESSAGE value="Testing cache on graphs. It works successfully on chrome now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing cache on graphs. It works successfully on chrome now." />
+    <MESSAGE value="Changing css styling for buttons to make it look nicer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing css styling for buttons to make it look nicer." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -576,7 +602,7 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive.coverage" NAME="test_possessive Coverage Results" MODIFIED="1629210830381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_number_bias Coverage Results" MODIFIED="1629391066114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1629710721841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1629711644121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1629110532105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
   </component>
