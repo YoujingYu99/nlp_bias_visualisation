@@ -2454,6 +2454,9 @@ def analyse_question(input_question, view_df, input_SVO_dataframe, input_premodi
         if 'actions' in user_question_list and 'by' in user_question_list:
             select_wordtype = 'Actions as Subjects'
             return  select_gender, select_wordtype, female_sub_df
+        if 'actions' in user_question_list and 'do' in user_question_list:
+            select_wordtype = 'Actions as Subjects'
+            return select_gender, select_wordtype, female_sub_df
         if 'actions' in user_question_list and 'against' in user_question_list:
             select_wordtype = 'Actions as Objects'
             return  select_gender, select_wordtype, female_obj_df
@@ -2495,6 +2498,9 @@ def analyse_question(input_question, view_df, input_SVO_dataframe, input_premodi
             select_wordtype = 'Intransitive Verbs'
             return select_gender, select_wordtype, male_intran_df
         if 'actions' in user_question_list and 'by' in user_question_list:
+            select_wordtype = 'Actions as Subjects'
+            return select_gender, select_wordtype, male_sub_df
+        if 'actions' in user_question_list and 'do' in user_question_list:
             select_wordtype = 'Actions as Subjects'
             return select_gender, select_wordtype, male_sub_df
         if 'actions' in user_question_list and 'against' in user_question_list:
