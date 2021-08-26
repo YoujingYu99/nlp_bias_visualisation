@@ -1375,22 +1375,30 @@ def save_obj_text(obj, name):
 
 def save_obj_user_uploads(obj, name):
     path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static',
-                                'user_uploads', name)
+    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
 
-def concat_csv_excel():
-    path_parent = os.path.dirname(os.getcwd())
-    csv_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
-    writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'))  # Arbitrary output name
-    csvfiles = [f for f in listdir(csv_path) if os.path.isfile(os.path.join(csv_path, f))]
-    for csvfilename in csvfiles:
-        df = pd.read_csv(os.path.join(csv_path, csvfilename), error_bad_lines=False, engine='python')
-        df.to_excel(writer, sheet_name=os.path.splitext(csvfilename)[0], index=False)
-    writer.save()
+# def concat_csv_excel():
+#     path_parent = os.path.dirname(os.getcwd())
+#     csv_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
+#     writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'))  # Arbitrary output name
+#     csvfiles = [f for f in listdir(csv_path) if os.path.isfile(os.path.join(csv_path, f))]
+#     for csvfilename in csvfiles:
+#         df = pd.read_csv(os.path.join(csv_path, csvfilename), error_bad_lines=False, engine='python')
+#         df.to_excel(writer, sheet_name=os.path.splitext(csvfilename)[0], index=False)
+#     writer.save()
 
+def concat_csv_excel():
+    parent_path = os.path.dirname(os.getcwd())
+    csv_path = os.path.join(parent_path, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
+    csv_files = [f for f in listdir(csv_path) if f.endswith('.csv')]
+    writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'), engine='xlsxwriter')
+    for file in csv_files:
+        df = pd.read_csv(os.path.join(csv_path, file))
+        df.to_excel(writer, sheet_name=os.path.splitext(file)[0], index=False)
+    writer.save()
 
 def load_obj(name):
     path_parent = os.path.dirname(os.getcwd())
