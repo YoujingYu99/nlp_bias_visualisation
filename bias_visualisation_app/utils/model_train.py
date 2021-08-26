@@ -1,6 +1,7 @@
-from functions import *
+
 import gensim
 import nltk
+from .functions_files import txt_list
 
 nltk.download('stopwords')
 

@@ -7,12 +7,13 @@ from flask_caching import Cache
 from flask import redirect, render_template, url_for, request, send_from_directory, flash
 from bias_visualisation_app import app
 from os import path
-from bias_visualisation_app.utils.functions import get_text_url, get_text_file, save_user_file_text, generate_list,\
+from bias_visualisation_app.utils.functions_files import get_text_url, get_text_file, save_user_file_text,  save_obj_user_uploads, load_obj_user_uploads
+from bias_visualisation_app.utils.functions_analysis import  generate_list,\
     SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis, profession_analysis, gender_count_analysis,\
-    generate_bias_values, save_obj, save_obj_user_uploads, load_obj_user_uploads, \
-    frame_from_file, bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
+    generate_bias_values, save_obj, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file
+from bias_visualisation_app.utils.functions_graphs import bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
-    pca_graph_male, pca_graph_female, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file
+    pca_graph_male, pca_graph_female
 import werkzeug
 import spacy
 import pandas as pd
