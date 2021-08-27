@@ -8,7 +8,7 @@ from nltk.corpus import stopwords
 import nltk
 from sklearn.preprocessing import MinMaxScaler
 
-from bias_visualisation_app.utils.functions import load_obj_user_uploads, load_total_dataframe
+from bias_visualisation_app.utils.functions_files import load_obj_user_uploads
 
 
 def user_input_list():
@@ -35,7 +35,7 @@ def user_input_list():
 
 
 def calculate_sentence_bias_score(original_word_list ,word_list):
-    view_df = load_total_dataframe(name='total_dataframe_user_uploads')
+    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
     sentence_score_list = []
     count = 0
     for sent in word_list:

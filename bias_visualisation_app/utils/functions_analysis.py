@@ -9,7 +9,7 @@ import pandas as pd
 import sys
 import os
 from .parse_sentence import parse_sentence
-from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_total_dataframe
+from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 sys.setrecursionlimit(10000)
@@ -1639,7 +1639,7 @@ def user_input_list():
 
 
 def calculate_sentence_bias_score(original_word_list ,word_list):
-    view_df = load_total_dataframe(name='total_dataframe_user_uploads')
+    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
     sentence_score_list = []
     count = 0
     for sent in word_list:
