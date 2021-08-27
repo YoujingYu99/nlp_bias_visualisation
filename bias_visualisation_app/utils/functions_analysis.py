@@ -8,9 +8,9 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import sys
 import os
-from .parse_sentence import parse_sentence
-from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
-from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
+from parse_sentence import parse_sentence
+from functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
+from PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 sys.setrecursionlimit(10000)
 
@@ -35,6 +35,7 @@ PREPOSITIONS = ['prep']
 adj_list = ['ADJ', 'ADV', 'ADP', 'JJ', 'JJR', 'JJS']
 noun_list = ['NOUN', 'PRON' 'PROPN', 'NN', 'NNP', 'NNS', 'NNPS']
 verb_list = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VERB']
+non_sub_pos = ['DET', 'AUX']
 
 neutral_words = [
     'is',
@@ -192,8 +193,6 @@ def getObjFromXComp(deps):
                 return v, objs
     return None, None
 
-
-non_sub_pos = ['DET', 'AUX']
 
 
 def getAllSubs(v):
@@ -463,33 +462,6 @@ def clean_SVO_dataframe(SVO_df):
     SVO_df = SVO_df.apply(lambda x: x.astype(str).str.lower())
 
     return SVO_df
-
-
-def clean_premodifier_dataframe(premodifier_df):
-    for char in spec_chars:
-        premodifier_df['female_premodifier'] = premodifier_df['female_premodifier'].astype(str).str.replace(char, ' ')
-        premodifier_df['male_premodifier'] = premodifier_df['male_premodifier'].astype(str).str.replace(char, ' ')
-
-    # get base form of words
-    female_premodifier_list = premodifier_df['female_premodifier'].to_list()
-    female_premodifier_base_list = []
-    for premodifier in female_premodifier_list:
-        base_word = WordNetLemmatizer().lemmatize(premodifier)
-        base_word.strip()
-        female_premodifier_base_list.append(base_word)
-    premodifier_df['female_premodifier'] = female_premodifier_base_list
-
-    male_premodifier_list = premodifier_df['male_premodifier'].to_list()
-    male_premodifier_base_list = []
-    for premodifier in male_premodifier_list:
-        base_word = WordNetLemmatizer().lemmatize(premodifier)
-        base_word.strip()
-        male_premodifier_base_list.append(base_word)
-    premodifier_df['male_premodifier'] = male_premodifier_base_list
-
-    premodifier_df = premodifier_df.apply(lambda x: x.astype(str).str.lower())
-
-    return premodifier_df
 
 
 

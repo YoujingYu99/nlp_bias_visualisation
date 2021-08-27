@@ -1,19 +1,5 @@
 import unittest
 import os
-import glob
-import pathlib as pl
-import sys
-from os import listdir
-from io import open
-from conllu import parse_incr
-import csv
-import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup
-import requests
-from werkzeug.utils import secure_filename
-from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
-import pandas as pd
 import functions_files
 
 class TestFiles(unittest.TestCase):
