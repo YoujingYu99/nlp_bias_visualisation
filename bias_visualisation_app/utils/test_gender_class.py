@@ -16,7 +16,7 @@ import random
 random.shuffle(labeled_names)
 
 # Now we need to use the process the data with our feature and divide the resulting list
-# into a training set and a test set; the training set is used to train a new
+# into a training set and a test.py set; the training set is used to train a new
 # 'naive Bayes' classifier
 
 featuresets = [(gender_features(n), gender) for (n, gender) in labeled_names]
@@ -27,7 +27,7 @@ classifier = nltk.NaiveBayesClassifier.train(train_set)
 print(nltk.classify.accuracy(classifier, test_set))
 
 # Let's check for the error we made when predicting name genders
-# using a new set called dev-test set
+# using a new set called dev-test.py set
 train_names = labeled_names[1500:]
 devtest_names = labeled_names[500:1500]
 test_names = labeled_names[:500]
