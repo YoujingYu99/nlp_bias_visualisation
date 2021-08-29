@@ -1,7 +1,6 @@
 import unittest
 import os
 import pandas as pd
-
 import functions_files
 
 path_parent = os.path.dirname(os.getcwd())
@@ -14,7 +13,11 @@ class TestFiles(unittest.TestCase):
         expected = [
             ['time', 'would', 'embraced', 'change', 'coming', 'youth', 'sought', 'adventure', 'unknown', 'years', 'ago',
              'wished', 'could', 'go', 'back', 'learn', 'find', 'excitement', 'came', 'change', 'useless', 'curiosity',
-             'long', 'left', 'come', 'loathe', 'anything', 'put', 'comfort', 'zone']]
+             'long', 'left', 'come', 'loathe', 'anything', ]]
+
+        with open(os.path.join(test_path, 'test_file.txt'), 'w+', encoding='utf-8') as f:
+            f.write("There was a time when he would have embraced the change that was coming. In his youth, he sought adventure and the unknown, but that had been years ago. He wished he could go back and learn to find the excitement that came with change but it was useless. That curiosity had long left him to where he had come to loathe anything")
+
         self.assertEqual(functions_files.txt_list(test_path), expected)
 
     def test_concat_csv_excel(self):
@@ -65,7 +68,6 @@ class TestFiles(unittest.TestCase):
 
         self.assertEqual(functions_files.load_obj_user_uploads(test_path, name='gender_count')[
                              'female_count'].tolist(), expected)
-
 
 if __name__ == '__main__':
     unittest.main()
