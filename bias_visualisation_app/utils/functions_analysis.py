@@ -1170,7 +1170,9 @@ def generate_bias_values(input_data):
     gender_count_df = gender_count(input_data)
     save_obj_text(gender_count_df, name='gender_count_dataframe')
 
-    concat_csv_excel()
+    parent_path = os.path.dirname(os.getcwd())
+    csv_path = os.path.join(parent_path, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
+    concat_csv_excel(csv_path)
 
 
 def frame_from_file(view_df):
@@ -1434,15 +1436,17 @@ def gender_count_analysis(view_df):
 
 
 def gender_dataframe_from_tuple(view_df):
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
 
     save_obj(female_dataframe, name='fm_dic')
     save_obj(male_dataframe, name='m_dic')
-    male_dataframe = load_obj(name='m_dic')
+    male_dataframe = load_obj(df_path, name='m_dic')
     male_dataframe = male_dataframe.sort_values(by='bias', ascending=False)
     male_dataframe = male_dataframe.drop_duplicates(subset=['token'])
 
-    female_dataframe = load_obj(name='fm_dic')
+    female_dataframe = load_obj(df_path, name='fm_dic')
     female_dataframe = female_dataframe.sort_values(by='bias', ascending=True)
     female_dataframe = female_dataframe.drop_duplicates(subset=['token'])
 
@@ -1611,7 +1615,9 @@ def user_input_list():
 
 
 def calculate_sentence_bias_score(original_word_list ,word_list):
-    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
+    view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     sentence_score_list = []
     count = 0
     for sent in word_list:

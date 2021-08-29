@@ -1435,15 +1435,17 @@ def gender_count_analysis(view_df):
 
 
 def gender_dataframe_from_tuple(view_df):
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
 
     save_obj(female_dataframe, name='fm_dic')
     save_obj(male_dataframe, name='m_dic')
-    male_dataframe = load_obj(name='m_dic')
+    male_dataframe = load_obj(df_path, name='m_dic')
     male_dataframe = male_dataframe.sort_values(by='bias', ascending=False)
     male_dataframe = male_dataframe.drop_duplicates(subset=['token'])
 
-    female_dataframe = load_obj(name='fm_dic')
+    female_dataframe = load_obj(df_path, name='fm_dic')
     female_dataframe = female_dataframe.sort_values(by='bias', ascending=True)
     female_dataframe = female_dataframe.drop_duplicates(subset=['token'])
 

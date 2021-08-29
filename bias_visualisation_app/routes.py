@@ -18,6 +18,7 @@ import werkzeug
 import spacy
 import pandas as pd
 import sys
+import os
 
 sys.setrecursionlimit(10000)
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
@@ -89,7 +90,9 @@ def index():
 
 @app.route('/visualisation')
 def visualisation():
-    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
+    view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     token_list, value_list = generate_list(view_df)[0], generate_list(view_df)[1]
 
     # plot the bar graphs and word clouds
@@ -264,18 +267,20 @@ def detect_dataframe():
 
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
     # open dataframe file
-    view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
-    input_SVO_dataframe = load_obj_user_uploads(name='SVO_dataframe_user_uploads')
-    input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
-    input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
-    input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
-    input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
-    input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
-    input_gender_count_dataframe = load_obj_user_uploads(name='gender_count_dataframe_user_uploads')
+    view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
+    input_SVO_dataframe = load_obj_user_uploads(df_path, name='SVO_dataframe_user_uploads')
+    input_premodifier_dataframe = load_obj_user_uploads(df_path, name='premodifier_dataframe_user_uploads')
+    input_postmodifier_dataframe = load_obj_user_uploads(df_path, name='postmodifier_dataframe_user_uploads')
+    input_aux_dataframe = load_obj_user_uploads(df_path, name='aux_dataframe_user_uploads')
+    input_possess_dataframe = load_obj_user_uploads(df_path, name='possess_dataframe_user_uploads')
+    input_profession_dataframe = load_obj_user_uploads(df_path, name='profession_dataframe_user_uploads')
+    input_gender_count_dataframe = load_obj_user_uploads(df_path, name='gender_count_dataframe_user_uploads')
 
-    # view_df = frame_from_file(input_dataframe)[0]
-    female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
+    #view_df = frame_from_file(input_dataframe)[0]
+    female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df=view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
@@ -301,6 +306,9 @@ def analysis():
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
+
     dataframe_to_display = None
     select_gender = None
     select_wordtype = None
@@ -308,13 +316,13 @@ def query():
     try:
         if request.method == 'POST':
             # open dataframe file
-            view_df = load_obj_user_uploads(name='total_dataframe_user_uploads')
-            input_SVO_dataframe = load_obj_user_uploads(name='SVO_dataframe_user_uploads')
-            input_premodifier_dataframe = load_obj_user_uploads(name='premodifier_dataframe_user_uploads')
-            input_postmodifier_dataframe = load_obj_user_uploads(name='postmodifier_dataframe_user_uploads')
-            input_aux_dataframe = load_obj_user_uploads(name='aux_dataframe_user_uploads')
-            input_possess_dataframe = load_obj_user_uploads(name='possess_dataframe_user_uploads')
-            input_profession_dataframe = load_obj_user_uploads(name='profession_dataframe_user_uploads')
+            view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
+            input_SVO_dataframe = load_obj_user_uploads(df_path, name='SVO_dataframe_user_uploads')
+            input_premodifier_dataframe = load_obj_user_uploads(df_path, name='premodifier_dataframe_user_uploads')
+            input_postmodifier_dataframe = load_obj_user_uploads(df_path, name='postmodifier_dataframe_user_uploads')
+            input_aux_dataframe = load_obj_user_uploads(df_path, name='aux_dataframe_user_uploads')
+            input_possess_dataframe = load_obj_user_uploads(df_path, name='possess_dataframe_user_uploads')
+            input_profession_dataframe = load_obj_user_uploads(df_path, name='profession_dataframe_user_uploads')
 
             # select_wordtype = request.form.get('type_select')
             # select_gender = request.form.get('gender_select')

@@ -54,11 +54,13 @@ def bar_graph(dataframe, token_list, value_list):
 
 
 def specific_bar_graph(df_name='specific_df'):
-    # set minus sign
+    # set minus
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
     try:
         mpl.rcParams['axes.unicode_minus'] = False
         np.random.seed(12345)
-        df = load_obj(name=df_name)
+        df = load_obj(df_path, name=df_name)
         set_x_tick = True
 
         plt.style.use('ggplot')
@@ -100,7 +102,7 @@ def specific_bar_graph(df_name='specific_df'):
         try:
             mpl.rcParams['axes.unicode_minus'] = False
             np.random.seed(12345)
-            df = load_obj(name=df_name)
+            df = load_obj(df_path, name=df_name)
             set_x_tick = True
 
             plt.style.use('ggplot')
@@ -142,7 +144,7 @@ def specific_bar_graph(df_name='specific_df'):
             try:
                 mpl.rcParams['axes.unicode_minus'] = False
                 np.random.seed(12345)
-                df = load_obj(name=df_name)
+                df = load_obj(df_path, name=df_name)
                 set_x_tick = True
 
                 plt.style.use('ggplot')

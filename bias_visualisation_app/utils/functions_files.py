@@ -208,9 +208,7 @@ def save_obj_user_uploads(obj, name):
 
 
 
-def concat_csv_excel():
-    parent_path = os.path.dirname(os.getcwd())
-    csv_path = os.path.join(parent_path, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_downloads')
+def concat_csv_excel(csv_path):
     csv_files = [f for f in listdir(csv_path) if f.endswith('.csv')]
     writer = pd.ExcelWriter(os.path.join(csv_path, 'complete_file.xlsx'), engine='xlsxwriter')
     for file in csv_files:
@@ -218,19 +216,16 @@ def concat_csv_excel():
         df.to_excel(writer, sheet_name=os.path.splitext(file)[0], index=False)
     writer.save()
 
-def load_obj(name):
-    path_parent = os.path.dirname(os.getcwd())
-    save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', name)
+def load_obj(df_path,name):
+    save_df_path = os.path.join(df_path, name)
     df_path = save_df_path + '.csv'
     return pd.read_csv(df_path, error_bad_lines=False)
 
 
-def load_obj_user_uploads(name):
-    # 'visualising_data_bias', 'bias_visualisation_app',
-    path_parent = os.path.dirname(os.getcwd())
-    upload_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app','static', 'user_uploads', name)
-    df_path = upload_df_path + '.csv'
-    return pd.read_csv(df_path, error_bad_lines=False)
+def load_obj_user_uploads(df_path, name):
+    upload_df_path = os.path.join(df_path, name)
+    actual_df_path = upload_df_path + '.csv'
+    return pd.read_csv(actual_df_path, error_bad_lines=False)
 
 
 
