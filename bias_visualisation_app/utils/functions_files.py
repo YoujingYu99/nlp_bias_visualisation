@@ -1,4 +1,5 @@
 import os
+import glob
 import sys
 from os import listdir
 from io import open
@@ -11,7 +12,7 @@ from werkzeug.utils import secure_filename
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 import pandas as pd
-from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
+from PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 
 sys.setrecursionlimit(10000)
@@ -117,19 +118,20 @@ def txt_list(txt_dir):
     file_n = len(txt_files)
     print('{} files being processed'.format(file_n))
     for file in txt_files:
-        with open(os.path.join(txt_dir, file), 'r', encoding='utf-8') as file_in:
-            for line in file_in:
-                # create word tokens as well as remove puntuation in one go
-                rem_tok_punc = RegexpTokenizer(r'\w+')
-                tokens = rem_tok_punc.tokenize(line)
-                # convert the words to lower case
-                words = [w.lower() for w in tokens]
-                # Invoke all the english stopwords
-                stop_word_list = set(stopwords.words('english'))
-                # Remove stop words
-                words = [w for w in words if not w in stop_word_list]
+        if file.endswith(".txt"):
+            with open(os.path.join(txt_dir, file), 'r', encoding='utf-8') as file_in:
+                for line in file_in:
+                    # create word tokens as well as remove puntuation in one go
+                    rem_tok_punc = RegexpTokenizer(r'\w+')
+                    tokens = rem_tok_punc.tokenize(line)
+                    # convert the words to lower case
+                    words = [w.lower() for w in tokens]
+                    # Invoke all the english stopwords
+                    stop_word_list = set(stopwords.words('english'))
+                    # Remove stop words
+                    words = [w for w in words if not w in stop_word_list]
 
-                training_list.append(words)
+                    training_list.append(words)
 
     return training_list
 

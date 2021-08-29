@@ -1,0 +1,5 @@
+token,bias,pos
+teacher,0.5,NOUN
+cleaner,0.7,NOUN
+nurse,0.9,NOUN
+engineer,-0.8,NOUN
