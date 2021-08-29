@@ -1,16 +1,8 @@
-from nltk.stem.wordnet import WordNetLemmatizer
+
 import nltk.corpus as nc
-import nltk
-import spacy
-import string
-from io import open
-from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import sys
-import os
 import unittest
-from parse_sentence import parse_sentence
-from functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
 from PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 import functions_analysis
