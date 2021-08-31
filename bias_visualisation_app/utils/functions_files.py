@@ -12,7 +12,9 @@ from werkzeug.utils import secure_filename
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 import pandas as pd
-from PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
+from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
+
+# remove the . before .PrecalculatedBiasCalculator when running tests.
 
 
 sys.setrecursionlimit(10000)

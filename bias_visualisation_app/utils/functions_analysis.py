@@ -12,6 +12,8 @@ from .parse_sentence import parse_sentence
 from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
+# remove the . before .parse_sentence when running tests.
+
 sys.setrecursionlimit(10000)
 
 calculator = PrecalculatedBiasCalculator()

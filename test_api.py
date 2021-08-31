@@ -3,6 +3,8 @@ import requests
 import unittest
 import flask_unittest
 
+# keep the dots in functions_files and functions_analysis when running API tests
+
 class ApiTest(flask_unittest.ClientTestCase):
     API_URL = "http://127.0.0.1:5000/"
     app = app
