@@ -2,14 +2,14 @@ import unittest
 from selenium import webdriver
 import page
 
-class PythonOrgSearch(unittest.TestCase):
+class WebSearch(unittest.TestCase):
 
     # the first thing that will run when we call the class
     # it will be called everytime a test is called
     def setUp(self):
         print("set up")
         self.driver = webdriver.Chrome("C:\Program Files (x86)\chromedriver.exe")
-        self.driver.get("http://www.python.org")
+        self.driver.get("http://127.0.0.1:5000/ ")
 
     # this will automatically run when we run the unittests
     def test_example(self):
@@ -21,7 +21,7 @@ class PythonOrgSearch(unittest.TestCase):
     #     mainPage = page.MainPage()
     #     assert mainPage.is_title_matches()
 
-    def test_search_python(self):
+    def test_search_web(self):
         mainPage = page.MainPage(self.driver)
         assert mainPage.is_title_matches()
         mainPage.search_text_element = "pycon"

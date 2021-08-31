@@ -22,7 +22,7 @@ class MainPage(BasePage):
     # check if text in the title
     def is_title_matches(self):
         # returns a Boolean statement
-        return "Python" in self.driver.title
+        return "home" in self.driver.title
 
     def click_go_button(self):
         # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
