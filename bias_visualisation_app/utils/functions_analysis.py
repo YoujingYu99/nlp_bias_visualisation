@@ -5,6 +5,7 @@ import spacy
 import string
 from io import open
 from sklearn.preprocessing import MinMaxScaler
+from pivottablejs import pivot_ui
 import pandas as pd
 import sys
 import os
@@ -1673,8 +1674,7 @@ def debiased_file(threshold_value):
     with open(os.path.join(save_path, 'debiased_file' + '.txt'), 'w+', encoding='utf-8') as f:
         f.write('\n'.join(debiased_sentence_list))
 
-import dtale
-from pivottablejs import pivot_ui
+
 def style_dataframe(df, df_name):
     # # should list all possible situations here!!!
     # if 'bias' in df.columns:
@@ -1696,3 +1696,14 @@ def style_dataframe(df, df_name):
     # return url_for('static', filename=df_name)
     pivot_ui(df, outfile_path=df_path)
     return url_for('static', filename=df_name)
+
+
+def df_tot(female_df, male_df):
+    fl = len(female_df.index)
+    ml = len(male_df.index)
+    f_gender = ['female'] * fl
+    m_gender = ['male'] * ml
+    female_df['gender'] = f_gender
+    male_df['gender'] = m_gender
+    df_tot = pd.concat([female_df, male_df])
+    return df_tot

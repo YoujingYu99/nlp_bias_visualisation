@@ -2,74 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworked.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworkedpca.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworkedpca_female.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworkedpca_male.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworkedtsne.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworkedtsne_female.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/doneworkedtsne_male.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_adj_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_before_aux_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_follow_aux_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_intran_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_noun_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_obj_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_possessive_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_possessor_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_postmodifier_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_premodifier_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_profession_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_sub_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_tot_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/female_verb_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/femalecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/fm_dic.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/m_dic.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_adj_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_before_aux_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_follow_aux_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_intran_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_noun_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_obj_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_possessive_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_possessor_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_postmodifier_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_premodifier_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_profession_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_sub_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_tot_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/male_verb_df.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/malecloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/racepeer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/specific_df.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/SVO_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/aux_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/complete_file.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/gender_count_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/possess_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/postmodifier_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/premodifier_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/profession_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_downloads/total_dataframe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/SVO_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/aux_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/gender_count_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/possess_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/postmodifier_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/premodifier_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/profession_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/user_uploads/total_dataframe_user_uploads.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpride.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca_female.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca_male.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne_female.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne_male.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/adj_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/before_aux_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/follow_aux_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/intran_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/noun_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/obj_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/possessive_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/possessor_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/postmodifier_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/premodifier_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/profession_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/sub_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/tot_df.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/static/verb_df.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/query.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/femalecloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/femalecloud.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/malecloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/malecloud.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpride.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpride.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca_female.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca_female.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca_male.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridepca_male.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne_female.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne_female.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne_male.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/static/wolfpridetsne_male.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/analysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/visualisation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions_analysis.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -660,6 +620,11 @@
           <url>file://$PROJECT_DIR$/bias_visualisation_app/utils/test_aux.py</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/bias_visualisation_app/utils/functions_analysis.py</url>
+          <line>1441</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -677,7 +642,7 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_premodifier.coverage" NAME="test_premodifier Coverage Results" MODIFIED="1629189814818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_analysis.coverage" NAME="test_analysis Coverage Results" MODIFIED="1630060988342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1630488731406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1630533249958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_modifier.coverage" NAME="test_modifier2 Coverage Results" MODIFIED="1628520777336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_aux.coverage" NAME="test_aux Coverage Results" MODIFIED="1629130585726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_follow_aux.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1628679183926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />

@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos,gender
+44,unease,-1.0,NOUN,female
+93,loathe,-0.9959219078659862,VERB,female
+115,speechless,-0.9955156285746024,ADJ,female
+101,lamenting,-0.9951391922065284,VERB,female
+109,imaginative,-0.9821529874646464,ADJ,female
+4,unforgiving,-0.981146072121845,ADJ,female
+49,unbelievable,-0.9774653819539268,ADJ,female
+7,drudgery,-0.9742920214822688,NOUN,female
+39,standstill,-0.9572609673563888,NOUN,female
+25,clicked,-0.9566941406927708,VERB,female
+13,throbbed,-0.9484852591107984,VERB,female
+100,upbraiding,-0.9397220168964636,VERB,female
+34,someplace,-0.9079330705562804,NOUN,female
+58,fateful,-0.907633319168356,ADJ,female
+35,frantic,-0.8923873629424601,ADJ,female
+55,lied,-0.8902823035735759,VERB,female
+59,predicament,-0.8875554536759909,NOUN,female
+24,devious,-0.880570320828967,ADJ,female
+71,undeniable,-0.8762872946962776,ADJ,female
+114,pinpoint,-0.8711444901654584,VERB,female
+18,intolerance,-0.8489592987530716,NOUN,female
+94,oppression,-0.8275169694759761,NOUN,female
+52,perfection,-0.8271409108664249,NOUN,female
+99,inwardly,-0.8262471342012332,ADV,female
+40,nervously,-0.8253044378073255,ADV,female
+14,spun,-0.8209910021135425,VERB,female
+16,disgusting,-0.8195704411881608,ADJ,female
+65,risky,-0.8112999849669549,ADJ,female
+108,cautioned,-0.8041660152619068,VERB,female
+86,windshield,-0.8007699661409968,NOUN,female
+64,disclose,-0.7850961983879119,VERB,female
+47,encouragement,-0.7841412248420099,NOUN,female
+81,grunt,-0.7804067040845777,NOUN,female
+10,accomplishment,-0.7703590828923683,NOUN,female
+45,reluctantly,-0.7631238739031818,ADV,female
+41,peered,-0.7595400787963884,VERB,female
+12,disrupted,-0.7547646444290934,VERB,female
+33,commute,-0.7307488352147125,NOUN,female
+104,merry,-0.7220284685927274,ADJ,female
+20,preferable,-0.7148801440638088,ADJ,female
+11,amazement,-0.7101054652135597,NOUN,female
+1,sizing,-0.7060099961874924,VERB,female
+19,propelled,-0.7026075251716932,VERB,female
+113,teen,-0.7016004209496303,NOUN,female
+107,shaded,-0.690982195508574,ADJ,female
+37,ignoring,-0.6882740446578728,VERB,female
+83,disgust,-0.6744834031414662,NOUN,female
+36,raced,-0.6696388389644796,VERB,female
+73,crashing,-0.6658697533022016,VERB,female
+78,horn,-0.6581413805613634,NOUN,female
+72,destiny,-0.6404424493669885,NOUN,female
+46,crept,-0.6268557974529501,VERB,female
+76,upside,-0.6254983222008934,ADV,female
+60,priority,-0.6106833884496314,NOUN,female
+87,analogy,-0.6096825172431966,NOUN,female
+88,embraced,-0.5939279091662102,VERB,female
+80,rib,-0.5857364044762912,NOUN,female
+38,weaving,-0.5852466405513459,NOUN,female
+97,anguish,-0.5838151246287999,NOUN,female
+0,wolf,-0.5777758046834978,NOUN,female
+43,disturbed,-0.5638481312629073,VERB,female
+17,racism,-0.5636766288935089,NOUN,female
+66,fracture,-0.55693798348268,VERB,female
+91,useless,-0.5561830330746558,ADJ,female
+30,awoke,-0.5550575015556622,VERB,female
+85,crack,-0.5420039613570724,NOUN,female
+102,footstep,-0.5304430395221085,NOUN,female
+63,misery,-0.5303611603622691,NOUN,female
+2,desperate,-0.5297560856482071,ADJ,female
+111,weakness,-0.5212658684063016,NOUN,female
+103,mosquito,-0.5209527065908139,NOUN,female
+22,lesson,-0.4926532101663283,NOUN,female
+105,biting,-0.4854421777226076,VERB,female
+96,vague,-0.4825848122553595,ADJ,female
+77,twist,-0.4733221732737454,NOUN,female
+15,flu,-0.4567449015735041,NOUN,female
+5,upset,-0.4090171898764185,ADJ,female
+54,confirmation,-0.400102938692553,NOUN,female
+67,mess,-0.3952092659075887,NOUN,female
+116,sadness,-0.3933195288967599,NOUN,female
+48,horrible,-0.3772219160809764,ADJ,female
+112,tendency,-0.3767920268819114,NOUN,female
+68,dashed,-0.373051650867374,VERB,female
+70,ignored,-0.3486691325668836,VERB,female
+9,appreciate,-0.3438629108799718,VERB,female
+61,naked,-0.3425367895853162,ADJ,female
+21,ignore,-0.3402024307930289,VERB,female
+106,wharf,-0.3371769627830883,NOUN,female
+8,discipline,-0.3325819081104799,NOUN,female
+27,courage,-0.3289110396641572,NOUN,female
+98,mist,-0.3185361851514821,NOUN,female
+57,waited,-0.3104312816029391,VERB,female
+31,ate,-0.2635319943465826,VERB,female
+50,gesture,-0.2550027735371871,NOUN,female
+42,height,-0.2458583729732422,NOUN,female
+56,anyway,-0.2316883674602088,ADV,female
+29,outline,-0.2204930214357854,VERB,female
+82,anger,-0.2169194258091105,NOUN,female
+26,argument,-0.1852895158070697,NOUN,female
+53,stared,-0.1807635909441531,VERB,female
+23,dad,-0.1763025461075451,NOUN,female
+90,excitement,-0.1735229988960152,NOUN,female
+51,mistake,-0.1670829715975421,NOUN,female
+62,wondering,-0.126188817140165,VERB,female
+74,confused,-0.1253629425694655,ADJ,female
+69,shock,-0.1191828131347507,NOUN,female
+84,jump,-0.1184184187636538,VERB,female
+75,sheep,-0.1010938462654771,NOUN,female
+32,drove,-0.0859297691994209,VERB,female
+89,wished,-0.0803405485341592,VERB,female
+79,lowest,-0.0629781057440612,ADJ,female
+92,curiosity,-0.0592237526641765,NOUN,female
+110,habit,-0.0425860396002706,NOUN,female
+28,underlying,-0.0321490438105778,ADJ,female
+95,consciousness,-0.0159681352404938,NOUN,female
+3,pack,-0.0126584983816984,NOUN,female
+6,ease,-0.009093968959573,NOUN,female
+55,marriage,1.0,NOUN,male
+189,put,0.998936174012277,VERB,male
+218,least,0.9960917097917312,ADJ,male
+234,longer,0.9937121173675646,ADV,male
+186,long,0.9853584443376872,ADV,male
+166,side,0.975882025020113,NOUN,male
+40,probably,0.974950459222058,ADV,male
+237,running,0.973720929010966,VERB,male
+110,person,0.9727883996335536,NOUN,male
+145,easier,0.970159088167078,ADJ,male
+54,option,0.9662446392544431,NOUN,male
+76,face,0.963745483306539,NOUN,male
+173,heard,0.962257513143488,VERB,male
+112,alone,0.9501536254078568,ADV,male
+59,onto,0.950150260996012,ADP,male
+127,bad,0.947690610326136,ADJ,male
+154,however,0.9471152781932756,ADV,male
+46,needed,0.9449521502564486,VERB,male
+44,door,0.9447656851080568,NOUN,male
+214,see,0.9440446916497556,VERB,male
+179,condition,0.943906709446788,NOUN,male
+131,lake,0.9435973842412984,NOUN,male
+204,arm,0.9427260251834504,NOUN,male
+113,remember,0.940732310139192,VERB,male
+9,signal,0.938483177211158,VERB,male
+83,got,0.9380161201149254,VERB,male
+115,course,0.9367666188731733,NOUN,male
+47,matter,0.9354350791047048,VERB,male
+151,day,0.9352743487556858,NOUN,male
+51,second,0.930587333492658,NOUN,male
+86,idea,0.9286330824090894,NOUN,male
+95,edge,0.9275665048295768,NOUN,male
+123,already,0.9242722026058204,ADV,male
+105,simple,0.9230998172250328,ADJ,male
+169,later,0.9229960044609572,ADV,male
+128,reason,0.9208392866140658,NOUN,male
+170,animal,0.9155733505122102,NOUN,male
+57,trying,0.9146849155886316,VERB,male
+187,left,0.9131591784270056,VERB,male
+52,third,0.9128028517977992,NOUN,male
+99,full,0.9078880953652756,ADJ,male
+194,across,0.9070971457505136,ADP,male
+230,big,0.9055004194989664,ADJ,male
+8,choice,0.9053629921288292,NOUN,male
+172,hard,0.9044652608041008,ADV,male
+13,difficult,0.90170081803101,ADJ,male
+3,getting,0.9016697060751628,VERB,male
+91,away,0.8989886948133415,ADV,male
+116,throughout,0.8986177831636648,ADP,male
+217,numerous,0.8970764221456307,ADJ,male
+2,week,0.8960661778058461,NOUN,male
+63,write,0.8936450880176907,VERB,male
+176,soon,0.893330297118573,ADV,male
+198,sit,0.8918061359182847,VERB,male
+221,making,0.8911846050985688,VERB,male
+37,next,0.8909022660175593,ADJ,male
+7,decision,0.8904632988089907,NOUN,male
+135,higher,0.8901176497605332,ADJ,male
+97,mind,0.8889827096933286,NOUN,male
+174,impact,0.8875012706209902,NOUN,male
+118,process,0.8787573177012313,NOUN,male
+203,round,0.8783067108081757,ADJ,male
+208,private,0.8776704946258818,ADJ,male
+71,issue,0.8771522217374109,NOUN,male
+65,read,0.8750508927339402,VERB,male
+36,showed,0.8729427994919188,VERB,male
+82,job,0.8679612034107487,NOUN,male
+6,taking,0.8596307426091703,VERB,male
+219,power,0.8594587090168488,NOUN,male
+226,use,0.8532421612995353,VERB,male
+11,talking,0.8441631483749142,VERB,male
+56,simply,0.8429960988332629,ADV,male
+122,hear,0.8424345253741041,VERB,male
+117,entire,0.8399256303392811,ADJ,male
+61,plan,0.8387225992983232,NOUN,male
+167,point,0.8383057781831598,NOUN,male
+30,behind,0.8376842827783052,ADP,male
+191,filled,0.8343927547187014,VERB,male
+72,continue,0.8343498437114902,VERB,male
+66,seems,0.8318551854509992,VERB,male
+73,eye,0.8301947360586195,NOUN,male
+199,husband,0.8282808933320478,NOUN,male
+22,soft,0.8275415490730009,ADJ,male
+93,dead,0.8244532905135812,ADJ,male
+162,many,0.8231506964919302,ADJ,male
+235,stood,0.822361039519614,VERB,male
+87,standard,0.8165475719511933,ADJ,male
+84,home,0.8164109296104864,ADV,male
+89,type,0.8153093385378821,NOUN,male
+60,healthy,0.8107232202153314,ADJ,male
+20,passed,0.8101349557555386,VERB,male
+27,form,0.8099589675036806,VERB,male
+190,part,0.8086270027568737,NOUN,male
+188,come,0.807102062429632,VERB,male
+180,coming,0.8013664957516065,VERB,male
+196,strange,0.7991735839162392,ADJ,male
+38,head,0.7983381473329285,NOUN,male
+35,within,0.7961355554354118,ADP,male
+70,address,0.7893933449285231,VERB,male
+102,continued,0.7832332130856146,VERB,male
+220,story,0.7783429637372643,NOUN,male
+94,ahead,0.7751605842808722,ADV,male
+224,manner,0.7685083039123424,NOUN,male
+165,held,0.7650919974906417,VERB,male
+24,fell,0.7622975760372723,VERB,male
+48,late,0.754244732335167,ADJ,male
+231,pick,0.751439828082787,VERB,male
+4,high,0.7489580490269363,ADJ,male
+228,tried,0.746164808068951,VERB,male
+34,carried,0.7427704352514866,VERB,male
+75,mouth,0.7402645268699852,NOUN,male
+232,carry,0.7362249424954002,VERB,male
+136,tree,0.7308824925852258,NOUN,male
+207,bay,0.7294771836602063,NOUN,male
+18,doctor,0.722035340758991,NOUN,male
+19,live,0.7215129007218144,VERB,male
+163,became,0.7210080972856758,VERB,male
+149,leaving,0.717557178739314,VERB,male
+184,unknown,0.7167743450303179,ADJ,male
+80,breakfast,0.7072538858568216,NOUN,male
+215,people,0.703523921811572,NOUN,male
+216,walking,0.7006986894286782,VERB,male
+152,expected,0.6982793821885529,VERB,male
+212,run,0.6945999197358339,VERB,male
+126,almost,0.6945368104526013,ADV,male
+28,year,0.693541511184379,NOUN,male
+134,spend,0.690704072479214,VERB,male
+16,given,0.6897088676506224,VERB,male
+100,force,0.6861515628602478,NOUN,male
+12,meaning,0.6851104839810311,NOUN,male
+78,found,0.6800157964420666,VERB,male
+227,check,0.6620893365673649,VERB,male
+185,find,0.6582937605886683,VERB,male
+147,page,0.6573466019222087,NOUN,male
+120,lost,0.6536978559593836,VERB,male
+213,house,0.6491126230083708,NOUN,male
+49,meeting,0.6455501004283986,NOUN,male
+108,else,0.6419455758226609,ADV,male
+26,angle,0.6404778423017314,NOUN,male
+132,exactly,0.6254558496601026,ADV,male
+107,hat,0.6229769274030814,NOUN,male
+229,younger,0.6225311251262389,ADJ,male
+41,combination,0.619573275891898,NOUN,male
+133,ended,0.6183064626853384,VERB,male
+69,strength,0.6173445714364856,NOUN,male
+155,remote,0.6122098414940932,ADJ,male
+103,build,0.6091537986537048,VERB,male
+158,went,0.6033494445096492,VERB,male
+148,group,0.6016251657318523,NOUN,male
+175,seat,0.5963999626232244,NOUN,male
+168,decided,0.5837635622735518,VERB,male
+159,rapid,0.5741244869238635,ADJ,male
+92,traffic,0.5678193194180674,NOUN,male
+45,stuff,0.5475412891283785,NOUN,male
+0,stopped,0.5462714066338203,VERB,male
+137,snow,0.54255275173435,NOUN,male
+161,forced,0.5423158027008583,VERB,male
+62,button,0.5380713551573206,NOUN,male
+144,lot,0.5372489276331427,NOUN,male
+81,worked,0.5357684919818806,VERB,male
+85,sharp,0.5347900029679276,ADJ,male
+233,hit,0.5324851565602422,VERB,male
+31,beauty,0.5246558750739733,NOUN,male
+130,began,0.518057000316619,VERB,male
+106,tip,0.501092809449293,NOUN,male
+42,display,0.5004609610999202,NOUN,male
+139,student,0.499383074374628,NOUN,male
+43,changing,0.4983678011245073,VERB,male
+193,passing,0.4983661012111542,VERB,male
+211,lane,0.4910409384737011,NOUN,male
+29,putting,0.4865181301185983,VERB,male
+223,mine,0.4820929723416662,NOUN,male
+141,holding,0.4728947884080228,VERB,male
+98,supposed,0.4717874837377594,VERB,male
+10,listen,0.4677775770171301,VERB,male
+156,grown,0.4606206584818154,VERB,male
+195,soul,0.4567831040872611,NOUN,male
+104,help,0.4549494642170835,VERB,male
+182,sought,0.4537050332030059,VERB,male
+14,explain,0.4517165595582529,VERB,male
+119,doubt,0.4500615050297784,NOUN,male
+77,finger,0.4458662133140336,NOUN,male
+140,need,0.442298520164279,VERB,male
+90,car,0.435665458260602,NOUN,male
+109,average,0.4234876095379198,ADJ,male
+114,ultimately,0.4202216037885198,ADV,male
+129,assumed,0.4175409820901753,VERB,male
+171,sudden,0.4101805933704613,ADJ,male
+111,notice,0.4066938822040544,VERB,male
+124,worst,0.3853281906872933,ADJ,male
+143,meant,0.3749334566323503,VERB,male
+181,youth,0.3469042936508183,NOUN,male
+236,pride,0.3411365820834843,NOUN,male
+33,watched,0.3389941246208324,VERB,male
+202,firm,0.3301447062434604,NOUN,male
+23,cream,0.3300120185622902,NOUN,male
+142,bringing,0.32942148755136,VERB,male
+210,estate,0.3201671592572498,NOUN,male
+58,teach,0.2952972852423974,VERB,male
+101,closer,0.294963866126119,ADJ,male
+50,danger,0.2935239450764384,NOUN,male
+153,favor,0.2881466941623414,NOUN,male
+74,nose,0.286451597230439,NOUN,male
+157,belief,0.276858089002576,NOUN,male
+201,cry,0.2489488643520662,NOUN,male
+96,understood,0.2457174707273272,VERB,male
+79,joy,0.2282790040344948,NOUN,male
+39,drinking,0.226987069886162,NOUN,male
+192,shadow,0.2209096435498618,NOUN,male
+5,risk,0.2182397879694201,NOUN,male
+200,directed,0.1982984821830851,VERB,male
+15,diagnosis,0.1912474304738144,NOUN,male
+160,bear,0.1826993217382738,NOUN,male
+150,telling,0.1805822685362873,VERB,male
+138,falling,0.1777310416450361,VERB,male
+205,bare,0.1729132983231759,ADJ,male
+125,know,0.1639859200306394,VERB,male
+53,split,0.1439992832215558,VERB,male
+178,surprise,0.1400480235116072,NOUN,male
+17,tear,0.1364523290113425,NOUN,male
+67,topic,0.1298950076915077,NOUN,male
+1,track,0.1153650927457772,NOUN,male
+121,want,0.1129282669541521,VERB,male
+25,precise,0.1062894442330008,ADJ,male
+206,lovely,0.1062271140767215,ADJ,male
+64,somewhere,0.0936541771588969,ADV,male
+21,expert,0.0884505535058898,NOUN,male
+222,nervous,0.0863885586086165,ADJ,male
+209,belonging,0.0856949939605641,VERB,male
+197,mood,0.0793137081124027,NOUN,male
+177,recovered,0.0736705624179965,VERB,male
+183,adventure,0.0633817424089129,NOUN,male
+164,darkness,0.0614517741153947,NOUN,male
+88,rush,0.0484361986483569,NOUN,male
+146,stayed,0.0437423601220091,VERB,male
+32,worker,0.0256595318287327,NOUN,male
+225,excited,0.0231956963027198,ADJ,male
+68,circumstance,0.0181018115006165,NOUN,male
+</div>
+    </body>
+</html>

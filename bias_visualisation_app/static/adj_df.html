@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos,gender
+115,speechless,-0.9955156285746024,ADJ,female
+109,imaginative,-0.9821529874646464,ADJ,female
+4,unforgiving,-0.981146072121845,ADJ,female
+49,unbelievable,-0.9774653819539268,ADJ,female
+58,fateful,-0.907633319168356,ADJ,female
+35,frantic,-0.8923873629424601,ADJ,female
+24,devious,-0.880570320828967,ADJ,female
+71,undeniable,-0.8762872946962776,ADJ,female
+99,inwardly,-0.8262471342012332,ADV,female
+40,nervously,-0.8253044378073255,ADV,female
+16,disgusting,-0.8195704411881608,ADJ,female
+65,risky,-0.8112999849669549,ADJ,female
+45,reluctantly,-0.7631238739031818,ADV,female
+104,merry,-0.7220284685927274,ADJ,female
+20,preferable,-0.7148801440638088,ADJ,female
+107,shaded,-0.690982195508574,ADJ,female
+76,upside,-0.6254983222008934,ADV,female
+91,useless,-0.5561830330746558,ADJ,female
+2,desperate,-0.5297560856482071,ADJ,female
+96,vague,-0.4825848122553595,ADJ,female
+5,upset,-0.4090171898764185,ADJ,female
+48,horrible,-0.3772219160809764,ADJ,female
+61,naked,-0.3425367895853162,ADJ,female
+56,anyway,-0.2316883674602088,ADV,female
+74,confused,-0.1253629425694655,ADJ,female
+79,lowest,-0.0629781057440612,ADJ,female
+28,underlying,-0.0321490438105778,ADJ,female
+218,least,0.9960917097917312,ADJ,male
+234,longer,0.9937121173675646,ADV,male
+186,long,0.9853584443376872,ADV,male
+40,probably,0.974950459222058,ADV,male
+145,easier,0.970159088167078,ADJ,male
+112,alone,0.9501536254078568,ADV,male
+59,onto,0.950150260996012,ADP,male
+127,bad,0.947690610326136,ADJ,male
+154,however,0.9471152781932756,ADV,male
+123,already,0.9242722026058204,ADV,male
+105,simple,0.9230998172250328,ADJ,male
+169,later,0.9229960044609572,ADV,male
+99,full,0.9078880953652756,ADJ,male
+194,across,0.9070971457505136,ADP,male
+230,big,0.9055004194989664,ADJ,male
+172,hard,0.9044652608041008,ADV,male
+13,difficult,0.90170081803101,ADJ,male
+91,away,0.8989886948133415,ADV,male
+116,throughout,0.8986177831636648,ADP,male
+217,numerous,0.8970764221456307,ADJ,male
+176,soon,0.893330297118573,ADV,male
+37,next,0.8909022660175593,ADJ,male
+135,higher,0.8901176497605332,ADJ,male
+203,round,0.8783067108081757,ADJ,male
+208,private,0.8776704946258818,ADJ,male
+56,simply,0.8429960988332629,ADV,male
+117,entire,0.8399256303392811,ADJ,male
+30,behind,0.8376842827783052,ADP,male
+22,soft,0.8275415490730009,ADJ,male
+93,dead,0.8244532905135812,ADJ,male
+162,many,0.8231506964919302,ADJ,male
+87,standard,0.8165475719511933,ADJ,male
+84,home,0.8164109296104864,ADV,male
+60,healthy,0.8107232202153314,ADJ,male
+196,strange,0.7991735839162392,ADJ,male
+35,within,0.7961355554354118,ADP,male
+94,ahead,0.7751605842808722,ADV,male
+48,late,0.754244732335167,ADJ,male
+4,high,0.7489580490269363,ADJ,male
+184,unknown,0.7167743450303179,ADJ,male
+126,almost,0.6945368104526013,ADV,male
+108,else,0.6419455758226609,ADV,male
+132,exactly,0.6254558496601026,ADV,male
+229,younger,0.6225311251262389,ADJ,male
+155,remote,0.6122098414940932,ADJ,male
+159,rapid,0.5741244869238635,ADJ,male
+85,sharp,0.5347900029679276,ADJ,male
+109,average,0.4234876095379198,ADJ,male
+114,ultimately,0.4202216037885198,ADV,male
+171,sudden,0.4101805933704613,ADJ,male
+124,worst,0.3853281906872933,ADJ,male
+101,closer,0.294963866126119,ADJ,male
+205,bare,0.1729132983231759,ADJ,male
+25,precise,0.1062894442330008,ADJ,male
+206,lovely,0.1062271140767215,ADJ,male
+64,somewhere,0.0936541771588969,ADV,male
+222,nervous,0.0863885586086165,ADJ,male
+225,excited,0.0231956963027198,ADJ,male
+</div>
+    </body>
+</html>

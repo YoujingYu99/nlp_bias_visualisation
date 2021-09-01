@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos,gender
+93,loathe,-0.9959219078659862,VERB,female
+101,lamenting,-0.9951391922065284,VERB,female
+25,clicked,-0.9566941406927708,VERB,female
+13,throbbed,-0.9484852591107984,VERB,female
+100,upbraiding,-0.9397220168964636,VERB,female
+55,lied,-0.8902823035735759,VERB,female
+114,pinpoint,-0.8711444901654584,VERB,female
+14,spun,-0.8209910021135425,VERB,female
+108,cautioned,-0.8041660152619068,VERB,female
+64,disclose,-0.7850961983879119,VERB,female
+41,peered,-0.7595400787963884,VERB,female
+12,disrupted,-0.7547646444290934,VERB,female
+1,sizing,-0.7060099961874924,VERB,female
+19,propelled,-0.7026075251716932,VERB,female
+37,ignoring,-0.6882740446578728,VERB,female
+36,raced,-0.6696388389644796,VERB,female
+73,crashing,-0.6658697533022016,VERB,female
+46,crept,-0.6268557974529501,VERB,female
+88,embraced,-0.5939279091662102,VERB,female
+43,disturbed,-0.5638481312629073,VERB,female
+66,fracture,-0.55693798348268,VERB,female
+30,awoke,-0.5550575015556622,VERB,female
+105,biting,-0.4854421777226076,VERB,female
+68,dashed,-0.373051650867374,VERB,female
+70,ignored,-0.3486691325668836,VERB,female
+9,appreciate,-0.3438629108799718,VERB,female
+21,ignore,-0.3402024307930289,VERB,female
+57,waited,-0.3104312816029391,VERB,female
+31,ate,-0.2635319943465826,VERB,female
+29,outline,-0.2204930214357854,VERB,female
+53,stared,-0.1807635909441531,VERB,female
+62,wondering,-0.126188817140165,VERB,female
+84,jump,-0.1184184187636538,VERB,female
+32,drove,-0.0859297691994209,VERB,female
+89,wished,-0.0803405485341592,VERB,female
+189,put,0.998936174012277,VERB,male
+237,running,0.973720929010966,VERB,male
+173,heard,0.962257513143488,VERB,male
+46,needed,0.9449521502564486,VERB,male
+214,see,0.9440446916497556,VERB,male
+113,remember,0.940732310139192,VERB,male
+9,signal,0.938483177211158,VERB,male
+83,got,0.9380161201149254,VERB,male
+47,matter,0.9354350791047048,VERB,male
+57,trying,0.9146849155886316,VERB,male
+187,left,0.9131591784270056,VERB,male
+3,getting,0.9016697060751628,VERB,male
+63,write,0.8936450880176907,VERB,male
+198,sit,0.8918061359182847,VERB,male
+221,making,0.8911846050985688,VERB,male
+65,read,0.8750508927339402,VERB,male
+36,showed,0.8729427994919188,VERB,male
+6,taking,0.8596307426091703,VERB,male
+226,use,0.8532421612995353,VERB,male
+11,talking,0.8441631483749142,VERB,male
+122,hear,0.8424345253741041,VERB,male
+191,filled,0.8343927547187014,VERB,male
+72,continue,0.8343498437114902,VERB,male
+66,seems,0.8318551854509992,VERB,male
+235,stood,0.822361039519614,VERB,male
+20,passed,0.8101349557555386,VERB,male
+27,form,0.8099589675036806,VERB,male
+188,come,0.807102062429632,VERB,male
+180,coming,0.8013664957516065,VERB,male
+70,address,0.7893933449285231,VERB,male
+102,continued,0.7832332130856146,VERB,male
+165,held,0.7650919974906417,VERB,male
+24,fell,0.7622975760372723,VERB,male
+231,pick,0.751439828082787,VERB,male
+228,tried,0.746164808068951,VERB,male
+34,carried,0.7427704352514866,VERB,male
+232,carry,0.7362249424954002,VERB,male
+19,live,0.7215129007218144,VERB,male
+163,became,0.7210080972856758,VERB,male
+149,leaving,0.717557178739314,VERB,male
+216,walking,0.7006986894286782,VERB,male
+152,expected,0.6982793821885529,VERB,male
+212,run,0.6945999197358339,VERB,male
+134,spend,0.690704072479214,VERB,male
+16,given,0.6897088676506224,VERB,male
+78,found,0.6800157964420666,VERB,male
+227,check,0.6620893365673649,VERB,male
+185,find,0.6582937605886683,VERB,male
+120,lost,0.6536978559593836,VERB,male
+133,ended,0.6183064626853384,VERB,male
+103,build,0.6091537986537048,VERB,male
+158,went,0.6033494445096492,VERB,male
+168,decided,0.5837635622735518,VERB,male
+0,stopped,0.5462714066338203,VERB,male
+161,forced,0.5423158027008583,VERB,male
+81,worked,0.5357684919818806,VERB,male
+233,hit,0.5324851565602422,VERB,male
+130,began,0.518057000316619,VERB,male
+43,changing,0.4983678011245073,VERB,male
+193,passing,0.4983661012111542,VERB,male
+29,putting,0.4865181301185983,VERB,male
+141,holding,0.4728947884080228,VERB,male
+98,supposed,0.4717874837377594,VERB,male
+10,listen,0.4677775770171301,VERB,male
+156,grown,0.4606206584818154,VERB,male
+104,help,0.4549494642170835,VERB,male
+182,sought,0.4537050332030059,VERB,male
+14,explain,0.4517165595582529,VERB,male
+140,need,0.442298520164279,VERB,male
+129,assumed,0.4175409820901753,VERB,male
+111,notice,0.4066938822040544,VERB,male
+143,meant,0.3749334566323503,VERB,male
+33,watched,0.3389941246208324,VERB,male
+142,bringing,0.32942148755136,VERB,male
+58,teach,0.2952972852423974,VERB,male
+96,understood,0.2457174707273272,VERB,male
+200,directed,0.1982984821830851,VERB,male
+150,telling,0.1805822685362873,VERB,male
+138,falling,0.1777310416450361,VERB,male
+125,know,0.1639859200306394,VERB,male
+53,split,0.1439992832215558,VERB,male
+121,want,0.1129282669541521,VERB,male
+209,belonging,0.0856949939605641,VERB,male
+177,recovered,0.0736705624179965,VERB,male
+146,stayed,0.0437423601220091,VERB,male
+</div>
+    </body>
+</html>
