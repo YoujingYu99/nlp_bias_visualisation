@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 class MainPageLocator(object):
     GO_BUTTON = (By.ID, "test_submit")
     SUBMIT_BUTTON = (By.ID, "test_upload")
+    ANALYSIS_BUTTON = (By.ID, "analysis_link")
+    QUERY_BUTTON = (By.ID, "query_submit")
 
 # this will be added later on
 class SearchResultsPageLocators(object):

@@ -4,8 +4,8 @@ from element import BasePageElement
 class SearchTextElement(BasePageElement):
     locator = "rawtext"
 
-# class GoButtonElement(BasePageElement):
-#     locator = "go"
+class QueryElement(BasePageElement):
+    locator = "user_question"
 
 class BasePage(object):
 
@@ -17,6 +17,8 @@ class MainPage(BasePage):
 
     # everytime we call search_text_element,
     search_text_element = SearchTextElement()
+    query_element = QueryElement()
+
 
     # check if text in the title
     def is_title_matches(self):
@@ -39,6 +41,11 @@ class MainPage(BasePage):
         element = self.driver.find_element(*MainPageLocator.SUBMIT_BUTTON)
         element.click()
 
+    def click_analysis_button(self):
+        # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
+        element = self.driver.find_element(*MainPageLocator.ANALYSIS_BUTTON)
+        element.click()
+
 class SearchResultPage(BasePage):
 
     def success_file_process(self):
@@ -47,3 +54,17 @@ class SearchResultPage(BasePage):
     def success_file_upload(self):
         return "Bar Graphs" in self.driver.page_source
 
+    def click_analysis_button(self):
+        # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
+        element = self.driver.find_element(*MainPageLocator.ANALYSIS_BUTTON)
+        element.click()
+
+    def click_query_button(self):
+        element = self.driver.find_element(*MainPageLocator.QUERY_BUTTON)
+        element.click()
+
+    def success_dataframe_display(self):
+        return "Female Professions" in self.driver.page_source
+
+    def success_specific_dataframe(self):
+        return "Nouns" in self.driver.page_source
