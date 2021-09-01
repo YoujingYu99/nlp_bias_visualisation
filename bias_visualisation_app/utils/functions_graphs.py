@@ -40,7 +40,7 @@ def bar_graph(dataframe, token_list, value_list):
     df = dataframe
 
     # save file to static
-    bar_name = 'total_bar_graph'
+    bar_name = token_list[0] + token_list[-2]
     save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
 
     bar_name_ex = bar_name + '.html'
@@ -54,130 +54,145 @@ def bar_graph(dataframe, token_list, value_list):
 
 
 def specific_bar_graph(df_name='specific_df'):
-    # set minus
-    path_parent = os.path.dirname(os.getcwd())
-    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
+    # set minus sign
     try:
-        mpl.rcParams['axes.unicode_minus'] = False
-        np.random.seed(12345)
+        # set minus
+        path_parent = os.path.dirname(os.getcwd())
+        df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
+        # mpl.rcParams['axes.unicode_minus'] = False
+        # np.random.seed(12345)
         df = load_obj(df_path, name=df_name)
-        set_x_tick = True
+        # set_x_tick = True
 
-        plt.style.use('ggplot')
-        plt.rcParams['font.family'] = ['sans-serif']
-        plt.rcParams['font.sans-serif'] = ['SimHei']
-        fig, ax = plt.subplots()
+        # plt.style.use('ggplot')
+        # plt.rcParams['font.family'] = ['sans-serif']
+        # plt.rcParams['font.sans-serif'] = ['SimHei']
+        # fig, ax = plt.subplots()
+        #
+        # # set up the colors
+        # cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+        # df_mean = df.mean(axis=1)
+        # norm = plt.Normalize(df_mean.min(), df_mean.max())
+        # colors = cmap(norm(df_mean))
 
-        # set up the colors
-        cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
-        df_mean = df.mean(axis=1)
-        norm = plt.Normalize(df_mean.min(), df_mean.max())
-        colors = cmap(norm(df_mean))
-
-        ax.barh(
-            df['token'],
-            df['bias'],
-            yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-            color=colors)
-        fig.colorbar(ScalarMappable(cmap=cmap))
-
-        ax.set_title('Specific Word Bias', fontsize=12)
-        ax.set_xlabel('Bias Value')
-        ax.xaxis.set_visible(set_x_tick)
-
-        ax.set_ylabel('Word')
-        plt.tight_layout()
+        # ax.barh(
+        #     df['token'],
+        #     df['bias'],
+        #     yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+        #     color=colors)
+        # fig.colorbar(ScalarMappable(cmap=cmap))
+        #
+        # ax.set_title('Specific Word Bias', fontsize=12)
+        # ax.set_xlabel('Bias Value')
+        # ax.xaxis.set_visible(set_x_tick)
+        #
+        # ax.set_ylabel('Word')
+        # plt.tight_layout()
 
         # save file to static
-        bar_name = 'specific_bar_graph'
-        bar_name_ex = bar_name + '.png'
+        bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
+        bar_name_ex = bar_name + '.html'
         save_img_path = os.path.join(path.dirname(__file__), '..', 'static', bar_name)
-        bar_path = save_img_path + '.png'
-        plt.savefig(bar_path)
+        bar_path = save_img_path + '.html'
+        # plt.savefig(bar_path)
+
+        fig = px.bar(df, x='token', y='bias', color='bias', orientation='h', color_continuous_scale=px.colors.sequential.Cividis_r)
+        fig.update_xaxes(title='words', visible=True, showticklabels=False)
+        fig.update_yaxes(title='bias value', visible=True, showticklabels=False)
+        pio.write_html(fig, file=bar_path, auto_open=False)
         plot_bar = url_for('static', filename=bar_name_ex)
 
         return plot_bar
 
+
     except:
         try:
-            mpl.rcParams['axes.unicode_minus'] = False
-            np.random.seed(12345)
+            # mpl.rcParams['axes.unicode_minus'] = False
+            # np.random.seed(12345)
             df = load_obj(df_path, name=df_name)
-            set_x_tick = True
-
-            plt.style.use('ggplot')
-            plt.rcParams['font.family'] = ['sans-serif']
-            plt.rcParams['font.sans-serif'] = ['SimHei']
-            fig, ax = plt.subplots()
+            # set_x_tick = True
+            #
+            # plt.style.use('ggplot')
+            # plt.rcParams['font.family'] = ['sans-serif']
+            # plt.rcParams['font.sans-serif'] = ['SimHei']
+            # fig, ax = plt.subplots()
 
             # set up the colors
-            cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
-            df_mean = df.mean(axis=1)
-            norm = plt.Normalize(df_mean.min(), df_mean.max())
-            colors = cmap(norm(df_mean))
-
-            ax.barh(
-                df['verb'],
-                df['Frequency'],
-                yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-                color=colors)
-            fig.colorbar(ScalarMappable(cmap=cmap))
-
-            ax.set_title('Specific Word Frequency', fontsize=12)
-            ax.set_xlabel('Frequency')
-            ax.xaxis.set_visible(set_x_tick)
-
-            ax.set_ylabel('Word')
-            plt.tight_layout()
+            # cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+            # df_mean = df.mean(axis=1)
+            # norm = plt.Normalize(df_mean.min(), df_mean.max())
+            # colors = cmap(norm(df_mean))
+            #
+            # ax.barh(
+            #     df['verb'],
+            #     df['Frequency'],
+            #     yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+            #     color=colors)
+            # fig.colorbar(ScalarMappable(cmap=cmap))
+            #
+            # ax.set_title('Specific Word Frequency', fontsize=12)
+            # ax.set_xlabel('Frequency')
+            # ax.xaxis.set_visible(set_x_tick)
+            #
+            # ax.set_ylabel('Word')
+            # plt.tight_layout()
 
             # save file to static
-            bar_name = 'specific_bar_graph'
-            bar_name_ex = bar_name + '.png'
+            bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
+            bar_name_ex = bar_name + '.html'
             save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
-            bar_path = save_img_path + '.png'
-            plt.savefig(bar_path)
+            bar_path = save_img_path + '.html'
+
+            fig = px.bar(df, x='verb', y='Frequency', orientation='h', color='Frequency', color_continuous_scale=px.colors.sequential.Cividis_r)
+            fig.update_xaxes(title='verb', visible=True, showticklabels=False)
+            fig.update_yaxes(title='frequency', visible=True, showticklabels=False)
+            pio.write_html(fig, file=bar_path, auto_open=False)
             plot_bar = url_for('static', filename=bar_name_ex)
 
             return plot_bar
 
         except:
             try:
-                mpl.rcParams['axes.unicode_minus'] = False
-                np.random.seed(12345)
+                # mpl.rcParams['axes.unicode_minus'] = False
+                # np.random.seed(12345)
                 df = load_obj(df_path, name=df_name)
-                set_x_tick = True
-
-                plt.style.use('ggplot')
-                plt.rcParams['font.family'] = ['sans-serif']
-                plt.rcParams['font.sans-serif'] = ['SimHei']
-                fig, ax = plt.subplots()
+                # set_x_tick = True
+                #
+                # plt.style.use('ggplot')
+                # plt.rcParams['font.family'] = ['sans-serif']
+                # plt.rcParams['font.sans-serif'] = ['SimHei']
+                # fig, ax = plt.subplots()
 
                 # set up the colors
-                cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
-                df_mean = df.mean(axis=1)
-                norm = plt.Normalize(df_mean.min(), df_mean.max())
-                colors = cmap(norm(df_mean))
-
-                ax.barh(
-                    df['word'],
-                    df['Frequency'],
-                    yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
-                    color=colors)
-                fig.colorbar(ScalarMappable(cmap=cmap))
-
-                ax.set_title('Specific Word Frequency', fontsize=12)
-                ax.set_xlabel('Frequency')
-                ax.xaxis.set_visible(set_x_tick)
-
-                ax.set_ylabel('Word')
-                plt.tight_layout()
+                # cmap = mpl.colors.LinearSegmentedColormap.from_list('green_to_red', ['darkgreen', 'darkred'])
+                # df_mean = df.mean(axis=1)
+                # norm = plt.Normalize(df_mean.min(), df_mean.max())
+                # colors = cmap(norm(df_mean))
+                #
+                # ax.barh(
+                #     df['word'],
+                #     df['Frequency'],
+                #     yerr=df.std(axis=1) / np.sqrt(len(df.columns)),
+                #     color=colors)
+                # fig.colorbar(ScalarMappable(cmap=cmap))
+                #
+                # ax.set_title('Specific Word Frequency', fontsize=12)
+                # ax.set_xlabel('Frequency')
+                # ax.xaxis.set_visible(set_x_tick)
+                #
+                # ax.set_ylabel('Word')
+                # plt.tight_layout()
 
                 # save file to static
-                bar_name = 'specific_bar_graph'
-                bar_name_ex = bar_name + '.png'
+                bar_name = df['word'].iloc[0] + df['word'].iloc[1]
+                bar_name_ex = bar_name + '.html'
                 save_img_path = path.join(path.dirname(__file__), '..', 'static', bar_name)
-                bar_path = save_img_path + '.png'
-                plt.savefig(bar_path)
+                bar_path = save_img_path + '.html'
+
+                fig = px.bar(df, x='word', y='Frequency', orientation='h', color='Frequency', color_continuous_scale=px.colors.sequential.Cividis_r)
+                fig.update_xaxes(title='word', visible=True, showticklabels=False)
+                fig.update_yaxes(title='frequency', visible=True, showticklabels=False)
+                pio.write_html(fig, file=bar_path, auto_open=False)
                 plot_bar = url_for('static', filename=bar_name_ex)
 
                 return plot_bar
@@ -186,6 +201,8 @@ def specific_bar_graph(df_name='specific_df'):
 
                 print('Not enough words for Plotting a bar chart')
                 plot_bar = url_for('static', filename='nothing_here.jpg')
+
+                return plot_bar
 
 
 # def bar_graph(token_list, value_list):
@@ -281,6 +298,14 @@ def cloud_image(token_list, value_list):
         save_img_path = path.join(path.dirname(__file__), '..', 'static', female_cloud_name)
         img_path = save_img_path + '.png'
         female_wordcloud.to_file(img_path)
+        female_wordcloud.to_file(img_path)
+
+        # female_cloud_name = 'femalecloud'
+        # female_cloud_name_ex = female_cloud_name + '.html'
+        # save_img_path = path.join(path.dirname(__file__), '..', 'static', female_cloud_name)
+        # img_path = save_img_path + '.html'
+        # with open(img_path, 'w') as f:
+        #     f.write(female_wordcloud.to_html())
 
         plot_female_cloud = url_for('static', filename=female_cloud_name_ex)
 
@@ -299,6 +324,13 @@ def cloud_image(token_list, value_list):
         save_img_path = path.join(path.dirname(__file__),  '..', 'static', male_cloud_name)
         img_path = save_img_path + '.png'
         male_wordcloud.to_file(img_path)
+
+        # male_cloud_name = 'malecloud'
+        # male_cloud_name_ex = male_cloud_name + '.html'
+        # save_img_path = path.join(path.dirname(__file__), '..', 'static', male_cloud_name)
+        # img_path = save_img_path + '.html'
+        # with open(img_path, 'w') as f:
+        #     f.write(male_wordcloud.to_html())
 
         plot_male_cloud = url_for('static', filename=male_cloud_name_ex)
 
@@ -384,7 +416,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     # new_values is a list of dots coordinates and we need to make it a dataframe with the word_name on it
     word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    tsne_name = 'tsne'
+    tsne_name = token_list[0] + token_list[-2] + 'tsne'
     tsne_name_ex = tsne_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
@@ -418,7 +450,7 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     new_values = tsne_model.fit_transform(my_word_vectors)
     word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    tsne_name = 'tsne_male'
+    tsne_name = token_list[0] + token_list[-2] + 'tsne_male'
     tsne_name_ex = tsne_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
@@ -452,7 +484,7 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
     new_values = tsne_model.fit_transform(my_word_vectors)
     word_df = pd.DataFrame({'word': my_word_list, 'x': new_values[:, 0], 'y': new_values[:, 1]})
 
-    tsne_name = 'tsne_female'
+    tsne_name = token_list[0] + token_list[-2] + 'tsne_female'
     tsne_name_ex = tsne_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
@@ -492,7 +524,7 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
         y.append(value[1])
 
     # save file to static
-    pca_name = 'pca'
+    pca_name = token_list[0] + token_list[-2] + 'pca'
     pca_name_ex = pca_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
@@ -532,7 +564,7 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
         y.append(value[1])
 
     # save file to static
-    pca_name = 'pca_male'
+    pca_name = token_list[0] + token_list[-2] + 'pca_male'
     pca_name_ex = pca_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
@@ -572,12 +604,13 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
         y.append(value[1])
 
     # save file to static
-    pca_name = 'pca_female'
+    pca_name = token_list[0] + token_list[-2] + 'pca_female'
     pca_name_ex = pca_name + '.html'
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
+
 
 
 # def df_based_on_question(select_wordtype, select_gender, view_df, input_SVO_dataframe, input_premodifier_dataframe,

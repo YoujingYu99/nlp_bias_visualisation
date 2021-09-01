@@ -8,6 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import sys
 import os
+from flask import url_for
 from .parse_sentence import parse_sentence
 from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
@@ -1671,3 +1672,27 @@ def debiased_file(threshold_value):
 
     with open(os.path.join(save_path, 'debiased_file' + '.txt'), 'w+', encoding='utf-8') as f:
         f.write('\n'.join(debiased_sentence_list))
+
+import dtale
+from pivottablejs import pivot_ui
+def style_dataframe(df, df_name):
+    # # should list all possible situations here!!!
+    # if 'bias' in df.columns:
+    #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['bias']).hide_index()
+    # elif 'Frequency' in df.columns:
+    #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['Frequency']).hide_index()
+    #
+    # # can add more styling options here:
+    #
+    df_name = df_name + '.html'
+    df_path = os.path.join(os.path.dirname(__file__), "..", "static", df_name)
+    # with open(df_path, 'w') as f:
+    #     # try:
+    #     #     f.write(df_styler.render())
+    #     # except ValueError:
+    #     #     pass
+    #     f.write(df_styler.render())
+    #
+    # return url_for('static', filename=df_name)
+    pivot_ui(df, outfile_path=df_path)
+    return url_for('static', filename=df_name)
