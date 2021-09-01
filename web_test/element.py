@@ -7,7 +7,7 @@ class BasePageElement(object):
     def __set__(self, obj, value):
         # this is webdriver
         driver = obj.driver
-        # wait for 100 seconds until the next function can be called
+        # wait for 9000 seconds until the next function can be called
         WebDriverWait(driver, 9000).until(
             # lambda is an anonymous function
             # find element by name
@@ -22,7 +22,7 @@ class BasePageElement(object):
     def __get__(self, obj, owner):# this is webdriver
         driver = obj.driver
         # wait for 100 seconds until the next function can be called
-        WebDriverWait(driver, 9000).util(
+        WebDriverWait(driver, 9000).until(
             # lambda is an anonymous function
             # find element by name
             lambda driver: driver.find_element_by_name(self.locator))

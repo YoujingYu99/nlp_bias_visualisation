@@ -7,7 +7,6 @@ class SearchTextElement(BasePageElement):
 # class GoButtonElement(BasePageElement):
 #     locator = "go"
 
-file_path = "C://Users//Youjing Yu//PycharmProjects//visualising_data_bias//web_test//complete_file (32).xlsx"
 class BasePage(object):
 
     def __init__(self, driver):
@@ -30,14 +29,14 @@ class MainPage(BasePage):
         element.click()
 
     def click_download_button(self):
-        element = self.driver.find_element_by_link_ID("download_dataframe")
+        element = self.driver.find_element_by_id("download_dataframe")
         element.click()
 
     def click_upload_button(self, file_path):
-        file = self.driver.find_element_by_name("complete_path")
+        file = self.driver.find_element_by_name("complete_file")
         file.send_keys(
             file_path)
-        element = self.driver.find_element_by_ID(*MainPageLocator.SUBMIT_BUTTON)
+        element = self.driver.find_element(*MainPageLocator.SUBMIT_BUTTON)
         element.click()
 
 class SearchResultPage(BasePage):
