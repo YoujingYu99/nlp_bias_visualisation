@@ -319,7 +319,10 @@ def interactive_scatter(token_df, name, path, kind):
     groupno = []
     for i in range(N):
         if i==N-1:
-            grouplist = [N-1]*(n%groupsize)
+            if n%groupsize:
+                grouplist = [N-1]*(n%groupsize)
+            else:
+                grouplist = [N-1]*groupsize
         else:
             grouplist = [i]*groupsize
         groupno.extend(grouplist)
@@ -340,13 +343,17 @@ def interactive_scatter(token_df, name, path, kind):
     token_df['NO of words shown'] = animationno
 
     fig = px.scatter(token_df, x='x', y='y', animation_frame='NO of words shown', text='word')
+    fig.update_traces(marker={'size': 14, 'line': dict(width=2,
+                                                       color='DarkSlateGrey')},
+                      selector=dict(mode='markers'))
+    fig.update_traces(textposition='top center', textfont_size=12)
     fig["layout"].pop("updatemenus")
     fig.update_xaxes(title='{} Latent Dimentsion 1'.format(kind), visible=True, showticklabels=True)
     fig.update_yaxes(title='{} Latent Dimentsion 2'.format(kind), visible=True, showticklabels=True)
     pio.write_html(fig, file=path, auto_open=False)
-    plot_tsne = url_for('static', filename=name)
+    plot_scatter = url_for('static', filename=name)
 
-    return plot_tsne
+    return plot_scatter
 
 
 def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors"):
