@@ -1,3 +1,7 @@
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 from locator import *
 from element import BasePageElement
 
@@ -24,6 +28,14 @@ class MainPage(BasePage):
     def is_title_matches(self):
         # returns a Boolean statement
         return "Dynamic Data Statements" in self.driver.title
+
+    # def click_go_button(self):
+    #     # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
+    #     WebDriverWait(self.driver, 10).until(
+    #         EC.element_to_be_clickable((By.ID, "test_submit"))
+    #     ).click()
+    #     #element = self.driver.find_element(*MainPageLocator.GO_BUTTON)
+    #     #element.click()
 
     def click_go_button(self):
         # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
