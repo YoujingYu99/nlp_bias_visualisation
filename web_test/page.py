@@ -11,6 +11,9 @@ class SearchTextElement(BasePageElement):
 class QueryElement(BasePageElement):
     locator = "user_question"
 
+class DebiasElement(BasePageElement):
+    locator = "user_threshold"
+
 class BasePage(object):
 
     def __init__(self, driver):
@@ -22,6 +25,7 @@ class MainPage(BasePage):
     # everytime we call search_text_element,
     search_text_element = SearchTextElement()
     query_element = QueryElement()
+    debias_element = DebiasElement()
 
 
     # check if text in the title
@@ -58,6 +62,11 @@ class MainPage(BasePage):
         element = self.driver.find_element(*MainPageLocator.ANALYSIS_BUTTON)
         element.click()
 
+    def click_debias_button(self):
+        # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
+        element = self.driver.find_element(*MainPageLocator.DEBIAS_BUTTON)
+        element.click()
+
 class SearchResultPage(BasePage):
 
     def success_file_process(self):
@@ -80,3 +89,19 @@ class SearchResultPage(BasePage):
 
     def success_specific_dataframe(self):
         return "Nouns" in self.driver.page_source
+
+    def click_debias_button(self):
+        # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
+        element = self.driver.find_element(*MainPageLocator.DEBIAS_BUTTON)
+        element.click()
+
+    def click_threshold_button(self):
+        # * means unpack *(1,2)((one object)) -> 1, 2(two objects)
+        element = self.driver.find_element(*MainPageLocator.THRESHOLD_BUTTON)
+        element.click()
+
+    def success_debias_display(self):
+        return "Would you like to debiase your dataset?" in self.driver.page_source
+
+    def success_debiased_file(self):
+        return "You can download the debiased file now!" in self.driver.page_source

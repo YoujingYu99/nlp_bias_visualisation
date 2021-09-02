@@ -7,6 +7,8 @@ test_text = "Women writers support male fighters. Male cleaners are not more car
 
 query = "What nouns are typically associated with women?"
 
+threshold = float(0.9)
+
 file_path = "C://Users//Youjing Yu//PycharmProjects//visualising_data_bias//web_test//complete_file (32).xlsx"
 
 class WebSearch(unittest.TestCase):
@@ -50,32 +52,55 @@ class WebSearch(unittest.TestCase):
         download_page = page.SearchResultPage(self.driver)
 
 
-    # def test_3_upload_file(self):
-    #     # upload the file from local directory
-    #     mainPage = page.MainPage(self.driver)
-    #     time.sleep(20)
-    #     mainPage.click_upload_button(file_path=file_path)
-    #     visualisation_page = page.SearchResultPage(self.driver)
-    #     assert visualisation_page.success_file_upload()
-    #
-    # def test_4_analysis(self):
-    #     mainPage = page.MainPage(self.driver)
-    #     time.sleep(20)
-    #     mainPage.click_upload_button(file_path=file_path)
-    #     visualisation_page = page.SearchResultPage(self.driver)
-    #     assert visualisation_page.success_file_upload()
-    #
-    #     time.sleep(20)
-    #     visualisation_page.click_analysis_button()
-    #     assert visualisation_page.success_dataframe_display()
-    #
-    #     visualisation_page.search_query = query
-    #     # now we input the question
-    #     time.sleep(20)
-    #     visualisation_page.click_query_button()
-    #     time.sleep(10)
-    #     query_display = page.SearchResultPage(self.driver)
-    #     assert query_display.success_specific_dataframe()
+    def test_3_upload_file(self):
+        # upload the file from local directory
+        mainPage = page.MainPage(self.driver)
+        time.sleep(20)
+        mainPage.click_upload_button(file_path=file_path)
+        visualisation_page = page.SearchResultPage(self.driver)
+        assert visualisation_page.success_file_upload()
+
+    def test_4_analysis(self):
+        mainPage = page.MainPage(self.driver)
+        time.sleep(20)
+        mainPage.click_upload_button(file_path=file_path)
+        visualisation_page = page.SearchResultPage(self.driver)
+        assert visualisation_page.success_file_upload()
+
+        time.sleep(20)
+        # in the analysis tab
+        visualisation_page.click_analysis_button()
+        assert visualisation_page.success_dataframe_display()
+
+        visualisation_page.query_element = query
+        # now we input the question
+        time.sleep(20)
+        visualisation_page.click_query_button()
+        time.sleep(10)
+        query_display = page.SearchResultPage(self.driver)
+        assert query_display.success_specific_dataframe()
+
+
+    def test_5_debias(self):
+        mainPage = page.MainPage(self.driver)
+        time.sleep(20)
+        mainPage.click_upload_button(file_path=file_path)
+        visualisation_page = page.SearchResultPage(self.driver)
+        assert visualisation_page.success_file_upload()
+
+        time.sleep(20)
+        # in the debias tab
+        visualisation_page.click_debias_button()
+        assert visualisation_page.success_debias_display()
+
+        visualisation_page.debias_element = threshold
+        # now we input the threshold
+        time.sleep(20)
+        visualisation_page.click_threshold_button()
+        time.sleep(10)
+        debiased_file_display = page.SearchResultPage(self.driver)
+        time.sleep(10)
+        assert debiased_file_display.success_debiased_file()
 
 
 

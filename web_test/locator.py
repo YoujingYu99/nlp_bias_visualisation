@@ -8,6 +8,8 @@ class MainPageLocator(object):
     SUBMIT_BUTTON = (By.ID, "test_upload")
     ANALYSIS_BUTTON = (By.ID, "analysis_link")
     QUERY_BUTTON = (By.ID, "query_submit")
+    DEBIAS_BUTTON = (By.ID, "debias_link")
+    THRESHOLD_BUTTON = (By.ID, "threshold_submit")
 
 # this will be added later on
 class SearchResultsPageLocators(object):
