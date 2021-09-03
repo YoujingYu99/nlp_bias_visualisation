@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_xml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/debiase.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/debiase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_test/locator.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_test/locator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_test/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_test/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_test/page.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_test/page.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,9 +55,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/bias_visualisation_app/data/professions.txt&#10;C:/Users/Youjing Yu/PycharmProjects/visualising_data_bias/bias_visualisation_app/data/user_uploads/user_input_text&#10;C:/Users/Youjing Yu/PycharmProjects/visualising_data_bias/bias_visualisation_app/data/user_uploads/test_file.txt" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web_test/main.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/bias_visualisation_app/data/professions.txt&#10;C:/Users/Youjing Yu/PycharmProjects/visualising_data_bias/bias_visualisation_app/data/user_uploads/user_input_text&#10;C:/Users/Youjing Yu/PycharmProjects/visualising_data_bias/bias_visualisation_app/data/user_uploads/test_file.txt&#10;C:/Users/Youjing Yu/PycharmProjects/visualising_data_bias/bias_visualisation_app/data/sample-monolingual.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_xml.py" />
+    <property name="settings.editor.selected.configurable" value="PERL5_MAIN_SETTINGS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -101,7 +97,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="test_xml" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="visualising_data_bias" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -109,12 +105,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Youjing Yu\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web_test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bias_visualisation_app/utils" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web_test/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bias_visualisation_app/utils/test_xml.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -141,7 +137,7 @@
     <list>
       <item itemvalue="Flask server.visualising_data_bias" />
       <item itemvalue="Python.delete" />
-      <item itemvalue="Python.main" />
+      <item itemvalue="Python.test_xml" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -202,14 +198,9 @@
       <workItem from="1630483459193" duration="12400000" />
       <workItem from="1630511490317" duration="2586000" />
       <workItem from="1630571411814" duration="6040000" />
-      <workItem from="1630595153061" duration="1296000" />
-    </task>
-    <task id="LOCAL-00081" summary="Successfully writing the profession dataframe">
-      <created>1629379692662</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1629379692662</updated>
+      <workItem from="1630595153061" duration="1963000" />
+      <workItem from="1630659558860" duration="1890000" />
+      <workItem from="1630663461259" duration="3199000" />
     </task>
     <task id="LOCAL-00082" summary="Adding routes for professions of each gender.">
       <created>1629382511132</created>
@@ -547,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630582096272</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Adding tests for debias algorithm and threshold setting. Same error still exists">
+      <created>1630596488116</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1630596488117</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,7 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Testing and keeping the new csv concat function" />
     <MESSAGE value="Fixing minor bugs" />
     <MESSAGE value="Fixing minor bugs and spelling errors. Adding to query algorithm." />
     <MESSAGE value="Regrouping functions into three main groups and renaming these function files." />
@@ -592,7 +589,8 @@
     <MESSAGE value="Writing tests for uploading files to view graphs, analysis page for dataframes and query input. ElementNotClickable error keeps occurring" />
     <MESSAGE value="ElementNotClickable error keeps occurring randomly. Have not fixed the problem" />
     <MESSAGE value="Selenium element not clickable error still popping up. Adding sidenote explanation on analysis page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Selenium element not clickable error still popping up. Adding sidenote explanation on analysis page." />
+    <MESSAGE value="Adding tests for debias algorithm and threshold setting. Same error still exists" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding tests for debias algorithm and threshold setting. Same error still exists" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -614,11 +612,12 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_follow_aux.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1628679183926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_count.coverage" NAME="test_gender_count Coverage Results" MODIFIED="1628848529401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive.coverage" NAME="test_possessive Coverage Results" MODIFIED="1629210830381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_xml.coverage" NAME="test_xml Coverage Results" MODIFIED="1630666644733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_class.coverage" NAME="test_spacy_SVO Coverage Results" MODIFIED="1628096319181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_files.coverage" NAME="test_api Coverage Results" MODIFIED="1630401579969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_api.coverage" NAME="test_api Coverage Results" MODIFIED="1630084163849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_number_bias Coverage Results" MODIFIED="1629391066114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$delete.coverage" NAME="delete Coverage Results" MODIFIED="1630596457206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$delete.coverage" NAME="delete Coverage Results" MODIFIED="1630666683118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1630596338106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1629110532105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$main.coverage" NAME="main Coverage Results" MODIFIED="1630596403646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web_test" />
