@@ -10,7 +10,7 @@ def save_xml_text(user_text):
     # os.path.join is used so that paths work in every operating system
     save_user_path = os.path.join(fileDir, '..', 'data', 'xml')
 
-    with open(os.path.join(save_user_path, 'wiki_xml.txt'), 'w+', encoding='utf-8') as f:
+    with open(os.path.join(save_user_path, 'sample_xml.txt'), 'w+', encoding='utf-8') as f:
        f.write(user_text)
 
 def etree_reader(path, file):
@@ -42,4 +42,4 @@ path_parent = os.path.dirname(os.getcwd())
 test_path = os.path.join(path_parent, 'data')
 
 
-etree_reader(path=test_path, file="enwiki-20181001-corpus")
+etree_reader(path=test_path, file="sample-monolingual")
