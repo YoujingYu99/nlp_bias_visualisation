@@ -1148,7 +1148,6 @@ def generate_bias_values(input_data):
             continue
         view_results.append(item)
 
-    print(view_results)
     view_df = list_to_dataframe(view_results)
     save_obj_text(view_df, name='total_dataframe')
 

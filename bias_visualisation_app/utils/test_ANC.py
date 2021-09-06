@@ -18,6 +18,7 @@ from nltk.tokenize import RegexpTokenizer
 #                 for line in infile:
 #                     outfile.write(line)
 
+
 def txt_list(txt_dir):
     """
     :param txt_dir: the path of the txt files to be extracted
@@ -41,7 +42,7 @@ def txt_list(txt_dir):
                     words = ' '.join(words)
                     training_list.append(words)
 
-    with open(os.path.join(txt_dir, "total.txt"), 'w', encoding='utf-8') as output:
+    with open(os.path.join(txt_dir, "face-to-face_total.txt"), 'w', encoding='utf-8') as output:
         for row in training_list:
             output.write(str(row) + '\n')
 
@@ -49,6 +50,6 @@ def txt_list(txt_dir):
     return training_list
 
 path_parent = os.path.dirname(os.getcwd())
-test_path = os.path.join(path_parent, 'data', 'ANC')
+test_path = os.path.join(path_parent, 'data', 'ANC_face-to-face')
 
 txt_list(test_path)
