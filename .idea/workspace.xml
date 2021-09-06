@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/functions_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/functions_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_ANC.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/test_ANC.py" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
@@ -206,14 +204,7 @@
       <workItem from="1630685733122" duration="169000" />
       <workItem from="1630693704544" duration="1202000" />
       <workItem from="1630920568307" duration="3724000" />
-      <workItem from="1630925234266" duration="5905000" />
-    </task>
-    <task id="LOCAL-00087" summary="Starting on the bias score calculation functions">
-      <created>1629388660849</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1629388660849</updated>
+      <workItem from="1630925234266" duration="6729000" />
     </task>
     <task id="LOCAL-00088" summary="Success in assining a score to each sentence">
       <created>1629389691218</created>
@@ -551,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630931121666</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Successfully converting and concatenating ANC files; test to check the detect_corpora route.">
+      <created>1630934309768</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1630934309768</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Simplifying the test analysis functions." />
     <MESSAGE value="Patching up path stuff. Errors sometimes pop up during the visualisation stage." />
     <MESSAGE value="Getting ready to test in Flask" />
     <MESSAGE value="Finishing all indivisual tests for functions; starting on basic Flask api test for templates. Next step should be selenium tutorial to do integrated web-driven testing." />
@@ -596,7 +593,8 @@
     <MESSAGE value="end of week push" />
     <MESSAGE value="Attempting to separate files into many small ones; laptop crashed" />
     <MESSAGE value="ANC processing succeeds; now save it as txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="ANC processing succeeds; now save it as txt" />
+    <MESSAGE value="Successfully converting and concatenating ANC files; test to check the detect_corpora route." />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully converting and concatenating ANC files; test to check the detect_corpora route." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -615,7 +613,7 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive2.coverage" NAME="test_SPVO_function Coverage Results" MODIFIED="1628785304576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_function.coverage" NAME="test_function Coverage Results" MODIFIED="1628502087617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_csv_concat.coverage" NAME="test_csv_concat Coverage Results" MODIFIED="1628692591265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$test_ANC.coverage" NAME="test_ANC Coverage Results" MODIFIED="1630933853854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$test_ANC.coverage" NAME="test_ANC Coverage Results" MODIFIED="1630934341025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_follow_aux.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1628679183926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_gender_count.coverage" NAME="test_gender_count Coverage Results" MODIFIED="1628848529401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_possessive.coverage" NAME="test_possessive Coverage Results" MODIFIED="1629210830381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
@@ -624,8 +622,8 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_files.coverage" NAME="test_api Coverage Results" MODIFIED="1630401579969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_api.coverage" NAME="test_api Coverage Results" MODIFIED="1630084163849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_number_bias Coverage Results" MODIFIED="1629391066114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$delete.coverage" NAME="delete Coverage Results" MODIFIED="1630934096030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1630934091628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$delete.coverage" NAME="delete Coverage Results" MODIFIED="1630934257489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1630941901384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1629110532105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$main.coverage" NAME="main Coverage Results" MODIFIED="1630596403646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web_test" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_files_mock.coverage" NAME="test_api Coverage Results" MODIFIED="1630226138889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

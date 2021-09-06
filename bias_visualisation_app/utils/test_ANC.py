@@ -1,8 +1,7 @@
 import os
 import nltk
-import shutil
 from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
+
 
 # def txt_list(txt_dir):
 #     """
