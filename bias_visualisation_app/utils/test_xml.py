@@ -8,7 +8,7 @@ def save_xml_text(user_text):
     fileDir = os.path.dirname(os.path.realpath('__file__'))
 
     # os.path.join is used so that paths work in every operating system
-    save_user_path = os.path.join(fileDir, '..', 'data', 'xml')
+    save_user_path = os.path.join(fileDir, '..', 'data', 'enwiki_xml')
 
     with open(os.path.join(save_user_path, 'sample_xml.txt'), 'w+', encoding='utf-8') as f:
        f.write(user_text)
