@@ -201,10 +201,10 @@ def detect_corpora():
             save_user_file_text(input_data)
             if not input_data:
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            if len(input_data) > 50000:
-                raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 500000 characters long'
-                )
+            # if len(input_data) > 50000:
+            #     raise werkzeug.exceptions.BadRequest(
+            #         'Input Paragraph must be at most 500000 characters long'
+            #     )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
         except:

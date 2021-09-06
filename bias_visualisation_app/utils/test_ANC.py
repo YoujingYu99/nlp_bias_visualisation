@@ -1,4 +1,5 @@
 import os
+import nltk
 import shutil
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
@@ -33,15 +34,17 @@ def txt_list(txt_dir):
                 for line in file_in:
                     # create word tokens as well as remove puntuation in one go
                     rem_tok_punc = RegexpTokenizer(r'\w+')
-                    tokens = rem_tok_punc.tokenize(line)
+                    tokens = nltk.word_tokenize(line)
                     # convert the words to lower case
                     words = [w.lower() for w in tokens]
-                    # Invoke all the english stopwords
-                    stop_word_list = set(stopwords.words('english'))
                     # Remove stop words
-                    words = [w for w in words if not w in stop_word_list]
-
+                    words = [w for w in words ]
+                    words = ' '.join(words)
                     training_list.append(words)
+
+    with open(os.path.join(txt_dir, "total.txt"), 'w', encoding='utf-8') as output:
+        for row in training_list:
+            output.write(str(row) + '\n')
 
 
     return training_list
@@ -49,4 +52,4 @@ def txt_list(txt_dir):
 path_parent = os.path.dirname(os.getcwd())
 test_path = os.path.join(path_parent, 'data', 'ANC')
 
-print(txt_list(test_path)[10])
+txt_list(test_path)
