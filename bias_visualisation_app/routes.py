@@ -192,25 +192,41 @@ def detect_url():
     return render_template('index.html')
 
 
+# @app.route('/detect_corpora', methods=['GET', 'POST'])
+# def detect_corpora():
+#     if request.method == 'POST':
+#         try:
+#             corpora_file = request.files['raw_corpora']
+#             input_data = get_text_file(corpora_file)
+#             save_user_file_text(input_data)
+#             if not input_data:
+#                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
+#             # if len(input_data) > 50000:
+#             #     raise werkzeug.exceptions.BadRequest(
+#             #         'Input Paragraph must be at most 500000 characters long'
+#             #     )
+#             generate_bias_values(input_data)
+#             flash('Your file is ready for download!', 'info')
+#         except:
+#             flash('Please enter a valid txt file.', 'danger')
+#     return render_template('index.html')
+
 @app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
     if request.method == 'POST':
-        try:
-            corpora_file = request.files['raw_corpora']
-            input_data = get_text_file(corpora_file)
-            save_user_file_text(input_data)
-            if not input_data:
-                raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            # if len(input_data) > 50000:
-            #     raise werkzeug.exceptions.BadRequest(
-            #         'Input Paragraph must be at most 500000 characters long'
-            #     )
-            generate_bias_values(input_data)
-            flash('Your file is ready for download!', 'info')
-        except:
-            flash('Please enter a valid txt file.', 'danger')
-    return render_template('index.html')
+        corpora_file = request.files['raw_corpora']
+        input_data = get_text_file(corpora_file)
+        save_user_file_text(input_data)
+        if not input_data:
+            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
+        # if len(input_data) > 50000:
+        #     raise werkzeug.exceptions.BadRequest(
+        #         'Input Paragraph must be at most 500000 characters long'
+        #     )
+        generate_bias_values(input_data)
+        flash('Your file is ready for download!', 'info')
 
+    return render_template('index.html')
 
 @app.route('/detect_dataframe', methods=['GET', 'POST'])
 def detect_dataframe():
