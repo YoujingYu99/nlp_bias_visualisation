@@ -170,12 +170,16 @@ def get_text_file(corpora_file):
 
     # os.path.join is used so that paths work in every operating system
     save_user_path = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'user_uploads')
-
+    # need to write out the lines
+    lines = ""
     with open(os.path.join(save_user_path, filename), 'w+', encoding='utf-8') as f:
         for line in corpora_file:
             line = line.decode()
+            lines = lines + line
+        # save file to the filename
+        f.write(lines)
 
-    return line
+    return lines
 
 def save_user_file_text(user_text):
     # user inputs a string
