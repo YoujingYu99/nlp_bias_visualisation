@@ -382,7 +382,7 @@ def interactive_scatter(token_df, name, path, kind):
     fig["layout"].pop("updatemenus")
     fig.update_xaxes(title='{} Latent Dimentsion 1'.format(kind), visible=True, showticklabels=True)
     fig.update_yaxes(title='{} Latent Dimentsion 2'.format(kind), visible=True, showticklabels=True)
-    pio.write_html(fig, file=path, auto_open=False)
+    pio.write_html(fig, file=path, auto_play=False, auto_open=False)
     plot_scatter = url_for('static', filename=name)
 
     return plot_scatter
