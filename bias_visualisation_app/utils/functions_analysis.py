@@ -669,6 +669,7 @@ def determine_gender(token):
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    parser.max_length = 10 ** 10
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     sub_list = []
@@ -704,6 +705,7 @@ def determine_gender_SVO(input_data):
 
 def determine_gender_premodifier(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    parser.max_length = 10 ** 10
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_premodifier_list = []
@@ -894,6 +896,7 @@ def findmalebefore_auxs(tokens):
 def determine_gender_aux(input_data):
     input_data = input_data.lower()
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    parser.max_length = 10 ** 10
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_follow_aux_list = []
     tot_male_follow_aux_list = []

@@ -1,1 +1,9 @@
-/bias_visualisation_app/data/
+
+!/bias_visualisation_app/data/amalgum/
+!/bias_visualisation_app/data/ANC/
+!/bias_visualisation_app/data/enwiki_txt/
+!/bias_visualisation_app/data/enwiki_xml/
+!/bias_visualisation_app/data/biases.json
+!/bias_visualisation_app/data/enwiki-20181001-corpus.xml
+!/bias_visualisation_app/data/GoogleNews-vectors-negative300.bin
+!/bias_visualisation_app/data/sample-monolingual.xml

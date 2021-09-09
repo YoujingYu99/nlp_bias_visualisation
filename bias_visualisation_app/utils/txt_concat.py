@@ -17,12 +17,11 @@ def txt_concat(txt_dir):
     file_n = len(txt_files)
     print('{} files being processed'.format(file_n))
     for file in txt_files:
-        while count < 45:
+        while count < 1000:
             if file.endswith(".txt"):
                 with open(os.path.join(txt_dir, file), 'r', encoding='utf-8') as file_in:
                     for line in file_in:
-                        # create word tokens as well as remove puntuation in one go
-                        rem_tok_punc = RegexpTokenizer(r'\w+')
+                        # tokenize
                         tokens = nltk.word_tokenize(line)
                         # convert the words to lower case
                         words = [w.lower() for w in tokens]
@@ -30,8 +29,8 @@ def txt_concat(txt_dir):
                         words = [w for w in words ]
                         words = ' '.join(words)
                         training_list.append(words)
-                count += 1
-    with open(os.path.join(txt_dir, "concat_test.txt"), 'w', encoding='utf-8') as output:
+            count += 1
+    with open(os.path.join(txt_dir, "enwiki_1500.txt"), 'w', encoding='utf-8') as output:
         for row in training_list:
             output.write(str(row) + '\n')
 

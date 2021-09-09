@@ -27,6 +27,7 @@ cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 # from urllib3 import urlopen
 
 nlp = spacy.load('en_core_web_sm')
+nlp.max_length = 10**10
 
 
 #
@@ -219,10 +220,10 @@ def detect_corpora():
         save_user_file_text(input_data)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-        if len(input_data) > 900000:
-            raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 900000 words long'
-            )
+        # if len(input_data) > 900000:
+        #     raise werkzeug.exceptions.BadRequest(
+        #         'Input Paragraph must be at most 900000 words long'
+        #     )
         generate_bias_values(input_data)
         flash('Your file is ready for download!', 'info')
 
