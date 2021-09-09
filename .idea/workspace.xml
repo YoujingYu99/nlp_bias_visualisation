@@ -4,8 +4,7 @@
     <list default="true" id="f0224c59-1558-47b9-851e-9de6dd2513ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bias_visualisation_app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_ANC.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/utils/test_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/utils/xml2txt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bias_visualisation_app/templates/index.html" afterDir="false" />
     </list>
     <list id="e142828c-8162-4f99-aa8d-36ed06a96978" name="Successfully writing dataframe for subject and object gender identification" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +66,7 @@
       <recent name="C:\Users\Youjing Yu\PycharmProjects\visualising_data_bias\bias_visualisation_app\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.delete">
+  <component name="RunManager" selected="Flask server.visualising_data_bias">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -231,21 +230,9 @@
       <workItem from="1630920568307" duration="3724000" />
       <workItem from="1630925234266" duration="10668000" />
       <workItem from="1630955088734" duration="2008000" />
-      <workItem from="1631005921561" duration="6954000" />
-    </task>
-    <task id="LOCAL-00093" summary="Adding punctuation and normalise sentences. Adding error messages when user input is wrong.">
-      <created>1629459836116</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1629459836118</updated>
-    </task>
-    <task id="LOCAL-00094" summary="Adding error messages for different errors. Numbering and lining back the debiased dataset.">
-      <created>1629468110120</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1629468110120</updated>
+      <workItem from="1631005921561" duration="7718000" />
+      <workItem from="1631092846858" duration="233000" />
+      <workItem from="1631178716052" duration="1282000" />
     </task>
     <task id="LOCAL-00095" summary="Adding success messages. Reverting back to Bootstrap. Adding routes for errors">
       <created>1629479076598</created>
@@ -576,7 +563,21 @@
       <option name="project" value="LOCAL" />
       <updated>1631011518000</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="Enwiki txt proves to be working. Max file size is 500KB.">
+      <created>1631013102188</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1631013102188</updated>
+    </task>
+    <task id="LOCAL-00143" summary="Adding functions for txt corpora concatenation">
+      <created>1631013143810</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1631013143810</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,8 +597,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished writing tests for analysis; Cleaning up import issues." />
-    <MESSAGE value="Deleting intermediate working files" />
     <MESSAGE value="Writing funtions to delete intermediate files." />
     <MESSAGE value="Document three different tests when running." />
     <MESSAGE value="Starting on the Selenium-driven integrated web test" />
@@ -621,7 +620,9 @@
     <MESSAGE value="Successfully testing a subset(face-to-face) of ANC; files larger than 500KB overloads the server." />
     <MESSAGE value="Solving the saving file input bug; now test on a larger corpora" />
     <MESSAGE value="Testing file limit to be 500 KB. convert xml to txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing file limit to be 500 KB. convert xml to txt" />
+    <MESSAGE value="Enwiki txt proves to be working. Max file size is 500KB." />
+    <MESSAGE value="Adding functions for txt corpora concatenation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding functions for txt corpora concatenation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -654,8 +655,8 @@
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_files.coverage" NAME="test_api Coverage Results" MODIFIED="1630401579969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_api.coverage" NAME="test_api Coverage Results" MODIFIED="1630084163849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_postmodifier.coverage" NAME="test_number_bias Coverage Results" MODIFIED="1629391066114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$delete.coverage" NAME="delete Coverage Results" MODIFIED="1631012941567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1631011770713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$delete.coverage" NAME="delete Coverage Results" MODIFIED="1631179897191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/visualising_data_bias$visualising_data_bias.coverage" NAME="visualising_data_bias Coverage Results" MODIFIED="1631179996355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_path.coverage" NAME="test_follow_aux Coverage Results" MODIFIED="1629110532105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bias_visualisation_app/utils" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$main.coverage" NAME="main Coverage Results" MODIFIED="1630596403646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web_test" />
     <SUITE FILE_PATH="coverage/visualising_data_bias$test_files_mock.coverage" NAME="test_api Coverage Results" MODIFIED="1630226138889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

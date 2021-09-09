@@ -159,9 +159,9 @@ def detect_text():
             # sentence = request.args.get('sentence')
             if not input_data:
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            if len(input_data) > 90000:
+            if len(input_data) > 900000:
                 raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 500000 characters long'
+                    'Input Paragraph must be at most 900000 words long'
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
@@ -180,9 +180,9 @@ def detect_url():
             save_user_file_text(input_data)
             if not input_data:
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            if len(input_data) > 90000:
+            if len(input_data) > 900000:
                 raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 500000 characters long'
+                    'Input Paragraph must be at most 900000 words long'
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
@@ -219,9 +219,9 @@ def detect_corpora():
         save_user_file_text(input_data)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-        if len(input_data) > 90000:
+        if len(input_data) > 900000:
             raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 500000 characters long'
+                'Input Paragraph must be at most 900000 words long'
             )
         generate_bias_values(input_data)
         flash('Your file is ready for download!', 'info')
@@ -272,6 +272,50 @@ def detect_dataframe():
             flash('Please input the complete excel file.', 'danger')
             return redirect(url_for('index'))
 
+@app.route('/sample_dataframe', methods=['GET', 'POST'])
+def sample_dataframe():
+    if request.method == 'POST':
+        try:
+            path_parent = os.path.dirname(os.getcwd())
+            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'data', 'sample_dataframe_ANC.xlsx')
+            dataframe_SVO = pd.read_excel(df_path, sheet_name='SVO_dataframe')
+            dataframe_premodifier = pd.read_excel(df_path, sheet_name='premodifier_dataframe')
+            dataframe_postmodifier = pd.read_excel(df_path, sheet_name='postmodifier_dataframe')
+            dataframe_aux = pd.read_excel(df_path, sheet_name='aux_dataframe')
+            dataframe_possess = pd.read_excel(df_path, sheet_name='possess_dataframe')
+            dataframe_profession = pd.read_excel(df_path, sheet_name='profession_dataframe')
+            dataframe_gender_count = pd.read_excel(df_path, sheet_name='gender_count_dataframe')
+            dataframe_total = pd.read_excel(df_path, sheet_name='total_dataframe')
+
+            input_dataframe_total = dataframe_total
+            save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
+
+            input_dataframe_SVO = dataframe_SVO
+            save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
+
+            input_dataframe_premodifier = dataframe_premodifier
+            save_obj_user_uploads(input_dataframe_premodifier, name='premodifier_dataframe_user_uploads')
+
+            input_dataframe_postmodifier = dataframe_postmodifier
+            save_obj_user_uploads(input_dataframe_postmodifier, name='postmodifier_dataframe_user_uploads')
+
+            input_dataframe_aux = dataframe_aux
+            save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
+
+            input_dataframe_possess = dataframe_possess
+            save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
+
+            input_dataframe_profession = dataframe_profession
+            save_obj_user_uploads(input_dataframe_profession, name='profession_dataframe_user_uploads')
+
+            input_dataframe_gender_count = dataframe_gender_count
+            save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
+
+            return redirect(url_for('visualisation'))
+
+        except:
+            flash('Sample file not found!', 'danger')
+            return redirect(url_for('index'))
 
 # . It works by looking at differences between male and female word pairs
 #       like 'he' and 'she', or 'boy' and 'girl', and then comparing the
