@@ -8,6 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import sys
 import os
+from flask import url_for
 from .parse_sentence import parse_sentence
 from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
@@ -668,6 +669,7 @@ def determine_gender(token):
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    parser.max_length = 10 ** 10
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     sub_list = []
@@ -703,6 +705,7 @@ def determine_gender_SVO(input_data):
 
 def determine_gender_premodifier(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    parser.max_length = 10 ** 10
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_premodifier_list = []
@@ -719,7 +722,7 @@ def determine_gender_premodifier(input_data):
 
     premodifier_df = pd.concat(list_of_series, axis=1)
     premodifier_df.columns = ['female_premodifier', 'male_premodifier']
-
+    print('premodifier', premodifier_df)
     premodifier_df = clean_premodifier_dataframe(premodifier_df)
 
     return premodifier_df
@@ -893,6 +896,7 @@ def findmalebefore_auxs(tokens):
 def determine_gender_aux(input_data):
     input_data = input_data.lower()
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
+    parser.max_length = 10 ** 10
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_follow_aux_list = []
     tot_male_follow_aux_list = []
@@ -1078,7 +1082,8 @@ def list_to_dataframe(view_results, scale_range=(-1, 1)):
     df['token'] = tok_base_list
     df['bias'] = scaler.fit_transform(df[['bias']])
     df.drop_duplicates(subset='token',
-                       keep=False, inplace=True)
+                       keep='first', inplace=True)
+
 
     return df
 
@@ -1146,7 +1151,6 @@ def generate_bias_values(input_data):
         else:
             continue
         view_results.append(item)
-
 
     view_df = list_to_dataframe(view_results)
     save_obj_text(view_df, name='total_dataframe')
@@ -1671,3 +1675,27 @@ def debiased_file(threshold_value):
 
     with open(os.path.join(save_path, 'debiased_file' + '.txt'), 'w+', encoding='utf-8') as f:
         f.write('\n'.join(debiased_sentence_list))
+
+import dtale
+from pivottablejs import pivot_ui
+def style_dataframe(df, df_name):
+    # # should list all possible situations here!!!
+    # if 'bias' in df.columns:
+    #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['bias']).hide_index()
+    # elif 'Frequency' in df.columns:
+    #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['Frequency']).hide_index()
+    #
+    # # can add more styling options here:
+    #
+    df_name = df_name + '.html'
+    df_path = os.path.join(os.path.dirname(__file__), "..", "static", df_name)
+    # with open(df_path, 'w') as f:
+    #     # try:
+    #     #     f.write(df_styler.render())
+    #     # except ValueError:
+    #     #     pass
+    #     f.write(df_styler.render())
+    #
+    # return url_for('static', filename=df_name)
+    pivot_ui(df, outfile_path=df_path)
+    return url_for('static', filename=df_name)

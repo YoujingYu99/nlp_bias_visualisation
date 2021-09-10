@@ -13,7 +13,7 @@
               </h5>
 
                <div class="row center">
-              <a href="{{url_for('index')}}" class="btn-large waves-effect #4db6ac teal lighten-2">Refresh</a>
+              <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect #4db6ac teal lighten-2">Refresh</a>
             </div>
             </div>
           </li>
@@ -154,10 +154,12 @@
               <h5>Word Clouds</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_word_cloud }}</p></div>
               <h3 style="text-align: center">Female </h3>
+{#              <iframe src="{{ female_word_cloud }}" alt="Female word cloud"></iframe>#}
               <img src="{{ female_word_cloud }}" alt="Female word cloud" style="width:1000px">
               </br>
               </br>
               <h3 style="text-align: center">Male</h3>
+{#              <iframe src="{{ male_word_cloud }}" alt="Male word cloud"></iframe>#}
               <img src="{{ male_word_cloud }}" alt="Male word cloud" style="width:1000px">
             </div>
 

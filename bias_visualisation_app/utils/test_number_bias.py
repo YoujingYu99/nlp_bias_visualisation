@@ -1,10 +1,6 @@
 import os
 import string
-import numpy as np
 import pandas as pd
-from nltk.tokenize import RegexpTokenizer
-from nltk.stem.wordnet import WordNetLemmatizer
-from nltk.corpus import stopwords
 import nltk
 from sklearn.preprocessing import MinMaxScaler
 

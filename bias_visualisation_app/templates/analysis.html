@@ -182,10 +182,24 @@
                     <li> An intransitive verb cannot or do not always have to take an object (e.g., he died; she sang).</li>
                 </ul>
             </li>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+
+            <li id="note_sidebar_button" class="nav nav-sidebar">
+            <p>Note: these definitions were strongly simplified. Further readings:</p>
+            <p>Douglas Biber et al. 2002. Longman Student Grammar of Spoken and Written English. London: Longman.</p>
+            <p>David Crystal. 2005. How Language Works. London: Penguin Books.</p>
+            <p> Peter Mathews. 2003. Linguistics: A Very Short Introduction. Oxford: Oxford University Press.</p>
+            <p>Steven Pinker. 2011. Words and Rules: The Ingredients of Language.  London: HarperCollins.</p>
+                </li>
 
         </ul>
     </div>
   </div>
+
   <div class="container-fluid">
     <div class="row">
         <div class="col min-vh-100 p-4">
@@ -199,7 +213,7 @@
                   <div class="icon-block">
                   <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>
                   <form method="POST" action="/analyse_question">
-                   <textarea name="user_question" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here (e.g. What actions do women usually perform? What are the adjectives mostly associated with men?)"></textarea>
+                   <textarea name="user_question" cols="3" rows="5" class="form-control" required="true" id="query_submit" placeholder="Enter Your Question Here (e.g. What actions do women usually perform? What are the adjectives mostly associated with men?)"></textarea>
                    <br/>
                    <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
                    <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
@@ -263,152 +277,167 @@
               <h5>Total</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_tot }}</p></div>
               <h3 style="text-align: center">Female</h3>
-                {{ data_fm_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_tot }}" alt="female total dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_tot }}</p></div>
               <h3 style="text-align: center">Male </h3>
-                {{ data_m_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_tot }}" alt="male total dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_tot.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
             </div>
 
             <div id="tab2" class="col s12">
               <h5>Nouns</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_nouns }}</p></div>
               <h3 style="text-align: center">Female </h3>
-                {{ data_fm_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_noun }}" alt="female noun dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_professions }}</p></div>
               <h3 style="text-align: center">Female Professions</h3>
-                {{ data_fm_profession.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_profession }}" alt="female profession dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_profession.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Female(Women are ...)</h3>
-                {{ data_fm_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_before_aux }}" alt="female before aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Female(... are women)</h3>
-                {{ data_fm_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_follow_aux }}" alt="female follow aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Male</h3>
-                {{ data_m_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_noun }}" alt="male noun dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_professions }}</p></div>
               <h3 style="text-align: center">Male Professions </h3>
-                {{ data_m_profession.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_profession }}" alt="male profession dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_profession.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Male(Men are ...)</h3>
-                {{ data_m_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_before_aux }}" alt="male before aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
               <h3 style="text-align: center">Male(... are men)</h3>
-                {{ data_m_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_follow_aux }}" alt="male follow aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
             </div>
 
             <div id="tab3" class="col s12">
               <h5>Adjectives</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_adjs }}</p></div>
               <h3 style="text-align: center">Female Adjectives</h3>
-                {{ data_fm_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_adj }}" alt="female adjective dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_pre }}</p></div>
-              <h3 style="text-align: center">Female  Premodifiers</h3>
-                {{ data_fm_premodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+              <h3 style="text-align: center">Female Premodifiers</h3>
+                <iframe src="{{ data_fm_premodifier }}" alt="female premodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_premodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Female Postmodifiers</h3>
-                {{ data_fm_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_postmodifier }}" alt="female postmodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_adjs }}</p></div>
               <h3 style="text-align: center">Male Adjectives</h3>
-                {{ data_m_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_adj }}" alt="male adjective dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Female Possessives</h3>
-                {{ data_fm_possessive.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_possessive }}" alt="female possessive dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_possessive.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Female Possessors</h3>
-                {{ data_fm_possessor.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_possessor }}" alt="female possessor dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_possessor.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_pre }}</p></div>
               <h3 style="text-align: center">Male  Premodifiers</h3>
-                {{ data_m_premodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_premodifier }}" alt="male premodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_premodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Male Postmodifiers</h3>
-                {{ data_m_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_postmodifier }}" alt="male postmodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Male Possessives</h3>
-                {{ data_m_possessive.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_possessive }}" alt="male possessive dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_possessive.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Male Possessors</h3>
-                {{ data_m_possessor.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_possessor }}" alt="male possessor dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_possessor.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
             </div>
 
-<!--            <div id="tab4" class="col s12">-->
-<!--              <h5>Verbs</h5>-->
-<!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_verbs }}</p></div>-->
-<!--              <h3 style="text-align: center">Female</h3>-->
-<!--                {{ data_fm_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}-->
-<!--              </br>-->
-<!--              </br>-->
-<!--              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_verbs }}</p></div>-->
-<!--              <h3 style="text-align: center">Male </h3>-->
-<!--                {{ data_m_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}-->
-<!--            </div>-->
 
             <div id="tab4" class="col s12">
               <h5>Verbs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_intran_verbs }}</p></div>
               <h3 style="text-align: center">Female Intransitive Verbs</h3>
-                {{ data_fm_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_intran_verb }}" alt="female intran_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_sub_verbs }}</p></div>
               <h3 style="text-align: center">Female As Subject</h3>
-                {{ data_fm_sub_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_sub_verb }}" alt="female sub_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_sub_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_obj_verbs }}</p></div>
               <h3 style="text-align: center">Female As Object</h3>
-                {{ data_fm_obj_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_fm_obj_verb }}" alt="female obj_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_fm_obj_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_intran_verbs }}</p></div>
               <h3 style="text-align: center">Male Intransitive Verbs</h3>
-                {{ data_m_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_intran_verb }}" alt="male intran_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_sub_verbs }}</p></div>
               <h3 style="text-align: center">Male As Subject</h3>
-                {{ data_m_sub_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_sub_verb }}" alt="male sub_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_sub_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ male_obj_verbs }}</p></div>
               <h3 style="text-align: center">Male As Object</h3>
-                {{ data_m_obj_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}
+                <iframe src="{{ data_m_obj_verb }}" alt="male obj_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+{#                {{ data_m_obj_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
             </div>
 
           </div>
