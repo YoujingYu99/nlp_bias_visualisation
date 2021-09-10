@@ -45,7 +45,7 @@ def bar_graph(dataframe, token_list, value_list):
 
     bar_name_ex = bar_name + '.html'
     bar_path = save_img_path + '.html'
-    fig = px.bar(df, x='token', y='bias', color='bias', color_continuous_scale=px.colors.sequential.Cividis_r)
+    fig = px.bar(df, x='token', y='bias', color='bias', color_continuous_scale=px.colors.sequential.Darkmint)
     fig.update_xaxes(title='words', visible=True, showticklabels=False)
     fig.update_yaxes(title='bias value', visible=True, showticklabels=False)
     pio.write_html(fig, file=bar_path, auto_open=False)
@@ -96,7 +96,7 @@ def specific_bar_graph(df_name='specific_df'):
         bar_path = save_img_path + '.html'
         # plt.savefig(bar_path)
 
-        fig = px.bar(df, x='token', y='bias', color='bias', orientation='h', color_continuous_scale=px.colors.sequential.Cividis_r)
+        fig = px.bar(df, x='token', y='bias', color='bias', orientation='h', color_continuous_scale=px.colors.sequential.Darkmint)
         fig.update_xaxes(title='words', visible=True, showticklabels=False)
         fig.update_yaxes(title='bias value', visible=True, showticklabels=False)
         pio.write_html(fig, file=bar_path, auto_open=False)
@@ -261,8 +261,8 @@ def cloud_image(token_list, value_list):
     female_data = {k: v for (k, v) in data.items() if v < 0}
 
     # cloud
-    cloud_color = 'magma'
-    cloud_bg_color = 'white'
+    cloud_color = 'summer'
+    cloud_bg_color = '#F0FFFF'
     # cloud_custom_font = False
 
     # transform mask
@@ -343,7 +343,7 @@ def cloud_image(token_list, value_list):
 
 N = 10 # divide the dataframe into 10 animation frames
 import math
-def interactive_scatter(token_df, name, path, kind):
+def interactive_scatter(token_df, name, path, kind, markercolor):
     # we need to make the token_df have points divided into N animation frames
     # first we need to divide the df into 10 groups with NO 0-9
     n = len(token_df.index)
@@ -374,10 +374,10 @@ def interactive_scatter(token_df, name, path, kind):
 
     token_df['NO of words shown'] = animationno
 
+    pio.templates.default = "ggplot2"
+
     fig = px.scatter(token_df, x='x', y='y', animation_frame='NO of words shown', text='word')
-    fig.update_traces(marker={'size': 14, 'line': dict(width=2,
-                                                       color='DarkSlateGrey')},
-                      selector=dict(mode='markers'))
+    # fig.update_traces(marker=dict(color='#04D8B2', size=12))
     fig.update_traces(textposition='top center', textfont_size=12)
     fig["layout"].pop("updatemenus")
     fig.update_xaxes(title='{} Latent Dimentsion 1'.format(kind), visible=True, showticklabels=True)
@@ -388,7 +388,7 @@ def interactive_scatter(token_df, name, path, kind):
     return plot_scatter
 
 
-def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation of Word-Vectors"):
+def tsne_graph(token_list, markercolor, iterations=3000, seed=20):
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
@@ -421,10 +421,10 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
 
-    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE')
+    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE', markercolor)
 
 
-def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation(Male)"):
+def tsne_graph_male(token_list, value_list, markercolor, iterations=3000, seed=20):
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
@@ -455,10 +455,10 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
 
-    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE')
+    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE', markercolor)
 
 
-def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="TSNE Visualisation (Female)"):
+def tsne_graph_female(token_list, value_list, markercolor, iterations=3000, seed=20):
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
@@ -489,10 +489,10 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
     save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
     tsne_path = save_img_path + '.html'
 
-    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE')
+    return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE', markercolor)
 
 
-def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum"):
+def pca_graph(token_list, markercolor):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
@@ -529,10 +529,10 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
 
-    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
+    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA', markercolor)
 
 
-def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
+def pca_graph_male(token_list, value_list, markercolor):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
@@ -569,10 +569,10 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
 
-    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
+    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA', markercolor)
 
 
-def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
+def pca_graph_female(token_list, value_list, markercolor):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
@@ -609,7 +609,7 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
     pca_path = save_img_path + '.html'
 
-    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA')
+    return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA', markercolor)
 
 
 

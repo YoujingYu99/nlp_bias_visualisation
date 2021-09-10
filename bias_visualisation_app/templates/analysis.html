@@ -2,40 +2,40 @@
 {% block content %}
 <!--Slider -->
 
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
-<script type='text/javascript'>
-
-    $(function(){
-
-        var iFrames = $('iframe');
-
-    	function iResize() {
-
-    		for (var i = 0, j = iFrames.length; i < j; i++) {
-    		  iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';}
-    	    }
-
-        	if ($.browser.safari || $.browser.opera) {
-
-        	   iFrames.load(function(){
-        	       setTimeout(iResize, 0);
-               });
-
-        	   for (var i = 0, j = iFrames.length; i < j; i++) {
-        			var iSource = iFrames[i].src;
-        			iFrames[i].src = '';
-        			iFrames[i].src = iSource;
-               }
-
-        	} else {
-        	   iFrames.load(function() {
-        	       this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
-        	   });
-        	}
-
-        });
-
-</script>
+{#<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>#}
+{#<script type='text/javascript'>#}
+{##}
+{#    $(function(){#}
+{##}
+{#        var iFrames = $('iframe');#}
+{##}
+{#    	function iResize() {#}
+{##}
+{#    		for (var i = 0, j = iFrames.length; i < j; i++) {#}
+{#    		  iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';}#}
+{#    	    }#}
+{##}
+{#        	if ($.browser.safari || $.browser.opera) {#}
+{##}
+{#        	   iFrames.load(function(){#}
+{#        	       setTimeout(iResize, 0);#}
+{#               });#}
+{##}
+{#        	   for (var i = 0, j = iFrames.length; i < j; i++) {#}
+{#        			var iSource = iFrames[i].src;#}
+{#        			iFrames[i].src = '';#}
+{#        			iFrames[i].src = iSource;#}
+{#               }#}
+{##}
+{#        	} else {#}
+{#        	   iFrames.load(function() {#}
+{#        	       this.style.height = this.contentWindow.document.body.offsetHeight + 'px';#}
+{#        	   });#}
+{#        	}#}
+{##}
+{#        });#}
+{##}
+{#</script>#}
 
 
     <section class="slider">
@@ -214,11 +214,12 @@
               </br>
               <div class="alert alert-info" role="alert" style="background-color: whitesmoke; border:none; ">
                 <p>We use interactive pivot tables to show the statistical characteristics of your corpora.</p>
-                <p>The widgets of can be dragged to row or column places to explore different dimensions of the dataframe. Different properties can be observed by selecting from the drop-down menu. Displaying methods can be selected from the top-left drop-down menu. </p>
+                <p>The widgets of can be dragged to row or column places to explore different dimensions of the dataframe. Different properties can be observed by selecting from the drop-down menu. Displaying methods can be selected from the top-left drop-down menu. Click on the double-headed arrows to sort by values in ascending/descending order. You can click on [pop out] button to have a larger picture.
+                </p>
                 <p>For full documentation please take a look at: <a href="url">https://github.com/nicolaskruchten/pivottable</a></p>
               </div>
               <div class="center">
-                  <img src="https://camo.githubusercontent.com/d2671993f34ce1ca0eac43f1f677b61b550f2a456eaa48777b8b05885c035adf/68747470733a2f2f7069766f747461626c652e6a732e6f72672f696d616765732f616e696d6174696f6e2e676966" alt="illustration gif">
+                  <img src="https://camo.githubusercontent.com/d2671993f34ce1ca0eac43f1f677b61b550f2a456eaa48777b8b05885c035adf/68747470733a2f2f7069766f747461626c652e6a732e6f72672f696d616765732f616e696d6174696f6e2e676966" alt="illustration gif" style="height: 70%; width: 70%; object-fit: contain">
                   </br>
               </div>
             </div>
@@ -267,7 +268,9 @@
                 <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ tot }}</p></div>
 {#                <iframe src="{{ data_tot }}" class="iframe-container" alt="total dataframe" width="100%" height="100%" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
                 <h3 style="text-align: center">Total Dataframe</h3>
-                <iframe src="{{ data_tot }}" alt="total dataframe" width="100%" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_tot }}" alt="total dataframe" style="margin-left:auto;margin-right:auto;width:1000px;height:800px"></iframe>
+                </div>
             </div>
 
             <div id="tab2" class="col s12">
@@ -278,7 +281,9 @@
 {#                <iframe src="{{ data_fm_noun }}" alt="female noun dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>#}
 {#                {{ data_fm_noun.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
                 <h3 style="text-align: center">Noun Dataframe</h3>
-                <iframe src="{{ data_noun }}" alt="noun dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_noun }}" alt="noun dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ professions }}</p></div>
@@ -286,7 +291,9 @@
 {#                <iframe src="{{ data_fm_profession }}" alt="female profession dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>#}
 {#                {{ data_fm_profession.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
                 <h3 style="text-align: center">Professions</h3>
-                <iframe src="{{ data_profession }}" alt="profession dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_profession }}" alt="profession dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ before_aux }}</p></div>
@@ -294,7 +301,9 @@
 {#                <iframe src="{{ data_fm_before_aux }}" alt="female before aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>#}
 {#                {{ data_fm_before_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
                 <h3 style="text-align: center">Before Aux Dataframe (Men/Women are ...)</h3>
-                <iframe src="{{ data_before_aux }}" alt="before aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_before_aux }}" alt="before aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>
@@ -302,7 +311,9 @@
 {#                <iframe src="{{ data_fm_follow_aux }}" alt="female follow aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>#}
 {#                {{ data_fm_follow_aux.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
                 <h3 style="text-align: center">Follow Aux Dataframe (... are men/women)</h3>
-                <iframe src="{{ data_follow_aux }}" alt="female follow aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_follow_aux }}" alt="female follow aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#              </br>#}
 {#              </br>#}
 {#              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ male_nouns }}</p></div>#}
@@ -334,8 +345,10 @@
               <h5>Adjectives</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ adjs }}</p></div>
               <h3 style="text-align: center">Adjectives Dataframe</h3>
-                <iframe src="{{ data_adj }}" alt="adjective dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_adj }}" alt="adjective dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
 {#                {{ data_fm_adj.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
+                </div>
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ pre }}</p></div>
@@ -346,7 +359,9 @@
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ post }}</p></div>
               <h3 style="text-align: center">Postmodifiers</h3>
-                <iframe src="{{ data_postmodifier }}" alt="postmodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_postmodifier }}" alt="postmodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#                {{ data_fm_postmodifier.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
@@ -358,13 +373,17 @@
 {#              </br>#}
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Possessives</h3>
-                <iframe src="{{ data_possessive }}" alt="possessive dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_possessive }}" alt="possessive dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#                {{ data_fm_possessive.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_post }}</p></div>
               <h3 style="text-align: center">Possessors</h3>
-                <iframe src="{{ data_possessor }}" alt="female possessor dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_possessor }}" alt="female possessor dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#                {{ data_fm_possessor.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
@@ -400,19 +419,25 @@
               <h5>Verbs</h5>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_intran_verbs }}</p></div>
               <h3 style="text-align: center">Intransitive Verbs</h3>
-                <iframe src="{{ data_intran_verb }}" alt="intran_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_intran_verb }}" alt="intran_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#                {{ data_fm_intran_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_sub_verbs }}</p></div>
               <h3 style="text-align: center">Female/Male As Subject</h3>
-                <iframe src="{{ data_sub_verb }}" alt="sub_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_sub_verb }}" alt="sub_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#                {{ data_fm_sub_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>
               <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ female_obj_verbs }}</p></div>
               <h3 style="text-align: center">Female/Male As Object</h3>
-                <iframe src="{{ data_obj_verb }}" alt="obj_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                <div class="center">
+                    <iframe src="{{ data_obj_verb }}" alt="obj_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
 {#                {{ data_fm_obj_verb.to_html(classes="table table-striped", header="true", justify="center") | safe}}#}
               </br>
               </br>

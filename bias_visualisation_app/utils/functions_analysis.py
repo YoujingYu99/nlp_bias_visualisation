@@ -1675,7 +1675,7 @@ def debiased_file(threshold_value):
         f.write('\n'.join(debiased_sentence_list))
 
 
-def style_dataframe(df, df_name):
+def style_dataframe(df, df_name, piv_col=None):
     # # should list all possible situations here!!!
     # if 'bias' in df.columns:
     #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['bias']).hide_index()
@@ -1694,7 +1694,10 @@ def style_dataframe(df, df_name):
     #     f.write(df_styler.render())
     #
     # return url_for('static', filename=df_name)
-    pivot_ui(df, outfile_path=df_path)
+    # pivot some columns on of the dataframe
+    if piv_col:
+        # df = df.pivot(index=piv_col[0], columns=piv_col[1])
+        pivot_ui(df, rows=[piv_col[0]], cols=[piv_col[1]], outfile_path=df_path)
     return url_for('static', filename=df_name)
 
 
