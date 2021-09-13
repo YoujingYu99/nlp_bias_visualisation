@@ -1,12 +1,12 @@
-
+# only run this file if you want to train your own model instead of using the model trained on amalgum dataset.
+import os
 import gensim
 import nltk
 from .functions_files import txt_list
 
 nltk.download('stopwords')
-
-txt_dir = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'
-
+fileDir = os.path.dirname(os.path.realpath('__file__'))
+txt_dir = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'amalgum', 'amalgum_balanced')
 
 training_data = txt_list(txt_dir)
 
@@ -18,4 +18,4 @@ model = gensim.models.Word2Vec(sentences=training_data, size=Embedding_Dim, work
 words = list(model.wv.vocab)
 print('Here is the Vocabulary Size.. %d' % len(words))
 
-model.save('gum_word2vec.model', path='bias_visualisation_app/resources/')
+model.save('gum_word2vec.model', path=os.path.join(fileDir, 'bias_visualisation_app', 'resources'))
