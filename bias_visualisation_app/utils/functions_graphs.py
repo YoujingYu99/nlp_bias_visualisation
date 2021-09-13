@@ -392,7 +392,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..', 'data', 'gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -428,7 +428,7 @@ def tsne_graph_male(token_list, value_list, iterations=3000, seed=20, title="TSN
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..', 'data' ,'gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -462,7 +462,7 @@ def tsne_graph_female(token_list, value_list, iterations=3000, seed=20, title="T
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..', 'data', 'gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -496,7 +496,7 @@ def pca_graph(token_list, title="PCA Visualisation of Word-Vectors for Amalgum")
     """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','data', 'gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -536,7 +536,7 @@ def pca_graph_male(token_list, value_list, title="PCA Visualisation(Male)"):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), "..", "data", "gum_word2vec.model")
+    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -576,7 +576,7 @@ def pca_graph_female(token_list, value_list, title="PCA Visualisation(Female)"):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..', 'data', 'gum_word2vec.model')
+    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore

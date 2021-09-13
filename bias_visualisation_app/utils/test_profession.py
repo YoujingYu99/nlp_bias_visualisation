@@ -10,7 +10,7 @@ def txt_profession_list():
     :return: a clean list containing the raw sentences
     """
     profession_list = []
-    profession_txt = os.path.join(os.path.dirname(__file__), '..', 'data', 'professions.txt')
+    profession_txt = os.path.join(os.path.dirname(__file__), '..', 'resources', 'professions.txt')
     with open(profession_txt, 'r', encoding='utf-8') as file_in:
         for line in file_in:
             profession_list.append(line.strip())

@@ -28,7 +28,7 @@ def delete_all_with_ext(folder_path, ext_list):
 
 
 
-delete_all_in_dir(folder_path_list=[os.path.join(txt_dir, 'data', 'user_uploads'), os.path.join(txt_dir, 'static', 'user_uploads'), os.path.join(txt_dir, 'static', 'user_downloads')])
+delete_all_in_dir(folder_path_list=[os.path.join(txt_dir, 'static', 'user_uploads_text'), os.path.join(txt_dir, 'static', 'user_uploads'), os.path.join(txt_dir, 'static', 'user_downloads')])
 
 delete_all_in_dir(folder_path_list=[os.path.join(txt_dir, 'utils', 'test')])
 

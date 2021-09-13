@@ -278,7 +278,7 @@ def sample_dataframe_ANC():
     if request.method == 'POST':
         try:
             path_parent = os.path.dirname(os.getcwd())
-            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'data', 'sample_dataframe_ANC.xlsx')
+            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'resources', 'sample_dataframe_ANC.xlsx')
             dataframe_SVO = pd.read_excel(df_path, sheet_name='SVO_dataframe')
             dataframe_premodifier = pd.read_excel(df_path, sheet_name='premodifier_dataframe')
             dataframe_postmodifier = pd.read_excel(df_path, sheet_name='postmodifier_dataframe')
@@ -324,7 +324,7 @@ def sample_dataframe_enwiki():
     if request.method == 'POST':
         try:
             path_parent = os.path.dirname(os.getcwd())
-            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'data', 'sample_dataframe_enwiki.xlsx')
+            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'resources', 'sample_dataframe_enwiki.xlsx')
             dataframe_SVO = pd.read_excel(df_path, sheet_name='SVO_dataframe')
             dataframe_premodifier = pd.read_excel(df_path, sheet_name='premodifier_dataframe')
             dataframe_postmodifier = pd.read_excel(df_path, sheet_name='postmodifier_dataframe')

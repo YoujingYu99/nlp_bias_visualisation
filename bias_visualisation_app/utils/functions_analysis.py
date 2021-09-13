@@ -722,7 +722,6 @@ def determine_gender_premodifier(input_data):
 
     premodifier_df = pd.concat(list_of_series, axis=1)
     premodifier_df.columns = ['female_premodifier', 'male_premodifier']
-    print('premodifier', premodifier_df)
     premodifier_df = clean_premodifier_dataframe(premodifier_df)
 
     return premodifier_df
@@ -1402,7 +1401,7 @@ def txt_profession_list():
     :return: a clean list containing the raw sentences
     """
     profession_list = []
-    profession_txt = os.path.join(os.path.dirname(__file__), '..', 'data', 'professions.txt')
+    profession_txt = os.path.join(os.path.dirname(__file__), '..', 'resources', 'professions.txt')
     with open(profession_txt, 'r', encoding='utf-8') as file_in:
         for line in file_in:
             profession_list.append(line.strip())
@@ -1603,7 +1602,7 @@ def user_input_list():
     :return: a clean list containing the raw sentences
     """
     fileDir = os.path.dirname(os.path.realpath('__file__'))
-    txt_dir = os.path.join(fileDir, 'bias_visualisation_app', 'data', 'user_uploads')
+    txt_dir = os.path.join(fileDir, 'bias_visualisation_app', 'static', 'user_uploads_text')
     original_word_list = []
     word_list = []
 

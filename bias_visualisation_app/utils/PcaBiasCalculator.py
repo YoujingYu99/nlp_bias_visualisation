@@ -34,7 +34,7 @@ class PcaBiasCalculator:
     def __init__(
             self,
             model_path=path.join(
-                path.dirname(__file__), '../data/gum_word2vec.model'
+                path.dirname(__file__), '..','resources','gum_word2vec.model'
             ),
             biased_word_pairs=gender_biased_word_pairs,
             neutral_words=gender_neutral_words,

@@ -18,4 +18,4 @@ model = gensim.models.Word2Vec(sentences=training_data, size=Embedding_Dim, work
 words = list(model.wv.vocab)
 print('Here is the Vocabulary Size.. %d' % len(words))
 
-model.save('gum_word2vec.model', path='bias_visualisation_app/data/')
+model.save('gum_word2vec.model', path='bias_visualisation_app/resources/')
