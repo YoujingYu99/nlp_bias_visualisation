@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 from flask_caching import Cache
 from flask import redirect, render_template, url_for, request, send_from_directory, flash
 from bias_visualisation_app import app
-from os import path
 from bias_visualisation_app.utils.functions_files import get_text_url, get_text_file, save_user_file_text,  save_obj_user_uploads, load_obj_user_uploads
 from bias_visualisation_app.utils.functions_analysis import  generate_list,\
     SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis, profession_analysis, gender_count_analysis,\
@@ -75,7 +74,6 @@ def detect_text():
         try:
             input_data = request.form['rawtext']
             save_user_file_text(input_data)
-            # sentence = request.args.get('sentence')
             if not input_data:
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
             if len(input_data) > 1200000:
