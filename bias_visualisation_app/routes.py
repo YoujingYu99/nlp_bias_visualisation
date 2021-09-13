@@ -23,36 +23,9 @@ import os
 sys.setrecursionlimit(10000)
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 
-# from urllib.request import urlopen
-# from urllib3 import urlopen
 
 nlp = spacy.load('en_core_web_sm')
 nlp.max_length = 10**10
-
-
-#
-# # Sumy Pkg
-# from sumy.parsers.plaintext import PlaintextParser
-# from sumy.nlp.tokenizers import Tokenizer
-# from sumy.summarizers.lex_rank import LexRankSummarizer
-#
-#
-# # Sumy
-# def sumy_summary(docx):
-#     parser = PlaintextParser.from_string(docx, Tokenizer('english'))
-#     lex_summarizer = LexRankSummarizer()
-#     summary = lex_summarizer(parser.document, 3)
-#     summary_list = [str(sentence) for sentence in summary]
-#     result = ' '.join(summary_list)
-#     return result
-#
-#
-# # Reading Time
-# def readingTime(mytext):
-#     total_words = len([token.text for token in nlp(mytext)])
-#     estimatedTime = total_words / 200.0
-#     return estimatedTime
-#
 
 
 @app.route('/')
@@ -60,33 +33,6 @@ def index():
     return render_template('index.html')
 
 
-# @app.route('/analyze', methods=['GET', 'POST'])
-# def analyze():
-#     start = time.time()
-#     if request.method == 'POST':
-#         rawtext = request.form['rawtext']
-#         final_reading_time = readingTime(rawtext)
-#         final_summary = text_summarizer(rawtext)
-#         summary_reading_time = readingTime(final_summary)
-#         end = time.time()
-#         final_time = end - start
-#     return render_template('index.html', ctext=rawtext, final_summary=final_summary, final_time=final_time,
-#                            final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
-
-
-# @app.route('/analyze_url', methods=['GET', 'POST'])
-# def analyze_url():
-#     start = time.time()
-#     if request.method == 'POST':
-#         raw_url = request.form['raw_url']
-#         rawtext = get_text(raw_url)
-#         final_reading_time = readingTime(rawtext)
-#         final_summary = text_summarizer(rawtext)
-#         summary_reading_time = readingTime(final_summary)
-#         end = time.time()
-#         final_time = end - start
-#     return render_template('index.html', ctext=rawtext, final_summary=final_summary, final_time=final_time,
-#                            final_reading_time=final_reading_time, summary_reading_time=summary_reading_time)
 
 
 @app.route('/visualisation')
@@ -121,34 +67,6 @@ def visualisation():
                            male_tsne_graph=plot_tsne_male, female_tsne_graph=plot_tsne_female, pca_graph=plot_pca,
                            male_pca_graph=plot_pca_male, female_pca_graph=plot_pca_female)
 
-
-# @app.route('/comparer', methods=['GET', 'POST'])
-# def comparer():
-#     start = time.time()
-#     if request.method == 'POST':
-#         rawtext = request.form['rawtext']
-#         final_reading_time = readingTime(rawtext)
-#         final_summary_spacy = text_summarizer(rawtext)
-#         summary_reading_time = readingTime(final_summary_spacy)
-#         # Gensim Summarizer
-#         final_summary_gensim = summarize(rawtext)
-#         summary_reading_time_gensim = readingTime(final_summary_gensim)
-#         # NLTK
-#         final_summary_nltk = nltk_summarizer(rawtext)
-#         summary_reading_time_nltk = readingTime(final_summary_nltk)
-#         # Sumy
-#         final_summary_sumy = sumy_summary(rawtext)
-#         summary_reading_time_sumy = readingTime(final_summary_sumy)
-#
-#         end = time.time()
-#         final_time = end - start
-#     return render_template('visualisation.html', ctext=rawtext, final_summary_spacy=final_summary_spacy,
-#                            final_summary_gensim=final_summary_gensim, final_summary_nltk=final_summary_nltk,
-#                            final_time=final_time, final_reading_time=final_reading_time,
-#                            summary_reading_time=summary_reading_time,
-#                            summary_reading_time_gensim=summary_reading_time_gensim,
-#                            final_summary_sumy=final_summary_sumy, summary_reading_time_sumy=summary_reading_time_sumy,
-#                            summary_reading_time_nltk=summary_reading_time_nltk)
 
 
 @app.route('/detect_text', methods=['GET', 'POST'])
@@ -192,25 +110,6 @@ def detect_url():
 
     return render_template('index.html')
 
-
-# @app.route('/detect_corpora', methods=['GET', 'POST'])
-# def detect_corpora():
-#     if request.method == 'POST':
-#         try:
-#             corpora_file = request.files['raw_corpora']
-#             input_data = get_text_file(corpora_file)
-#             save_user_file_text(input_data)
-#             if not input_data:
-#                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-#             # if len(input_data) > 50000:
-#             #     raise werkzeug.exceptions.BadRequest(
-#             #         'Input Paragraph must be at most 500000 characters long'
-#             #     )
-#             generate_bias_values(input_data)
-#             flash('Your file is ready for download!', 'info')
-#         except:
-#             flash('Please enter a valid txt file.', 'danger')
-#     return render_template('index.html')
 
 @app.route('/detect_corpora', methods=['GET', 'POST'])
 def detect_corpora():
@@ -365,14 +264,6 @@ def sample_dataframe_enwiki():
             return redirect(url_for('index'))
 
 
-# . It works by looking at differences between male and female word pairs
-#       like 'he' and 'she', or 'boy' and 'girl', and then comparing the
-#       differences between those words to other word vectors in the word2vec
-#       dataset.
-
-# >0: is male biased
-# <0: is female biased
-
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
     path_parent = os.path.dirname(os.getcwd())
@@ -412,17 +303,6 @@ def analysis():
     female_profession_df, male_profession_df = style_dataframe(female_profession_df, 'female_profession_df'), style_dataframe(male_profession_df, 'male_profession_df')
     female_count, male_count = gender_count_analysis(input_gender_count_dataframe)
 
-    # return render_template('analysis.html', female_count=female_count, male_count=male_count, data_fm_tot=female_tot_df, data_m_tot=male_tot_df,
-    #                        data_fm_noun=female_noun_df, data_m_noun=male_noun_df, data_fm_profession=female_profession_df, data_m_profession=male_profession_df, data_fm_adj=female_adj_df,
-    #                        data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
-    #                        data_fm_intran_verb=female_intran_df,
-    #                        data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
-    #                        data_m_intran_verb=male_intran_df, data_m_sub_verb=male_sub_df,
-    #                        data_m_obj_verb=male_obj_df, data_fm_premodifier=female_premodifier_df, data_m_premodifier=male_premodifier_df, data_fm_postmodifier=female_postmodifier_df, data_m_postmodifier=male_postmodifier_df, data_fm_before_aux=female_before_aux_df, data_m_before_aux=male_before_aux_df,
-    #                        data_fm_follow_aux=female_follow_aux_df, data_m_follow_aux=male_follow_aux_df, data_fm_possessive=female_possessive_df, data_m_possessive=male_possessive_df, data_fm_possessor=female_possessor_df, data_m_possessor=male_possessor_df,
-    #                        wordtype_data=[{'type': 'nouns'}, {'type': 'adjectives'}, {'type': 'intransitive_verbs'}, {'type': 'subject_verbs'},
-    #                                       {'type': 'object_verbs'}, {'type': 'premodifiers'}, {'type': 'before_aux'}, {'type': 'follow_aux'}, {'type': 'possessives'}, {'type': 'possessors'}, {'type': 'professions'}],
-    #                        gender_data=[{'type': 'female'}, {'type': 'male'}])
 
     return render_template('analysis.html', female_count=female_count, male_count=male_count, data_fm_tot=female_tot_df,
                            data_m_tot=male_tot_df,
@@ -461,10 +341,6 @@ def query():
             input_possess_dataframe = load_obj_user_uploads(df_path, name='possess_dataframe_user_uploads')
             input_profession_dataframe = load_obj_user_uploads(df_path, name='profession_dataframe_user_uploads')
 
-            # select_wordtype = request.form.get('type_select')
-            # select_gender = request.form.get('gender_select')
-            # dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender), view_df,
-            #                                             input_SVO_dataframe, input_premodifier_dataframe, input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe)
 
             input_question = request.form['user_question']
             select_gender, select_wordtype, dataframe_to_display = analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
@@ -500,97 +376,19 @@ def debiase():
     return render_template('debiase.html')
 
 
-# @app.route('/debiase', methods=['GET', 'POST'])
-# def debiase():
-#     if request.method == 'POST':
-#         user_threshold = request.form['user_threshold']
-#         user_threshold = float(user_threshold)
-#
-#         if 0 <= user_threshold and user_threshold <= 1:
-#             debiased_file(user_threshold)
-#             flash('You can download the debiased file now!', 'info')
-#
-#
-#     return render_template('debiase.html')
-
-
-
-# @app.route('/analyse_adj', methods=['GET', 'POST'])
-# def analyse_adj():
-#     if request.method == 'POST':
-#         # rawtext = request.form['rawtext']
-#         # female_dataframe_tot, male_dataframe_tot = gender_dataframe_from_dict(m_dic, fm_dic)
-#         # if 'adjectives' in rawtext:
-#         #     if 'female' in rawtext:
-#         #         female_adjs = female_adjs()
-#         #     elif 'male' in rawtext:
-#         #         male_adjs = male_adjs()
-#         #     else:
-#         #         print('Please enter a valid question')
-#
-#     return render_template('query.html', ctext=rawtext, data_fm_tot=female_dataframe_tot, data_m_tot=male_dataframe_tot)
-#
-# @app.route('/analyse_question', methods=['GET', 'POST'])
-# def analyse_question():
-#     if request.method == 'POST':
-#         select_wordtype = request.form.get('type_select')
-#         select_gender = request.form.get('gender_select')
-#         dataframe_to_display = df_based_on_question(str(select_wordtype), str(select_gender))
-#
-#         print(dataframe_to_display)
-#
-#     return render_template('query.html', data_question=dataframe_to_display)
-
 
 @app.route('/download/<df_name>', methods=['GET', 'POST'])
 def download(df_name):
-    uploads = path.join(path.dirname(__file__), 'static', 'user_downloads', df_name)
-    total_data = pd.read_excel(uploads)
     return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], filename=df_name, as_attachment=True)
-    #return send_file(uploads, as_attachment=True)
 
 
 @app.route('/download_debiased_file/<txt_name>', methods=['GET', 'POST'])
 def download_debiased_file(txt_name):
-    debiased_file_name = path.join(path.dirname(__file__), 'static', txt_name)
     return send_from_directory(directory=app.config['DEBIAS_FOLDER'], filename=txt_name, as_attachment=True)
 
-    #return send_file(uploads, as_attachment=True)
-
-# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-# def download_total(filename):
-#     print('calling download_total_route')
-#     uploads = path.join(path.dirname(__file__), 'static', filename)
-#     total_data = pd.read_csv(uploads)
-#     print(total_data)
-#     return send_from_directory(directory=app.config['UPLOAD_FOLDER'], filename=filename, as_attachment=True)
-#     #return send_file(uploads, as_attachment=True)
-#
-#
-# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-# def download_SVO(filename='SVO_dataframe.csv'):
-#     uploads = path.join(path.dirname(__file__), 'static', filename)
-#
-#     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
-#
-# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-# def download_premodifier(filename='premodifier_dataframe.csv'):
-#     uploads = path.join(path.dirname(__file__), 'static', filename)
-#     print(uploads)
-#     # return send_from_directory(directory=uploads, filename=filename)
-#     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
-#
-# @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
-# def download_aux(filename='aux_dataframe.csv'):
-#     uploads = path.join(path.dirname(__file__), 'static', filename)
-#     print(uploads)
-#     # return send_from_directory(directory=uploads, filename=filename)
-#     return send_from_directory(directory=app.static_folder, filename=filename, as_attachment=True)
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
 
-# text for testing functions
-# "Women writers support male fighters. Male cleaners are not more careful. Lucy likes female dramas. Women do not like gloves. Lucy eats a tasty black bread. The elegant powerful woman wears shiny black glasses. The dark tall man drinks water. He adores vulnerable strong women. The kind beautiful girl picks a cup. Most writers are female. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are victims. Men are not minority. The woman is a teacher. Sarah is an engineer. The culprit is not Linda.We need to protect women's rights. Men's health is as important. I can look after the Simpsons' cat. California's women live longest. Australia's John did not cling a gold prize. The world's women should unite together. Anna looks up a book. John asked Marilyn out. Steven did not take the coat off. Most writers are a woman. Most writers are not male. The teacher is not a man. The majority are women. The suspect is a woman. Her father was a man who lived an extraordinary life. Women are not victims. Men are minority. The woman isn't a teacher. Sarah is not a mathematician. Women pregnant should be carefully treated. Men generous are kind. John is a pilot. Steven is a fireman. Most nurses are male."

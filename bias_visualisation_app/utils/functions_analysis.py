@@ -9,23 +9,14 @@ import pandas as pd
 import sys
 import os
 from flask import url_for
-from .parse_sentence import parse_sentence
 from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj, load_obj_user_uploads
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
-# remove the . before .parse_sentence when running tests.
+
 
 sys.setrecursionlimit(10000)
 
 calculator = PrecalculatedBiasCalculator()
-# NLP bias detection
-# if environ.get('USE_PRECALCULATED_BIASES', '').upper() == 'TRUE':
-#     print('using precalculated biases')
-#     calculator = PrecalculatedBiasCalculator()
-# else:
-#     calculator = PcaBiasCalculator()
-
-# set recursion limit
 
 SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
 OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
@@ -49,6 +40,87 @@ neutral_words = [
     'the',
     'it',
 ]
+
+nlp = spacy.load('en_core_web_md')
+nlp.max_length = 10**10
+# avoid doing word splitting and exceptions and crazy stuff, just do a basic whitespace based parse
+nlp.tokenizer.rules = {}
+
+def combine_compound_words(sentence):
+    """
+    :param sentence:
+    :return:
+    Combined words into compound words with underscore.
+    """
+
+    doc = nlp(sentence)
+    reformulated_sentence_parts = []
+    compound_parts = []
+    for token in doc:
+        if token.dep_ == 'compound':
+            compound_parts.append(token.text)
+        else:
+            if len(compound_parts):
+                compound_parts.append(token.text)
+                reformulated_sentence_parts.append(
+                    '_'.join(compound_parts) + token.whitespace_
+                )
+                compound_parts = []
+            else:
+                reformulated_sentence_parts.append(token.text + token.whitespace_)
+    return ''.join(reformulated_sentence_parts)
+
+
+def parse_sentence(sentence):
+    """Parses a sentence and return a dictionary of the form {'tokens': [interface], 'text': 'interface'}."""
+    doc = nlp(sentence)
+    results = []
+    reverse_entities_map = {}
+    used_entities = set()
+    for entity in doc.ents:
+        for token in entity:
+            reverse_entities_map[token] = entity
+
+    compound_part_indices = []
+    for (i, token) in enumerate(doc):
+        if token in reverse_entities_map:
+            entity = reverse_entities_map[token]
+            if entity not in used_entities:
+                results.append(
+                    {
+                        'tokens': [tok for tok in entity],
+                        'text': entity.text,
+                    }
+                )
+                used_entities.add(entity)
+        else:
+            if token.dep_ == 'compound':
+                compound_part_indices.append(i)
+            else:
+                if len(compound_part_indices):
+                    compound_part_indices.append(i)
+                    tokens = [doc[j] for j in compound_part_indices]
+                    span = doc[compound_part_indices[0]: i + 1]
+                    results.append(
+                        {
+                            'tokens': tokens,
+                            'text': span.text,
+                        }
+                    )
+                    compound_part_indices = []
+                else:
+                    results.append(
+                        {
+                            'tokens': [token],
+                            'text': token.text,
+                        }
+                    )
+
+    return results
+
+
+def textify_tokens(parse_result):
+    return [res['text'] for res in parse_result]
 
 def getSubsFromConjunctions(subs):
     moreSubs = []
@@ -200,7 +272,6 @@ def getObjFromXComp(deps):
 
 def getAllSubs(v):
     verbNegated = isNegated(v)
-    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != 'DET']
     subs = []
     for tok in v.lefts:
         if tok.dep_ in SUBJECTS and tok.pos_ not in non_sub_pos:
@@ -1196,8 +1267,6 @@ def SVO_analysis(view_df):
     female_intran_df = intran_df.loc[intran_df['subject_gender'] == 'female']
     male_intran_df = intran_df.loc[intran_df['subject_gender'] == 'male']
 
-    # female_sub_df['Frequency'] = female_sub_df.groupby('subject').transform('count')
-    # df['frequency'] = df['county'].map(df['county'].value_counts())
     female_sub_df_new = female_sub_df.copy()
     female_sub_df_new['Frequency'] = female_sub_df_new['verb'].map(female_sub_df_new['verb'].value_counts())
     female_sub_df_new.sort_values('Frequency', inplace=True, ascending=False)
@@ -1485,7 +1554,6 @@ def common_member(a, b):
 
 def analyse_question(input_question, view_df, input_SVO_dataframe, input_premodifier_dataframe,
                          input_postmodifier_dataframe, input_aux_dataframe, input_possess_dataframe, input_profession_dataframe):
-    female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
     female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(

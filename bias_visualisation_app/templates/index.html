@@ -96,12 +96,12 @@
           <br class="icon-block">
             <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
             <form method="POST" action="/sample_dataframe_ANC">
-                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">See Sample Result (American National Corpus)</button>
+                 <button class="btn btn-small waves-effect waves-light lighten-2" type="submit">See Sample Result (American National Corpus)</button>
             </form>
             </br>
             </br>
             <form method="POST" action="/sample_dataframe_enwiki">
-                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">See Sample Result (English Wikipedia)</button>
+                 <button class="btn btn-small waves-effect waves-light lighten-2" type="submit">See Sample Result (English Wikipedia)</button>
             </form>
           </div>
         </div>
@@ -110,7 +110,6 @@
 
      <h5>Download the Complete File Here</h5>
      <a href="{{ url_for('download', df_name='complete_file.xlsx') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1" id="download_dataframe">Download Total Dataframe</a>
-{#     <button type="button" onclick="window.location.href='{{ url_for( 'download_total' , filename='total_dataframe.csv' ) }}';" class="btn btn-small waves-effect waves-light dark-blue lighten-1">Download Total Dataframe</button>#}
      </br>
      </br>
 

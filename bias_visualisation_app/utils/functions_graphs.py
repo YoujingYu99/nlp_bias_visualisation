@@ -1,29 +1,9 @@
 import os
-import sys
-import string
 from os import path
-from os import listdir
-from io import open
-from conllu import parse_incr
-import csv
-import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup
-import requests
-import werkzeug
-from werkzeug.utils import secure_filename
-from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
 from flask import url_for
-from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-from matplotlib.cm import ScalarMappable
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import plotly.express as px
-import plotly.graph_objs as go
 import plotly.io as pio
 from wordcloud import WordCloud
 from gensim.models import Word2Vec
@@ -32,8 +12,6 @@ from sklearn.decomposition import PCA
 
 from .functions_files import load_obj
 from .functions_analysis import token_by_gender
-from .parse_sentence import parse_sentence
-from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 def bar_graph(dataframe, token_list, value_list):
     # set minus sign

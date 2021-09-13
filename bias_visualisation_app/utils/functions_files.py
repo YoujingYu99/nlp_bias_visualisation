@@ -1,5 +1,4 @@
 import os
-import glob
 import sys
 from os import listdir
 from io import open
@@ -154,8 +153,6 @@ def tsv_txt(tsv_dir, txt_dir):
 
 # Fetch text from Url
 def get_text_url(url):
-    # page = urllib.request.urlopen(url)
-    # soup = BeautifulSoup(page)
     page = requests.get(url).text
     soup = BeautifulSoup(page, 'lxml')
     fetched_text = ' '.join(map(lambda p: p.text, soup.find_all('p')))
@@ -239,10 +236,3 @@ def load_obj_user_uploads(df_path, name):
 
 
 
-
-
-
-# p = 'bias_visualisation_app/data/amalgum/amalgum_balanced/tsv'
-# p1 = 'bias_visualisation_app/data/amalgum/amalgum_balanced/txt'
-#
-# tsv_txt(p, p1)
