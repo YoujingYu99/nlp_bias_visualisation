@@ -17,6 +17,18 @@ If you are running locally on your laptop in developer mode, please install down
 ```python
 python -m spacy download en_core_web_sm
 ```
+You can also increase the size of the corpus to be analysed by increasing the limit nlp.max_length in functions_analysis.py and routes.py:
+
+```python
+nlp.max_length = 10**10
+```
+And setting length of input_data to a higher value in routes.py:
+```python
+if len(input_data) > 1200000:
+    raise werkzeug.exceptions.BadRequest(
+        'Input Paragraph must be at most 250000 words long'
+    )
+```
 
 ## Requirements
 
