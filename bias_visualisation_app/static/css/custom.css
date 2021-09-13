@@ -70,27 +70,3 @@ footer.page-footer {
     bottom: 0;
     left: 15px;
 }
-
-/*.imgcolumn{*/
-/*  float: left;*/
-/*  flex: 33.33%;*/
-/*  padding: 5px;*/
-/*}*/
-
-/* includes alternating gray and white with on-hover color */
-
-/*.mystyle {*/
-/*    text-align: center;*/
-/*    border-collapse: collapse;*/
-/*    border: 1px solid silver;*/
-/*}*/
-
-/*.mystyle td, th {*/
-/*    padding: 5px;*/
-/*}*/
-
-
-/*.mystyle tr:hover {*/
-/*    background: silver;*/
-/*    cursor: pointer;*/
-/*}*/

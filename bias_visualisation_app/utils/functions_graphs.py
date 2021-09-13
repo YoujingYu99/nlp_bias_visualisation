@@ -393,6 +393,7 @@ def tsne_graph(token_list, iterations=3000, seed=20, title="TSNE Visualisation o
 
     # define word2vec model
     model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    print(model_path)
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore

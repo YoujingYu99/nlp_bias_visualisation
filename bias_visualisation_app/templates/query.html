@@ -18,7 +18,6 @@
             </div>
           </li>
           <li>
-{#           <img src="backgroundpurple.png" alt="Unsplashed background img 1">#}
             <div class="caption left-align">
               <h1 style="font-size: 500%">Bias Visualisation with NLTK</h1>
               <h5 class="light grey-text text-lighten-3 hide-on-small-only">
@@ -32,24 +31,6 @@
       </div>
   </section>
 
-<!--&lt;!&ndash;Query &ndash;&gt;-->
-<!--  <section>-->
-<!--    <div class="container">-->
-<!--      <div class="row">s-->
-<!--        <div class="input-field col s12 m10">-->
-<!--           <div class="icon-block">-->
-<!--            <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>-->
-<!--            <form method="POST" action="/analyze">-->
-<!--                 <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here"></textarea>-->
-<!--                 <br/>-->
-<!--                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>-->
-<!--                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>-->
-<!--            </form>-->
-<!--           </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </section>-->
 
 
 
@@ -72,14 +53,12 @@
 
             <div id="tab1" class="col s12">
               <h5>Answer</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ answer_to_question }}</p></div>
               <h3 style="text-align: center">{{ gender_in_question}} {{ type_in_question}}</h3>
                 {{ data_question.to_html(classes="table table-striped", header="true", justify="center") | safe}}
             </div>
 
             <div id="tab2" class="col s12">
               <h5>Bar Graph</h5>
-              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ bar_graph_specific }}</p></div>
               <img src="{{ bar_graph_specific }}" alt="Bar graph" style="margin-left:auto;margin-right:auto; width:1000px">
             </div>
 
