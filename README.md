@@ -77,7 +77,7 @@ All tokens are labeled with a bias value and the total score for each sentence i
 
 
 ## Contributors
-This project is developed by Youjing YU and Xiaoqiao Hu. 
+This project is developed by Youjing YU and Xiaoqiao Hu. The web development is inspired from the project (https://github.com/Jcharis/NLP-Web-Apps/tree/master/Summaryzer_Text_Summarization_App) by Jcharis.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
