@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos
+115,speechless,-0.9955156285746024,ADJ
+109,imaginative,-0.9821529874646464,ADJ
+4,unforgiving,-0.981146072121845,ADJ
+49,unbelievable,-0.9774653819539268,ADJ
+58,fateful,-0.907633319168356,ADJ
+35,frantic,-0.8923873629424601,ADJ
+24,devious,-0.880570320828967,ADJ
+71,undeniable,-0.8762872946962776,ADJ
+99,inwardly,-0.8262471342012332,ADV
+40,nervously,-0.8253044378073255,ADV
+16,disgusting,-0.8195704411881608,ADJ
+65,risky,-0.8112999849669549,ADJ
+45,reluctantly,-0.7631238739031818,ADV
+104,merry,-0.7220284685927274,ADJ
+20,preferable,-0.7148801440638088,ADJ
+107,shaded,-0.690982195508574,ADJ
+76,upside,-0.6254983222008934,ADV
+91,useless,-0.5561830330746558,ADJ
+2,desperate,-0.5297560856482071,ADJ
+96,vague,-0.4825848122553595,ADJ
+5,upset,-0.4090171898764185,ADJ
+48,horrible,-0.3772219160809764,ADJ
+61,naked,-0.3425367895853162,ADJ
+56,anyway,-0.2316883674602088,ADV
+74,confused,-0.1253629425694655,ADJ
+79,lowest,-0.0629781057440612,ADJ
+28,underlying,-0.0321490438105778,ADJ
+</div>
+    </body>
+</html>

@@ -10,6 +10,8 @@ from bias_visualisation_app.utils.functions_files import get_text_url, get_text_
 from bias_visualisation_app.utils.functions_analysis import  generate_list,\
     SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis, profession_analysis, gender_count_analysis,\
     generate_bias_values, save_obj, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file, style_dataframe
+    generate_bias_values, save_obj, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file, style_dataframe, \
+    df_tot
 from bias_visualisation_app.utils.functions_graphs import bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female
@@ -46,12 +48,12 @@ def visualisation():
     plot_female_cloud, plot_male_cloud = cloud_image(token_list, value_list)
     # only perform tsne plot if more than 100 tokens
     if len(token_list) > 100:
-        plot_tsne = tsne_graph(token_list)
-        plot_tsne_male = tsne_graph_male(token_list, value_list)
-        plot_tsne_female = tsne_graph_female(token_list, value_list)
-        plot_pca = pca_graph(token_list)
-        plot_pca_male = pca_graph_male(token_list, value_list)
-        plot_pca_female = pca_graph_female(token_list, value_list)
+        plot_tsne = tsne_graph(token_list, 'rgba(91,221,191,0.5)')
+        plot_tsne_male = tsne_graph_male(token_list, value_list, 'rgba(72,176,152,0.5)')
+        plot_tsne_female = tsne_graph_female(token_list, value_list, 'rgba(57,140,121,0.5)')
+        plot_pca = pca_graph(token_list, 'rgba(91,221,191,0.5)')
+        plot_pca_male = pca_graph_male(token_list, value_list, 'rgba(72,176,152,0.5)')
+        plot_pca_female = pca_graph_female(token_list, value_list, 'rgba(57,140,121,0.5)')
     else:
         plot_tsne = url_for('static', filename='nothing_here.png')
         plot_tsne_male = url_for('static', filename='nothing_here.png')
@@ -278,46 +280,55 @@ def analysis():
 
     # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
-    female_tot_df, male_tot_df = style_dataframe(female_tot_df, 'female_tot_df'), style_dataframe(male_tot_df, 'male_tot_df')
+    tot_df = df_tot(female_tot_df, male_tot_df)
+    tot_df = style_dataframe(tot_df, 'tot_df', ['token', 'pos'])
+
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
-    female_noun_df, female_adj_df, female_verb_df = style_dataframe(female_noun_df, 'female_noun_df'), style_dataframe(female_adj_df, 'female_adj_df'), style_dataframe(female_verb_df, 'female_verb_df')
+
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
-    male_noun_df, male_adj_df, male_verb_df = style_dataframe(male_noun_df, 'male_noun_df'), style_dataframe(male_adj_df, 'male_adj_df'), style_dataframe(male_verb_df, 'male_verb_df')
-    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
-    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = style_dataframe(female_sub_df, 'female_sub_df'), style_dataframe(female_obj_df, 'female_obj_df'), \
-                                                                                               style_dataframe(female_intran_df, 'female_intran_df'), style_dataframe(male_sub_df, 'male_sub_df'), \
-                                                                                               style_dataframe(male_obj_df, 'male_obj_df'), style_dataframe(male_intran_df, 'male_intran_df')
+    noun_df, adj_df, verb_df = df_tot(female_noun_df, male_noun_df), df_tot(female_adj_df, male_adj_df), df_tot(female_verb_df, male_verb_df)
+    noun_df, adj_df, verb_df = style_dataframe(noun_df, 'noun_df', ['token', 'pos']), style_dataframe(adj_df, 'adj_df', ['token', 'pos']), style_dataframe(verb_df, 'verb_df', ['token', 'pos'])
+
+    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)                                                                                          style_dataframe(male_obj_df, 'male_obj_df'), style_dataframe(male_intran_df, 'male_intran_df')
+    sub_df, obj_df, intran_df = df_tot(female_sub_df, male_sub_df), df_tot(female_obj_df, male_obj_df), df_tot(female_intran_df, male_intran_df)
+    sub_df, obj_df, intran_df = style_dataframe(sub_df, 'sub_df', ['verb', 'gender']), style_dataframe(obj_df, 'obj_df', ['verb', 'gender']), style_dataframe(intran_df, 'intran_df', ['verb', 'gender'])
+
     female_premodifier_df, male_premodifier_df = premodifier_analysis(input_premodifier_dataframe)
-    female_premodifier_df, male_premodifier_df = style_dataframe(female_premodifier_df, 'female_premodifier_df'), style_dataframe(male_premodifier_df, 'male_premodifier_df')
+    premodifier_df = df_tot(female_premodifier_df, male_premodifier_df)
+    premodifier_df = style_dataframe(premodifier_df, 'premodifier_df', ['word', 'gender'])
+
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
-    female_postmodifier_df, male_postmodifier_df = style_dataframe(female_postmodifier_df, 'female_postmodifier_df'), style_dataframe(male_postmodifier_df, 'male_postmodifier_df')
+    postmodifier_df = df_tot(female_postmodifier_df, male_postmodifier_df)
+    postmodifier_df = style_dataframe(postmodifier_df, 'postmodifier_df', ['word', 'gender'])
+
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
-    female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = style_dataframe(female_before_aux_df, 'female_before_aux_df'), style_dataframe(male_before_aux_df, 'male_before_aux_df'), \
-                                                                                         style_dataframe(female_follow_aux_df, 'female_follow_aux_df'), style_dataframe(male_follow_aux_df, 'male_follow_aux_df')
+    before_aux_df, follow_aux_df = df_tot(female_before_aux_df, male_before_aux_df), df_tot(female_follow_aux_df, male_follow_aux_df)
+    before_aux_df, follow_aux_df = style_dataframe(before_aux_df, 'before_aux_df', ['word', 'gender']), style_dataframe(follow_aux_df, 'follow_aux_df', ['word', 'gender'])                                                                                    style_dataframe(female_follow_aux_df, 'female_follow_aux_df'), style_dataframe(male_follow_aux_df, 'male_follow_aux_df')
+
     female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
-    female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = style_dataframe(female_possessive_df, 'female_possessive_df'), style_dataframe(male_possessive_df, 'male_possessive_df'), \
-                                                                                       style_dataframe(female_possessor_df, 'female_possessor_df'), style_dataframe(male_possessor_df, 'male_possessor_df')
+    possessive_df, possessor_df = df_tot(female_possessive_df, male_possessive_df), df_tot(female_possessor_df, male_possessor_df)
+    possessive_df, possessor_df = style_dataframe(possessive_df, 'possessive_df', ['word', 'gender']), style_dataframe(possessor_df, 'possessor_df', ['word', 'gender'])                                                                                  style_dataframe(female_possessor_df, 'female_possessor_df'), style_dataframe(male_possessor_df, 'male_possessor_df')
+
     female_profession_df, male_profession_df = profession_analysis(input_profession_dataframe)
-    female_profession_df, male_profession_df = style_dataframe(female_profession_df, 'female_profession_df'), style_dataframe(male_profession_df, 'male_profession_df')
+    profession_df = df_tot(female_profession_df, male_profession_df)
+    profession_df = style_dataframe(profession_df, 'profession_df', ['token', 'gender'])
+
     female_count, male_count = gender_count_analysis(input_gender_count_dataframe)
 
+                   data_fm_possessor=female_possessor_df, data_m_possessor=male_possessor_df)
 
-    return render_template('analysis.html', female_count=female_count, male_count=male_count, data_fm_tot=female_tot_df,
-                           data_m_tot=male_tot_df,
-                           data_fm_noun=female_noun_df, data_m_noun=male_noun_df,
-                           data_fm_profession=female_profession_df, data_m_profession=male_profession_df,
-                           data_fm_adj=female_adj_df,
-                           data_m_adj=male_adj_df, data_fm_verb=female_verb_df, data_m_verb=male_verb_df,
-                           data_fm_intran_verb=female_intran_df,
-                           data_fm_sub_verb=female_sub_df, data_fm_obj_verb=female_obj_df,
-                           data_m_intran_verb=male_intran_df, data_m_sub_verb=male_sub_df,
-                           data_m_obj_verb=male_obj_df, data_fm_premodifier=female_premodifier_df,
-                           data_m_premodifier=male_premodifier_df, data_fm_postmodifier=female_postmodifier_df,
-                           data_m_postmodifier=male_postmodifier_df, data_fm_before_aux=female_before_aux_df,
-                           data_m_before_aux=male_before_aux_df,
-                           data_fm_follow_aux=female_follow_aux_df, data_m_follow_aux=male_follow_aux_df,
-                           data_fm_possessive=female_possessive_df, data_m_possessive=male_possessive_df,
-                           data_fm_possessor=female_possessor_df, data_m_possessor=male_possessor_df)
+    return render_template('analysis.html', female_count=female_count, male_count=male_count, data_tot=tot_df,
+                           data_noun=noun_df, data_profession=profession_df,
+                           data_adj=adj_df,
+                           data_verb=verb_df,
+                           data_intran_verb=intran_df,
+                           data_sub_verb=sub_df, data_obj_verb=obj_df,
+                           data_premodifier=premodifier_df,
+                           data_postmodifier=postmodifier_df,
+                           data_before_aux=before_aux_df,
+                           data_follow_aux=follow_aux_df,
+                           data_possessive=possessive_df,
+                           data_possessor=possessor_df)
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():

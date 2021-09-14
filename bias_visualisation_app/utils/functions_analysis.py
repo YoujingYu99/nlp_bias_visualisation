@@ -5,6 +5,7 @@ import spacy
 import string
 from io import open
 from sklearn.preprocessing import MinMaxScaler
+from pivottablejs import pivot_ui
 import pandas as pd
 import sys
 import os
@@ -13,10 +14,10 @@ from .functions_files import save_obj_text, concat_csv_excel, save_obj, load_obj
 from .PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 
 
-
 sys.setrecursionlimit(10000)
 
 calculator = PrecalculatedBiasCalculator()
+
 
 SUBJECTS = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'agent', 'expl', 'compounds', 'pobj']
 OBJECTS = ['dobj', 'dative', 'attr', 'oprd']
@@ -40,87 +41,6 @@ neutral_words = [
     'the',
     'it',
 ]
-
-nlp = spacy.load('en_core_web_md')
-nlp.max_length = 10**10
-# avoid doing word splitting and exceptions and crazy stuff, just do a basic whitespace based parse
-nlp.tokenizer.rules = {}
-
-def combine_compound_words(sentence):
-    """
-    :param sentence:
-    :return:
-    Combined words into compound words with underscore.
-    """
-
-    doc = nlp(sentence)
-    reformulated_sentence_parts = []
-    compound_parts = []
-    for token in doc:
-        if token.dep_ == 'compound':
-            compound_parts.append(token.text)
-        else:
-            if len(compound_parts):
-                compound_parts.append(token.text)
-                reformulated_sentence_parts.append(
-                    '_'.join(compound_parts) + token.whitespace_
-                )
-                compound_parts = []
-            else:
-                reformulated_sentence_parts.append(token.text + token.whitespace_)
-    return ''.join(reformulated_sentence_parts)
-
-
-def parse_sentence(sentence):
-    """Parses a sentence and return a dictionary of the form {'tokens': [interface], 'text': 'interface'}."""
-    doc = nlp(sentence)
-    results = []
-    reverse_entities_map = {}
-    used_entities = set()
-    for entity in doc.ents:
-        for token in entity:
-            reverse_entities_map[token] = entity
-
-    compound_part_indices = []
-    for (i, token) in enumerate(doc):
-        if token in reverse_entities_map:
-            entity = reverse_entities_map[token]
-            if entity not in used_entities:
-                results.append(
-                    {
-                        'tokens': [tok for tok in entity],
-                        'text': entity.text,
-                    }
-                )
-                used_entities.add(entity)
-        else:
-            if token.dep_ == 'compound':
-                compound_part_indices.append(i)
-            else:
-                if len(compound_part_indices):
-                    compound_part_indices.append(i)
-                    tokens = [doc[j] for j in compound_part_indices]
-                    span = doc[compound_part_indices[0]: i + 1]
-                    results.append(
-                        {
-                            'tokens': tokens,
-                            'text': span.text,
-                        }
-                    )
-                    compound_part_indices = []
-                else:
-                    results.append(
-                        {
-                            'tokens': [token],
-                            'text': token.text,
-                        }
-                    )
-
-    return results
-
-
-def textify_tokens(parse_result):
-    return [res['text'] for res in parse_result]
 
 def getSubsFromConjunctions(subs):
     moreSubs = []
@@ -272,6 +192,7 @@ def getObjFromXComp(deps):
 
 def getAllSubs(v):
     verbNegated = isNegated(v)
+    # subs = [tok for tok in v.lefts if tok.dep_ in SUBJECTS elif  type(tok.dep_) == int or float  and tok.pos_ != 'DET']
     subs = []
     for tok in v.lefts:
         if tok.dep_ in SUBJECTS and tok.pos_ not in non_sub_pos:
@@ -740,7 +661,6 @@ def determine_gender(token):
 
 def determine_gender_SVO(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
-    parser.max_length = 10 ** 10
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     sub_list = []
@@ -776,7 +696,6 @@ def determine_gender_SVO(input_data):
 
 def determine_gender_premodifier(input_data):
     parser = spacy.load('en_core_web_md', disable=['ner', 'textcat'])
-    parser.max_length = 10 ** 10
     input_data = input_data.lower()
     sent_text = nltk.sent_tokenize(input_data)
     tot_female_premodifier_list = []
@@ -1743,26 +1662,23 @@ def debiased_file(threshold_value):
     with open(os.path.join(save_path, 'debiased_file' + '.txt'), 'w+', encoding='utf-8') as f:
         f.write('\n'.join(debiased_sentence_list))
 
-import dtale
-from pivottablejs import pivot_ui
-def style_dataframe(df, df_name):
-    # # should list all possible situations here!!!
-    # if 'bias' in df.columns:
-    #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['bias']).hide_index()
-    # elif 'Frequency' in df.columns:
-    #     df_styler = df.style.set_precision(2).background_gradient(axis=0, gmap=df['Frequency']).hide_index()
-    #
-    # # can add more styling options here:
-    #
+
+def style_dataframe(df, df_name, piv_col=None):
     df_name = df_name + '.html'
     df_path = os.path.join(os.path.dirname(__file__), "..", "static", df_name)
-    # with open(df_path, 'w') as f:
-    #     # try:
-    #     #     f.write(df_styler.render())
-    #     # except ValueError:
-    #     #     pass
-    #     f.write(df_styler.render())
-    #
-    # return url_for('static', filename=df_name)
-    pivot_ui(df, outfile_path=df_path)
+
+    if piv_col:
+
+        pivot_ui(df, rows=[piv_col[0]], cols=[piv_col[1]], outfile_path=df_path)
     return url_for('static', filename=df_name)
+
+
+def df_tot(female_df, male_df):
+    fl = len(female_df.index)
+    ml = len(male_df.index)
+    f_gender = ['female'] * fl
+    m_gender = ['male'] * ml
+    female_df['gender'] = f_gender
+    male_df['gender'] = m_gender
+    df_tot = pd.concat([female_df, male_df])
+    return df_tot

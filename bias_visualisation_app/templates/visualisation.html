@@ -55,12 +55,16 @@
               </ul>
             </div>
             <div id="tab1" class="col s12">
+                </br>
               <h5>Bar Graphs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px">{{ bar }}</p></div>
                 <iframe src="{{ bar_graph }}" alt="Bar graph" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
             </div>
 
             <div id="tab2" class="col s12">
+                </br>
               <h5>Word Clouds</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_word_cloud }}</p></div>
               <h3 style="text-align: center">Female </h3>
               <img src="{{ female_word_cloud }}" alt="Female word cloud" style="width:1000px">
               </br>
@@ -70,13 +74,17 @@
             </div>
 
             <div id="tab3" class="col s12">
-              <h5>TSNE Graphs</h5>
+              </br>
+                <h5>TSNE Graphs</h5>
+              <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ female_tsne }}</p></div>
               <h3 style="text-align: center">Female</h3>
                 <iframe src="{{ female_tsne_graph }}" alt="Female Tsne graph" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
               </br>
               </br>
               <h3 style="text-align: center">Male</h3>
                 <iframe src="{{ male_tsne_graph }}" alt="Male Tsne graph" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+              </br>
+              </br>
               <h3 style="text-align: center">Overall</h3>
                 <iframe src="{{ tsne_graph }}" alt="Tsne graph" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
             </div>
@@ -89,6 +97,8 @@
               </br>
               <h3 style="text-align: center">Male</h3>
               <iframe src="{{ male_pca_graph }}" alt="Male PCA graph" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+              </br>
+              </br>
               <h3 style="text-align: center">Overall</h3>
               <iframe src="{{ pca_graph }}" alt="PCA graph" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
             </div>
