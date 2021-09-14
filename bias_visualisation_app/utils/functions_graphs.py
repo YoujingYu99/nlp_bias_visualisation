@@ -19,7 +19,7 @@ def bar_graph(dataframe, token_list, value_list):
     df = dataframe
 
     # save file to static
-    bar_name = token_list[0] + token_list[-2]
+    bar_name = 'bar_graph'
     save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
 
     bar_name_ex = bar_name + '.html'
@@ -33,18 +33,19 @@ def bar_graph(dataframe, token_list, value_list):
 
 
 def specific_bar_graph(df_name='specific_df'):
-    # set minus sign
+    path_parent = os.path.dirname(os.getcwd())
+    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
+
     try:
         # set minus
-        path_parent = os.path.dirname(os.getcwd())
-        df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
         df = load_obj(df_path, name=df_name)
 
         # save file to static
-        bar_name = df['token'].iloc[0] + df['token'].iloc[-2]
+        bar_name = 'specific_bar_graph'
         bar_name_ex = bar_name + '.html'
         save_img_path = os.path.join(path.dirname(__file__), '..', 'static', bar_name)
         bar_path = save_img_path + '.html'
+
 
         fig = px.bar(df, x='token', y='bias', color='bias', orientation='h', color_continuous_scale=px.colors.sequential.Darkmint)
         fig.update_xaxes(title='words', visible=True, showticklabels=False)
@@ -57,12 +58,10 @@ def specific_bar_graph(df_name='specific_df'):
 
     except:
         try:
-
             df = load_obj(df_path, name=df_name)
 
-
             # save file to static
-            bar_name = df['verb'].iloc[0] + df['verb'].iloc[1]
+            bar_name = 'specific_bar_graph'
             bar_name_ex = bar_name + '.html'
             save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
             bar_path = save_img_path + '.html'
@@ -77,12 +76,9 @@ def specific_bar_graph(df_name='specific_df'):
 
         except:
             try:
-
                 df = load_obj(df_path, name=df_name)
-
-
                 # save file to static
-                bar_name = df['word'].iloc[0] + df['word'].iloc[1]
+                bar_name = 'specific_bar_graph'
                 bar_name_ex = bar_name + '.html'
                 save_img_path = path.join(path.dirname(__file__), '..', 'static', bar_name)
                 bar_path = save_img_path + '.html'

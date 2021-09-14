@@ -42,6 +42,101 @@ neutral_words = [
     'it',
 ]
 
+nlp = spacy.load('en_core_web_md')
+nlp.max_length = 10**10
+# avoid doing word splitting and exceptions and crazy stuff, just do a basic whitespace based parse
+nlp.tokenizer.rules = {}
+
+# Lemmatize with POS Tag
+from nltk.corpus import wordnet
+
+def get_wordnet_pos(word):
+    """Map POS tag to first character lemmatize() accepts"""
+    tag = nltk.pos_tag([word])[0][1][0].upper()
+    tag_dict = {"J": wordnet.ADJ,
+                "N": wordnet.NOUN,
+                "V": wordnet.VERB,
+                "R": wordnet.ADV}
+
+    return tag_dict.get(tag, wordnet.NOUN)
+
+
+def combine_compound_words(sentence):
+    """
+    :param sentence:
+    :return:
+    Combined words into compound words with underscore.
+    """
+
+    doc = nlp(sentence)
+    reformulated_sentence_parts = []
+    compound_parts = []
+    for token in doc:
+        if token.dep_ == 'compound':
+            compound_parts.append(token.text)
+        else:
+            if len(compound_parts):
+                compound_parts.append(token.text)
+                reformulated_sentence_parts.append(
+                    '_'.join(compound_parts) + token.whitespace_
+                )
+                compound_parts = []
+            else:
+                reformulated_sentence_parts.append(token.text + token.whitespace_)
+    return ''.join(reformulated_sentence_parts)
+
+
+def parse_sentence(sentence):
+    """Parses a sentence and return a dictionary of the form {'tokens': [interface], 'text': 'interface'}."""
+    doc = nlp(sentence)
+    results = []
+    reverse_entities_map = {}
+    used_entities = set()
+    for entity in doc.ents:
+        for token in entity:
+            reverse_entities_map[token] = entity
+
+    compound_part_indices = []
+    for (i, token) in enumerate(doc):
+        if token in reverse_entities_map:
+            entity = reverse_entities_map[token]
+            if entity not in used_entities:
+                results.append(
+                    {
+                        'tokens': [tok for tok in entity],
+                        'text': entity.text,
+                    }
+                )
+                used_entities.add(entity)
+        else:
+            if token.dep_ == 'compound':
+                compound_part_indices.append(i)
+            else:
+                if len(compound_part_indices):
+                    compound_part_indices.append(i)
+                    tokens = [doc[j] for j in compound_part_indices]
+                    span = doc[compound_part_indices[0]: i + 1]
+                    results.append(
+                        {
+                            'tokens': tokens,
+                            'text': span.text,
+                        }
+                    )
+                    compound_part_indices = []
+                else:
+                    results.append(
+                        {
+                            'tokens': [token],
+                            'text': token.text,
+                        }
+                    )
+
+    return results
+
+
+def textify_tokens(parse_result):
+    return [res['text'] for res in parse_result]
+
 def getSubsFromConjunctions(subs):
     moreSubs = []
     for sub in subs:
@@ -469,7 +564,7 @@ def clean_premodifier_dataframe(premodifier_df):
     female_premodifier_list = premodifier_df['female_premodifier'].to_list()
     female_premodifier_base_list = []
     for premodifier in female_premodifier_list:
-        base_word = WordNetLemmatizer().lemmatize(premodifier)
+        base_word = WordNetLemmatizer().lemmatize(premodifier, get_wordnet_pos(premodifier))
         base_word.strip()
         female_premodifier_base_list.append(base_word)
     premodifier_df['female_premodifier'] = female_premodifier_base_list
@@ -477,7 +572,7 @@ def clean_premodifier_dataframe(premodifier_df):
     male_premodifier_list = premodifier_df['male_premodifier'].to_list()
     male_premodifier_base_list = []
     for premodifier in male_premodifier_list:
-        base_word = WordNetLemmatizer().lemmatize(premodifier)
+        base_word = WordNetLemmatizer().lemmatize(premodifier, get_wordnet_pos(premodifier))
         base_word.strip()
         male_premodifier_base_list.append(base_word)
     premodifier_df['male_premodifier'] = male_premodifier_base_list
@@ -496,7 +591,7 @@ def clean_postmodifier_dataframe(postmodifier_df):
     female_postmodifier_list = postmodifier_df['female_postmodifier'].to_list()
     female_postmodifier_base_list = []
     for postmodifier in female_postmodifier_list:
-        base_word = WordNetLemmatizer().lemmatize(postmodifier)
+        base_word = WordNetLemmatizer().lemmatize(postmodifier, get_wordnet_pos(postmodifier))
         base_word.strip()
         female_postmodifier_base_list.append(base_word)
     postmodifier_df['female_postmodifier'] = female_postmodifier_base_list
@@ -504,7 +599,7 @@ def clean_postmodifier_dataframe(postmodifier_df):
     male_postmodifier_list = postmodifier_df['male_postmodifier'].to_list()
     male_postmodifier_base_list = []
     for postmodifier in male_postmodifier_list:
-        base_word = WordNetLemmatizer().lemmatize(postmodifier)
+        base_word = WordNetLemmatizer().lemmatize(postmodifier, get_wordnet_pos(postmodifier))
         base_word.strip()
         male_postmodifier_base_list.append(base_word)
     postmodifier_df['male_postmodifier'] = male_postmodifier_base_list
@@ -525,11 +620,11 @@ def clean_aux_dataframe(aux_df):
             if '!' in aux:
                 aux = aux.replace('!', '')
                 aux.strip()
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 female_before_aux_base_list.append('!' + base_word)
             else:
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 female_before_aux_base_list.append(base_word)
         except:
@@ -544,11 +639,11 @@ def clean_aux_dataframe(aux_df):
             if '!' in aux:
                 aux = aux.replace('!', '')
                 aux.strip()
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 male_before_aux_base_list.append('!' + base_word)
             else:
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 male_before_aux_base_list.append(base_word)
         except:
@@ -564,11 +659,11 @@ def clean_aux_dataframe(aux_df):
             if '!' in aux:
                 aux = aux.replace('!', '')
                 aux.strip()
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 female_follow_aux_base_list.append('!' + base_word)
             else:
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 female_follow_aux_base_list.append(base_word)
         except:
@@ -583,11 +678,11 @@ def clean_aux_dataframe(aux_df):
             if '!' in aux:
                 aux = aux.replace('!', '')
                 aux.strip()
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 male_follow_aux_base_list.append('!' + base_word)
             else:
-                base_word = WordNetLemmatizer().lemmatize(aux)
+                base_word = WordNetLemmatizer().lemmatize(aux, get_wordnet_pos(aux))
                 base_word.strip()
                 male_follow_aux_base_list.append(base_word)
         except:
@@ -610,7 +705,7 @@ def clean_possess_dataframe(possess_df):
     female_possessive_list = possess_df['female_possessive'].to_list()
     female_possessive_base_list = []
     for possessive in female_possessive_list:
-        base_word = WordNetLemmatizer().lemmatize(possessive)
+        base_word = WordNetLemmatizer().lemmatize(possessive, get_wordnet_pos(possessive))
         base_word.strip()
         female_possessive_base_list.append(base_word)
     possess_df['female_possessive'] = female_possessive_base_list
@@ -618,7 +713,7 @@ def clean_possess_dataframe(possess_df):
     male_possessive_list = possess_df['male_possessive'].to_list()
     male_possessive_base_list = []
     for possessive in male_possessive_list:
-        base_word = WordNetLemmatizer().lemmatize(possessive)
+        base_word = WordNetLemmatizer().lemmatize(possessive, get_wordnet_pos(possessive))
         base_word.strip()
         male_possessive_base_list.append(base_word)
     possess_df['male_possessive'] = male_possessive_base_list
@@ -626,7 +721,7 @@ def clean_possess_dataframe(possess_df):
     female_possessor_list = possess_df['female_possessor'].to_list()
     female_possessor_base_list = []
     for possessor in female_possessor_list:
-        base_word = WordNetLemmatizer().lemmatize(possessor)
+        base_word = WordNetLemmatizer().lemmatize(possessor, get_wordnet_pos(possessor))
         base_word.strip()
         female_possessor_base_list.append(base_word)
     possess_df['female_possessor'] = female_possessor_base_list
@@ -634,7 +729,7 @@ def clean_possess_dataframe(possess_df):
     male_possessor_list = possess_df['male_possessor'].to_list()
     male_possessor_base_list = []
     for possessor in male_possessor_list:
-        base_word = WordNetLemmatizer().lemmatize(possessor)
+        base_word = WordNetLemmatizer().lemmatize(possessor, get_wordnet_pos(possessor))
         base_word.strip()
         male_possessor_base_list.append(base_word)
     possess_df['male_possessor'] = male_possessor_base_list
@@ -1064,7 +1159,7 @@ def list_to_dataframe(view_results, scale_range=(-1, 1)):
     tok_list = df['token'].to_list()
     tok_base_list = []
     for tok in tok_list:
-        base_word = WordNetLemmatizer().lemmatize(tok)
+        base_word = WordNetLemmatizer().lemmatize(tok, get_wordnet_pos(tok))
         base_word.strip()
         tok_base_list.append(base_word)
 

@@ -9,9 +9,7 @@ from bias_visualisation_app import app
 from bias_visualisation_app.utils.functions_files import get_text_url, get_text_file, save_user_file_text,  save_obj_user_uploads, load_obj_user_uploads
 from bias_visualisation_app.utils.functions_analysis import  generate_list,\
     SVO_analysis, premodifier_analysis, postmodifier_analysis, aux_analysis, possess_analysis, profession_analysis, gender_count_analysis,\
-    generate_bias_values, save_obj, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file, style_dataframe
-    generate_bias_values, save_obj, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file, style_dataframe, \
-    df_tot
+    generate_bias_values, save_obj, gender_dataframe_from_tuple, parse_pos_dataframe, analyse_question, debiased_file, style_dataframe, df_tot
 from bias_visualisation_app.utils.functions_graphs import bar_graph, specific_bar_graph, cloud_image, tsne_graph, tsne_graph_male, \
     tsne_graph_female, pca_graph, \
     pca_graph_male, pca_graph_female
@@ -78,9 +76,9 @@ def detect_text():
             save_user_file_text(input_data)
             if not input_data:
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            if len(input_data) > 1200000:
+            if len(input_data) > 1500000:
                 raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 250000 words long'
+                    'Input Paragraph must be at most 1500000 words long'
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
@@ -99,9 +97,9 @@ def detect_url():
             save_user_file_text(input_data)
             if not input_data:
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            if len(input_data) > 1200000:
+            if len(input_data) > 1500000:
                 raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 250000 words long'
+                    'Input Paragraph must be at most 1500000 words long'
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
@@ -119,9 +117,9 @@ def detect_corpora():
         save_user_file_text(input_data)
         if not input_data:
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-        if len(input_data) > 1200000:
+        if len(input_data) > 1500000:
             raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 250000 words long'
+                'Input Paragraph must be at most 1500000 words long'
             )
         generate_bias_values(input_data)
         flash('Your file is ready for download!', 'info')
@@ -278,18 +276,18 @@ def analysis():
     input_profession_dataframe = load_obj_user_uploads(df_path, name='profession_dataframe_user_uploads')
     input_gender_count_dataframe = load_obj_user_uploads(df_path, name='gender_count_dataframe_user_uploads')
 
-    # view_df = frame_from_file(input_dataframe)[0]
     female_tot_df, male_tot_df = gender_dataframe_from_tuple(view_df)
     tot_df = df_tot(female_tot_df, male_tot_df)
     tot_df = style_dataframe(tot_df, 'tot_df', ['token', 'pos'])
 
     female_noun_df, female_adj_df, female_verb_df = parse_pos_dataframe(view_df)[:3]
-
     male_noun_df, male_adj_df, male_verb_df = parse_pos_dataframe(view_df)[-3:]
+
     noun_df, adj_df, verb_df = df_tot(female_noun_df, male_noun_df), df_tot(female_adj_df, male_adj_df), df_tot(female_verb_df, male_verb_df)
     noun_df, adj_df, verb_df = style_dataframe(noun_df, 'noun_df', ['token', 'pos']), style_dataframe(adj_df, 'adj_df', ['token', 'pos']), style_dataframe(verb_df, 'verb_df', ['token', 'pos'])
 
-    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)                                                                                          style_dataframe(male_obj_df, 'male_obj_df'), style_dataframe(male_intran_df, 'male_intran_df')
+    female_sub_df, female_obj_df, female_intran_df, male_sub_df, male_obj_df, male_intran_df = SVO_analysis(input_SVO_dataframe)
+
     sub_df, obj_df, intran_df = df_tot(female_sub_df, male_sub_df), df_tot(female_obj_df, male_obj_df), df_tot(female_intran_df, male_intran_df)
     sub_df, obj_df, intran_df = style_dataframe(sub_df, 'sub_df', ['verb', 'gender']), style_dataframe(obj_df, 'obj_df', ['verb', 'gender']), style_dataframe(intran_df, 'intran_df', ['verb', 'gender'])
 
@@ -297,25 +295,28 @@ def analysis():
     premodifier_df = df_tot(female_premodifier_df, male_premodifier_df)
     premodifier_df = style_dataframe(premodifier_df, 'premodifier_df', ['word', 'gender'])
 
+
     female_postmodifier_df, male_postmodifier_df = postmodifier_analysis(input_postmodifier_dataframe)
     postmodifier_df = df_tot(female_postmodifier_df, male_postmodifier_df)
     postmodifier_df = style_dataframe(postmodifier_df, 'postmodifier_df', ['word', 'gender'])
 
+
     female_before_aux_df, male_before_aux_df, female_follow_aux_df, male_follow_aux_df = aux_analysis(input_aux_dataframe)
     before_aux_df, follow_aux_df = df_tot(female_before_aux_df, male_before_aux_df), df_tot(female_follow_aux_df, male_follow_aux_df)
-    before_aux_df, follow_aux_df = style_dataframe(before_aux_df, 'before_aux_df', ['word', 'gender']), style_dataframe(follow_aux_df, 'follow_aux_df', ['word', 'gender'])                                                                                    style_dataframe(female_follow_aux_df, 'female_follow_aux_df'), style_dataframe(male_follow_aux_df, 'male_follow_aux_df')
+    before_aux_df, follow_aux_df = style_dataframe(before_aux_df, 'before_aux_df', ['word', 'gender']), style_dataframe(follow_aux_df, 'follow_aux_df', ['word', 'gender'])
+
 
     female_possessive_df, male_possessive_df, female_possessor_df, male_possessor_df = possess_analysis(input_possess_dataframe)
     possessive_df, possessor_df = df_tot(female_possessive_df, male_possessive_df), df_tot(female_possessor_df, male_possessor_df)
-    possessive_df, possessor_df = style_dataframe(possessive_df, 'possessive_df', ['word', 'gender']), style_dataframe(possessor_df, 'possessor_df', ['word', 'gender'])                                                                                  style_dataframe(female_possessor_df, 'female_possessor_df'), style_dataframe(male_possessor_df, 'male_possessor_df')
+    possessive_df, possessor_df = style_dataframe(possessive_df, 'possessive_df', ['word', 'gender']), style_dataframe(possessor_df, 'possessor_df', ['word', 'gender'])
 
     female_profession_df, male_profession_df = profession_analysis(input_profession_dataframe)
     profession_df = df_tot(female_profession_df, male_profession_df)
     profession_df = style_dataframe(profession_df, 'profession_df', ['token', 'gender'])
 
+
     female_count, male_count = gender_count_analysis(input_gender_count_dataframe)
 
-                   data_fm_possessor=female_possessor_df, data_m_possessor=male_possessor_df)
 
     return render_template('analysis.html', female_count=female_count, male_count=male_count, data_tot=tot_df,
                            data_noun=noun_df, data_profession=profession_df,
