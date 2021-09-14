@@ -78,7 +78,7 @@ def detect_text():
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
             if len(input_data) > 1500000:
                 raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 1500000 words long'
+                    'Input Paragraph must be at most 1500000 characters long'
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
@@ -99,7 +99,7 @@ def detect_url():
                 raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
             if len(input_data) > 1500000:
                 raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 1500000 words long'
+                    'Input Paragraph must be at most 1500000 characters long'
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
@@ -119,7 +119,7 @@ def detect_corpora():
             raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
         if len(input_data) > 1500000:
             raise werkzeug.exceptions.BadRequest(
-                'Input Paragraph must be at most 1500000 words long'
+                'Input Paragraph must be at most 1500000 characters long'
             )
         generate_bias_values(input_data)
         flash('Your file is ready for download!', 'info')
