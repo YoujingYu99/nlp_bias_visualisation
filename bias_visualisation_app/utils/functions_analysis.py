@@ -500,7 +500,7 @@ male_names = nc.names.words('male.txt')
 male_names.extend(['he', 'him', 'himself', 'man', 'men', 'gentleman', 'gentlemen'])
 female_names = nc.names.words('female.txt')
 female_names.extend(['she', 'her', 'herself', 'woman', 'women', 'lady'])
-neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs', 'neutral']
+neutral_sub_list = ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'it', 'its', 'they', 'them', 'their', 'theirs', 'neutral', 'you', 'yours', 'your']
 
 spec_chars = ['!', ''','#','%','&',''', '(', ')',
               '*', '+', ',', '-', '.', '/', ':', ';', '<',
