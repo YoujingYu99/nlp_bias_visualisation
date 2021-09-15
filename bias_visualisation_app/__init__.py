@@ -12,7 +12,6 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = "234798238423"
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
 
-
 from bias_visualisation_app import routes
 
 @app.after_request

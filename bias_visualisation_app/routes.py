@@ -81,7 +81,7 @@ def detect_text():
                     'Input Paragraph must be at most 1500000 characters long'
                 )
             generate_bias_values(input_data)
-            flash('Your file is ready for download!', 'info')
+            flash('Your file is ready for downloading!', 'info')
         except:
             flash('Please enter a valid text.', 'danger')
 
@@ -174,9 +174,13 @@ def detect_dataframe():
 def sample_dataframe_ANC():
     if request.method == 'POST':
         try:
-            path_parent = os.path.dirname(os.getcwd())
-            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'resources', 'sample_dataframe_ANC.xlsx')
+            # path_parent = os.path.dirname(os.getcwd())
+            path_parent = os.path.dirname(__file__)
+            # print('path_parent ', path_parent)
+            df_path = os.path.join(path_parent,'resources', 'sample_dataframe_ANC.xlsx')
+            # print('path of the dataframe', df_path)
             dataframe_SVO = pd.read_excel(df_path, sheet_name='SVO_dataframe')
+            # print('dataframe_SVO')
             dataframe_premodifier = pd.read_excel(df_path, sheet_name='premodifier_dataframe')
             dataframe_postmodifier = pd.read_excel(df_path, sheet_name='postmodifier_dataframe')
             dataframe_aux = pd.read_excel(df_path, sheet_name='aux_dataframe')
@@ -184,9 +188,11 @@ def sample_dataframe_ANC():
             dataframe_profession = pd.read_excel(df_path, sheet_name='profession_dataframe')
             dataframe_gender_count = pd.read_excel(df_path, sheet_name='gender_count_dataframe')
             dataframe_total = pd.read_excel(df_path, sheet_name='total_dataframe')
+            # print("dataframes loaded")
 
             input_dataframe_total = dataframe_total
             save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
+            # print('dataframe_total')
 
             input_dataframe_SVO = dataframe_SVO
             save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
@@ -199,6 +205,7 @@ def sample_dataframe_ANC():
 
             input_dataframe_aux = dataframe_aux
             save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
+            # print('dataframe_aug')
 
             input_dataframe_possess = dataframe_possess
             save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
@@ -208,6 +215,8 @@ def sample_dataframe_ANC():
 
             input_dataframe_gender_count = dataframe_gender_count
             save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
+
+            # print('save_obj_finished')
 
             return redirect(url_for('visualisation'))
 

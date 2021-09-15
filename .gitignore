@@ -4,6 +4,7 @@ bias_visualisation_app/static/*.png
 bias_visualisation_app/static/user_uploads/*
 bias_visualisation_app/static/user_uploads_text/*
 bias_visualisation_app/static/user_downloads/*
+bias_visualisation_app/data
 
 !bias_visualisation_app/resources/.gitkeep
 !bias_visualisation_app/static/user_downloads/.gitkeep

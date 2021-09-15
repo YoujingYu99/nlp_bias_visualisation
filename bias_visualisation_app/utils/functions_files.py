@@ -185,8 +185,11 @@ def save_user_file_text(user_text):
     # os.path.join is used so that paths work in every operating system
     save_user_path = os.path.join(fileDir, 'bias_visualisation_app', 'static', 'user_uploads_text')
 
-    with open(os.path.join(save_user_path, 'user_input_text.txt'), 'w+', encoding='utf-8') as f:
-       f.write(user_text)
+    # with open(os.path.join(save_user_path, 'user_input_text.txt'), 'w', encoding='utf-8') as f:
+    #    f.write(user_text)
+    f = open(os.path.join(save_user_path, 'user_input_text.txt'), 'w')
+    f.write(user_text)
+    f.close()
 
 
 
@@ -202,11 +205,15 @@ def save_obj_text(obj, name):
     path_parent = os.path.dirname(os.getcwd())
     save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads', name)
     df_path = save_df_path + '.csv'
+    print(df_path)
     obj.to_csv(df_path, index=False)
+    print('save_obj_text')
 
 
 def save_obj_user_uploads(obj, name):
     path_parent = os.path.dirname(os.getcwd())
+    # path_parent = os.path.dirname(__file__)
+    # save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
     save_df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
