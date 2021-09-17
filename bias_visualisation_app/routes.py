@@ -215,7 +215,6 @@ def sample_dataframe_ANC():
             flash('Sample file not found!', 'danger')
             return redirect(url_for('index'))
 
-
 @app.route('/sample_dataframe_enwiki', methods=['GET', 'POST'])
 def sample_dataframe_enwiki():
     if request.method == 'POST':
