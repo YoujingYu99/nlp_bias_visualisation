@@ -1,9 +1,9 @@
 from flask import Flask
 import os
 
-path_parent = os.path.dirname(os.getcwd())
-save_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_downloads')
-debias_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
+path_parent = os.path.dirname(os.path.abspath(__file__))
+save_path = os.path.join(path_parent, 'static', 'user_downloads')
+debias_path = os.path.join(path_parent, 'static')
 
 app = Flask(__name__)
 app.config['DOWNLOAD_FOLDER'] = save_path

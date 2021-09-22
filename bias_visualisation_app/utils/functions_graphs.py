@@ -20,7 +20,7 @@ def bar_graph(dataframe, token_list, value_list):
 
     # save file to static
     bar_name = 'bar_graph'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", bar_name)
 
     bar_name_ex = bar_name + '.html'
     bar_path = save_img_path + '.html'
@@ -33,8 +33,8 @@ def bar_graph(dataframe, token_list, value_list):
 
 
 def specific_bar_graph(df_name='specific_df'):
-    path_parent = os.path.dirname(os.getcwd())
-    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static')
+    path_parent = os.path.dirname(os.path.abspath(__file__))
+    df_path = os.path.join(path_parent, 'static')
 
     try:
         # set minus
@@ -43,7 +43,7 @@ def specific_bar_graph(df_name='specific_df'):
         # save file to static
         bar_name = 'specific_bar_graph'
         bar_name_ex = bar_name + '.html'
-        save_img_path = os.path.join(path.dirname(__file__), '..', 'static', bar_name)
+        save_img_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', bar_name)
         bar_path = save_img_path + '.html'
 
 
@@ -63,7 +63,7 @@ def specific_bar_graph(df_name='specific_df'):
             # save file to static
             bar_name = 'specific_bar_graph'
             bar_name_ex = bar_name + '.html'
-            save_img_path = path.join(path.dirname(__file__), "..", "static", bar_name)
+            save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", bar_name)
             bar_path = save_img_path + '.html'
 
             fig = px.bar(df, x='verb', y='Frequency', orientation='h', color='Frequency', color_continuous_scale=px.colors.sequential.Cividis_r)
@@ -80,7 +80,7 @@ def specific_bar_graph(df_name='specific_df'):
                 # save file to static
                 bar_name = 'specific_bar_graph'
                 bar_name_ex = bar_name + '.html'
-                save_img_path = path.join(path.dirname(__file__), '..', 'static', bar_name)
+                save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), 'static', bar_name)
                 bar_path = save_img_path + '.html'
 
                 fig = px.bar(df, x='word', y='Frequency', orientation='h', color='Frequency', color_continuous_scale=px.colors.sequential.Cividis_r)
@@ -147,7 +147,7 @@ def cloud_image(token_list, value_list):
         # save file to static
         female_cloud_name = 'femalecloud'
         female_cloud_name_ex = female_cloud_name + '.png'
-        save_img_path = path.join(path.dirname(__file__), '..', 'static', female_cloud_name)
+        save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), 'static', female_cloud_name)
         img_path = save_img_path + '.png'
         female_wordcloud.to_file(img_path)
         female_wordcloud.to_file(img_path)
@@ -166,7 +166,7 @@ def cloud_image(token_list, value_list):
         # save file to static
         male_cloud_name = 'malecloud'
         male_cloud_name_ex = male_cloud_name + '.png'
-        save_img_path = path.join(path.dirname(__file__),  '..', 'static', male_cloud_name)
+        save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), 'static', male_cloud_name)
         img_path = save_img_path + '.png'
         male_wordcloud.to_file(img_path)
 
@@ -230,7 +230,7 @@ def tsne_graph(token_list, markercolor, iterations=3000, seed=20):
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    model_path = path.join(os.path.dirname(os.path.abspath(__file__)),'resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -256,7 +256,7 @@ def tsne_graph(token_list, markercolor, iterations=3000, seed=20):
 
     tsne_name = 'tsne'
     tsne_name_ex = tsne_name + '.html'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", tsne_name)
     tsne_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE', markercolor)
@@ -266,7 +266,7 @@ def tsne_graph_male(token_list, value_list, markercolor, iterations=3000, seed=2
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    model_path = path.join(os.path.dirname(os.path.abspath(__file__)),'resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -290,7 +290,7 @@ def tsne_graph_male(token_list, value_list, markercolor, iterations=3000, seed=2
 
     tsne_name = 'tsne_male'
     tsne_name_ex = tsne_name + '.html'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", tsne_name)
     tsne_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE', markercolor)
@@ -300,7 +300,7 @@ def tsne_graph_female(token_list, value_list, markercolor, iterations=3000, seed
     """Creates a TSNE model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    model_path = path.join(os.path.dirname(os.path.abspath(__file__)),'resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -324,7 +324,7 @@ def tsne_graph_female(token_list, value_list, markercolor, iterations=3000, seed
 
     tsne_name = 'tsne_female'
     tsne_name_ex = tsne_name + '.html'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", tsne_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", tsne_name)
     tsne_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, tsne_name_ex, tsne_path, 'TSNE', markercolor)
@@ -334,7 +334,7 @@ def pca_graph(token_list, markercolor):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    model_path = path.join(os.path.dirname(os.path.abspath(__file__)),'resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -364,7 +364,7 @@ def pca_graph(token_list, markercolor):
     # save file to static
     pca_name = 'pca'
     pca_name_ex = pca_name + '.html'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", pca_name)
     pca_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA', markercolor)
@@ -374,7 +374,7 @@ def pca_graph_male(token_list, value_list, markercolor):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    model_path = path.join(os.path.dirname(os.path.abspath(__file__)),'resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -404,7 +404,7 @@ def pca_graph_male(token_list, value_list, markercolor):
     # save file to static
     pca_name = 'pca_male'
     pca_name_ex = pca_name + '.html'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", pca_name)
     pca_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA', markercolor)
@@ -414,7 +414,7 @@ def pca_graph_female(token_list, value_list, markercolor):
     """Creates a PCA model and plots it"""
 
     # define word2vec model
-    model_path = path.join(path.dirname(__file__), '..','resources','gum_word2vec.model')
+    model_path = path.join(os.path.dirname(os.path.abspath(__file__)), '..','resources','gum_word2vec.model')
     w2vmodel = Word2Vec.load(model_path)
 
     # manually define which words we want to explore
@@ -444,7 +444,7 @@ def pca_graph_female(token_list, value_list, markercolor):
     # save file to static
     pca_name = 'pca_female'
     pca_name_ex = pca_name + '.html'
-    save_img_path = path.join(path.dirname(__file__), "..", "static", pca_name)
+    save_img_path = path.join(os.path.dirname(os.path.abspath(__file__)), "static", pca_name)
     pca_path = save_img_path + '.html'
 
     return interactive_scatter(word_df, pca_name_ex, pca_path, 'PCA', markercolor)

@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 def save_xml_text(file_name, user_text):
     # user inputs a string
-    fileDir = os.path.dirname(os.path.realpath('__file__'))
+    fileDir = os.path.dirname(os.path.abspath(__file__))
 
     # os.path.join is used so that paths work in every operating system
     save_user_path = os.path.join(fileDir, '..', 'data', 'enwiki_txt')

@@ -37,7 +37,7 @@ def txt_concat(txt_dir):
 
     return training_list
 
-path_parent = os.path.dirname(os.getcwd())
+path_parent = os.path.dirname(os.path.abspath(__file__))
 test_path = os.path.join(path_parent, 'data', 'enwiki_txt')
 
 txt_concat(test_path)

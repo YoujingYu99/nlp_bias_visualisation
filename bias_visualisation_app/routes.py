@@ -36,8 +36,8 @@ def index():
 
 @app.route('/visualisation')
 def visualisation():
-    path_parent = os.path.dirname(os.getcwd())
-    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
+    path_parent = os.path.dirname(os.path.abspath(__file__))
+    df_path = os.path.join(path_parent, 'static', 'user_uploads')
     view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     token_list, value_list = generate_list(view_df)[0], generate_list(view_df)[1]
 
@@ -174,8 +174,8 @@ def detect_dataframe():
 def sample_dataframe_ANC():
     if request.method == 'POST':
         try:
-            path_parent = os.path.dirname(os.getcwd())
-            df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'resources', 'sample_dataframe_ANC.xlsx')
+            path_parent = os.path.dirname(os.path.abspath(__file__))
+            df_path = os.path.join(path_parent, 'resources', 'sample_dataframe_ANC.xlsx')
             dataframe_SVO = pd.read_excel(df_path, sheet_name='SVO_dataframe')
             dataframe_premodifier = pd.read_excel(df_path, sheet_name='premodifier_dataframe')
             dataframe_postmodifier = pd.read_excel(df_path, sheet_name='postmodifier_dataframe')
@@ -220,7 +220,6 @@ def sample_dataframe_enwiki():
     if request.method == 'POST':
         # try:
         path_parent = os.path.dirname(os.path.abspath(__file__))
-        print(path_parent)
         df_path = os.path.join(path_parent, 'resources', 'sample_dataframe_enwiki.xlsx')
         dataframe_SVO = pd.read_excel(df_path, sheet_name='SVO_dataframe')
         dataframe_premodifier = pd.read_excel(df_path, sheet_name='premodifier_dataframe')
@@ -264,8 +263,8 @@ def sample_dataframe_enwiki():
 
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
-    path_parent = os.path.dirname(os.getcwd())
-    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
+    path_parent = os.path.dirname(os.path.abspath(__file__))
+    df_path = os.path.join(path_parent, 'static', 'user_uploads')
     # open dataframe file
     view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     input_SVO_dataframe = load_obj_user_uploads(df_path, name='SVO_dataframe_user_uploads')
@@ -333,8 +332,8 @@ def analysis():
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
-    path_parent = os.path.dirname(os.getcwd())
-    df_path = os.path.join(path_parent, 'visualising_data_bias', 'bias_visualisation_app', 'static', 'user_uploads')
+    path_parent = os.path.dirname(os.path.abspath(__file__))
+    df_path = os.path.join(path_parent, 'static', 'user_uploads')
 
     dataframe_to_display = None
     select_gender = None
