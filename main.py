@@ -1,6 +1,8 @@
 # import numpy.random.common
 # import numpy.random.bounded_integers
 # import numpy.random.entropy
+import nltk
+nltk.download('names')
 from flask_cors import CORS
 from bias_visualisation_app import app
 
