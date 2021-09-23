@@ -5,6 +5,7 @@ fileDir = os.path.dirname(os.path.realpath('__file__'))
 app_dir = os.path.join(fileDir, 'bias_visualisation_app')
 
 
+
 def delete_all_in_dir(folder_path_list):
     for folder_path in folder_path_list:
         for filename in os.listdir(folder_path):
