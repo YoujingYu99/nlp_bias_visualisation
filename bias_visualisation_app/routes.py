@@ -264,7 +264,7 @@ def sample_dataframe_enwiki():
 @app.route('/analysis', methods=['GET', 'POST'])
 def analysis():
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    df_path = os.path.join(path_parent, 'static', 'user_uploads')
+    df_path = os.path.join(path_parent, '..','static', 'user_uploads')
     # open dataframe file
     view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     input_SVO_dataframe = load_obj_user_uploads(df_path, name='SVO_dataframe_user_uploads')
@@ -333,7 +333,7 @@ def analysis():
 @app.route('/query', methods=['GET', 'POST'])
 def query():
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    df_path = os.path.join(path_parent, 'static', 'user_uploads')
+    df_path = os.path.join(path_parent, '..', 'static', 'user_uploads')
 
     dataframe_to_display = None
     select_gender = None
