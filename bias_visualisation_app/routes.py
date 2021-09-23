@@ -71,19 +71,19 @@ def visualisation():
 @app.route('/detect_text', methods=['GET', 'POST'])
 def detect_text():
     if request.method == 'POST':
-        try:
-            input_data = request.form['rawtext']
-            save_user_file_text(input_data)
-            if not input_data:
-                raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
-            if len(input_data) > 1500000:
-                raise werkzeug.exceptions.BadRequest(
-                    'Input Paragraph must be at most 1500000 characters long'
-                )
-            generate_bias_values(input_data)
-            flash('Your file is ready for download!', 'info')
-        except:
-            flash('Please enter a valid text.', 'danger')
+        # try:
+        input_data = request.form['rawtext']
+        save_user_file_text(input_data)
+        if not input_data:
+            raise werkzeug.exceptions.BadRequest('You must provide a paragraph')
+        if len(input_data) > 1500000:
+            raise werkzeug.exceptions.BadRequest(
+                'Input Paragraph must be at most 1500000 characters long'
+            )
+        generate_bias_values(input_data)
+        flash('Your file is ready for download!', 'info')
+        # except:
+        #     flash('Please enter a valid text.', 'danger')
 
     return render_template('index.html')
 
@@ -253,6 +253,7 @@ def sample_dataframe_enwiki():
 
         input_dataframe_gender_count = dataframe_gender_count
         save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
+        print('this is complete')
 
         return redirect(url_for('visualisation'))
 
