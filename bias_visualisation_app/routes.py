@@ -37,7 +37,7 @@ def index():
 @app.route('/visualisation')
 def visualisation():
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    df_path = os.path.join(path_parent, 'static', 'user_uploads')
+    df_path = os.path.join(path_parent, '..', 'static', 'user_uploads')
     view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     token_list, value_list = generate_list(view_df)[0], generate_list(view_df)[1]
 
