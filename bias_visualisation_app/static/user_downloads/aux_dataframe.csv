@@ -1,0 +1,7 @@
+female_before_aux,male_before_aux,female_follow_aux,male_follow_aux
+victim,!minority,writer,father
+teacher,minority,majority,!writer
+engineer,pilot,suspect,!teacher
+!victim,fireman,writer,father
+!teacher,nan,majority,nurse
+!mathematician,nan,suspect,nan

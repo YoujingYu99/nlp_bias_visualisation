@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {"rows": ["token"], "cols": ["pos"]})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos,gender
+9,shiny,-0.7367057637944021,ADJ,female
+23,pregnant,-0.4450816836947862,ADJ,female
+24,generous,-0.4376891059127679,ADJ,female
+7,elegant,-0.3359216234685749,ADJ,female
+12,vulnerable,-0.272795122715141,ADJ,female
+19,long,-0.2224337087583561,ADV,female
+6,tasty,-0.1427454290894865,ADJ,female
+33,together,0.9353988898606932,ADV,male
+4,black,0.9065689805122096,ADJ,male
+13,strong,0.8974504371527308,ADJ,male
+8,dark,0.8910246905960166,ADJ,male
+15,beautiful,0.8591557409607408,ADJ,male
+14,kind,0.7119820391542038,ADV,male
+6,powerful,0.6348178851076225,ADJ,male
+3,female,0.603967684913832,ADJ,male
+38,carefully,0.5184199093646594,ADV,male
+9,tall,0.4283060197350022,ADJ,male
+1,male,0.3610188591599814,ADJ,male
+29,important,0.3559044887166246,ADJ,male
+2,careful,0.3136221013913605,ADJ,male
+21,extraordinary,0.0159707065300053,ADJ,male
+</div>
+    </body>
+</html>

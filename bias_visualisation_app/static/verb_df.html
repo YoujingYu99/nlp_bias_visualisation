@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {"rows": ["token"], "cols": ["pos"]})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos,gender
+11,adores,-1.0,VERB,female
+20,cling,-0.8983391149568911,VERB,female
+8,wear,-0.8397339765822256,VERB,female
+13,pick,-0.8260094171421266,VERB,female
+5,eats,-0.814870660964718,VERB,female
+21,unite,-0.6817796762625525,VERB,female
+2,like,-0.1296740908405345,VERB,female
+35,ask,1.0,VERB,male
+36,take,0.9477844214854756,VERB,male
+0,support,0.8874204259929251,VERB,male
+26,protect,0.7330474622317411,VERB,male
+20,live,0.6262855794372582,VERB,male
+30,look,0.6258130456426334,VERB,male
+39,treat,0.5440456845010011,VERB,male
+25,need,0.4455639469031023,VERB,male
+11,drink,0.0083717523381405,VERB,male
+</div>
+    </body>
+</html>

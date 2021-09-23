@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {"rows": ["token"], "cols": ["pos"]})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,token,bias,pos,gender
+25,fireman,-0.967453796741486,NOUN,female
+18,culprit,-0.909700285171156,NOUN,female
+3,drama,-0.8016080235959828,NOUN,female
+22,mathematician,-0.6850490473639053,NOUN,female
+1,cleaner,-0.6291512909093824,NOUN,female
+0,fighter,-0.5653176940620916,NOUN,female
+16,minority,-0.3066440230418565,NOUN,female
+17,engineer,-0.2101462935589968,NOUN,female
+26,nurse,-0.1883368494320021,NOUN,female
+14,writer,-0.1399397086660017,NOUN,female
+10,glass,-0.1082044139252831,NOUN,female
+15,suspect,-0.07847968061617999,NOUN,female
+4,glove,-0.0305445579552376,NOUN,female
+32,world,0.961704295454216,NOUN,male
+27,right,0.9561293174006912,NOUN,male
+22,life,0.9348756142626472,NOUN,male
+7,woman,0.9053068336715824,NOUN,male
+19,father,0.8784649598512083,NOUN,male
+16,girl,0.8650285615161792,NOUN,male
+10,man,0.8301027513416441,NOUN,male
+37,coat,0.815510443440717,NOUN,male
+18,majority,0.7983137137445455,NOUN,male
+28,health,0.7693116339878359,NOUN,male
+17,cup,0.7440027940523296,NOUN,male
+12,water,0.7301795359825335,NOUN,male
+34,book,0.6846364926137081,NOUN,male
+5,bread,0.6594421248422486,NOUN,male
+31,cat,0.4477695527685931,NOUN,male
+23,victim,0.3200231312759088,NOUN,male
+24,teacher,0.307625565428763,NOUN,male
+40,pilot,0.1775055271217626,NOUN,male
+</div>
+    </body>
+</html>
