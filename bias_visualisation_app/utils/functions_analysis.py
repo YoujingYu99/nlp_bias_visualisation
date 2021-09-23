@@ -1261,7 +1261,7 @@ def generate_bias_values(input_data):
     save_obj_text(gender_count_df, name='gender_count_dataframe')
 
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(path_parent, 'static', 'user_downloads')
+    csv_path = os.path.join(path_parent, '..', 'static', 'user_downloads')
     concat_csv_excel(csv_path)
 
 
@@ -1484,7 +1484,7 @@ def txt_profession_list():
     :return: a clean list containing the raw sentences
     """
     profession_list = []
-    profession_txt = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources', 'professions.txt')
+    profession_txt = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'resources', 'professions.txt')
     with open(profession_txt, 'r', encoding='utf-8') as file_in:
         for line in file_in:
             profession_list.append(line.strip())
@@ -1525,7 +1525,7 @@ def gender_count_analysis(view_df):
 
 def gender_dataframe_from_tuple(view_df):
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    df_path = os.path.join(path_parent, 'static')
+    df_path = os.path.join(path_parent, '..', 'static')
     female_dataframe, male_dataframe = dataframe_by_gender(view_df)
 
     save_obj(female_dataframe, name='fm_dic')
@@ -1684,7 +1684,7 @@ def user_input_list():
     :return: a clean list containing the raw sentences
     """
     fileDir = os.path.dirname(os.path.abspath(__file__))
-    txt_dir = os.path.join(fileDir, 'static', 'user_uploads_text')
+    txt_dir = os.path.join(fileDir, '..', 'static', 'user_uploads_text')
     original_word_list = []
     word_list = []
 
@@ -1703,7 +1703,7 @@ def user_input_list():
 
 def calculate_sentence_bias_score(original_word_list ,word_list):
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    df_path = os.path.join(path_parent, 'static', 'user_uploads')
+    df_path = os.path.join(path_parent, '..', 'static', 'user_uploads')
     view_df = load_obj_user_uploads(df_path, name='total_dataframe_user_uploads')
     sentence_score_list = []
     count = 0
@@ -1752,7 +1752,7 @@ def debiased_file(threshold_value):
         debiased_sentence_list.append(new_sentence)
 
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(path_parent, 'static')
+    save_path = os.path.join(path_parent, '..', 'static')
 
     with open(os.path.join(save_path, 'debiased_file' + '.txt'), 'w+', encoding='utf-8') as f:
         f.write('\n'.join(debiased_sentence_list))
@@ -1760,7 +1760,7 @@ def debiased_file(threshold_value):
 
 def style_dataframe(df, df_name, piv_col=None):
     df_name = df_name + '.html'
-    df_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", df_name)
+    df_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', "static", df_name)
 
     if piv_col:
 
