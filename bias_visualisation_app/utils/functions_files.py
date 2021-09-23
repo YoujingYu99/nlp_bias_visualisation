@@ -166,7 +166,7 @@ def get_text_file(corpora_file):
     fileDir = os.path.dirname(os.path.abspath(__file__))
 
     # os.path.join is used so that paths work in every operating system
-    save_user_path = os.path.join(fileDir, 'static', 'user_uploads_text')
+    save_user_path = os.path.join(fileDir, '..', 'static', 'user_uploads_text')
     # need to write out the lines
     lines = ""
     with open(os.path.join(save_user_path, filename), 'w+', encoding='utf-8') as f:
@@ -183,7 +183,7 @@ def save_user_file_text(user_text):
     fileDir = os.path.dirname(os.path.abspath(__file__))
 
     # os.path.join is used so that paths work in every operating system
-    save_user_path = os.path.join(fileDir, 'static', 'user_uploads_text')
+    save_user_path = os.path.join(fileDir, '..', 'static', 'user_uploads_text')
 
     with open(os.path.join(save_user_path, 'user_input_text.txt'), 'w+', encoding='utf-8') as f:
        f.write(user_text)
@@ -193,21 +193,21 @@ def save_user_file_text(user_text):
 
 def save_obj(obj, name):
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    save_df_path = os.path.join(path_parent, 'static', name)
+    save_df_path = os.path.join(path_parent, '..', 'static', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
 
 def save_obj_text(obj, name):
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    save_df_path = os.path.join(path_parent, 'static', 'user_downloads', name)
+    save_df_path = os.path.join(path_parent, '..', 'static', 'user_downloads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
 
 def save_obj_user_uploads(obj, name):
     path_parent = os.path.dirname(os.path.abspath(__file__))
-    save_df_path = os.path.join(path_parent, 'static', 'user_uploads', name)
+    save_df_path = os.path.join(path_parent, '..', 'static', 'user_uploads', name)
     df_path = save_df_path + '.csv'
     obj.to_csv(df_path, index=False)
 
