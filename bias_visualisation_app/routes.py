@@ -129,46 +129,46 @@ def detect_corpora():
 @app.route('/detect_dataframe', methods=['GET', 'POST'])
 def detect_dataframe():
     if request.method == 'POST':
-        try:
-            complete_file = request.files['complete_file']
-            dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe', engine='openpyxl')
-            dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe', engine='openpyxl')
-            dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe', engine='openpyxl')
-            dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe', engine='openpyxl')
-            dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe', engine='openpyxl')
-            dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe', engine='openpyxl')
-            dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe', engine='openpyxl')
-            dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe', engine='openpyxl')
+        # try:
+        complete_file = request.files['complete_file']
+        dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe', engine='openpyxl')
+        dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe', engine='openpyxl')
+        dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe', engine='openpyxl')
+        dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe', engine='openpyxl')
+        dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe', engine='openpyxl')
+        dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe', engine='openpyxl')
+        dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe', engine='openpyxl')
+        dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe', engine='openpyxl')
 
-            input_dataframe_total = dataframe_total
-            save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
+        input_dataframe_total = dataframe_total
+        save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
 
-            input_dataframe_SVO = dataframe_SVO
-            save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
+        input_dataframe_SVO = dataframe_SVO
+        save_obj_user_uploads(input_dataframe_SVO, name='SVO_dataframe_user_uploads')
 
-            input_dataframe_premodifier = dataframe_premodifier
-            save_obj_user_uploads(input_dataframe_premodifier, name='premodifier_dataframe_user_uploads')
+        input_dataframe_premodifier = dataframe_premodifier
+        save_obj_user_uploads(input_dataframe_premodifier, name='premodifier_dataframe_user_uploads')
 
-            input_dataframe_postmodifier = dataframe_postmodifier
-            save_obj_user_uploads(input_dataframe_postmodifier, name='postmodifier_dataframe_user_uploads')
+        input_dataframe_postmodifier = dataframe_postmodifier
+        save_obj_user_uploads(input_dataframe_postmodifier, name='postmodifier_dataframe_user_uploads')
 
-            input_dataframe_aux = dataframe_aux
-            save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
+        input_dataframe_aux = dataframe_aux
+        save_obj_user_uploads(input_dataframe_aux, name='aux_dataframe_user_uploads')
 
-            input_dataframe_possess = dataframe_possess
-            save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
+        input_dataframe_possess = dataframe_possess
+        save_obj_user_uploads(input_dataframe_possess, name='possess_dataframe_user_uploads')
 
-            input_dataframe_profession = dataframe_profession
-            save_obj_user_uploads(input_dataframe_profession, name='profession_dataframe_user_uploads')
+        input_dataframe_profession = dataframe_profession
+        save_obj_user_uploads(input_dataframe_profession, name='profession_dataframe_user_uploads')
 
-            input_dataframe_gender_count = dataframe_gender_count
-            save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
+        input_dataframe_gender_count = dataframe_gender_count
+        save_obj_user_uploads(input_dataframe_gender_count, name='gender_count_dataframe_user_uploads')
 
-            return redirect(url_for('visualisation'))
+        return redirect(url_for('visualisation'))
 
-        except:
-            flash('Please input the complete excel file.', 'danger')
-            return redirect(url_for('index'))
+        # except:
+        #     flash('Please input the complete excel file.', 'danger')
+        #     return redirect(url_for('index'))
 
 @app.route('/sample_dataframe_ANC', methods=['GET', 'POST'])
 def sample_dataframe_ANC():
