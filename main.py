@@ -4,6 +4,11 @@
 import nltk
 nltk.download('names')
 nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('universal_tagset')
+nltk.download('dependency_treebank')
+nltk.download('punkt')
+nltk.download('pros_cons')
 
 from flask_cors import CORS
 from bias_visualisation_app import app
