@@ -56,7 +56,13 @@ scikit_learn==0.24.2
 
 ```
 
+## Run
 
+```python
+
+main.py
+
+```
 
 ## Bias Calculation
 The bias score calculation is based on the paper,  Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings, and the algorithm is adapted from the work of Chanind at (https://github.com/chanind/word2vec-gender-bias-explorer). Each token is assigned a score between -1 and 1, where a more positive number indicates male-biased and the more negative number indicates female-biased. 
