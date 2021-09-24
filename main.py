@@ -3,6 +3,8 @@
 # import numpy.random.entropy
 import nltk
 nltk.download('names')
+nltk.download('averaged_perceptron_tagger')
+
 from flask_cors import CORS
 from bias_visualisation_app import app
 
