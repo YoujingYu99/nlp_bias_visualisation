@@ -101,5 +101,3 @@ Bender, Emily M., and Batya Friedman. 2018. Data Statements for Natural Language
 Bolukbasi, Tolga, Kai-Wei Chang, James Zou, Venkatesh Saligrama, and Adam Kalai. Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings. https://arxiv.org/abs/1607.06520. 
 
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
