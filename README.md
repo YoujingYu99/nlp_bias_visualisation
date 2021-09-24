@@ -1,12 +1,12 @@
 # Visualising_data_bias
 
 ## Goal
-This project is aimed at creating a web-based interface for Natural Language Processing(NLP) text corpora that enables different kinds of bias to be revealed visually and interactively prior to the data being used to train systems. The concept of dynamic data statement will be incorporated in the interface. 
+This project is aimed at creating a web-based interface for Natural Language Processing (NLP) text corpora that enables different kinds of bias to be revealed visually and interactively prior to the data being used to train systems. The concept of dynamic data statements will be incorporated in the interface.
 
-Interactive data visualisation is defined as the “use of computer-supported, interactive, visual representations of data to amplify cognition, or the acquisition and use of knowledge”. To date, there is little to no research into the benefits of implementing interactive visualisation into data statements, but ample research into the benefits of visualisation in other areas. Hence, our project aims to combine both NLP analysis and interactive user-based data visualisation, to help user obtain a better understanding of the biases of their dataset before the next stage of implementation.
-
+Interactive data visualisation is defined as the “use of computer-supported, interactive, visual representations of data to amplify cognition, or the acquisition and use of knowledge”. In recent years, the use of datasheets or data statements has become more common in Machine Learning and NLP. Data statements provide users and developers with factual and contextual information about the data they are using (see, e.g., Gebru et al. 2018, Bender and Friedman 2018). Gebru et al. (2018) state, “we recommend that every dataset be accompanied with a datasheet documenting its motivation, creation, composition, intended uses, distribution, maintenance, and other information.” (p. 1). However, to date, there is little to no research into the benefits of implementing interactive visualisation into data statements, but ample research into the benefits of visualisation in other areas. Hence, our project aims to combine both NLP analysis and interactive user-based data visualisation, to help user obtain a better understanding of the biases of their dataset before the next stage of implementation.
 
 The aim of the project is to be able to give an interactive and dynamic bias statement for any English text that the user wishes to analyse, irrespective of its genre or size. In this way, the user can get a basic understanding and take note of possible biases before they proceed onto the next stage of implementing the dataset for their own purposes.
+
 
 ## Data
 The data used in this project is the Amalgum dataset(https://github.com/gucorpling/amalgum). AMALGUM is a machine annotated multilayer corpus following the same design and annotation layers as GUM, but substantially larger (around 4M tokens). The goal of this corpus is to close the gap between high quality, richly annotated, but small datasets, and the larger but shallowly annotated corpora that are often scraped from the Web.
@@ -86,6 +86,14 @@ All tokens are labeled with a bias value and the total score for each sentence i
 
 ## Contributors
 This project is developed by Youjing YU and Xiaoqiao Hu. The web development is inspired from the project (https://github.com/Jcharis/NLP-Web-Apps/tree/master/Summaryzer_Text_Summarization_App) by Jcharis.
+
+## References
+Gebru, Timnit, Jamie Morgenstern, Briana Vecchione, Jennifer Wortman Vaughan, Hanna Wallach, Hal Daumé III, and Kate Crawford. 2018. Datasheets for Datasets. Proceedings of the 5th Workshop on Fairness, Accountability, and Transparency in Machine Learning, Stockholm, Sweden. https://arxiv.org/abs/1803.09010. 
+
+Bender, Emily M., and Batya Friedman. 2018. Data Statements for Natural Language Processing: Toward Mitigating System Bias and Enabling Better Science. Transactions of the Association for Computational Linguistics, vol. 6, pp. 587–604. https://aclanthology.org/Q18-1041/
+
+Bolukbasi, Tolga, Kai-Wei Chang, James Zou, Venkatesh Saligrama, and Adam Kalai. Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings. https://arxiv.org/abs/1607.06520. 
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
