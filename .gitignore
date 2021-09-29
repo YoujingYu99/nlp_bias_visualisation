@@ -7,4 +7,4 @@ bias_visualisation_app/data
 
 !bias_visualisation_app/static/user_downloads/.gitkeep
 !bias_visualisation_app/static/user_uploads_text/.gitkeep
-!bias_visualisation_app/static/user_downloads/.gitkeep
+!bias_visualisation_app/static/user_uploads/.gitkeep
