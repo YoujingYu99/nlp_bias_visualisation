@@ -71,7 +71,7 @@ def visualisation():
 @app.route('/detect_text', methods=['GET', 'POST'])
 def detect_text():
     if request.method == 'POST':
-        try:
+        # try:
             input_data = request.form['rawtext']
             save_user_file_text(input_data)
             if not input_data:
@@ -82,8 +82,8 @@ def detect_text():
                 )
             generate_bias_values(input_data)
             flash('Your file is ready for download!', 'info')
-        except:
-            flash('Please enter a valid text.', 'danger')
+        # except:
+        #     flash('Please enter a valid text.', 'danger')
 
     return render_template('index.html')
 
