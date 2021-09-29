@@ -1,0 +1,327 @@
+{% extends "layout.html" %}
+{% block content %}
+<!--Slider -->
+  <section class="slider">
+      <div id="index-banner" class="parallax-container">
+         <ul class="slides" style="background-color:#6e9190">
+          <li>
+            <img src="#" alt="Unsplashed background img 1" alt="">
+            <div class="caption center-align">
+              <h1 style="font-size: 500%">Dynamic Data Statements</h1>
+              <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+               Using SpaCy,Gensim,NLTK and Sumy
+              </h5>
+
+               <div class="row center">
+              <a href="{{url_for('index')}}" class="btn-large waves-effect #4db6ac teal lighten-2">Refresh</a>
+            </div>
+            </div>
+          </li>
+          <li>
+{#           <img src="backgroundpurple.png" alt="Unsplashed background img 1">#}
+            <div class="caption left-align">
+              <h1 style="font-size: 500%">Bias Visualisation with NLTK</h1>
+              <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+               NLP based App
+              </h5>
+              <a href="about.html" class="btn-large waves-effect #4db6ac teal lighten-2">Learn More</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+  </section>
+
+{#Gender Count in Text    #}
+  <section class="section section-solutions-about grey lighten-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m10">
+          <div class="icon-block">
+            <h2 class="center">Your Corpora</h2>
+            <div class="alert alert-info" role="alert" style="background-color: whitesmoke; border:none; ">
+                <p>Female Nouns Appeared: <span style="color:#00cccc; font-size:25px; font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif">{{ female_count }} </span>Times</p><br/>
+                <p>Male Nouns Appeared: <span style="color:#00cccc; font-size:25px; font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif">{{ male_count }} </span>Times</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="section section-solutions-about grey lighten-3">
+  <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false" style="width: 35%">
+    <div class="offcanvas-header">
+        <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Linguistic Terms Explanations</h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-0" >
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Auxiliary Terms</span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> Auxiliary verbs assist in forming tenses, moods or voices of other verbs. They usually occur between a noun or pronoun and the main verb (e.g., She will go. Most writers are female.)</li>
+
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Possessives </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> Possessives are grammatical constructions or forms that express a relationship of possession between entities. A possessive noun, for instance, shows ownership of something (e.g., women’s rights). This can also be expressed via the use of pronouns (e.g., our rights).</li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Possessors </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li>A possessor is an element that possess, in contrast to a possessive, which is an element that is being possessed. An example of possessor is the sentence " Australia's John Biggins won the first gold medal for his country."</li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Premodifiers </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> Premodifiers are elements in the sentence that precede a word or phrase and add information about it. In a noun phrase, for instance, the head noun can be premodified by an adjective or noun (e.g., responsible nurse, women entrepreneurs).</li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Postmodifiers </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> Postmodifiers are elements in a sentence that follow a word or phrase and add information about it. In a noun phrase, postmodifying elements of the head noun can be adjectives, prepositional phrases or clauses (e.g., the man involved, the woman in the blue dress, women experiencing violence)</li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Subject verbs </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> A subject is the element in a sentence that performs an action (e.g., Two men robbed the store.). It usually occurs in sentence initial position, but can also be moved at the end of the sentence through the use of a ‘by’-phrase (e.g., The store was robbed by two men.).</li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Object verbs </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> A direct object is the element in a sentence to which something is done (e.g., Two men robbed the store.). Depending on the verb, an indirect object can be added to the direct object and usually indicates the recipient of the action performed (e.g., The woman gave the man a present.)</li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="width: 90%">
+                <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline"> Intransitive verbs </span>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li> An intransitive verb cannot or do not always have to take an object (e.g., he died; she sang).</li>
+                </ul>
+            </li>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+
+            <li id="note_sidebar_button" class="nav nav-sidebar">
+            <p>Note: these definitions were strongly simplified. Further readings:</p>
+            <p>Douglas Biber et al. 2002. Longman Student Grammar of Spoken and Written English. London: Longman.</p>
+            <p>David Crystal. 2005. How Language Works. London: Penguin Books.</p>
+            <p> Peter Mathews. 2003. Linguistics: A Very Short Introduction. Oxford: Oxford University Press.</p>
+            <p>Steven Pinker. 2011. Words and Rules: The Ingredients of Language.  London: HarperCollins.</p>
+                </li>
+
+        </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section-solutions-about grey lighten-3">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col min-vh-100 p-4">
+            <!-- toggler -->
+            <button class="btn float-end waves-effect #4db6ac teal lighten-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">Terminology
+            </button>
+            <form class="col s12" method="POST" action="/query">
+            <div class="container">
+              <div class="row">
+                <div class="input-field col s12 m10">
+                  <div class="icon-block">
+                  <h2 class="center dark-blue-text" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin:30px 20px;"> What would you like to know?</h2>
+                  <form method="POST" action="/analyse_question">
+                   <textarea name="user_question" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Your Question Here (e.g. What actions do women usually perform? What are the adjectives mostly associated with men?)"></textarea>
+                   </br>
+                   <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                   <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section-solutions-about grey lighten-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m10">
+          <div class="icon-block">
+            <h2 class="center">Pivot Table</h2>
+              </br>
+              <div class="alert alert-info" role="alert" style="background-color: whitesmoke; border:none; ">
+                <p>We use interactive pivot tables to show the statistical characteristics of your corpora.</p>
+                <p>The widgets of can be dragged to row or column places to explore different dimensions of the dataframe. Different properties can be observed by selecting from the drop-down menu. Displaying methods can be selected from the top-left drop-down menu. Click on the double-headed arrows to sort by values in ascending/descending order. You can click on [pop out] button to have a larger picture.
+                </p>
+                <p>For full documentation please take a look at: <a href="url">https://github.com/nicolaskruchten/pivottable</a></p>
+              </div>
+              <div class="center">
+                  <img src="https://camo.githubusercontent.com/d2671993f34ce1ca0eac43f1f677b61b550f2a456eaa48777b8b05885c035adf/68747470733a2f2f7069766f747461626c652e6a732e6f72672f696d616765732f616e696d6174696f6e2e676966" alt="illustration gif" style="height: 70%; width: 70%; object-fit: contain">
+                  </br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+  <!-- SECTION: RESULTS FOR ADJECTIVES, NOUNS AND VERBS -->
+  <section class="section section-solutions-about grey lighten-3 ">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12 offset-m1">
+          <div class="column">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3">
+                  <a href="#tab1" style="color:#3e5756">Total</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab2" style="color:#3e5756">Nouns</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab3" style="color:#3e5756">Adjectives</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab4" style="color:#3e5756">Verbs</a>
+                </li>
+              </ul>
+            </div>
+
+            <div id="tab1" class="col s12">
+              </br>
+              <h5>Total</h5>
+                <h3 style="text-align: center">Total Dataframe</h3>
+                <div class="center">
+                    <iframe src="{{ data_tot }}" alt="total dataframe" style="margin-left:auto;margin-right:auto;width:1000px;height:800px"></iframe>
+                </div>
+            </div>
+
+            <div id="tab2" class="col s12">
+                </br>
+              <h5>Nouns</h5>
+                <h3 style="text-align: center">Noun Dataframe</h3>
+                <div class="center">
+                    <iframe src="{{ data_noun }}" alt="noun dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+                <h3 style="text-align: center">Professions</h3>
+                <div class="center">
+                    <iframe src="{{ data_profession }}" alt="profession dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+                <h3 style="text-align: center">Before Aux Dataframe (Men/Women are ...)</h3>
+                <div class="center">
+                    <iframe src="{{ data_before_aux }}" alt="before aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+                <h3 style="text-align: center">Follow Aux Dataframe (... are men/women)</h3>
+                <div class="center">
+                    <iframe src="{{ data_follow_aux }}" alt="female follow aux dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+            </div>
+
+            <div id="tab3" class="col s12">
+                </br>
+              <h5>Adjectives</h5>
+              <h3 style="text-align: center">Adjectives Dataframe</h3>
+                <div class="center">
+                    <iframe src="{{ data_adj }}" alt="adjective dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+              <h3 style="text-align: center">Premodifiers</h3>
+                <iframe src="{{ data_premodifier }}" alt="premodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+              </br>
+              </br>
+              <h3 style="text-align: center">Postmodifiers</h3>
+                <div class="center">
+                    <iframe src="{{ data_postmodifier }}" alt="postmodifier dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+              <h3 style="text-align: center">Possessives</h3>
+                <div class="center">
+                    <iframe src="{{ data_possessive }}" alt="possessive dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+              <h3 style="text-align: center">Possessors</h3>
+                <div class="center">
+                    <iframe src="{{ data_possessor }}" alt="female possessor dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+            </div>
+
+
+            <div id="tab4" class="col s12">
+            </br>
+              <h5>Verbs</h5>
+              <h3 style="text-align: center">Intransitive Verbs</h3>
+                <div class="center">
+                    <iframe src="{{ data_intran_verb }}" alt="intran_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+              <h3 style="text-align: center">Female/Male As Subject</h3>
+                <div class="center">
+                    <iframe src="{{ data_sub_verb }}" alt="sub_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+              </br>
+              </br>
+              <h3 style="text-align: center">Female/Male As Object</h3>
+                <div class="center">
+                    <iframe src="{{ data_obj_verb }}" alt="obj_verb dataframe" style="margin-left:auto;margin-right:auto; width:1000px; height: 800px"></iframe>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+     </div>
+  </section>
+{% endblock content %}

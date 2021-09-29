@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% block content %}
+<!--Slider -->
+<section class="slider" xmlns:font-size="http://www.w3.org/1999/xhtml">
+  <div id="index-banner" class="parallax-container">
+     <ul class="slides" style="background-color:#6e9190">
+      <li>
+        <img src="#" alt="Unsplashed background img 1" alt="">
+        <div class="caption center-align">
+          <h1 style="font-size: 500%">Dynamic Data Statements</h1>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+           Using SpaCy,Gensim,NLTK and Sumy
+          </h5>
+          </br>
+          </br>
+          </br>
+          </br>
+          <div class="row center">
+          <a href="{{url_for('index')}}" class="btn-large waves-effect #4db6ac teal lighten-2" >Refresh</a>
+        </div>
+        </div>
+      </li>
+      <li>
+        <div class="caption left-align">
+          <h1 style="font-size: 500%">Bias Visualisation with NLTK</h1>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+           NLP based App
+          </h5>
+          <a href="{{ url_for('about') }}" class="btn-large waves-effect #4db6ac teal lighten-2">Learn More</a>
+        </div>
+      </li>
+   
+    </ul>
+  </div>
+</section>
+
+<!-- Start of Main Section -->
+ <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+        <!--Text-->
+      <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+            <form method="POST" action="/detect_text">
+                 <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
+                 <br/>
+                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit" id="test_submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!--URL-->
+      <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+            <form method="POST" action="/detect_url">
+                 <input type="text" name="raw_url" placeholder="Enter URL Here" required="true">
+                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                 <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+      <!--Corpora-->
+      <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+            <form enctype="multipart/form-data" method="POST" action="/detect_corpora">
+                <input type="file" name="raw_corpora" placeholder="Upload Text File Corpora Here" required="true">
+                </br>
+                </br>
+                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+     </br>
+     </br>
+
+     <!--URL-->
+      <div class="row">
+        <div class="input-field col s12 m10">
+          <br class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+            <form method="POST" action="/sample_dataframe_ANC">
+                 <button class="btn btn-small waves-effect waves-light lighten-2" type="submit">See Sample Result (American National Corpus)</button>
+            </form>
+            </br>
+            </br>
+            <form method="POST" action="/sample_dataframe_enwiki">
+                 <button class="btn btn-small waves-effect waves-light lighten-2" type="submit">See Sample Result (English Wikipedia)</button>
+            </form>
+          </div>
+        </div>
+
+
+
+     <h5>Download the Complete File Here</h5>
+     <a href="{{ url_for('download', df_name='complete_file.xlsx') }}" class="btn btn-small waves-effect waves-light dark-blue lighten-1" id="download_dataframe">Download Total Dataframe</a>
+     </br>
+     </br>
+
+
+     <!--Upload Complete File -->
+     <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-file-alt"></i></h2>
+            <form enctype="multipart/form-data" method="POST" action="/detect_dataframe">
+                <h5>Upload the Complete File Here</h5>
+                <input type="file" name="complete_file" placeholder="Upload Complete File Here" required="true">
+                </br>
+                </br>
+                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="reset">Clear</button>
+                <button class="btn btn-small waves-effect waves-light #4db6ac teal lighten-2" type="submit" id="test_upload">Submit</button>
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+{% endblock content %}
+
+
+
