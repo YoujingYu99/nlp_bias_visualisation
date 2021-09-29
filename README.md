@@ -73,20 +73,20 @@ Both results are saved to an xlsx file that the user can download for their own 
 
 ### Graphs
 Both interactive graphs and pivot tables are provided. The graphs include bar graphs, word clouds, PCA graphs and TSNE graphs. The pivot tables show the phrases identified with each gender and their Part-of-Speech(POS) tagging. Examples are shown below:
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig3.jpg?raw=true)
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig4.jpg?raw=true)
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig5.jpg?raw=true)
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig6.jpg?raw=true)
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig7.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig3.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig4.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig5.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig6.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig7.jpg?raw=true)
 
 
 ### Query
 The user is able to input a natural language question (e.g. 'What actions do women usually perform?') and the answer will be presented to them in a table and a bar graph.
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig8.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig8.jpg?raw=true)
 
 ### Debias
 All tokens are labeled with a bias value and the total score for each sentence is calculated and normalised to -1 and 1. The more positive number indicates male-biased and the more negative number indicates female-biased. The user can input a threshold, where all sentences more biased than the number will be discarded and the user can download the debiased file.
-![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/local_app/screenshots/Fig9.jpg?raw=true)
+![alt text](https://github.com/YoujingYu99/visualising_data_bias/blob/main/screenshots/Fig9.jpg?raw=true)
 
 
 
