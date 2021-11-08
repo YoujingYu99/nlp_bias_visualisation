@@ -368,8 +368,8 @@ def query():
         return redirect(url_for('analysis'))
 
 
-@app.route('/debiase', methods=['GET', 'POST'])
-def debiase():
+@app.route('/debias', methods=['GET', 'POST'])
+def debias():
     if request.method == 'POST':
         user_threshold = request.form['user_threshold']
         try:
@@ -382,7 +382,7 @@ def debiase():
         except:
             flash('Please enter a valid number!', 'danger')
 
-    return render_template('debiase.html')
+    return render_template('debias.html')
 
 
 
