@@ -91,7 +91,7 @@ All tokens are labeled with a bias value and the total score for each sentence i
 
 
 ## Contributors
-This project is developed by [Youjing YU](https://github.com/YoujingYu99) and Xiaoqiao Hu. The web development is inspired from the project (https://github.com/Jcharis/NLP-Web-Apps/tree/master/Summaryzer_Text_Summarization_App) by Jcharis.
+This project is developed by [Youjing YU](https://github.com/YoujingYu99) and [Xiaoqiao Hu](https://github.com/Joycy-xh297). The web development is inspired from the project (https://github.com/Jcharis/NLP-Web-Apps/tree/master/Summaryzer_Text_Summarization_App) by Jcharis.
 
 ## References
 Gebru, Timnit, Jamie Morgenstern, Briana Vecchione, Jennifer Wortman Vaughan, Hanna Wallach, Hal Daumé III, and Kate Crawford. 2018. Datasheets for Datasets. Proceedings of the 5th Workshop on Fairness, Accountability, and Transparency in Machine Learning, Stockholm, Sweden. https://arxiv.org/abs/1803.09010. 
