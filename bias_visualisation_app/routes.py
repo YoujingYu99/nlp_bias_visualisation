@@ -131,14 +131,14 @@ def detect_dataframe():
     if request.method == 'POST':
         try:
             complete_file = request.files['complete_file']
-            dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe')
-            dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe')
-            dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe')
-            dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe')
-            dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe')
-            dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe')
-            dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe')
-            dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe')
+            dataframe_SVO = pd.read_excel(complete_file, sheet_name='SVO_dataframe', engine='openpyxl')
+            dataframe_premodifier = pd.read_excel(complete_file, sheet_name='premodifier_dataframe', engine='openpyxl')
+            dataframe_postmodifier = pd.read_excel(complete_file, sheet_name='postmodifier_dataframe', engine='openpyxl')
+            dataframe_aux = pd.read_excel(complete_file, sheet_name='aux_dataframe', engine='openpyxl')
+            dataframe_possess = pd.read_excel(complete_file, sheet_name='possess_dataframe', engine='openpyxl')
+            dataframe_profession = pd.read_excel(complete_file, sheet_name='profession_dataframe', engine='openpyxl')
+            dataframe_gender_count = pd.read_excel(complete_file, sheet_name='gender_count_dataframe', engine='openpyxl')
+            dataframe_total = pd.read_excel(complete_file, sheet_name='total_dataframe', engine='openpyxl')
 
             input_dataframe_total = dataframe_total
             save_obj_user_uploads(input_dataframe_total, name='total_dataframe_user_uploads')
